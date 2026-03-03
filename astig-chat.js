@@ -11,4 +11,4 @@
   script.defer = true;
   document.head.appendChild(script);
 })();
-<script src="/path/astig-chat.js?v=20260303-1" defer></script>
+
