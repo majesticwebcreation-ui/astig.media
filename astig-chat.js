@@ -1,6 +1,6 @@
 // Astig Media Chatbot Widget
-// CSS: http://cdn.jsdelivr.net/gh/majesticwebcreation-ui/astig.media/astig-chat-widgets.css
-// CDN: http://cdn.jsdelivr.net/gh/majesticwebcreation-ui/astig.media/astig-chat.js
+// CSS: https://cdn.jsdelivr.net/gh/majesticwebcreation-ui/astig.media/astig-chat-widgets.css
+// CDN: https://cdn.jsdelivr.net/gh/majesticwebcreation-ui/astig.media/astig-chat.js
 (function() {
   var link = document.createElement('link');
   link.rel = 'stylesheet';
