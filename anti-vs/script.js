@@ -81,7 +81,7 @@ const defaultConfig = {
         testUrl: '',
         chatUrl: 'https://n8n.srv1291312.hstgr.cloud/webhook/a4d3520b-1922-4e9b-b162-3b15a5060985/chat',
         production: true,
-        externalJsUrl: 'https://cdn.jsdelivr.net/gh/majesticwebcreation-ui/astig.media@master/astig-chat-widgets.js'
+        externalJsUrl: 'https://cdn.jsdelivr.net/gh/majesticwebcreation-ui/astig.media@main/astig-chat-widgets.js'
     },
     footer: {
         text: 'POWERED BY ASTIG MEDIA',
@@ -100,8 +100,8 @@ const defaultConfig = {
     }
 };
 
-const EMBED_DEFAULT_JS_URL = 'https://cdn.jsdelivr.net/gh/majesticwebcreation-ui/astig.media@master/astig-chat-widgets.js';
-const EMBED_DEFAULT_CSS_URL = 'https://cdn.jsdelivr.net/gh/majesticwebcreation-ui/astig.media@master/astig-chat.css';
+const EMBED_DEFAULT_JS_URL = 'https://cdn.jsdelivr.net/gh/majesticwebcreation-ui/astig.media@main/astig-chat-widgets.js';
+const EMBED_DEFAULT_CSS_URL = 'https://cdn.jsdelivr.net/gh/majesticwebcreation-ui/astig.media@main/astig-chat.css';
 const EMBED_RUNTIME_JS_URL = EMBED_DEFAULT_JS_URL;
 const EMBED_DEFAULT_WEBHOOK_URL = 'https://n8n.srv1291312.hstgr.cloud/webhook/a4d3520b-1922-4e9b-b162-3b15a5060985/chat';
 const EMBED_LOCAL_JS_FILENAME = 'astig-chat-widgets.js';
@@ -885,8 +885,8 @@ function normalizeAstigJsDelivrUrl(url) {
     const value = String(url || '').trim();
     if (!value) return value;
     return value.replace(
-        /^https:\/\/cdn\.jsdelivr\.net\/gh\/majesticwebcreation-ui\/astig\.media(?:@main)?\/(astig-chat-widgets\.js(?:[?#].*)?)$/i,
-        'https://cdn.jsdelivr.net/gh/majesticwebcreation-ui/astig.media@master/$1'
+        /^https:\/\/cdn\.jsdelivr\.net\/gh\/majesticwebcreation-ui\/astig\.media(?:@master)?\/(astig-chat-widgets\.js(?:[?#].*)?)$/i,
+        'https://cdn.jsdelivr.net/gh/majesticwebcreation-ui/astig.media@main/$1'
     );
 }
 
@@ -1095,6 +1095,16 @@ function parseGitHubRepoSlug(slug) {
     return { owner: match[1], repo: match[2] };
 }
 
+function normalizeGitHubDeployBranch(repo, branch) {
+    const repoSlug = String(repo || '').trim().toLowerCase();
+    const value = String(branch || '').trim();
+    if (!value) return '';
+    if (repoSlug === GITHUB_DEPLOY_DEFAULT_REPO.toLowerCase() && value.toLowerCase() === 'master') {
+        return 'main';
+    }
+    return value;
+}
+
 function getSavedGitHubDeployTarget() {
     const fallback = { repo: GITHUB_DEPLOY_DEFAULT_REPO, branch: GITHUB_DEPLOY_DEFAULT_BRANCH };
     try {
@@ -1102,10 +1112,11 @@ function getSavedGitHubDeployTarget() {
         if (!raw) return fallback;
         const parsed = JSON.parse(raw);
         const repo = (parsed && typeof parsed.repo === 'string') ? parsed.repo.trim() : '';
-        const branch = (parsed && typeof parsed.branch === 'string') ? parsed.branch.trim() : '';
+        const parsedBranch = (parsed && typeof parsed.branch === 'string') ? parsed.branch.trim() : '';
+        const branch = normalizeGitHubDeployBranch(repo || fallback.repo, parsedBranch || fallback.branch) || fallback.branch;
         return {
             repo: repo || fallback.repo,
-            branch: branch || fallback.branch
+            branch
         };
     } catch (error) {
         void error;
@@ -1115,7 +1126,7 @@ function getSavedGitHubDeployTarget() {
 
 function saveGitHubDeployTarget(target) {
     const repo = String(target?.repo || '').trim();
-    const branch = String(target?.branch || '').trim();
+    const branch = normalizeGitHubDeployBranch(repo, target?.branch);
     if (!repo || !branch) return;
     try {
         localStorage.setItem(
@@ -1158,7 +1169,8 @@ function getGitHubIntegrationSettingsFromInputs(options = {}) {
     const tokenInput = document.getElementById('githubTokenInput');
 
     const repo = (repoInput instanceof HTMLInputElement ? repoInput.value : savedTarget.repo).trim() || savedTarget.repo;
-    const branch = (branchInput instanceof HTMLInputElement ? branchInput.value : savedTarget.branch).trim() || savedTarget.branch;
+    const rawBranch = (branchInput instanceof HTMLInputElement ? branchInput.value : savedTarget.branch).trim() || savedTarget.branch;
+    const branch = normalizeGitHubDeployBranch(repo, rawBranch) || savedTarget.branch;
     let token = (tokenInput instanceof HTMLInputElement ? tokenInput.value : savedToken).trim() || savedToken;
 
     if (!repo) throw new Error('GitHub repository is required.');
@@ -1170,6 +1182,10 @@ function getGitHubIntegrationSettingsFromInputs(options = {}) {
         if (tokenInput instanceof HTMLInputElement && token) tokenInput.value = token;
     }
     if (!token) throw new Error('GitHub token is required. Open Integration and save your token.');
+
+    if (branchInput instanceof HTMLInputElement && branchInput.value !== branch) {
+        branchInput.value = branch;
+    }
 
     saveGitHubDeployTarget({ repo, branch });
     saveGitHubDeployToken(token);
@@ -1185,9 +1201,14 @@ function hydrateGitHubIntegrationPanel() {
     const tokenShow = document.getElementById('githubTokenShow');
     const saveBtn = document.getElementById('saveGithubIntegrationBtn');
 
-    if (repoInput instanceof HTMLInputElement) repoInput.value = savedTarget.repo || GITHUB_DEPLOY_DEFAULT_REPO;
-    if (branchInput instanceof HTMLInputElement) branchInput.value = savedTarget.branch || GITHUB_DEPLOY_DEFAULT_BRANCH;
+    const hydratedRepo = savedTarget.repo || GITHUB_DEPLOY_DEFAULT_REPO;
+    const hydratedBranch = normalizeGitHubDeployBranch(hydratedRepo, savedTarget.branch || GITHUB_DEPLOY_DEFAULT_BRANCH) || GITHUB_DEPLOY_DEFAULT_BRANCH;
+    if (repoInput instanceof HTMLInputElement) repoInput.value = hydratedRepo;
+    if (branchInput instanceof HTMLInputElement) branchInput.value = hydratedBranch;
     if (tokenInput instanceof HTMLInputElement) tokenInput.value = savedToken;
+    if (hydratedRepo !== savedTarget.repo || hydratedBranch !== savedTarget.branch) {
+        saveGitHubDeployTarget({ repo: hydratedRepo, branch: hydratedBranch });
+    }
 
     if (tokenShow instanceof HTMLInputElement && tokenInput instanceof HTMLInputElement) {
         tokenShow.checked = false;
@@ -1222,6 +1243,61 @@ async function fetchGitHubFileMeta({ owner, repo, branch, path, token }) {
         throw new Error(`Unable to read ${path}: ${message}`);
     }
     return response.json();
+}
+
+async function fetchGitHubRepoMeta({ owner, repo, token }) {
+    const url = `https://api.github.com/repos/${encodeURIComponent(owner)}/${encodeURIComponent(repo)}`;
+    const response = await fetch(url, {
+        method: 'GET',
+        headers: getGitHubDeployHeaders(token)
+    });
+    if (!response.ok) {
+        const message = await readGitHubApiError(response);
+        throw new Error(`Unable to read repository metadata: ${message}`);
+    }
+    return response.json();
+}
+
+async function checkGitHubBranchExists({ owner, repo, branch, token }) {
+    const value = String(branch || '').trim();
+    if (!value) return false;
+    const url = `https://api.github.com/repos/${encodeURIComponent(owner)}/${encodeURIComponent(repo)}/branches/${encodeURIComponent(value)}`;
+    const response = await fetch(url, {
+        method: 'GET',
+        headers: getGitHubDeployHeaders(token)
+    });
+    if (response.status === 404) return false;
+    if (!response.ok) {
+        const message = await readGitHubApiError(response);
+        throw new Error(`Unable to verify branch "${value}": ${message}`);
+    }
+    return true;
+}
+
+async function resolveGitHubDeployBranch({ owner, repo, token, preferredBranch }) {
+    const candidates = [];
+    const pushCandidate = (value) => {
+        const branch = String(value || '').trim();
+        if (!branch) return;
+        if (!candidates.includes(branch)) candidates.push(branch);
+    };
+
+    pushCandidate(preferredBranch);
+    try {
+        const meta = await fetchGitHubRepoMeta({ owner, repo, token });
+        pushCandidate(meta?.default_branch);
+    } catch (error) {
+        void error;
+    }
+    pushCandidate('main');
+    pushCandidate('master');
+
+    for (const branch of candidates) {
+        if (await checkGitHubBranchExists({ owner, repo, branch, token })) {
+            return branch;
+        }
+    }
+    throw new Error(`No valid branch found. Tried: ${candidates.join(', ')}`);
 }
 
 async function upsertGitHubFile({ owner, repo, branch, path, token, content, message }) {
@@ -1271,6 +1347,24 @@ async function purgeJsDelivrAsset(url) {
     return { skipped: false, url };
 }
 
+function buildDeployCdnAssetUrls(repoSlug, branch) {
+    const repo = String(repoSlug || '').trim().replace(/^\/+|\/+$/g, '');
+    const ref = String(branch || '').trim();
+    if (!repo) return [];
+    const base = `https://cdn.jsdelivr.net/gh/${repo}`;
+    const refs = [];
+    if (ref) refs.push(`@${ref}`);
+    refs.push('', '@master', '@main');
+    const files = ['astig-chat-widgets.js', 'astig-chat.css'];
+    const urls = [];
+    refs.forEach((r) => {
+        files.forEach((f) => {
+            urls.push(`${base}${r}/${f}`);
+        });
+    });
+    return Array.from(new Set(urls));
+}
+
 function applyCurrentConfigToRuntimeBundle(runtimeSource, configLiteral) {
     const matcher = /const defaultBundleConfig = [\s\S]*?;\r?\n\s*const rsvp = window\.RSVPChatConfig \|\| \{\};/;
     const replacement = `const defaultBundleConfig = ${configLiteral};\n    const rsvp = window.RSVPChatConfig || {};`;
@@ -1318,6 +1412,18 @@ async function deployCurrentSettingsToGitHub() {
         notify(15, 'Resolving GitHub integration settings...');
         const { repo: repoSlug, branch, token } = getGitHubIntegrationSettingsFromInputs({ promptForToken: true });
         const { owner, repo } = parseGitHubRepoSlug(repoSlug);
+        const branchInput = document.getElementById('githubBranchInput');
+        const resolvedBranch = await resolveGitHubDeployBranch({
+            owner,
+            repo,
+            token,
+            preferredBranch: branch
+        });
+        if (resolvedBranch !== branch) {
+            if (branchInput instanceof HTMLInputElement) branchInput.value = resolvedBranch;
+            saveGitHubDeployTarget({ repo: repoSlug, branch: resolvedBranch });
+            notify(24, `Branch "${branch}" not found. Using "${resolvedBranch}".`);
+        }
 
         notify(30, 'Building deploy assets from current settings...');
         const bundle = await buildDeployBundleFromCurrentSettings();
@@ -1327,7 +1433,7 @@ async function deployCurrentSettingsToGitHub() {
         await upsertGitHubFile({
             owner,
             repo,
-            branch,
+            branch: resolvedBranch,
             path: 'astig-chat-widgets.js',
             token,
             content: bundle.js,
@@ -1338,7 +1444,7 @@ async function deployCurrentSettingsToGitHub() {
         await upsertGitHubFile({
             owner,
             repo,
-            branch,
+            branch: resolvedBranch,
             path: 'astig-chat.css',
             token,
             content: bundle.css,
@@ -1346,14 +1452,27 @@ async function deployCurrentSettingsToGitHub() {
         });
 
         notify(92, 'Purging jsDelivr cache...');
-        await purgeJsDelivrAsset(EMBED_DEFAULT_JS_URL);
-        await purgeJsDelivrAsset(EMBED_DEFAULT_CSS_URL);
+        const purgeTargets = Array.from(new Set([
+            ...buildDeployCdnAssetUrls(repoSlug, resolvedBranch),
+            EMBED_DEFAULT_JS_URL,
+            EMBED_DEFAULT_CSS_URL,
+            resolveEmbedJsUrl(),
+            resolveEmbedCssUrl(resolveEmbedJsUrl())
+        ].filter(Boolean)));
+        const purgeResults = await Promise.allSettled(
+            purgeTargets.map((url) => purgeJsDelivrAsset(url))
+        );
+        const purgeFailures = purgeResults.filter((result) => result.status === 'rejected').length;
 
         const embedCodeOutput = document.getElementById('embedCodeOutput');
         if (embedCodeOutput instanceof HTMLTextAreaElement) {
             embedCodeOutput.value = getEmbedSnippetText();
         }
-        notify(100, `Deploy complete and CDN purged: ${repoSlug}@${branch}`, 'success');
+        if (purgeFailures > 0) {
+            notify(100, `Deploy complete (${repoSlug}@${resolvedBranch}). CDN purge warnings: ${purgeFailures}`, 'success');
+        } else {
+            notify(100, `Deploy complete and CDN purged: ${repoSlug}@${resolvedBranch}`, 'success');
+        }
     } catch (error) {
         const message = (error && error.message) ? error.message : 'Unknown deployment error';
         notify(100, `Deploy failed: ${message}`, 'error');
