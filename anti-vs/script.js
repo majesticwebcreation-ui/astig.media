@@ -103,6 +103,9 @@ const defaultConfig = {
 const EMBED_DEFAULT_JS_URL = 'https://cdn.jsdelivr.net/gh/majesticwebcreation-ui/astig.media/astig-chat-widgets.js';
 const EMBED_DEFAULT_CSS_URL = 'https://cdn.jsdelivr.net/gh/majesticwebcreation-ui/astig.media/astig-chat.css';
 const EMBED_RUNTIME_JS_URL = EMBED_DEFAULT_JS_URL;
+const EMBED_LOCKED_SNIPPET = `<!-- Astig Media Chatbot Widget -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/majesticwebcreation-ui/astig.media/astig-chat.css" />
+<script src="https://cdn.jsdelivr.net/gh/majesticwebcreation-ui/astig.media/astig-chat-widgets.js" defer></script>`;
 const EMBED_DEFAULT_WEBHOOK_URL = 'https://n8n.srv1291312.hstgr.cloud/webhook/a4d3520b-1922-4e9b-b162-3b15a5060985/chat';
 const EMBED_LOCAL_JS_FILENAME = 'astig-chat-widgets.js';
 const EMBED_LOCAL_JS_PATHS = [
@@ -926,11 +929,7 @@ function stringifyForInlineScript(value) {
 }
 
 function getEmbedSnippetText() {
-    const embedJsUrl = EMBED_DEFAULT_JS_URL;
-    const embedCssUrl = EMBED_DEFAULT_CSS_URL;
-    return `<!-- Astig Media Chatbot Widget -->
-<link rel="stylesheet" href="${embedCssUrl}" />
-<script src="${embedJsUrl}" defer></script>`;
+    return EMBED_LOCKED_SNIPPET;
 }
 
 function getEmbedJsFileText() {
@@ -1371,6 +1370,29 @@ function applyCurrentConfigToRuntimeBundle(runtimeSource, configLiteral) {
     return String(runtimeSource || '').replace(matcher, replacement);
 }
 
+function stripDeployInjectedConfig(runtimeSource) {
+    return String(runtimeSource || '').replace(
+        /\/\*__ASTIG_DEPLOY_CONFIG_START__\*\/[\s\S]*?\/\*__ASTIG_DEPLOY_CONFIG_END__\*\/\s*/g,
+        ''
+    );
+}
+
+function injectDeployRuntimeConfig(runtimeSource, configLiteral, webhookUrl) {
+    const cleanedRuntime = stripDeployInjectedConfig(runtimeSource);
+    const webhookLiteral = JSON.stringify(webhookUrl || EMBED_DEFAULT_WEBHOOK_URL);
+    const bootstrap = [
+        '/*__ASTIG_DEPLOY_CONFIG_START__*/',
+        '(function() {',
+        '  window.RSVPChatConfig = window.RSVPChatConfig || {};',
+        `  window.RSVPChatConfig.webhookUrl = ${webhookLiteral};`,
+        `  window.RSVPChatConfig.fullConfig = ${configLiteral};`,
+        '})();',
+        '/*__ASTIG_DEPLOY_CONFIG_END__*/',
+        ''
+    ].join('\n');
+    return `${bootstrap}${cleanedRuntime}`;
+}
+
 async function buildDeployBundleFromCurrentSettings() {
     const runtime = await fetchLocalEmbedJsFileText();
     const snapshot = getEmbedConfigSnapshot();
@@ -1379,9 +1401,11 @@ async function buildDeployBundleFromCurrentSettings() {
     snapshot.webhook.url = webhookUrl;
     if (!snapshot.webhook.chatUrl) snapshot.webhook.chatUrl = webhookUrl;
     const configLiteral = stringifyForInlineScript(snapshot);
-    const patchedRuntime = applyCurrentConfigToRuntimeBundle(runtime.content, configLiteral);
-    if (!patchedRuntime || patchedRuntime === runtime.content) {
-        throw new Error('Unable to inject current settings into runtime JS.');
+    const patchedDefaultsRuntime = applyCurrentConfigToRuntimeBundle(runtime.content, configLiteral);
+    const runtimeWithDefaults = patchedDefaultsRuntime || runtime.content;
+    const patchedRuntime = injectDeployRuntimeConfig(runtimeWithDefaults, configLiteral, webhookUrl);
+    if (!patchedRuntime || !patchedRuntime.trim()) {
+        throw new Error('Unable to build runtime JS for deploy.');
     }
     if (isLoaderOnlyEmbedScript(patchedRuntime)) {
         throw new Error('Generated runtime JS is invalid (loader-only).');
