@@ -1,0 +1,1186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot Builder</title>
+    <!-- Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Syne:wght@400;600;700&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap"
+        rel="stylesheet">
+    <!-- Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/lib/marked.umd.js"></script>
+    <link rel="stylesheet" href="style.css?v=5">
+    <style>
+        .sidebar-toggle {
+            position: fixed;
+            left: auto;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 108px;
+            height: 52px;
+            border-radius: 14px 0 0 14px;
+            border: 1px solid rgba(255, 255, 255, 0.24);
+            background: linear-gradient(170deg, rgba(255, 255, 255, 0.24), rgba(255, 255, 255, 0.08));
+            color: #fff;
+            font-size: 0.72rem;
+            letter-spacing: 0.07em;
+            font-weight: 700;
+            text-transform: uppercase;
+            cursor: pointer;
+            z-index: 1250;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            box-shadow: 0 10px 26px rgba(3, 1, 15, 0.44);
+            transition: transform 0.28s ease, right 0.28s ease, background 0.28s ease;
+        }
+
+        #sidebarToggle {
+            top: calc(50% - 64px);
+        }
+
+        .reset-toggle {
+            top: 50%;
+            background: linear-gradient(170deg, rgba(251, 113, 133, 0.32), rgba(219, 39, 119, 0.16));
+            border-color: rgba(251, 113, 133, 0.48);
+        }
+
+        .chatbot-builder-toggle {
+            top: calc(50% + 64px);
+            text-align: center;
+            line-height: 1.1;
+            padding-inline: 8px;
+        }
+
+        .embed-toggle {
+            top: calc(50% + 128px);
+        }
+
+        .integration-toggle {
+            top: calc(50% + 192px);
+            background: linear-gradient(170deg, rgba(56, 189, 248, 0.32), rgba(14, 116, 144, 0.18));
+            border-color: rgba(56, 189, 248, 0.52);
+        }
+
+        .deploy-toggle {
+            top: calc(50% + 256px);
+            background: linear-gradient(170deg, rgba(74, 222, 128, 0.32), rgba(16, 185, 129, 0.18));
+            border-color: rgba(74, 222, 128, 0.52);
+        }
+
+        .sidebar-toggle:hover,
+        .sidebar-toggle:focus-visible {
+            transform: translateY(calc(-50% - 2px));
+            background: linear-gradient(170deg,
+                    color-mix(in srgb, #6c63ff 30%, white),
+                    color-mix(in srgb, #ff6584 42%, transparent));
+        }
+
+        .reset-toggle:hover,
+        .reset-toggle:focus-visible {
+            transform: translateY(calc(-50% - 2px));
+            background: linear-gradient(170deg, rgba(251, 113, 133, 0.42), rgba(219, 39, 119, 0.24));
+        }
+
+        .deploy-toggle:hover,
+        .deploy-toggle:focus-visible {
+            transform: translateY(calc(-50% - 2px));
+            background: linear-gradient(170deg, rgba(74, 222, 128, 0.42), rgba(16, 185, 129, 0.28));
+        }
+
+        .integration-toggle:hover,
+        .integration-toggle:focus-visible {
+            transform: translateY(calc(-50% - 2px));
+            background: linear-gradient(170deg, rgba(56, 189, 248, 0.42), rgba(14, 116, 144, 0.28));
+        }
+
+        .sidebar-backdrop {
+            position: fixed;
+            inset: 0;
+            z-index: 1190;
+            background: rgba(8, 2, 20, 0.5);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.25s ease;
+        }
+
+        .sidebar-backdrop.is-visible {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: min(395px, 88vw);
+            border-radius: 0 20px 20px 0;
+            z-index: 1210;
+            transform: translateX(-104%);
+            transition: transform 0.32s ease;
+            background: linear-gradient(160deg, rgba(19, 19, 26, 0.92), rgba(26, 26, 36, 0.84));
+            border-right: 1px solid rgba(255, 255, 255, 0.12);
+            box-shadow: 0 20px 48px rgba(3, 1, 15, 0.45);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+        }
+
+        body.sidebar-open .sidebar {
+            transform: translateX(0);
+        }
+
+        .sidebar-header {
+            position: relative;
+            padding-right: 56px;
+        }
+
+        .sidebar-close {
+            position: absolute;
+            top: 14px;
+            right: 14px;
+            width: 32px;
+            height: 32px;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, 0.28);
+            background: rgba(255, 255, 255, 0.08);
+            color: #fff;
+            font-size: 1.1rem;
+            line-height: 1;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .sidebar-close:hover,
+        .sidebar-close:focus-visible {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        @media (max-width: 1024px) {
+            .sidebar {
+                width: min(420px, 92vw);
+            }
+        }
+
+        @media (max-width: 767px) {
+            .sidebar-toggle {
+                top: auto;
+                left: auto;
+                right: 14px;
+                bottom: 14px;
+                transform: none;
+                border-radius: 14px;
+                width: 108px;
+                height: 46px;
+            }
+
+            #sidebarToggle {
+                bottom: 274px;
+            }
+
+            .reset-toggle {
+                top: auto;
+                bottom: 222px;
+                transform: none;
+            }
+
+            .chatbot-builder-toggle {
+                top: auto;
+                bottom: 170px;
+                transform: none;
+            }
+
+            .embed-toggle {
+                top: auto;
+                bottom: 118px;
+                transform: none;
+            }
+
+            .integration-toggle {
+                top: auto;
+                bottom: 66px;
+                transform: none;
+            }
+
+            .deploy-toggle {
+                top: auto;
+                bottom: 14px;
+                transform: none;
+            }
+
+            .sidebar-toggle:hover,
+            .sidebar-toggle:focus-visible,
+            .reset-toggle:hover,
+            .reset-toggle:focus-visible {
+                transform: translateY(-1px);
+            }
+
+            .sidebar {
+                top: auto;
+                bottom: 0;
+                width: 100vw;
+                height: min(88vh, 760px);
+                border-radius: 22px 22px 0 0;
+                transform: translateY(104%);
+            }
+
+            body.sidebar-open .sidebar {
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <button id="sidebarToggle" class="sidebar-toggle" type="button" aria-label="Open menu and settings panel"
+        aria-expanded="false" aria-controls="builderSidebar">
+        Menu
+    </button>
+    <button id="resetFloatingBtn" class="sidebar-toggle reset-toggle" type="button"
+        aria-label="Open theme settings panel">
+        Theme
+    </button>
+    <button id="webhookFloatingBtn" class="sidebar-toggle chatbot-builder-toggle" type="button"
+        aria-label="Open webhook settings panel">
+        Webhook
+    </button>
+    <button id="embedFloatingBtn" class="sidebar-toggle embed-toggle" type="button"
+        aria-label="Open embed settings panel">
+        EMBED
+    </button>
+    <button id="integrationFloatingBtn" class="sidebar-toggle integration-toggle" type="button"
+        aria-label="Open integration settings panel">
+        integration
+    </button>
+    <button id="deployFloatingBtn" class="sidebar-toggle deploy-toggle" type="button"
+        aria-label="Deploy widget files to GitHub">
+        Deploy
+    </button>
+    <div id="sidebarBackdrop" class="sidebar-backdrop" aria-hidden="true"></div>
+
+    <div class="app-container" id="builderApp">
+        <!-- Sidebar: Configuration Panels -->
+        <aside class="sidebar" id="builderSidebar" aria-hidden="true">
+            <div class="sidebar-header">
+                <img src="https://widjets.astigmedia.com/img/main-logo.png" alt="Logo" class="sidebar-logo">
+                <h2><span class="beta-badge">BETA</span></h2>
+                <button id="sidebarClose" class="sidebar-close" type="button" aria-label="Close settings panel">&times;</button>
+            </div>
+
+            <nav class="sidebar-nav">
+                <button class="nav-btn" data-tab="avatar">Avatar</button>
+                <button class="nav-btn" data-tab="footer">Footer</button>
+                <button class="nav-btn" data-tab="header">Header</button>
+                <button class="nav-btn" data-tab="launcher">Launcher</button>
+                <button class="nav-btn" data-tab="logo">Logo</button>
+                <button class="nav-btn" data-tab="questions">Questions</button>
+                <button class="nav-btn" data-tab="telemetry">Telemetry</button>
+                <button class="nav-btn active" data-tab="theme">Theme</button>
+                <button class="nav-btn" data-tab="video">Video - Image</button>
+                <button class="nav-btn" data-tab="webhook">Webhook</button>
+                <button class="nav-btn" data-tab="integration">Integration</button>
+                <button class="nav-btn" data-tab="embed">EMBED</button>
+            </nav>
+
+            <div class="sidebar-content">
+                <!-- Theme Settings -->
+                <div id="panel-theme" class="panel active">
+                    <h3>Theme Settings</h3>
+                    <div class="control-group">
+                        <label>Primary Color</label>
+                        <input type="color" id="primaryColor" value="#6c63ff">
+                    </div>
+                    <div class="control-group">
+                        <label>Background Color</label>
+                        <input type="color" id="bgColor" value="#17171f">
+                    </div>
+                    <div class="control-group">
+                        <label>Surface Color</label>
+                        <input type="color" id="surfaceColor" value="#1f1f2e">
+                    </div>
+                    <div class="control-group">
+                        <label>Background Mode</label>
+                        <select id="bgMode">
+                            <option value="solid">Solid Color</option>
+                            <option value="transparent">Transparent</option>
+                            <option value="glass">Glassmorphism</option>
+                            <option value="frosted">Frosted Glass</option>
+                            <option value="gradient">Gradient</option>
+                        </select>
+                    </div>
+                    <div class="control-group" id="gradientGroup" style="display:none;">
+                        <label>Gradient Colors (Start, End)</label>
+                        <div style="display:flex; gap:5px;">
+                            <input type="color" id="gradientStart" value="#6c63ff">
+                            <input type="color" id="gradientEnd" value="#ff6584">
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label>Font Family</label>
+                        <select id="fontFamily">
+                            <option value="'DM Sans', sans-serif">DM Sans</option>
+                            <option value="'Inter', sans-serif">Inter</option>
+                            <option value="'Roboto', sans-serif">Roboto</option>
+                            <option value="'Poppins', sans-serif">Poppins</option>
+                            <option value="'Montserrat', sans-serif">Montserrat</option>
+                            <option value="'Lato', sans-serif">Lato</option>
+                            <option value="'Open Sans', sans-serif">Open Sans</option>
+                            <option value="'Nunito', sans-serif">Nunito</option>
+                            <option value="'Work Sans', sans-serif">Work Sans</option>
+                            <option value="'Manrope', sans-serif">Manrope</option>
+                            <option value="'Raleway', sans-serif">Raleway</option>
+                            <option value="'Merriweather', serif">Merriweather</option>
+                            <option value="'Playfair Display', serif">Playfair Display</option>
+                            <option value="'Source Serif 4', serif">Source Serif 4</option>
+                            <option value="'JetBrains Mono', monospace">JetBrains Mono</option>
+                            <option value="'Fira Code', monospace">Fira Code</option>
+                            <option value="'Space Mono', monospace">Space Mono</option>
+                        </select>
+                    </div>
+                    <div class="control-group">
+                        <label>Border Radius (px)</label>
+                        <input type="range" id="borderRadius" min="0" max="30" value="20">
+                    </div>
+                    <button class="btn-primary" id="applyThemeBtn" style="width:100%">Apply Theme</button>
+                </div>
+
+                <!-- Logo Settings -->
+                <div id="panel-logo" class="panel">
+                    <h3>Logo Settings</h3>
+                    <div class="control-group">
+                        <label>Logo Type</label>
+                        <select id="logoType">
+                            <option value="text">Text Name</option>
+                            <option value="image">Image URL</option>
+                        </select>
+                    </div>
+                    <div class="control-group">
+                        <label>Logo / Name Value</label>
+                        <div style="display:flex; gap:8px;">
+                            <input type="text" id="logoValue" placeholder="Name or Image URL" style="flex:1;">
+                            <button class="btn-secondary" id="uploadLogoBtn" style="padding: 0 12px;"
+                                title="Upload Image"><i data-lucide="upload"
+                                    style="width:16px; height:16px;"></i></button>
+                        </div>
+                        <input type="file" id="logoFileInput" accept="image/*" style="display:none;">
+                    </div>
+                    <div class="control-group">
+                        <label>Size (px)</label>
+                        <input type="number" id="logoSize" value="24" min="10" max="100">
+                    </div>
+                    <button class="btn-primary" id="applyLogoBtn" style="width:100%">Apply Logo</button>
+                </div>
+
+                <!-- Avatar Settings -->
+                <div id="panel-avatar" class="panel">
+                    <h3>Avatar Settings</h3>
+                    <h4>Assistant</h4>
+                    <div class="control-group">
+                        <label>Name</label>
+                        <input type="text" id="assistantName" value="Aria">
+                    </div>
+                    <div class="control-group">
+                        <label>Initial / URL</label>
+                        <div style="display:flex; gap:8px;">
+                            <input type="text" id="assistantAvatar" value="A" style="flex:1;">
+                            <button class="btn-secondary" id="uploadAssistantBtn" style="padding: 0 12px;"
+                                title="Upload Avatar"><i data-lucide="upload"
+                                    style="width:16px; height:16px;"></i></button>
+                        </div>
+                        <input type="file" id="assistantFileInput" accept="image/*" style="display:none;">
+                    </div>
+                    <div class="control-group">
+                        <label>Size (px)</label>
+                        <input type="number" id="assistantAvatarSize" value="40" min="20" max="80">
+                    </div>
+                    <h4 style="margin-top:20px; border-top:1px solid var(--border-color); padding-top:10px;">User</h4>
+                    <div class="control-group">
+                        <label>User Initial / URL</label>
+                        <div style="display:flex; gap:8px;">
+                            <input type="text" id="userAvatar" value="U" style="flex:1;">
+                            <button class="btn-secondary" id="uploadUserBtn" style="padding: 0 12px;"
+                                title="Upload Avatar"><i data-lucide="upload"
+                                    style="width:16px; height:16px;"></i></button>
+                        </div>
+                        <input type="file" id="userFileInput" accept="image/*" style="display:none;">
+                    </div>
+                    <div class="control-group">
+                        <label>Size (px)</label>
+                        <input type="number" id="userAvatarSize" value="32" min="20" max="80">
+                    </div>
+
+                    <button class="btn-primary" id="applyAvatarBtn" style="width:100%; margin-top:10px;">Apply
+                        Avatars</button>
+                </div>
+
+                <!-- Launcher Settings -->
+                <div id="panel-launcher" class="panel">
+                    <h3>Launcher Settings</h3>
+
+                    <div class="control-group">
+                        <label>Launcher Type</label>
+                        <select id="launcherIconType">
+                            <option value="icon">Lucide Icon</option>
+                            <option value="image">Image URL</option>
+                        </select>
+                    </div>
+                    <div class="control-group">
+                        <label>Icon Name / Image URL</label>
+                        <div style="display:flex; gap:8px;">
+                            <input type="text" id="launcherIcon" value="message-circle" style="flex:1;"
+                                placeholder="Name or Image URL">
+                            <button class="btn-secondary" id="uploadLauncherBtn" style="padding: 0 12px;"
+                                title="Upload Image"><i data-lucide="upload"
+                                    style="width:16px; height:16px;"></i></button>
+                        </div>
+                        <input type="file" id="launcherFileInput" accept="image/*" style="display:none;">
+                        <a href="https://lucide.dev/icons" id="launcherIconLink" target="_blank"
+                            style="font-size:11px; color:var(--accent-color); margin-top:4px; display:inline-block;">Browse
+                            Icons</a>
+                    </div>
+                    <div class="control-group">
+                        <label class="checkbox-container">
+                            Show Launcher Badge
+                            <input type="checkbox" id="launcherBadgeEnabled">
+                            <span class="checkmark"></span>
+                        </label>
+                    </div>
+                    <div class="control-group">
+                        <label>Badge Text (Optional)</label>
+                        <input type="text" id="launcherText" placeholder="Chat with us">
+                    </div>
+                    <div class="control-group">
+                        <label class="checkbox-container">
+                            Show Launcher Message Bubble
+                            <input type="checkbox" id="launcherBubbleEnabled">
+                            <span class="checkmark"></span>
+                        </label>
+                    </div>
+                    <div class="control-group">
+                        <label>Bubble Message</label>
+                        <input type="text" id="launcherBubbleText" placeholder="Ta-da! You've found your creative superpower spot...">
+                    </div>
+                    <div class="control-group">
+                        <label>Bubble Animation</label>
+                        <select id="launcherBubbleMode">
+                            <option value="instant">Instant</option>
+                            <option value="typewriter">Typewriter</option>
+                        </select>
+                    </div>
+                    <div class="control-group">
+                        <label class="checkbox-container">
+                            Bubble Auto Show/Hide
+                            <input type="checkbox" id="launcherBubbleTimed">
+                            <span class="checkmark"></span>
+                        </label>
+                    </div>
+                    <div class="control-group">
+                        <label>Show Bubble After (seconds)</label>
+                        <input type="number" id="launcherBubbleDelaySec" min="0" step="1" value="5">
+                    </div>
+                    <div class="control-group">
+                        <label>Hide Bubble After (seconds)</label>
+                        <input type="number" id="launcherBubbleDurationSec" min="0" step="1" value="10">
+                    </div>
+                    <div class="control-group">
+                        <button class="btn-secondary" id="launcherBubblePresetBtn" type="button">Preset: 5s Show / 10s Hide</button>
+                    </div>
+                    <div class="control-group">
+                        <label>Size (px)</label>
+                        <input type="number" id="launcherSize" value="48">
+                    </div>
+                    <div class="control-group">
+                        <label>Background Style</label>
+                        <select id="launcherBgStyle">
+                            <option value="solid">Solid Color</option>
+                            <option value="3d">3D</option>
+                            <option value="transparent">Transparent</option>
+                            <option value="glass">Glassmorphism</option>
+                            <option value="gradient">Gradient</option>
+                        </select>
+                    </div>
+                    <div class="control-group">
+                        <label id="launcherBgColorLabel">Background Color / Gradient Start</label>
+                        <input type="color" id="launcherBgColor" value="#6c63ff">
+                    </div>
+                    <div class="control-group" id="launcherGradientGroup" style="display:none;">
+                        <label>Gradient End</label>
+                        <input type="color" id="launcherGradientEnd" value="#ff6584">
+                    </div>
+                    <div class="control-group">
+                        <label>Animation</label>
+                        <select id="launcherAnimation">
+                            <option value="none">None</option>
+                            <option value="pulse">Pulse</option>
+                            <option value="bounce">Bounce</option>
+                            <option value="spin">Spin</option>
+                        </select>
+                    </div>
+                    <div class="control-group">
+                        <label>Position</label>
+                        <select id="launcherPosition">
+                            <option value="bottom-right">Bottom Right</option>
+                            <option value="bottom-left">Bottom Left</option>
+                            <option value="top-right">Top Right</option>
+                            <option value="top-left">Top Left</option>
+                        </select>
+                    </div>
+                    <button class="btn-primary" id="applyLauncherBtn" style="width:100%">Apply Launcher</button>
+                </div>
+
+                <!-- Video / Image Settings -->
+                <div id="panel-video" class="panel">
+                    <h3>Video - Image Settings</h3>
+                    <div class="control-group">
+                        <label>Media Layout</label>
+                        <select id="videoLayoutMode">
+                            <option value="inline">Standard Size</option>
+                            <option value="background">Background</option>
+                        </select>
+                    </div>
+                    <div class="control-group">
+                        <label>Video Turn Off</label>
+                        <select id="videoTurnOffMode">
+                            <option value="stay-on">Stay On</option>
+                            <option value="after-10s">After 10 seconds turns off</option>
+                            <option value="first-question" selected>When first question appears turns off</option>
+                        </select>
+                    </div>
+                    <div class="control-group">
+                        <label>Video URL (MP4)</label>
+                        <input type="text" id="videoUrl" value="https://widjets.astigmedia.com/vid/DJ.mp4"
+                            placeholder="https://example.com/video.mp4">
+                    </div>
+                    <div class="control-group">
+                        <label>Image URL</label>
+                        <input type="text" id="videoImageUrl" value="" placeholder="https://example.com/image.jpg">
+                    </div>
+                    <div class="control-group">
+                        <label class="checkbox-container">
+                            Video Loop
+                            <input type="checkbox" id="videoLoopEnabled" checked>
+                            <span class="checkmark"></span>
+                        </label>
+                    </div>
+                    <button class="btn-primary" id="applyVideoBtn" style="width:100%">Apply Video - Image</button>
+                </div>
+
+                <!-- Questionnaire Settings -->
+                <div id="panel-questions" class="panel">
+                    <h3>Questions Flow</h3>
+                    <div class="control-group">
+                        <label>Button Style</label>
+                        <select id="questionsBtnStyle">
+                            <option value="solid">Solid</option>
+                            <option value="gradient">Gradient</option>
+                        </select>
+                    </div>
+                    <div class="control-group">
+                        <button class="btn-primary" id="addQuestionBtn" style="width: 100%">+ Add Step</button>
+                    </div>
+                    <div id="questionsList" style="display: flex; flex-direction: column; gap: 10px; margin-top: 15px;">
+                        <!-- Questions will be injected here -->
+                    </div>
+                    <button class="btn-primary" id="applyQuestionsBtn" style="width:100%; margin-top:10px;">Apply
+                        Changes</button>
+                </div>
+
+                <!-- Header Settings -->
+                <div id="panel-header" class="panel">
+                    <h3>Header Settings</h3>
+                    <div class="control-group">
+                        <label>Header Text</label>
+                        <input type="text" id="headerTitleValue" placeholder="Add header text" value="Aria">
+                    </div>
+                    <div class="control-group">
+                        <label>Font Family</label>
+                        <select id="headerFontFamily">
+                            <option value="'Syne', sans-serif">Syne</option>
+                            <option value="'Inter', sans-serif">Inter</option>
+                            <option value="'DM Sans', sans-serif">DM Sans</option>
+                            <option value="'Roboto', sans-serif">Roboto</option>
+                            <option value="'Poppins', sans-serif">Poppins</option>
+                            <option value="'Montserrat', sans-serif">Montserrat</option>
+                        </select>
+                    </div>
+                    <div class="control-group">
+                        <label>Name Font Size (px)</label>
+                        <input type="number" id="headerNameFontSize" value="15" min="10" max="72">
+                    </div>
+                    <div class="control-group">
+                        <label>Status Font Size (px)</label>
+                        <input type="number" id="headerStatusFontSize" value="12" min="9" max="40">
+                    </div>
+                    <div class="control-group">
+                        <label>Status Text</label>
+                        <input type="text" id="headerStatusValue" value="Online">
+                    </div>
+                    <div class="control-group">
+                        <label>Animation</label>
+                        <select id="headerAnimation">
+                            <option value="none">None</option>
+                            <option value="pulse">Pulse</option>
+                            <option value="fade">Fade In</option>
+                            <option value="slide-up">Slide Up</option>
+                        </select>
+                    </div>
+                    <div class="control-group">
+                        <label>Header Background</label>
+                        <input type="color" id="headerBgColor" value="#1f1f2e">
+                    </div>
+                    <div class="control-group">
+                        <label>Text Color</label>
+                        <input type="color" id="headerTextColor" value="#ffffff">
+                    </div>
+                    <div class="control-group">
+                        <label>Top Hero Media</label>
+                        <select id="topHeroMediaType">
+                            <option value="none">None (Gradient Only)</option>
+                            <option value="image">Image URL</option>
+                            <option value="video">Video URL (MP4)</option>
+                        </select>
+                    </div>
+                    <div class="control-group" id="topHeroMediaUrlGroup" style="display:none;">
+                        <label>Top Hero Media URL</label>
+                        <input type="text" id="topHeroMediaUrl" value="" placeholder="https://example.com/media.mp4 or .jpg">
+                    </div>
+                    <button class="btn-primary" id="applyHeaderBtn" style="width:100%">Apply Header</button>
+                </div>
+
+                <!-- Telemetry Settings -->
+                <div id="panel-telemetry" class="panel">
+                    <h3>Telemetry Settings</h3>
+                    <div class="control-group">
+                        <label class="checkbox-container">
+                            Show All Telemetry Panels
+                            <input type="checkbox" id="telemetryShowAll">
+                            <span class="checkmark"></span>
+                        </label>
+                    </div>
+                    <div class="control-group">
+                        <label class="checkbox-container">
+                            Show Pipeline Monitor
+                            <input type="checkbox" id="telemetryShowPipeline">
+                            <span class="checkmark"></span>
+                        </label>
+                    </div>
+                    <div class="control-group">
+                        <label class="checkbox-container">
+                            Show Realtime Telemetry
+                            <input type="checkbox" id="telemetryShowRealtime">
+                            <span class="checkmark"></span>
+                        </label>
+                    </div>
+                    <div class="control-group">
+                        <label class="checkbox-container">
+                            Show Realtime Feed
+                            <input type="checkbox" id="telemetryShowRealtimeFeed">
+                            <span class="checkmark"></span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Webhook Settings -->
+                <div id="panel-webhook" class="panel">
+                    <h3>Webhook Settings</h3>
+                    <div class="control-group">
+                        <label>Mode</label>
+                        <div style="display:flex; align-items:center; gap:10px;">
+                            <span style="font-size:13px; color:var(--text-secondary);">Production</span>
+                            <label class="switch">
+                                <input type="checkbox" id="webhookMode">
+                                <span class="slider round"></span>
+                            </label>
+                            <span style="font-size:13px; color:var(--text-primary);">Test</span>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label>Webhook URL (Production)</label>
+                        <input type="text" id="webhookUrl" placeholder="https://api.n8n.io/...">
+                    </div>
+                    <div class="control-group" id="testUrlGroup" style="display:none;">
+                        <label>Webhook URL (Test)</label>
+                        <input type="text" id="webhookTestUrl" placeholder="https://test-api.n8n.io/...">
+                    </div>
+                    <div class="control-group">
+                        <label>CHAT URL</label>
+                        <input type="text" id="webhookChatUrl" placeholder="https://chat-api.n8n.io/...">
+                    </div>
+                    <div class="control-group">
+                        <label>External JS URL</label>
+                        <input type="text" id="externalJsUrl"
+                            value="https://cdn.jsdelivr.net/gh/majesticwebcreation-ui/astig.media@master/astig-chat-widgets.js"
+                            placeholder="https://cdn.jsdelivr.net/gh/majesticwebcreation-ui/astig.media@master/astig-chat-widgets.js">
+                    </div>
+                    <button class="btn-secondary" id="testWebhookBtn" style="width:100%; margin-bottom:10px;">Test
+                        Connection</button>
+                    <button class="btn-primary" id="applyWebhookBtn" style="width:100%">Apply Settings</button>
+                </div>
+
+                <!-- Integration Settings -->
+                <div id="panel-integration" class="panel">
+                    <h3>Integration</h3>
+                    <div class="control-group">
+                        <label>GitHub Repository (owner/repo)</label>
+                        <input type="text" id="githubRepoInput" value="majesticwebcreation-ui/astig.media"
+                            placeholder="owner/repo">
+                    </div>
+                    <div class="control-group">
+                        <label>GitHub Branch</label>
+                        <input type="text" id="githubBranchInput" value="main" placeholder="main">
+                    </div>
+                    <div class="control-group">
+                        <label>GitHub Full Access Token</label>
+                        <input type="password" id="githubTokenInput" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx">
+                    </div>
+                    <div class="control-group">
+                        <small style="color: var(--text-secondary); display:block; line-height:1.4;">
+                            Token is saved in this browser and reused for Deploy automation.
+                        </small>
+                    </div>
+                    <div class="control-group">
+                        <label class="checkbox-container">
+                            Show Token
+                            <input type="checkbox" id="githubTokenShow">
+                            <span class="checkmark"></span>
+                        </label>
+                    </div>
+                    <button class="btn-primary" id="saveGithubIntegrationBtn" style="width:100%">Save Integration</button>
+                </div>
+
+                <!-- Embed Settings -->
+                <div id="panel-embed" class="panel">
+                    <h3>Embed</h3>
+                    <div class="control-group">
+                        <label>Generate embeddable widget snippet</label>
+                        <button class="btn-primary" id="generateEmbedCodeBtn" style="width:100%">Generate Embed Code</button>
+                    </div>
+                    <div class="control-group">
+                        <label>Embed Script</label>
+                        <textarea id="embedCodeOutput" class="embed-code-output" rows="5" readonly
+                            placeholder="Click Generate Embed Code to create your snippet"></textarea>
+                    </div>
+                    <div class="control-group">
+                        <button class="btn-secondary" id="copyEmbedCodeBtn" style="width:100%; margin-bottom:10px;">Copy Code</button>
+                        <button class="btn-secondary" id="downloadEmbedJsBtn" style="width:100%; margin-bottom:10px;">Download JS File</button>
+                        <button class="btn-secondary" id="downloadEmbedCssBtn" style="width:100%; margin-bottom:10px;">Download CSS File</button>
+                        <button class="btn-primary" id="deployEmbedBtn" style="width:100%;">Deploy</button>
+                    </div>
+                </div>
+
+                <!-- Footer Settings -->
+                <div id="panel-footer" class="panel">
+                    <h3>Footer Settings</h3>
+                    <div class="control-group">
+                        <label>Footer Text</label>
+                        <input type="text" id="footerTextValue" placeholder="Powered by Astig Media" value="">
+                    </div>
+                    <div class="control-group">
+                        <label>Footer Link URL</label>
+                        <input type="text" id="footerLinkValue" placeholder="https://astigmedia.com" value="">
+                    </div>
+                    <div class="control-group">
+                        <label>Font Family</label>
+                        <select id="footerFontFamily">
+                            <option value="'Inter', sans-serif">Inter</option>
+                            <option value="'Syne', sans-serif">Syne</option>
+                            <option value="'DM Sans', sans-serif">DM Sans</option>
+                            <option value="'Roboto', sans-serif">Roboto</option>
+                        </select>
+                    </div>
+                    <div class="control-group">
+                        <label>Animation</label>
+                        <select id="footerAnimation">
+                            <option value="none">None</option>
+                            <option value="pulse">Pulse</option>
+                            <option value="fade">Fade In</option>
+                            <option value="slide-up">Slide Up</option>
+                        </select>
+                    </div>
+                    <div class="control-group">
+                        <label>Text Color</label>
+                        <input type="color" id="footerTextColor" value="#7070a0">
+                    </div>
+                    <div class="control-group">
+                        <label>Font Size (px)</label>
+                        <input type="number" id="footerFontSize" value="11" min="8" max="24">
+                    </div>
+                    <div class="control-group">
+                        <label>Position</label>
+                        <select id="footerPosition">
+                            <option value="center">Bottom Middle</option>
+                            <option value="flex-start">Bottom Left</option>
+                            <option value="flex-end">Bottom Right</option>
+                        </select>
+                    </div>
+                    <button class="btn-primary" id="applyFooterBtn" style="width:100%">Apply Footer</button>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content: Preview & Toolbar -->
+        <main class="main-content">
+            <header class="toolbar">
+                <div class="toolbar-left">
+                    <button class="btn-icon" id="restartBtn" title="Restart Conversation"><i
+                            data-lucide="rotate-ccw"></i></button>
+                    <div class="divider-vertical"></div>
+                    <button class="btn-icon" id="viewMobile" title="Mobile View"><i
+                            data-lucide="smartphone"></i></button>
+                    <button class="btn-icon" id="viewDesktop" title="Desktop View"><i
+                            data-lucide="monitor"></i></button>
+                    <button class="btn-secondary" id="aboutBtn" type="button" style="min-width:92px;">About</button>
+                </div>
+                <div class="toolbar-right">
+                    <button class="btn-secondary" id="previewExternalBtn" style="margin-right:8px;">Preview</button>
+                    <button class="btn-secondary" id="resetBtn" title="Reset to Default"
+                        style="color: var(--danger-color); border-color: var(--danger-color); margin-right:8px;">Reset</button>
+                    <button class="btn-secondary" id="saveBtn">SAVE</button>
+                    <button class="btn-secondary" id="loadBtn">OPEN</button>
+                    <input type="file" id="fileInput" accept=".json" style="display: none;">
+                </div>
+            </header>
+
+            <div id="saveProjectModal" class="modal-overlay" style="display:none;">
+                <div class="modal-content" style="max-width: 460px;">
+                    <div class="modal-header">
+                        <h2>Save Project</h2>
+                        <button class="btn-icon" id="closeSaveProjectModal"><i data-lucide="x"></i></button>
+                    </div>
+                    <div class="modal-body">
+                        <p class="modal-desc">Choose a filename for your project export.</p>
+                        <div class="control-group" style="margin-bottom: 0;">
+                            <label for="saveProjectFilename">Filename</label>
+                            <input type="text" id="saveProjectFilename" value="chatbot-project" placeholder="chatbot-project">
+                        </div>
+                    </div>
+                    <div class="modal-footer" style="padding: 14px 20px; display:flex; justify-content:flex-end; gap:10px; border-top:1px solid var(--border-color);">
+                        <button class="btn-secondary" id="cancelSaveProjectBtn" type="button">Cancel</button>
+                        <button class="btn-primary" id="confirmSaveProjectBtn" type="button">Save</button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="aboutModal" class="modal-overlay" style="display:none;">
+                <div class="modal-content" style="max-width: 560px;">
+                    <div class="modal-header">
+                        <h2>About</h2>
+                        <button class="btn-icon" id="closeAboutModal"><i data-lucide="x"></i></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="about-hero3d">
+                            <ul class="about-list">
+                                <li>ACB v1.00 Beta</li>
+                            </ul>
+                            <p class="about-line">Designed and Developed by Rojie Tayco</p>
+                            <ul class="about-list">
+                                <li>ACB Beta 1.00</li>
+                            </ul>
+                            <p class="about-line">UI/UX &amp; Software Engineering by Rojie Tayco</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="preview-area" id="previewArea">
+                <button class="create-bot-btn" id="createBotBtn" type="button">Create A Bot</button>
+                <section class="create-bot-mode" id="createBotMode" aria-hidden="true">
+                    <button class="create-bot-cancel" id="createBotCancelBtn" type="button" aria-label="Cancel create bot mode">Cancel</button>
+                    <div class="create-bot-mode__canvas" aria-hidden="true"></div>
+                    <div class="create-bot-mode__card" role="region" aria-label="Create bot options">
+                        <p class="create-bot-mode__hint">Add first step to begin building your bot flow.</p>
+                        <div class="create-bot-mode__actions" role="group" aria-label="Create bot actions">
+                            <button class="btn-primary" id="createModeStartFreshBtn" type="button">Start Fresh</button>
+                            <button class="btn-secondary" id="createModeUseTemplatesBtn" type="button">Use Templates</button>
+                            <button class="btn-secondary" id="createModeOpenMyBotBtn" type="button">Open My Bot</button>
+                            <button class="btn-secondary" id="createModeAiBuildBtn" type="button" disabled aria-disabled="true"
+                                title="AI Build is coming soon.">AI Build (coming soon)</button>
+                        </div>
+                        <div class="create-bot-mode__templates" id="createModeTemplateChooser" hidden>
+                            <label for="createModeTemplateSelect">Choose a template</label>
+                            <div class="create-bot-mode__templates-row">
+                                <select id="createModeTemplateSelect">
+                                    <option value="">Select template...</option>
+                                    <option value="support">Customer Support</option>
+                                    <option value="orders-online">Orders Online</option>
+                                    <option value="maximum-support-chat">Maximum Support Chat</option>
+                                    <option value="event-rsvp-martha">Event RSVP AI Agent (Martha)</option>
+                                    <option value="sales">Sales Assistant</option>
+                                    <option value="booking">Booking Concierge</option>
+                                    <option value="rsvp">RSVP</option>
+                                    <option value="onboarding">Onboarding Guide</option>
+                                    <option value="newsletter">Newsletter Signup</option>
+                                </select>
+                                <button class="btn-primary" id="createModeApplyTemplateBtn" type="button">Apply Template</button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <div class="preview-layout">
+                <div class="chat-preview-stack">
+                <!-- Chat Widget Preview (Copied & modified structure from chat-widget.html) -->
+                <div class="chat-widget" id="chatWidgetPreview">
+                    <!-- Header -->
+                    <header class="chat-widget__header">
+                        <div class="chat-widget__header-avatar" id="previewAvatar">A</div>
+                        <div class="chat-widget__header-info">
+                            <div class="chat-widget__header-name" id="previewName">Aria</div>
+                            <div class="chat-widget__header-status">Online</div>
+                        </div>
+                        <div class="chat-widget__header-actions">
+                            <button class="chat-widget__header-btn" id="previewRestartBtn" title="Restart Chat">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" />
+                                    <path d="M3 3v5h5" />
+                                </svg>
+                            </button>
+                            <button class="chat-widget__header-btn" id="previewDownloadBtn" title="Download Chat">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                                    <polyline points="7 10 12 15 17 10" />
+                                    <line x1="12" y1="15" x2="12" y2="3" />
+                                </svg>
+                            </button>
+                        </div>
+                    </header>
+
+                    <!-- Message list -->
+                    <div class="chat-widget__messages" id="previewMsgList">
+                        <div class="chat-widget__conversation-media">
+                            <video class="chat-widget__conversation-video" autoplay loop playsinline preload="metadata">
+                                <source src="https://widjets.astigmedia.com/vid/DJ.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                        <div class="chat-widget__divider">Today</div>
+                        <!-- Messages will be injected here by script.js -->
+                        <div class="chat-widget__anchor" id="previewAnchor"></div>
+                    </div>
+
+                    <!-- Input row -->
+                    <div class="chat-widget__input-row">
+                        <button class="chat-widget__send" id="previewUploadBtn" title="Upload File"
+                            style="background:transparent; color:var(--w-muted); border:none; padding:0; width:30px; cursor:pointer;"
+                            onmouseover="this.style.color='var(--w-accent)'"
+                            onmouseout="this.style.color='var(--w-muted)'">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path
+                                    d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48" />
+                            </svg>
+                        </button>
+                        <input type="file" id="previewFileInput" style="display:none;" />
+                        <input class="chat-widget__input" id="previewInput" type="text" placeholder="Type a message…"
+                            autocomplete="off" />
+                        <button class="chat-widget__send" id="previewSendBtn">
+                            <img class="chat-widget__send-plane" src="assets/send-airplane.svg" alt="Send" />
+                        </button>
+                    </div>
+                    <!-- Widget Footer -->
+                    <div class="chat-widget__footer" id="previewFooter">
+                        <!-- Footer content will be injected by script.js -->
+                    </div>
+                </div>
+
+                <!-- Launcher Preview -->
+                <div class="cw-launcher" id="previewLauncher">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2-2z"></path>
+                    </svg>
+                </div>
+                </div>
+
+                <div class="telemetry-rail" id="telemetryRail">
+                <aside class="backend-panel" id="backendPanel">
+                    <div class="backend-panel__head">
+                        <div>
+                            <h4>Pipeline Monitor</h4>
+                            <p>Live Automation request processing telemetry</p>
+                        </div>
+                        <span class="backend-state backend-state--idle" id="backendStateBadge">Idle</span>
+                    </div>
+
+                    <div class="backend-session" id="backendSessionId">Session: waiting...</div>
+
+                    <div class="backend-flow">
+                        <div class="backend-step" id="backendStepOutbound">
+                            <div class="backend-step__title">Client to Automation</div>
+                            <div class="backend-step__meta"><span id="backendPctOutbound">0%</span></div>
+                            <div class="backend-step__bar"><span id="backendBarOutbound"></span></div>
+                        </div>
+                        <div class="backend-arrow" id="backendArrow1"><span></span></div>
+                        <div class="backend-step" id="backendStepProcessing">
+                            <div class="backend-step__title">Automation Processing</div>
+                            <div class="backend-step__meta"><span id="backendPctProcessing">0%</span></div>
+                            <div class="backend-step__bar"><span id="backendBarProcessing"></span></div>
+                        </div>
+                        <div class="backend-arrow" id="backendArrow2"><span></span></div>
+                        <div class="backend-step" id="backendStepInbound">
+                            <div class="backend-step__title">Automation to Client</div>
+                            <div class="backend-step__meta"><span id="backendPctInbound">0%</span></div>
+                            <div class="backend-step__bar"><span id="backendBarInbound"></span></div>
+                        </div>
+                        <div class="backend-arrow" id="backendArrow3"><span></span></div>
+                        <div class="backend-step" id="backendStepRender">
+                            <div class="backend-step__title">Render Response</div>
+                            <div class="backend-step__meta"><span id="backendPctRender">0%</span></div>
+                            <div class="backend-step__bar"><span id="backendBarRender"></span></div>
+                        </div>
+                    </div>
+
+                    <div class="backend-overall">
+                        <div class="backend-overall__track"><span id="backendOverallBar"></span></div>
+                        <div class="backend-overall__meta">
+                            <span id="backendOverallLabel">0%</span>
+                            <span id="backendOverallText">No active webhook transfer</span>
+                        </div>
+                    </div>
+
+                    <div class="backend-notice-stack">
+                        <div class="backend-notice backend-notice--disconnected" id="backendWebhookConnCard">
+                            <div class="backend-notice__meta">
+                                <span id="backendWebhookConnLabel">Webhook Connection</span>
+                                <span id="backendWebhookConnState" class="backend-status-symbol backend-status-symbol--bad" aria-label="Webhook disconnected">✕</span>
+                            </div>
+                            <div class="backend-notice__track"><span id="backendWebhookConnBar"></span></div>
+                        </div>
+                        <div class="backend-notice backend-notice--production" id="backendWebhookModeCard">
+                            <div class="backend-notice__meta">
+                                <span id="backendWebhookModeLabel">Webhook URL</span>
+                            </div>
+                            <div class="backend-url-mode-list">
+                                <div class="backend-url-mode-row">
+                                    <span class="backend-url-mode-text">Production URL</span>
+                                    <span id="backendWebhookProdState" class="backend-status-symbol backend-status-symbol--good" aria-label="Production URL active">✓</span>
+                                </div>
+                                <div class="backend-url-mode-row">
+                                    <span class="backend-url-mode-text">Test URL</span>
+                                    <span id="backendWebhookTestState" class="backend-status-symbol backend-status-symbol--bad" aria-label="Test URL inactive">✕</span>
+                                </div>
+                            </div>
+                            <div class="backend-notice__track"><span id="backendWebhookModeBar"></span></div>
+                        </div>
+                    </div>
+
+                </aside>
+                <aside class="backend-activity-panel" id="backendRealtimePanel" aria-label="Realtime telemetry updates">
+                    <div class="backend-activity-panel__head">Realtime Telemetry</div>
+                    <div class="backend-loglist" id="backendLogList"></div>
+                </aside>
+                <aside class="backend-raw-panel" id="backendRawPanel" aria-label="Webhook raw feed">
+                    <div class="backend-raw-panel__head">Webhook Raw Feed</div>
+                    <pre class="backend-raw-panel__body" id="previewRawTelemetryBody">Waiting for webhook activity...</pre>
+                </aside>
+                </div>
+
+                </div>
+            </div>
+
+        </main>
+    </div>
+    <div id="notifications-rail" class="notifications-rail">
+        <div id="notifications-panel" class="notifications-panel"></div>
+    </div>
+
+    <script src="script.js?v=13"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+    <script>
+        (function () {
+            const body = document.body;
+            const sidebar = document.getElementById('builderSidebar');
+            const sidebarToggle = document.getElementById('sidebarToggle');
+            const sidebarClose = document.getElementById('sidebarClose');
+            const sidebarBackdrop = document.getElementById('sidebarBackdrop');
+            const themeBtn = document.getElementById('resetFloatingBtn');
+            const webhookBtn = document.getElementById('webhookFloatingBtn');
+            const embedBtn = document.getElementById('embedFloatingBtn');
+            const integrationBtn = document.getElementById('integrationFloatingBtn');
+            const deployFloatingBtn = document.getElementById('deployFloatingBtn');
+
+            if (!sidebar || !sidebarToggle || !sidebarBackdrop) return;
+
+            const syncSidebarState = (open) => {
+                body.classList.toggle('sidebar-open', open);
+                sidebarToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+                sidebar.setAttribute('aria-hidden', open ? 'false' : 'true');
+                sidebarBackdrop.classList.toggle('is-visible', open);
+            };
+
+            const activateNavPanel = (tabName) => {
+                const tab = document.querySelector(`.nav-btn[data-tab="${tabName}"]`);
+                if (tab) tab.click();
+            };
+
+            sidebarToggle.addEventListener('click', () => {
+                const nextState = !body.classList.contains('sidebar-open');
+                syncSidebarState(nextState);
+            });
+
+            if (sidebarClose) {
+                sidebarClose.addEventListener('click', () => syncSidebarState(false));
+            }
+
+            sidebarBackdrop.addEventListener('click', () => syncSidebarState(false));
+
+            document.addEventListener('keydown', (event) => {
+                if (event.key === 'Escape' && body.classList.contains('sidebar-open')) {
+                    syncSidebarState(false);
+                }
+            });
+
+            if (themeBtn) {
+                themeBtn.addEventListener('click', () => {
+                    activateNavPanel('theme');
+                    syncSidebarState(true);
+                });
+            }
+
+            if (webhookBtn) {
+                webhookBtn.addEventListener('click', () => {
+                    activateNavPanel('webhook');
+                    syncSidebarState(true);
+                });
+            }
+
+            if (embedBtn) {
+                embedBtn.addEventListener('click', () => {
+                    activateNavPanel('embed');
+                    syncSidebarState(true);
+                });
+            }
+
+            if (integrationBtn) {
+                integrationBtn.addEventListener('click', () => {
+                    activateNavPanel('integration');
+                    syncSidebarState(true);
+                });
+            }
+
+            if (deployFloatingBtn) {
+                deployFloatingBtn.addEventListener('click', () => {
+                    activateNavPanel('embed');
+                    syncSidebarState(true);
+                    const deployPanelBtn = document.getElementById('deployEmbedBtn');
+                    if (deployPanelBtn) {
+                        setTimeout(() => deployPanelBtn.click(), 60);
+                    }
+                });
+            }
+
+        })();
+    </script>
+</body>
+
+</html>
