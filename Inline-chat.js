@@ -4,7 +4,10 @@
 
   var ROOT_ID = "astig-inline-chat-root";
   var OVERRIDE_STYLE_ID = "astig-inline-chat-runtime-style";
-  var INLINE_BUNDLE_SRC = "https://cdn.jsdelivr.net/gh/majesticwebcreation-ui/astig.media/astig-chat-widgets.js";
+  var INLINE_BUNDLE_SOURCES = [
+    "https://cdn.jsdelivr.net/gh/majesticwebcreation-ui/astig.media/anti-vs/astig-chat-widgets.js",
+    "https://cdn.jsdelivr.net/gh/majesticwebcreation-ui/astig.media/astig-chat-widgets.js"
+  ];
 
   function ensureRoot() {
     var root = document.getElementById(ROOT_ID);
@@ -106,14 +109,24 @@
       return;
     }
 
-    var script = document.createElement("script");
-    script.src = INLINE_BUNDLE_SRC;
-    script.async = true;
-    script.setAttribute("data-astig-inline-bundle", "1");
-    script.onload = function () {
-      applyInlineMode();
-    };
-    (document.head || document.documentElement).appendChild(script);
+    function tryLoadFrom(index) {
+      if (index >= INLINE_BUNDLE_SOURCES.length) {
+        return;
+      }
+      var script = document.createElement("script");
+      script.src = INLINE_BUNDLE_SOURCES[index];
+      script.async = true;
+      script.setAttribute("data-astig-inline-bundle", "1");
+      script.onload = function () {
+        applyInlineMode();
+      };
+      script.onerror = function () {
+        tryLoadFrom(index + 1);
+      };
+      (document.head || document.documentElement).appendChild(script);
+    }
+
+    tryLoadFrom(0);
     watchForWidget();
   }
 
