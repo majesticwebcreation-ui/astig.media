@@ -1,0 +1,54 @@
+﻿:root {
+  --astig-inline-accent: #db2777;
+  --astig-inline-bg: #0f172a;
+  --astig-inline-text: #e2e8f0;
+}
+
+#astig-inline-chat-root {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  z-index: 9999;
+  font-family: Inter, "Segoe UI", sans-serif;
+}
+
+#astig-inline-chat-launcher {
+  width: 56px;
+  height: 56px;
+  border: 0;
+  border-radius: 999px;
+  background: linear-gradient(160deg, var(--astig-inline-accent), #7c3aed);
+  color: #ffffff;
+  font-size: 20px;
+  cursor: pointer;
+  box-shadow: 0 14px 30px rgba(2, 6, 23, 0.4);
+}
+
+#astig-inline-chat-panel {
+  width: min(360px, calc(100vw - 32px));
+  margin-bottom: 10px;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(15, 23, 42, 0.94);
+  color: var(--astig-inline-text);
+  box-shadow: 0 22px 44px rgba(2, 6, 23, 0.55);
+  overflow: hidden;
+}
+
+#astig-inline-chat-panel[hidden] {
+  display: none;
+}
+
+.astig-inline-chat-head {
+  padding: 12px 14px;
+  font-size: 14px;
+  font-weight: 700;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.2);
+}
+
+.astig-inline-chat-body {
+  padding: 12px 14px;
+  font-size: 13px;
+  line-height: 1.45;
+  color: rgba(226, 232, 240, 0.92);
+}
