@@ -5,8 +5,10 @@
   var ROOT_ID = "astig-inline-chat-root";
   var OVERRIDE_STYLE_ID = "astig-inline-chat-runtime-style";
   var INLINE_BUNDLE_SOURCES = [
-    "https://cdn.jsdelivr.net/gh/majesticwebcreation-ui/astig.media/anti-vs/astig-chat-widgets.js",
-    "https://cdn.jsdelivr.net/gh/majesticwebcreation-ui/astig.media/astig-chat-widgets.js"
+    "https://cdn.jsdelivr.net/gh/majesticwebcreation-ui/astig.media@main/anti-vs/astig-chat-widgets.js",
+    "https://raw.githubusercontent.com/majesticwebcreation-ui/astig.media/main/anti-vs/astig-chat-widgets.js",
+    "https://cdn.jsdelivr.net/gh/majesticwebcreation-ui/astig.media@main/astig-chat-widgets.js",
+    "https://raw.githubusercontent.com/majesticwebcreation-ui/astig.media/main/astig-chat-widgets.js"
   ];
 
   function ensureRoot() {
