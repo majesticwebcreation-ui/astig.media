@@ -108,9 +108,14 @@ const EMBED_LOCKED_SNIPPET = `<!-- Astig Media Chatbot Widget -->
 <script src="https://cdn.jsdelivr.net/gh/majesticwebcreation-ui/astig.media/astig-chat-widgets.js" defer></script>`;
 const EMBED_DEFAULT_WEBHOOK_URL = 'https://n8n.srv1291312.hstgr.cloud/webhook/a4d3520b-1922-4e9b-b162-3b15a5060985/chat';
 const EMBED_LOCAL_JS_FILENAME = 'astig-chat-widgets.js';
+const EMBED_LEGACY_RUNTIME_JS_FILENAME = 'astig-chat.js';
 const EMBED_LOCAL_JS_PATHS = [
+    '/anti-vs/astig-chat-widgets.js',
+    './anti-vs/astig-chat-widgets.js',
     `./${EMBED_LOCAL_JS_FILENAME}`,
     './astig-chat-widgets.fixed.js',
+    `/${EMBED_LOCAL_JS_FILENAME}`,
+    '../anti-vs/astig-chat-widgets.js',
     `../${EMBED_LOCAL_JS_FILENAME}`,
     '../astig-chat-widgets.fixed.js'
 ];
@@ -547,7 +552,51 @@ function ensureHeaderAssistantSeparation(cfg = config) {
     cfg.header.name = cfg.header.title;
 }
 
+function normalizeQuestionsConfig(cfg) {
+    if (!cfg || typeof cfg !== 'object') return;
+    if (!Array.isArray(cfg.questions)) cfg.questions = [];
+    cfg.questions = cfg.questions
+        .map((q, index) => {
+            if (!q || typeof q !== 'object') return null;
+            const normalizedType = q.type === 'choice' ? 'choice' : 'text';
+            const normalizedDisplayMode = q.displayMode === 'typewriter' ? 'typewriter' : 'instant';
+            return {
+                id: q.id || Date.now() + index,
+                text: String(q.text || ''),
+                type: normalizedType,
+                displayMode: normalizedDisplayMode,
+                choices: normalizedType === 'choice' ? String(q.choices || '') : ''
+            };
+        })
+        .filter(Boolean);
+    if (cfg.questionsStyle !== 'gradient') cfg.questionsStyle = 'solid';
+}
+
+function normalizeRuntimeConfigShape(cfg) {
+    if (!cfg || typeof cfg !== 'object') return;
+    if (!cfg.webhook || typeof cfg.webhook !== 'object') cfg.webhook = {};
+    if (!cfg.video || typeof cfg.video !== 'object') cfg.video = {};
+    if (!cfg.ui || typeof cfg.ui !== 'object') cfg.ui = {};
+    if (!cfg.footer || typeof cfg.footer !== 'object') cfg.footer = {};
+    if (!cfg.theme || typeof cfg.theme !== 'object') cfg.theme = {};
+    if (!cfg.launcher || typeof cfg.launcher !== 'object') cfg.launcher = {};
+    ensureHeaderAssistantSeparation(cfg);
+    normalizeQuestionsConfig(cfg);
+
+    const normalizedExternalJs = normalizeAstigJsDelivrUrl(cfg.webhook.externalJsUrl || '');
+    cfg.webhook.externalJsUrl = normalizedExternalJs || EMBED_DEFAULT_JS_URL;
+    cfg.webhook.url = String(cfg.webhook.url || '').trim();
+    cfg.webhook.testUrl = String(cfg.webhook.testUrl || '').trim();
+    cfg.webhook.chatUrl = String(cfg.webhook.chatUrl || EMBED_DEFAULT_WEBHOOK_URL).trim();
+    cfg.webhook.production = cfg.webhook.production !== false;
+
+    if (!cfg.video.hideBehavior || typeof cfg.video.hideBehavior !== 'string') {
+        cfg.video.hideBehavior = 'first-question';
+    }
+}
+
 ensureHeaderAssistantSeparation(config);
+normalizeRuntimeConfigShape(config);
 let chatHistory = [];
 let maximumSupportInputUnlocked = false;
 const DEFAULT_VIDEO_URL = 'https://widjets.astigmedia.com/vid/DJ.mp4';
@@ -888,8 +937,8 @@ function normalizeAstigJsDelivrUrl(url) {
     const value = String(url || '').trim();
     if (!value) return value;
     return value.replace(
-        /^https:\/\/cdn\.jsdelivr\.net\/gh\/majesticwebcreation-ui\/astig\.media(?:@(main|master))?\/(astig-chat-widgets\.js(?:[?#].*)?)$/i,
-        'https://cdn.jsdelivr.net/gh/majesticwebcreation-ui/astig.media/$2'
+        /^https:\/\/cdn\.jsdelivr\.net\/gh\/majesticwebcreation-ui\/astig\.media(?:@(main|master))?\/((?:anti-vs\/)?astig-chat-widgets\.js(?:[?#].*)?)$/i,
+        'https://cdn.jsdelivr.net/gh/majesticwebcreation-ui/astig.media/astig-chat-widgets.js'
     );
 }
 
@@ -917,7 +966,7 @@ function getEmbedConfigSnapshot() {
         syncWebhookSettingsFromInputs();
     }
     const snapshot = JSON.parse(JSON.stringify(config || {}));
-    ensureHeaderAssistantSeparation(snapshot);
+    normalizeRuntimeConfigShape(snapshot);
     return snapshot;
 }
 
@@ -970,34 +1019,43 @@ function getEmbedJsFileText() {
 }
 
 async function fetchLocalEmbedJsFileText() {
-    for (const path of EMBED_LOCAL_JS_PATHS) {
+    const runtimeCandidates = Array.from(new Set([
+        ...EMBED_LOCAL_JS_PATHS,
+        resolveEmbedJsUrl(),
+        EMBED_RUNTIME_JS_URL,
+        EMBED_DEFAULT_JS_URL,
+        'https://cdn.jsdelivr.net/gh/majesticwebcreation-ui/astig.media/anti-vs/astig-chat-widgets.js',
+        'https://cdn.jsdelivr.net/gh/majesticwebcreation-ui/astig.media@main/anti-vs/astig-chat-widgets.js',
+        'https://cdn.jsdelivr.net/gh/majesticwebcreation-ui/astig.media/astig-chat-widgets.js',
+        'https://cdn.jsdelivr.net/gh/majesticwebcreation-ui/astig.media@main/astig-chat-widgets.js',
+        'https://raw.githubusercontent.com/majesticwebcreation-ui/astig.media/main/anti-vs/astig-chat-widgets.js',
+        'https://raw.githubusercontent.com/majesticwebcreation-ui/astig.media/main/astig-chat-widgets.js'
+    ].filter(Boolean)));
+
+    let lastErrorMessage = '';
+    for (const path of runtimeCandidates) {
         try {
             const response = await fetch(path, { cache: 'no-store' });
-            if (!response.ok) continue;
+            if (!response.ok) {
+                lastErrorMessage = `HTTP ${response.status} at ${path}`;
+                continue;
+            }
             const content = await response.text();
             if (content && content.trim()) {
-                if (isLoaderOnlyEmbedScript(content)) continue;
+                if (isLoaderOnlyEmbedScript(content)) {
+                    lastErrorMessage = `Loader-only script at ${path}`;
+                    continue;
+                }
                 return { content, path };
             }
+            lastErrorMessage = `Empty content at ${path}`;
         } catch (error) {
-            void error;
+            lastErrorMessage = (error && error.message) ? error.message : `Failed to fetch ${path}`;
         }
     }
-    try {
-        const runtimeUrl = EMBED_RUNTIME_JS_URL || EMBED_DEFAULT_JS_URL;
-        const response = await fetch(runtimeUrl, { cache: 'no-store' });
-        if (!response.ok) throw new Error(`HTTP ${response.status}`);
-        const content = await response.text();
-        if (content && content.trim()) {
-            if (isLoaderOnlyEmbedScript(content)) {
-                throw new Error('Runtime URL returned a loader script instead of the widget runtime');
-            }
-            return { content, path: runtimeUrl };
-        }
-    } catch (error) {
-        void error;
-    }
-    throw new Error(`Local file not found: ${EMBED_LOCAL_JS_FILENAME}`);
+    throw new Error(
+        `Unable to load ${EMBED_LOCAL_JS_FILENAME}. ${lastErrorMessage || 'No runtime source returned content.'}`
+    );
 }
 
 function isLoaderOnlyEmbedScript(content) {
@@ -1354,7 +1412,12 @@ function buildDeployCdnAssetUrls(repoSlug, branch) {
     const refs = [];
     if (ref) refs.push(`@${ref}`);
     refs.push('', '@master', '@main');
-    const files = ['astig-chat-widgets.js', 'astig-chat.css'];
+    const files = [
+        'astig-chat-widgets.js',
+        'anti-vs/astig-chat-widgets.js',
+        EMBED_LEGACY_RUNTIME_JS_FILENAME,
+        'astig-chat.css'
+    ];
     const urls = [];
     refs.forEach((r) => {
         files.forEach((f) => {
@@ -1396,6 +1459,7 @@ function injectDeployRuntimeConfig(runtimeSource, configLiteral, webhookUrl) {
 async function buildDeployBundleFromCurrentSettings() {
     const runtime = await fetchLocalEmbedJsFileText();
     const snapshot = getEmbedConfigSnapshot();
+    normalizeRuntimeConfigShape(snapshot);
     const webhookUrl = resolveEmbedWebhookUrl();
     if (!snapshot.webhook || typeof snapshot.webhook !== 'object') snapshot.webhook = {};
     snapshot.webhook.url = webhookUrl;
@@ -1464,7 +1528,29 @@ async function deployCurrentSettingsToGitHub() {
             message: `Deploy astig-chat-widgets.js from builder (${timestamp})`
         });
 
-        notify(82, 'Uploading astig-chat.css...');
+        notify(68, 'Uploading anti-vs/astig-chat-widgets.js...');
+        await upsertGitHubFile({
+            owner,
+            repo,
+            branch: resolvedBranch,
+            path: 'anti-vs/astig-chat-widgets.js',
+            token,
+            content: bundle.js,
+            message: `Deploy anti-vs/astig-chat-widgets.js from builder (${timestamp})`
+        });
+
+        notify(78, `Uploading ${EMBED_LEGACY_RUNTIME_JS_FILENAME}...`);
+        await upsertGitHubFile({
+            owner,
+            repo,
+            branch: resolvedBranch,
+            path: EMBED_LEGACY_RUNTIME_JS_FILENAME,
+            token,
+            content: bundle.js,
+            message: `Deploy ${EMBED_LEGACY_RUNTIME_JS_FILENAME} from builder (${timestamp})`
+        });
+
+        notify(88, 'Uploading astig-chat.css...');
         await upsertGitHubFile({
             owner,
             repo,
@@ -1475,7 +1561,7 @@ async function deployCurrentSettingsToGitHub() {
             message: `Deploy astig-chat.css from builder (${timestamp})`
         });
 
-        notify(92, 'Purging jsDelivr cache...');
+        notify(95, 'Purging jsDelivr cache...');
         const purgeTargets = Array.from(new Set([
             ...buildDeployCdnAssetUrls(repoSlug, resolvedBranch),
             EMBED_DEFAULT_JS_URL,
@@ -2055,8 +2141,13 @@ function syncWebhookSettingsFromInputs() {
     if (webhookUrlInput) config.webhook.url = (webhookUrlInput.value || '').trim();
     if (webhookTestUrlInput) config.webhook.testUrl = (webhookTestUrlInput.value || '').trim();
     if (webhookChatUrlInput) config.webhook.chatUrl = (webhookChatUrlInput.value || '').trim();
-    if (externalJsUrlInput) config.webhook.externalJsUrl = (externalJsUrlInput.value || '').trim();
+    if (externalJsUrlInput) {
+        const normalized = normalizeAstigJsDelivrUrl((externalJsUrlInput.value || '').trim());
+        config.webhook.externalJsUrl = normalized || EMBED_DEFAULT_JS_URL;
+        externalJsUrlInput.value = config.webhook.externalJsUrl;
+    }
     if (webhookModeInput) config.webhook.production = !webhookModeInput.checked;
+    normalizeRuntimeConfigShape(config);
     updateBackendWebhookNotices();
 }
 
@@ -4323,7 +4414,7 @@ function applyConfig(data) {
 
     // Merge with defaults to handle missing properties in old saves
     config = deepMerge(JSON.parse(JSON.stringify(defaultConfig)), data);
-    ensureHeaderAssistantSeparation(config);
+    normalizeRuntimeConfigShape(config);
 
     // Update all Inputs to match new config
     // Theme
