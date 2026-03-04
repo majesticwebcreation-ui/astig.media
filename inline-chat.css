@@ -1,8 +1,9 @@
 ﻿#astig-inline-chat-root {
-  width: min(820px, 100%);
+  width: min(980px, 100%);
   max-width: 100%;
   margin: 0 auto;
   font-family: "Inter", "Segoe UI", sans-serif;
+  color: #f7eaf4;
   box-sizing: border-box;
 }
 
@@ -11,110 +12,201 @@
   box-sizing: border-box;
 }
 
-.aia-inline-shell {
+.aia-main-embed {
   width: 100%;
   border-radius: 24px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  background: linear-gradient(165deg, #8f0d65 0%, #b3237f 48%, #89155f 100%);
-  box-shadow: 0 26px 46px rgba(55, 6, 41, 0.36);
-  padding: 22px 18px;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  background: linear-gradient(165deg, #870d62 0%, #b0227e 50%, #7f1259 100%);
+  box-shadow: 0 28px 52px rgba(47, 5, 35, 0.42);
+  padding: 18px;
+  display: grid;
+  gap: 14px;
 }
 
-.aia-inline-form-wrap {
-  border-radius: 22px;
+.aia-card {
+  border-radius: 20px;
   border: 1px solid rgba(255, 255, 255, 0.2);
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0.08));
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2);
-  padding: 12px;
 }
 
-.aia-inline-form {
-  display: grid;
-  grid-template-columns: auto 1fr auto;
-  align-items: center;
-  gap: 12px;
-  border-radius: 18px;
-  border: 1px solid rgba(255, 255, 255, 0.22);
-  background: rgba(255, 255, 255, 0.1);
-  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+.aia-query-card {
   padding: 10px;
 }
 
-.aia-inline-icon-btn {
+.aia-query-form {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 10px;
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  background: rgba(255, 255, 255, 0.1);
+  padding: 10px;
+}
+
+.aia-icon-btn {
   width: 56px;
   height: 48px;
-  border: 1px solid rgba(172, 127, 166, 0.38);
+  border: 1px solid rgba(169, 130, 167, 0.42);
   border-radius: 14px;
-  background: linear-gradient(180deg, #f4eff8 0%, #d9d0e2 100%);
-  color: #1f2937;
+  background: linear-gradient(180deg, #f2ecf7 0%, #d9cfdf 100%);
+  color: #14151f;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  box-shadow: 0 8px 18px rgba(28, 16, 36, 0.24);
-  transition: transform 0.18s ease;
+  box-shadow: 0 8px 18px rgba(23, 16, 33, 0.24);
+  transition: transform 0.16s ease;
 }
 
-.aia-inline-icon-btn:hover {
+.aia-icon-btn:hover {
   transform: translateY(-1px);
 }
 
-.aia-inline-icon-btn svg {
+.aia-icon-btn:disabled {
+  opacity: 0.65;
+  cursor: default;
+  transform: none;
+}
+
+.aia-icon-btn svg {
   width: 22px;
   height: 22px;
 }
 
-.aia-inline-input {
+.aia-query-input {
   width: 100%;
   min-width: 0;
   border: 0;
   outline: none;
-  border-radius: 12px;
   background: transparent;
-  color: #f6eaf5;
+  color: #f9ecf7;
   font-size: 1.03rem;
   font-weight: 500;
-  padding: 0 4px;
+  padding: 2px 4px;
 }
 
-.aia-inline-input::placeholder {
-  color: rgba(250, 223, 246, 0.84);
+.aia-query-input::placeholder {
+  color: rgba(249, 226, 246, 0.86);
 }
 
-.aia-inline-status {
-  margin: 10px 2px 0;
+.aia-chip-row {
+  margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.aia-chip {
+  border: 1px solid rgba(252, 217, 247, 0.38);
+  border-radius: 999px;
+  background: rgba(123, 26, 88, 0.4);
+  color: #fdeefe;
+  padding: 6px 12px;
+  font-size: 0.82rem;
+  cursor: pointer;
+}
+
+.aia-response-card {
+  padding: 12px;
+  min-height: 220px;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  gap: 10px;
+}
+
+.aia-response-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  border-bottom: 1px solid rgba(252, 217, 247, 0.22);
+  padding-bottom: 8px;
+}
+
+.aia-response-head p {
+  margin: 0;
+}
+
+.aia-response-label {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: rgba(251, 230, 248, 0.84);
+}
+
+.aia-sent-query {
+  margin-top: 4px;
+  font-weight: 600;
+  color: #fff1fb;
+}
+
+.aia-sent-time {
+  color: rgba(251, 230, 248, 0.82);
+  font-size: 0.82rem;
+}
+
+.aia-response-body {
+  border-radius: 14px;
+  border: 1px solid rgba(250, 213, 244, 0.2);
+  background: rgba(42, 12, 35, 0.32);
+  padding: 12px;
+  min-height: 120px;
+  max-height: 340px;
+  overflow: auto;
+  white-space: pre-wrap;
+  line-height: 1.48;
+  color: #fff3fc;
+}
+
+.aia-placeholder {
+  color: rgba(251, 229, 248, 0.8);
+}
+
+.aia-response-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.aia-action-btn {
+  border: 1px solid rgba(247, 207, 240, 0.34);
+  background: rgba(72, 17, 57, 0.45);
+  color: #fff1fb;
+  border-radius: 10px;
+  padding: 7px 10px;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+.aia-action-btn:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+
+.aia-status {
+  margin: 0;
   min-height: 1.2em;
   font-size: 0.85rem;
-  color: rgba(251, 238, 249, 0.9);
+  color: rgba(254, 238, 252, 0.92);
 }
 
-.aia-inline-status.is-error {
+.aia-status.is-error {
   color: #fecaca;
 }
 
 @media (max-width: 640px) {
-  .aia-inline-shell {
+  .aia-main-embed {
     border-radius: 18px;
-    padding: 14px 12px;
+    padding: 12px;
   }
 
-  .aia-inline-form-wrap {
-    border-radius: 16px;
-    padding: 8px;
-  }
-
-  .aia-inline-form {
-    gap: 8px;
-    padding: 8px;
-  }
-
-  .aia-inline-icon-btn {
+  .aia-icon-btn {
     width: 48px;
     height: 42px;
     border-radius: 12px;
   }
 
-  .aia-inline-input {
+  .aia-query-input {
     font-size: 0.96rem;
   }
 }
