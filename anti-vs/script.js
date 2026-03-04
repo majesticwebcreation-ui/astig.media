@@ -81,7 +81,7 @@ const defaultConfig = {
         testUrl: '',
         chatUrl: 'https://n8n.srv1291312.hstgr.cloud/webhook/a4d3520b-1922-4e9b-b162-3b15a5060985/chat',
         production: true,
-        externalJsUrl: 'https://cdn.jsdelivr.net/gh/majesticwebcreation-ui/astig.media/astig-chat-widgets.js'
+        externalJsUrl: 'https://cdn.jsdelivr.net/gh/majesticwebcreation-ui/astig.media/anti-vs/astig-chat-widgets.js'
     },
     footer: {
         text: 'POWERED BY ASTIG MEDIA',
@@ -100,12 +100,73 @@ const defaultConfig = {
     }
 };
 
-const EMBED_DEFAULT_JS_URL = 'https://cdn.jsdelivr.net/gh/majesticwebcreation-ui/astig.media/astig-chat-widgets.js';
+const EMBED_DEFAULT_JS_URL = 'https://cdn.jsdelivr.net/gh/majesticwebcreation-ui/astig.media/anti-vs/astig-chat-widgets.js';
 const EMBED_DEFAULT_CSS_URL = 'https://cdn.jsdelivr.net/gh/majesticwebcreation-ui/astig.media/astig-chat.css';
+const EMBED_RAW_RUNTIME_JS_URL = 'https://raw.githubusercontent.com/majesticwebcreation-ui/astig.media/main/astig-chat-widgets.js';
+const EMBED_RAW_CSS_URL = 'https://raw.githubusercontent.com/majesticwebcreation-ui/astig.media/main/astig-chat.css';
 const EMBED_RUNTIME_JS_URL = EMBED_DEFAULT_JS_URL;
 const EMBED_LOCKED_SNIPPET = `<!-- Astig Media Chatbot Widget -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/majesticwebcreation-ui/astig.media/astig-chat.css" />
-<script src="https://cdn.jsdelivr.net/gh/majesticwebcreation-ui/astig.media/astig-chat-widgets.js" defer></script>`;
+<script>
+(function () {
+  var RAW_JS = 'https://raw.githubusercontent.com/majesticwebcreation-ui/astig.media/main/astig-chat-widgets.js';
+  var RAW_CSS = 'https://raw.githubusercontent.com/majesticwebcreation-ui/astig.media/main/astig-chat.css';
+  var FALLBACK_JS = 'https://cdn.jsdelivr.net/gh/majesticwebcreation-ui/astig.media/astig-chat-widgets.js';
+  var FALLBACK_CSS = 'https://cdn.jsdelivr.net/gh/majesticwebcreation-ui/astig.media/astig-chat.css';
+  var RUNTIME_MARKER = 'renderLauncher';
+
+  function hasRuntimeCode(source) {
+    return typeof source === 'string' && source.indexOf(RUNTIME_MARKER) !== -1;
+  }
+
+  function injectRuntimeScript(source) {
+    if (!hasRuntimeCode(source)) throw new Error('Invalid runtime source');
+    if (document.querySelector('script[data-astig-chat-runtime-inline]')) return;
+    var node = document.createElement('script');
+    node.setAttribute('data-astig-chat-runtime-inline', '1');
+    node.text = source;
+    document.head.appendChild(node);
+  }
+
+  function loadFallbackRuntime() {
+    if (document.querySelector('script[data-astig-chat-runtime-fallback]')) return;
+    var node = document.createElement('script');
+    node.src = FALLBACK_JS;
+    node.defer = true;
+    node.setAttribute('data-astig-chat-runtime-fallback', '1');
+    document.head.appendChild(node);
+  }
+
+  function injectCssText(cssText) {
+    if (!cssText || !cssText.trim()) throw new Error('Invalid css source');
+    var styleNode = document.querySelector('style[data-astig-chat-css-inline]');
+    if (!styleNode) {
+      styleNode = document.createElement('style');
+      styleNode.setAttribute('data-astig-chat-css-inline', '1');
+      document.head.appendChild(styleNode);
+    }
+    styleNode.textContent = cssText;
+  }
+
+  function loadFallbackCss() {
+    if (document.querySelector('link[data-astig-chat-css-fallback]')) return;
+    var link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = FALLBACK_CSS;
+    link.setAttribute('data-astig-chat-css-fallback', '1');
+    document.head.appendChild(link);
+  }
+
+  fetch(RAW_CSS, { cache: 'no-store' })
+    .then(function (res) { if (!res.ok) throw new Error('CSS fetch failed'); return res.text(); })
+    .then(injectCssText)
+    .catch(loadFallbackCss);
+
+  fetch(RAW_JS, { cache: 'no-store' })
+    .then(function (res) { if (!res.ok) throw new Error('Runtime fetch failed'); return res.text(); })
+    .then(injectRuntimeScript)
+    .catch(loadFallbackRuntime);
+})();
+</script>`;
 const EMBED_DEFAULT_WEBHOOK_URL = 'https://n8n.srv1291312.hstgr.cloud/webhook/a4d3520b-1922-4e9b-b162-3b15a5060985/chat';
 const EMBED_LOCAL_JS_FILENAME = 'astig-chat-widgets.js';
 const EMBED_LEGACY_RUNTIME_JS_FILENAME = 'astig-chat.js';
@@ -938,7 +999,7 @@ function normalizeAstigJsDelivrUrl(url) {
     if (!value) return value;
     return value.replace(
         /^https:\/\/cdn\.jsdelivr\.net\/gh\/majesticwebcreation-ui\/astig\.media(?:@(main|master))?\/((?:anti-vs\/)?astig-chat-widgets\.js(?:[?#].*)?)$/i,
-        'https://cdn.jsdelivr.net/gh/majesticwebcreation-ui/astig.media/astig-chat-widgets.js'
+        'https://cdn.jsdelivr.net/gh/majesticwebcreation-ui/astig.media/anti-vs/astig-chat-widgets.js'
     );
 }
 
