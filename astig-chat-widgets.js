@@ -1,4 +1,4 @@
-// Astig Media Chatbot Widget
+// Astig Media Chatbot Widgets
 // Webhook: https://n8n.srv1291312.hstgr.cloud/webhook/a368d690-b760-49a9-ba19-67c4a6971fa3/chat
 // CSS: https://cdn.jsdelivr.net/gh/majesticwebcreation-ui/astig.media/astig-chat.css
 // CDN: https://cdn.jsdelivr.net/gh/majesticwebcreation-ui/astig.media/astig-chat.js
