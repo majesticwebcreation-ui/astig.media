@@ -1,4 +1,5 @@
-window.__CHATBOT_CONFIG__ = {
+(function () {
+  var EMBEDDED_CONFIG = {
   "mode": "inline",
   "targetId": "chatbot-widget",
   "webhookUrl": "https://n8n.srv1291312.hstgr.cloud/webhook/a368d690-b760-49a9-ba19-67c4a6971fa3/chat",
@@ -29,7 +30,6 @@ window.__CHATBOT_CONFIG__ = {
     }
   ]
 };
-(function () {
   var PREFIX = "cw3d";
   var STYLE_ID = PREFIX + "-style";
   var BOOT_SCRIPT = document.currentScript instanceof HTMLScriptElement ? document.currentScript : null;
@@ -60,10 +60,11 @@ window.__CHATBOT_CONFIG__ = {
     var style = document.createElement("style");
     style.id = STYLE_ID;
     style.textContent = ""
-      + "." + PREFIX + "-root{font-family:" + cfg.fontFamily + ";color:" + cfg.colors.text + ";}"
-      + "." + PREFIX + "-inline-wrap{width:min(1240px,95vw);margin:0 auto;display:grid;gap:22px;}"
+      + "." + PREFIX + "-root{font-family:" + cfg.fontFamily + ";color:" + cfg.colors.text + ";width:100%;display:grid;justify-items:center;}"
+      + "." + PREFIX + "-root,." + PREFIX + "-root *{box-sizing:border-box;}"
+      + "." + PREFIX + "-inline-wrap{width:750px;min-width:750px;max-width:750px;margin:0 auto;display:grid;gap:22px;}"
       + "." + PREFIX + "-glass{border:1px solid rgba(255,255,255,0.2);border-radius:24px;backdrop-filter:blur(" + cfg.blurIntensity + "px);-webkit-backdrop-filter:blur(" + cfg.blurIntensity + "px);box-shadow:0 28px 44px rgba(14,4,28,0.4),inset 0 1px 0 rgba(255,255,255,0.25);}"
-      + "." + PREFIX + "-display{padding:26px;display:grid;gap:14px;background:linear-gradient(160deg,rgba(255,255,255,0.14),rgba(255,255,255,0.04)),linear-gradient(135deg," + cfg.colors.bgStart + "," + cfg.colors.bgEnd + ");}"
+      + "." + PREFIX + "-display{width:750px;min-width:750px;max-width:750px;height:600px;min-height:600px;max-height:600px;padding:26px;display:grid;grid-template-rows:auto 1fr auto;gap:14px;overflow:hidden;background:linear-gradient(160deg,rgba(255,255,255,0.14),rgba(255,255,255,0.04)),linear-gradient(135deg," + cfg.colors.bgStart + "," + cfg.colors.bgEnd + ");}"
       + "." + PREFIX + "-display-head{display:flex;justify-content:space-between;gap:10px;align-items:flex-start;}"
       + "." + PREFIX + "-eyebrow{margin:0;text-transform:uppercase;letter-spacing:.08em;font-size:.72rem;font-weight:700;color:rgba(255,255,255,.68);}"
       + "." + PREFIX + "-query-text{margin:0;font-weight:700;color:#fff;max-width:44ch;}"
@@ -74,8 +75,8 @@ window.__CHATBOT_CONFIG__ = {
       + "." + PREFIX + "-action-btn{border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.1);color:#fff;font-weight:700;font-size:1rem;border-radius:999px;min-width:36px;min-height:36px;display:inline-flex;align-items:center;justify-content:center;padding:0;cursor:pointer;transition:background .2s ease,border-color .2s ease,color .2s ease,transform .2s ease;}"
       + "." + PREFIX + "-action-btn:disabled{opacity:.45;cursor:default;}"
       + "." + PREFIX + "-action-btn:not(:disabled):hover{border-color:rgba(255,255,255,.5);background:rgba(255,255,255,.18);transform:translateY(-1px);}"
-      + "." + PREFIX + "-out{border:1px solid rgba(255,255,255,.16);background:rgba(4,1,10,.34);border-radius:16px;padding:16px;min-height:220px;max-height:425px;overflow:auto;white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.5;}"
-      + "." + PREFIX + "-input-panel{padding:26px;display:grid;gap:16px;background:linear-gradient(160deg,rgba(255,255,255,0.18),rgba(255,255,255,0.08)),linear-gradient(135deg," + cfg.colors.bgStart + "," + cfg.colors.bgEnd + ");}"
+      + "." + PREFIX + "-out{border:1px solid rgba(255,255,255,.16);background:rgba(4,1,10,.34);border-radius:16px;padding:16px;min-height:0;max-height:none;height:100%;overflow:auto;white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.5;}"
+      + "." + PREFIX + "-input-panel{width:750px;min-width:750px;max-width:750px;height:170px;min-height:170px;max-height:170px;overflow:hidden;padding:12px;display:grid;align-content:start;gap:8px;background:linear-gradient(160deg,rgba(255,255,255,0.18),rgba(255,255,255,0.08)),linear-gradient(135deg," + cfg.colors.bgStart + "," + cfg.colors.bgEnd + ");}"
       + "." + PREFIX + "-kicker{margin:0;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.72);font-size:.73rem;font-weight:700;}"
       + "." + PREFIX + "-row{display:grid;grid-template-columns:52px minmax(0,1fr) 52px;align-items:center;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.1);border-radius:18px;padding:8px;gap:8px;}"
       + "." + PREFIX + "-input{width:100%;min-height:46px;border:0;border-radius:14px;background:transparent;color:#fff;padding:0 10px;font-size:1.05rem;outline:none;}"
@@ -99,7 +100,15 @@ window.__CHATBOT_CONFIG__ = {
       + "." + PREFIX + "-floating-launch{position:fixed;right:18px;bottom:18px;width:54px;height:54px;border-radius:999px;border:0;background:linear-gradient(120deg,#f43f5e 0%," + cfg.colors.accent + " 100%);color:#fff;font-weight:700;cursor:pointer;z-index:999999;box-shadow:0 12px 24px rgba(2,6,23,.35);}"
       + "." + PREFIX + "-floating-wrap{position:fixed;right:18px;bottom:84px;z-index:999998;display:none;width:min(720px,92vw);}"
       + "." + PREFIX + "-floating-wrap.is-open{display:block;}"
-      + "." + PREFIX + "-floating-wrap ." + PREFIX + "-inline-wrap{width:100%;}";
+      + "." + PREFIX + "-floating-wrap ." + PREFIX + "-inline-wrap{width:100%;min-width:0;max-width:none;}"
+      + "." + PREFIX + "-floating-wrap ." + PREFIX + "-display{width:100%;min-width:0;max-width:none;height:auto;min-height:420px;max-height:70vh;}"
+      + "." + PREFIX + "-floating-wrap ." + PREFIX + "-out{min-height:220px;}"
+      + "." + PREFIX + "-floating-wrap ." + PREFIX + "-input-panel{width:100%;min-width:0;max-width:none;height:auto;min-height:160px;max-height:none;}"
+      + "@media (max-width:860px){"
+      + "." + PREFIX + "-inline-wrap{width:min(95vw,750px);min-width:0;max-width:95vw;}"
+      + "." + PREFIX + "-display{width:100%;min-width:0;max-width:none;height:min(600px,72vh);}"
+      + "." + PREFIX + "-input-panel{width:100%;min-width:0;max-width:none;height:auto;min-height:160px;max-height:none;}"
+      + "}";
     document.head.appendChild(style);
   }
 
@@ -510,7 +519,7 @@ window.__CHATBOT_CONFIG__ = {
     if (!(document.currentScript instanceof HTMLScriptElement)) return {};
     return decodeConfig(document.currentScript.getAttribute("data-config"));
   })();
-  var config = Object.assign({}, window.__CHATBOT_CONFIG__ || {}, scriptCfg || {});
+  var config = Object.assign({}, EMBEDDED_CONFIG || {}, scriptCfg || {}, window.__CHATBOT_CONFIG__ || {});
   if (!config.webhookUrl) {
     console.error("[Chatbot Widget] Missing webhookUrl in config.");
     return;
