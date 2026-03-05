@@ -58,7 +58,7 @@
       + "." + PREFIX + "-root p,." + PREFIX + "-root h1,." + PREFIX + "-root h2,." + PREFIX + "-root h3,." + PREFIX + "-root h4,." + PREFIX + "-root h5,." + PREFIX + "-root h6,." + PREFIX + "-root ul,." + PREFIX + "-root li{margin:0;padding:0;letter-spacing:normal;text-transform:none;}"
       + "." + PREFIX + "-inline-wrap{width:750px;min-width:750px;max-width:750px;margin:0 auto;display:grid;gap:22px;}"
       + "." + PREFIX + "-glass{border:1px solid rgba(255,255,255,0.2);border-radius:24px;backdrop-filter:blur(" + cfg.blurIntensity + "px);-webkit-backdrop-filter:blur(" + cfg.blurIntensity + "px);box-shadow:0 28px 44px rgba(14,4,28,0.4),inset 0 1px 0 rgba(255,255,255,0.25);}"
-      + "." + PREFIX + "-display{width:750px;min-width:750px;max-width:750px;height:600px;min-height:600px;max-height:600px;padding:26px;display:grid;grid-template-rows:auto 1fr auto;gap:14px;overflow:hidden;background:linear-gradient(160deg,rgba(255,255,255,0.12),rgba(255,255,255,0.04)),radial-gradient(circle at 10% 0,rgba(255,255,255,0.12),transparent),linear-gradient(135deg," + cfg.colors.bgStart + "," + cfg.colors.bgEnd + ");opacity:0;transform:translateY(26px);pointer-events:none;}"
+      + "." + PREFIX + "-display{width:750px;min-width:750px;max-width:750px;height:600px;min-height:600px;max-height:600px;padding:26px;display:grid;grid-template-rows:auto 1fr auto;gap:14px;overflow:hidden;background:linear-gradient(160deg,rgba(255,255,255,0.12),rgba(255,255,255,0.04)),radial-gradient(circle at 10% 0,color-mix(in srgb," + cfg.colors.accent + " 22%,transparent),transparent);box-shadow:0 24px 50px rgba(9,3,24,.45),inset 0 1px 0 rgba(255,255,255,.28),inset 0 -10px 22px rgba(9,3,24,.35);opacity:0;transform:translateY(26px);pointer-events:none;}"
       + "." + PREFIX + "-display[hidden]{display:none !important;}"
       + "." + PREFIX + "-display.is-visible{pointer-events:auto;}"
       + "." + PREFIX + "-display." + PREFIX + "-response-animate{animation:" + PREFIX + "-panel-fade .46s ease forwards;}"
@@ -75,7 +75,7 @@
       + "." + PREFIX + "-out{border:1px solid rgba(255,255,255,.16);background:rgba(4,1,10,.34);border-radius:16px;padding:16px;min-height:0;max-height:none;height:100%;overflow:auto;white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.5;}"
       + "." + PREFIX + "-out pre,." + PREFIX + "-out p,." + PREFIX + "-out li{font-family:'Consolas','Courier New',monospace;font-size:.84rem;line-height:1.5;color:#f9edff;text-align:left;}"
       + "." + PREFIX + "-out ul{margin:.4rem 0 .45rem;padding-left:1.2rem;}"
-      + "." + PREFIX + "-input-panel{width:750px;min-width:750px;max-width:750px;height:170px;min-height:170px;max-height:170px;overflow:hidden;padding:12px;display:grid;align-content:start;gap:0;background:linear-gradient(160deg,rgba(255,255,255,0.18),rgba(255,255,255,0.08)),linear-gradient(135deg," + cfg.colors.bgStart + "," + cfg.colors.bgEnd + ");animation:" + PREFIX + "-panel-slide .46s ease both;}"
+      + "." + PREFIX + "-input-panel{width:750px;min-width:750px;max-width:750px;height:170px;min-height:170px;max-height:170px;overflow:hidden;padding:12px;display:grid;align-content:start;gap:0;background:linear-gradient(160deg,rgba(255,255,255,0.14),rgba(255,255,255,0.06)),linear-gradient(120deg,rgba(120,40,110,.22),rgba(60,20,90,.22));animation:" + PREFIX + "-panel-slide .46s ease both;}"
       + "." + PREFIX + "-kicker{display:none;}"
       + "." + PREFIX + "-row{display:flex;flex-direction:row;width:100%;min-height:0;border-radius:18px;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.08);padding:10px 12px;align-items:center;gap:10px;}"
       + "." + PREFIX + "-input{flex:1;width:auto;min-height:50px;border:0;border-radius:14px;background:transparent;color:#fff;padding:0 12px;font-size:1.05rem;outline:none;}"
@@ -529,7 +529,21 @@
     if (!(document.currentScript instanceof HTMLScriptElement)) return {};
     return decodeConfig(document.currentScript.getAttribute("data-config"));
   })();
-  var config = Object.assign({}, EMBEDDED_CONFIG || {}, scriptCfg || {}, window.__CHATBOT_CONFIG__ || {});
+  var windowCfg = (window.__CHATBOT_CONFIG__ && typeof window.__CHATBOT_CONFIG__ === "object")
+    ? window.__CHATBOT_CONFIG__
+    : {};
+  var config = Object.assign({}, EMBEDDED_CONFIG || {}, scriptCfg || {}, windowCfg || {});
+  config.colors = Object.assign(
+    {},
+    (EMBEDDED_CONFIG && EMBEDDED_CONFIG.colors) || {},
+    (scriptCfg && scriptCfg.colors) || {},
+    (windowCfg && windowCfg.colors) || {}
+  );
+  if (!config.colors.bgStart) config.colors.bgStart = "#1a0533";
+  if (!config.colors.bgEnd) config.colors.bgEnd = "#db2777";
+  if (!config.colors.accent) config.colors.accent = "#db2777";
+  if (!config.colors.text) config.colors.text = "#f8fafc";
+  if (!config.colors.muted) config.colors.muted = "rgba(226, 232, 240, 0.82)";
   if (!config.webhookUrl) {
     console.error("[Chatbot Widget] Missing webhookUrl in config.");
     return;
