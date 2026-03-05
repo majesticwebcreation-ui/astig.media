@@ -9,8 +9,8 @@
   "subtitle": "Research you can trust and draft with confidence, from first facts to final filing.",
   "fontFamily": "'Sora', 'Trebuchet MS', sans-serif",
   "colors": {
-    "bgStart": "#1a0533",
-    "bgEnd": "#db2777",
+    "bgStart": "#9db3c8",
+    "bgEnd": "#9db3c8",
     "accent": "#db2777",
     "text": "#f8fafc",
     "muted": "rgba(226, 232, 240, 0.82)"
@@ -25,7 +25,7 @@
     {
       "id": "chip-1772639884450",
       "label": "New Action",
-      "icon": "💡",
+      "icon": "??",
       "query": "New Action"
     }
   ]
