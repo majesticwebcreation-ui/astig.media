@@ -52,6 +52,12 @@
       "label": "New Action",
       "icon": "💡",
       "query": "New Action"
+    },
+    {
+      "id": "chip-1772695093618",
+      "label": "New Action",
+      "icon": "💡",
+      "query": "New Action"
     }
   ]
 };
