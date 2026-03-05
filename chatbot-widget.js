@@ -274,7 +274,7 @@
   function mountInlineMarkup(host, cfg) {
     host.innerHTML = ""
       + "<div class=\"" + PREFIX + "-inline-wrap\">"
-      + "  <section class=\"" + PREFIX + "-glass " + PREFIX + "-display\">"
+      + "  <section class=\"" + PREFIX + "-glass " + PREFIX + "-display\" hidden>"
       + "    <div class=\"" + PREFIX + "-display-head\">"
       + "      <div>"
       + "        <p class=\"" + PREFIX + "-eyebrow\">Query Sent</p>"
@@ -333,6 +333,7 @@
 
     function revealDisplayPanel() {
       if (!displayPanel) return;
+      displayPanel.hidden = false;
       displayPanel.classList.add("is-visible");
       displayPanel.classList.remove(PREFIX + "-response-animate");
       void displayPanel.offsetWidth;
