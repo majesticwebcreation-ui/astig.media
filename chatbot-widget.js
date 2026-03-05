@@ -2,7 +2,7 @@
   var EMBEDDED_CONFIG = {
   "mode": "inline",
   "targetId": "chatbot-widget",
-  "webhookUrl": "https://your-n8n-instance.com/webhook-test/YOUR_TEST_ID",
+  "webhookUrl": "https://n8n.srv1291312.hstgr.cloud/webhook/a368d690-b760-49a9-ba19-67c4a6971fa3/chat",
   "avatar": "A",
   "kicker": "ASTIG MEDIA",
   "title": "Assistant",
