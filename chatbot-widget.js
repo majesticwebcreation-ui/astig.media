@@ -535,7 +535,7 @@
     if (!(document.currentScript instanceof HTMLScriptElement)) return {};
     return decodeConfig(document.currentScript.getAttribute("data-config"));
   })();
-  var config = Object.assign({}, window.__CHATBOT_CONFIG__ || {}, scriptCfg || {}, EMBEDDED_CONFIG || {});
+  var config = Object.assign({}, EMBEDDED_CONFIG || {}, scriptCfg || {}, window.__CHATBOT_CONFIG__ || {});
   if (!config.webhookUrl) {
     console.error("[Chatbot Widget] Missing webhookUrl in config.");
     return;
