@@ -12,6 +12,9 @@
   "bodySize": 13,
   "fontWeight": 300,
   "fontColor": "#f8edff",
+  "inputFontFamily": "'Inter', 'Segoe UI', sans-serif",
+  "inputFontSize": 13,
+  "inputFontColor": "#f8edff",
   "letterSpacing": 0,
   "typography": {
     "fontFamily": "'Inter', 'Segoe UI', sans-serif",
@@ -19,6 +22,9 @@
     "bodySize": 13,
     "fontWeight": 300,
     "fontColor": "#f8edff",
+    "inputFontFamily": "'Inter', 'Segoe UI', sans-serif",
+    "inputFontSize": 13,
+    "inputFontColor": "#f8edff",
     "letterSpacing": 0
   },
   "colors": {
@@ -98,6 +104,12 @@
     if (!isFinite(letterSpacing)) letterSpacing = 0;
     letterSpacing = Math.max(-1.5, Math.min(4, letterSpacing));
     var textColor = String(typography.fontColor || (cfg.colors && cfg.colors.text) || "#f8fafc");
+    var inputFont = String(typography.inputFontFamily || cfg.inputFontFamily || uiFont);
+    var inputSize = Number(typography.inputFontSize);
+    if (!isFinite(inputSize)) inputSize = Number(cfg.inputFontSize);
+    if (!isFinite(inputSize)) inputSize = bodySize;
+    inputSize = Math.max(12, Math.min(24, inputSize));
+    var inputColor = String(typography.inputFontColor || cfg.inputFontColor || textColor);
     style.textContent = ""
       + "." + PREFIX + "-root{font-family:" + uiFont + ";font-size:" + bodySize + "px;line-height:1.35;letter-spacing:" + letterSpacing + "px;text-align:left;color:" + textColor + ";width:100%;display:grid;justify-items:center;}"
       + "." + PREFIX + "-root,." + PREFIX + "-root *{box-sizing:border-box;}"
@@ -135,7 +147,7 @@
       + "." + PREFIX + "-input-panel{width:750px;min-width:750px;max-width:750px;height:170px;min-height:170px;max-height:170px;overflow:hidden;padding:12px;display:grid;align-content:start;gap:0;background:linear-gradient(160deg,rgba(255,255,255,0.14),rgba(255,255,255,0.06)),linear-gradient(120deg,rgba(120,40,110,.22),rgba(60,20,90,.22));animation:" + PREFIX + "-panel-slide .46s ease both;}"
       + "." + PREFIX + "-kicker{display:none;}"
       + "." + PREFIX + "-row{display:flex;flex-direction:row;width:100%;min-height:0;border-radius:18px;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.08);padding:10px 12px;align-items:center;gap:10px;}"
-      + "." + PREFIX + "-input{flex:1;width:auto;min-height:50px;border:0;border-radius:14px;background:transparent;color:" + textColor + ";padding:0 12px;font-size:1.05rem;outline:none;}"
+      + "." + PREFIX + "-input{flex:1;width:auto;min-height:50px;border:0;border-radius:14px;background:transparent;color:" + inputColor + ";padding:0 12px;font-family:" + inputFont + ";font-size:" + inputSize + "px;outline:none;}"
       + "." + PREFIX + "-input::placeholder{color:rgba(255,255,255,.64);}"
       + "." + PREFIX + "-input:focus{box-shadow:inset 0 0 0 2px color-mix(in srgb," + cfg.colors.accent + " 36%,transparent);}"
       + "." + PREFIX + "-icon-btn{border:1px solid rgba(255,255,255,.38);min-height:50px;width:56px;height:50px;padding:0;border-radius:16px;background:linear-gradient(165deg,rgba(255,255,255,.68),rgba(255,255,255,.2)),radial-gradient(circle at 30% 22%,rgba(255,255,255,.9),rgba(255,255,255,0));display:inline-flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:inset 0 1px 0 rgba(255,255,255,.78),0 12px 26px rgba(8,10,26,.38),0 3px 8px rgba(255,255,255,.18);transition:transform .2s ease,box-shadow .2s ease,filter .2s ease,border-color .2s ease;}"
@@ -654,6 +666,14 @@
   if (!config.typography.bodySize) config.typography.bodySize = Number(config.bodySize) || 15;
   if (!config.typography.fontWeight) config.typography.fontWeight = Number(config.fontWeight) || 400;
   if (!config.typography.fontColor) config.typography.fontColor = config.fontColor || (config.colors && config.colors.text) || "#f8edff";
+  if (!config.typography.inputFontFamily) config.typography.inputFontFamily = config.inputFontFamily || config.typography.fontFamily;
+  if (!config.typography.inputFontColor) config.typography.inputFontColor = config.inputFontColor || config.typography.fontColor;
+  config.typography.inputFontSize = (function () {
+    var next = Number(config.typography.inputFontSize);
+    if (!isFinite(next)) next = Number(config.inputFontSize);
+    if (!isFinite(next)) next = Number(config.typography.bodySize) || 15;
+    return Math.max(12, Math.min(24, next));
+  })();
   config.typography.letterSpacing = (typeof config.typography.letterSpacing === "number" && isFinite(config.typography.letterSpacing))
     ? config.typography.letterSpacing
     : (isFinite(Number(config.letterSpacing)) ? Number(config.letterSpacing) : 0);
@@ -661,6 +681,9 @@
   config.bodySize = config.typography.bodySize;
   config.fontWeight = config.typography.fontWeight;
   config.fontColor = config.typography.fontColor;
+  config.inputFontFamily = config.typography.inputFontFamily;
+  config.inputFontSize = config.typography.inputFontSize;
+  config.inputFontColor = config.typography.inputFontColor;
   config.letterSpacing = config.typography.letterSpacing;
   if (typeof config.typography.letterSpacing !== "number") config.typography.letterSpacing = 0;
   config.fontFamily = config.typography.fontFamily;
