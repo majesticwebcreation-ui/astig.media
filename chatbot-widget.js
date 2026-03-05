@@ -65,10 +65,30 @@
     if (document.getElementById(STYLE_ID)) return;
     var style = document.createElement("style");
     style.id = STYLE_ID;
+    var typography = (cfg.typography && typeof cfg.typography === "object") ? cfg.typography : {};
+    var uiFont = String(typography.fontFamily || cfg.fontFamily || "'Sora', 'Trebuchet MS', sans-serif");
+    var bodySize = Number(typography.bodySize);
+    if (!isFinite(bodySize)) bodySize = 15;
+    bodySize = Math.max(12, Math.min(24, bodySize));
+    var headingSize = Number(typography.headingSize);
+    if (!isFinite(headingSize)) headingSize = 56;
+    var headingScale = Math.max(0.7, Math.min(1.5, headingSize / 56));
+    var h1Size = (1.35 * headingScale).toFixed(3);
+    var h2Size = (1.25 * headingScale).toFixed(3);
+    var h3Size = (1.16 * headingScale).toFixed(3);
+    var h4Size = (1.08 * headingScale).toFixed(3);
+    var fontWeight = Number(typography.fontWeight);
+    if (!isFinite(fontWeight)) fontWeight = 500;
+    fontWeight = Math.max(300, Math.min(800, fontWeight));
+    var headingWeight = Math.max(600, Math.min(900, fontWeight + 200));
+    var letterSpacing = Number(typography.letterSpacing);
+    if (!isFinite(letterSpacing)) letterSpacing = 0;
+    letterSpacing = Math.max(-1.5, Math.min(4, letterSpacing));
+    var textColor = String(typography.fontColor || (cfg.colors && cfg.colors.text) || "#f8fafc");
     style.textContent = ""
-      + "." + PREFIX + "-root{font-family:" + cfg.fontFamily + ";font-size:16px;line-height:1.35;letter-spacing:normal;text-align:left;color:" + cfg.colors.text + ";width:100%;display:grid;justify-items:center;}"
+      + "." + PREFIX + "-root{font-family:" + uiFont + ";font-size:" + bodySize + "px;line-height:1.35;letter-spacing:" + letterSpacing + "px;text-align:left;color:" + textColor + ";width:100%;display:grid;justify-items:center;}"
       + "." + PREFIX + "-root,." + PREFIX + "-root *{box-sizing:border-box;}"
-      + "." + PREFIX + "-root p,." + PREFIX + "-root h1,." + PREFIX + "-root h2,." + PREFIX + "-root h3,." + PREFIX + "-root h4,." + PREFIX + "-root h5,." + PREFIX + "-root h6,." + PREFIX + "-root ul,." + PREFIX + "-root li{margin:0;padding:0;letter-spacing:normal;text-transform:none;}"
+      + "." + PREFIX + "-root p,." + PREFIX + "-root h1,." + PREFIX + "-root h2,." + PREFIX + "-root h3,." + PREFIX + "-root h4,." + PREFIX + "-root h5,." + PREFIX + "-root h6,." + PREFIX + "-root ul,." + PREFIX + "-root li{margin:0;padding:0;letter-spacing:" + letterSpacing + "px;text-transform:none;}"
       + "." + PREFIX + "-inline-wrap{width:750px;min-width:750px;max-width:750px;margin:0 auto;display:grid;gap:22px;}"
       + "." + PREFIX + "-glass{border:1px solid rgba(255,255,255,0.2);border-radius:24px;backdrop-filter:blur(" + cfg.blurIntensity + "px);-webkit-backdrop-filter:blur(" + cfg.blurIntensity + "px);box-shadow:0 28px 44px rgba(14,4,28,0.4),inset 0 1px 0 rgba(255,255,255,0.25);}"
       + "." + PREFIX + "-display{width:750px;min-width:750px;max-width:750px;height:600px;min-height:600px;max-height:600px;padding:26px;display:grid;grid-template-rows:auto 1fr auto;gap:14px;overflow:hidden;background:linear-gradient(160deg,rgba(255,255,255,0.12),rgba(255,255,255,0.04)),radial-gradient(circle at 10% 0,color-mix(in srgb," + cfg.colors.accent + " 22%,transparent),transparent);box-shadow:0 24px 50px rgba(9,3,24,.45),inset 0 1px 0 rgba(255,255,255,.28),inset 0 -10px 22px rgba(9,3,24,.35);opacity:0;transform:translateY(26px);pointer-events:none;}"
@@ -77,7 +97,7 @@
       + "." + PREFIX + "-display." + PREFIX + "-response-animate{animation:" + PREFIX + "-panel-fade .46s ease forwards;}"
       + "." + PREFIX + "-display-head{display:flex;justify-content:space-between;gap:10px;align-items:flex-start;}"
       + "." + PREFIX + "-eyebrow{margin:0;text-transform:uppercase;letter-spacing:.08em;font-size:.72rem;font-weight:700;color:rgba(255,255,255,.68);}"
-      + "." + PREFIX + "-query-text{margin:0;font-weight:700;color:#fff;max-width:44ch;}"
+      + "." + PREFIX + "-query-text{margin:0;font-weight:700;color:" + textColor + ";max-width:44ch;}"
       + "." + PREFIX + "-meta{display:grid;justify-items:end;gap:4px;}"
       + "." + PREFIX + "-badge{font-size:.7rem;letter-spacing:.08em;font-weight:800;border-radius:999px;padding:5px 10px;border:1px solid rgba(59,130,246,.46);background:rgba(59,130,246,.16);color:#93c5fd;}"
       + "." + PREFIX + "-time{font-size:.78rem;color:rgba(255,255,255,.78);}"
@@ -85,24 +105,24 @@
       + "." + PREFIX + "-action-btn{border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.1);color:#fff;font-weight:700;font-size:1rem;border-radius:999px;min-width:36px;min-height:36px;display:inline-flex;align-items:center;justify-content:center;padding:0;cursor:pointer;transition:background .2s ease,border-color .2s ease,color .2s ease,transform .2s ease;}"
       + "." + PREFIX + "-action-btn:disabled{opacity:.45;cursor:default;}"
       + "." + PREFIX + "-action-btn:not(:disabled):hover{border-color:rgba(255,255,255,.5);background:rgba(255,255,255,.18);transform:translateY(-1px);}"
-      + "." + PREFIX + "-out{border:1px solid rgba(255,255,255,.16);background:rgba(4,1,10,.34);border-radius:16px;padding:16px;min-height:0;max-height:none;height:100%;overflow:auto;white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.55;font-family:" + cfg.fontFamily + ";font-size:1rem;color:rgba(248,250,252,.96);}"
-      + "." + PREFIX + "-out p{margin:0 0 .7rem;font-family:" + cfg.fontFamily + ";font-size:1rem;line-height:1.58;font-weight:500;color:rgba(248,250,252,.96);text-align:left;}"
+      + "." + PREFIX + "-out{border:1px solid rgba(255,255,255,.16);background:rgba(4,1,10,.34);border-radius:16px;padding:16px;min-height:0;max-height:none;height:100%;overflow:auto;white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.55;font-family:" + uiFont + ";font-size:" + bodySize + "px;color:" + textColor + ";}"
+      + "." + PREFIX + "-out p{margin:0 0 .7rem;font-family:" + uiFont + ";font-size:" + bodySize + "px;line-height:1.58;font-weight:" + fontWeight + ";color:" + textColor + ";text-align:left;}"
       + "." + PREFIX + "-out p:empty{height:.55rem;margin:0;}"
-      + "." + PREFIX + "-out h1,." + PREFIX + "-out h2,." + PREFIX + "-out h3,." + PREFIX + "-out h4{margin:0 0 .65rem;font-family:" + cfg.fontFamily + ";font-weight:800;line-height:1.25;color:#ffffff;}"
-      + "." + PREFIX + "-out h1{font-size:1.35rem;}"
-      + "." + PREFIX + "-out h2{font-size:1.25rem;}"
-      + "." + PREFIX + "-out h3{font-size:1.16rem;}"
-      + "." + PREFIX + "-out h4{font-size:1.08rem;}"
+      + "." + PREFIX + "-out h1,." + PREFIX + "-out h2,." + PREFIX + "-out h3,." + PREFIX + "-out h4{margin:0 0 .65rem;font-family:" + uiFont + ";font-weight:" + headingWeight + ";line-height:1.25;color:" + textColor + ";}"
+      + "." + PREFIX + "-out h1{font-size:" + h1Size + "rem;}"
+      + "." + PREFIX + "-out h2{font-size:" + h2Size + "rem;}"
+      + "." + PREFIX + "-out h3{font-size:" + h3Size + "rem;}"
+      + "." + PREFIX + "-out h4{font-size:" + h4Size + "rem;}"
       + "." + PREFIX + "-out ul,." + PREFIX + "-out ol{margin:.2rem 0 .75rem 1.2rem;padding:0;}"
-      + "." + PREFIX + "-out li{margin:.2rem 0;font-family:" + cfg.fontFamily + ";font-size:1rem;line-height:1.55;color:rgba(248,250,252,.95);text-align:left;}"
-      + "." + PREFIX + "-out strong{color:#fff;font-weight:800;}"
-      + "." + PREFIX + "-out em{font-style:italic;color:rgba(248,250,252,.95);}"
+      + "." + PREFIX + "-out li{margin:.2rem 0;font-family:" + uiFont + ";font-size:" + bodySize + "px;line-height:1.55;color:" + textColor + ";text-align:left;}"
+      + "." + PREFIX + "-out strong{color:" + textColor + ";font-weight:" + headingWeight + ";}"
+      + "." + PREFIX + "-out em{font-style:italic;color:" + textColor + ";}"
       + "." + PREFIX + "-out code{font-family:'Consolas','Courier New',monospace;font-size:.9em;padding:.1em .34em;border-radius:.35em;background:rgba(14,8,30,.45);color:#fdf4ff;}"
-      + "." + PREFIX + "-out blockquote{margin:.35rem 0 .8rem;padding:.4rem .75rem;border-left:3px solid color-mix(in srgb," + cfg.colors.accent + " 55%,#fff 45%);background:rgba(255,255,255,.06);border-radius:.4rem;color:rgba(248,250,252,.92);}"
+      + "." + PREFIX + "-out blockquote{margin:.35rem 0 .8rem;padding:.4rem .75rem;border-left:3px solid color-mix(in srgb," + cfg.colors.accent + " 55%,#fff 45%);background:rgba(255,255,255,.06);border-radius:.4rem;color:" + textColor + ";}"
       + "." + PREFIX + "-input-panel{width:750px;min-width:750px;max-width:750px;height:170px;min-height:170px;max-height:170px;overflow:hidden;padding:12px;display:grid;align-content:start;gap:0;background:linear-gradient(160deg,rgba(255,255,255,0.14),rgba(255,255,255,0.06)),linear-gradient(120deg,rgba(120,40,110,.22),rgba(60,20,90,.22));animation:" + PREFIX + "-panel-slide .46s ease both;}"
       + "." + PREFIX + "-kicker{display:none;}"
       + "." + PREFIX + "-row{display:flex;flex-direction:row;width:100%;min-height:0;border-radius:18px;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.08);padding:10px 12px;align-items:center;gap:10px;}"
-      + "." + PREFIX + "-input{flex:1;width:auto;min-height:50px;border:0;border-radius:14px;background:transparent;color:#fff;padding:0 12px;font-size:1.05rem;outline:none;}"
+      + "." + PREFIX + "-input{flex:1;width:auto;min-height:50px;border:0;border-radius:14px;background:transparent;color:" + textColor + ";padding:0 12px;font-size:1.05rem;outline:none;}"
       + "." + PREFIX + "-input::placeholder{color:rgba(255,255,255,.64);}"
       + "." + PREFIX + "-input:focus{box-shadow:inset 0 0 0 2px color-mix(in srgb," + cfg.colors.accent + " 36%,transparent);}"
       + "." + PREFIX + "-icon-btn{border:1px solid rgba(255,255,255,.38);min-height:50px;width:56px;height:50px;padding:0;border-radius:16px;background:linear-gradient(165deg,rgba(255,255,255,.68),rgba(255,255,255,.2)),radial-gradient(circle at 30% 22%,rgba(255,255,255,.9),rgba(255,255,255,0));display:inline-flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:inset 0 1px 0 rgba(255,255,255,.78),0 12px 26px rgba(8,10,26,.38),0 3px 8px rgba(255,255,255,.18);transition:transform .2s ease,box-shadow .2s ease,filter .2s ease,border-color .2s ease;}"
@@ -112,7 +132,7 @@
       + "." + PREFIX + "-button-icon{width:24px;height:24px;display:block;pointer-events:none;object-fit:contain;filter:drop-shadow(0 2px 2px rgba(18,28,66,.24));}"
       + "." + PREFIX + "-shortcut-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px;max-height:44px;overflow:hidden;}"
       + "." + PREFIX + "-shortcut-row:empty{display:none;}"
-      + "." + PREFIX + "-shortcut-chip{border:1px solid rgba(255,255,255,.3);border-radius:999px;background:linear-gradient(150deg,#e8edf5,#c8d4e4);color:#273244;font-size:.8rem;font-weight:600;padding:9px 14px;cursor:pointer;box-shadow:0 6px 12px rgba(48,63,86,.28),inset 0 1px 0 rgba(255,255,255,.85);transition:border-color .18s ease,background .18s ease,transform .12s ease,box-shadow .12s ease;font-family:" + cfg.fontFamily + ",'Segoe UI Emoji','Apple Color Emoji','Noto Color Emoji',sans-serif;}"
+      + "." + PREFIX + "-shortcut-chip{border:1px solid rgba(255,255,255,.3);border-radius:999px;background:linear-gradient(150deg,#e8edf5,#c8d4e4);color:#273244;font-size:.8rem;font-weight:600;padding:9px 14px;cursor:pointer;box-shadow:0 6px 12px rgba(48,63,86,.28),inset 0 1px 0 rgba(255,255,255,.85);transition:border-color .18s ease,background .18s ease,transform .12s ease,box-shadow .12s ease;font-family:" + uiFont + ",'Segoe UI Emoji','Apple Color Emoji','Noto Color Emoji',sans-serif;}"
       + "." + PREFIX + "-shortcut-chip:hover{border-color:rgba(255,255,255,.55);background:linear-gradient(150deg,#edf3fb,#d5e0ef);transform:translateY(-1px);box-shadow:0 10px 16px rgba(48,63,86,.32),inset 0 1px 0 rgba(255,255,255,.9);}"
       + "." + PREFIX + "-shortcut-chip:active{transform:translateY(2px) scale(.985);box-shadow:0 2px 5px rgba(20,28,40,.28),inset 0 3px 6px rgba(64,84,112,.22);}"
       + "." + PREFIX + "-shortcut-row ." + PREFIX + "-shortcut-chip:first-child{background:linear-gradient(150deg,#3d4657,#2c3340);border-color:rgba(255,255,255,.16);color:#f4f7fb;box-shadow:0 8px 14px rgba(16,21,30,.38),inset 0 1px 0 rgba(255,255,255,.18);}"
@@ -610,10 +630,23 @@
     (scriptCfg && scriptCfg.colors) || {},
     (windowCfg && windowCfg.colors) || {}
   );
+  config.typography = Object.assign(
+    {},
+    (EMBEDDED_CONFIG && EMBEDDED_CONFIG.typography) || {},
+    (scriptCfg && scriptCfg.typography) || {},
+    (windowCfg && windowCfg.typography) || {}
+  );
+  if (!config.typography.fontFamily) config.typography.fontFamily = config.fontFamily || "'Sora', 'Trebuchet MS', sans-serif";
+  if (!config.typography.headingSize) config.typography.headingSize = 56;
+  if (!config.typography.bodySize) config.typography.bodySize = 15;
+  if (!config.typography.fontWeight) config.typography.fontWeight = 400;
+  if (!config.typography.fontColor) config.typography.fontColor = (config.colors && config.colors.text) || "#f8edff";
+  if (typeof config.typography.letterSpacing !== "number") config.typography.letterSpacing = 0;
+  config.fontFamily = config.typography.fontFamily;
   if (!config.colors.bgStart) config.colors.bgStart = "#1a0533";
   if (!config.colors.bgEnd) config.colors.bgEnd = "#db2777";
   if (!config.colors.accent) config.colors.accent = "#db2777";
-  if (!config.colors.text) config.colors.text = "#f8fafc";
+  if (!config.colors.text) config.colors.text = config.typography.fontColor || "#f8edff";
   if (!config.colors.muted) config.colors.muted = "rgba(226, 232, 240, 0.82)";
   if (!config.webhookUrl) {
     console.error("[Chatbot Widget] Missing webhookUrl in config.");
