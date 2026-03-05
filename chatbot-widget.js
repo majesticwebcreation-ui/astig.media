@@ -59,7 +59,6 @@
       + "." + PREFIX + "-inline-wrap{width:750px;min-width:750px;max-width:750px;margin:0 auto;display:grid;gap:22px;}"
       + "." + PREFIX + "-glass{border:1px solid rgba(255,255,255,0.2);border-radius:24px;backdrop-filter:blur(" + cfg.blurIntensity + "px);-webkit-backdrop-filter:blur(" + cfg.blurIntensity + "px);box-shadow:0 28px 44px rgba(14,4,28,0.4),inset 0 1px 0 rgba(255,255,255,0.25);}"
       + "." + PREFIX + "-display{width:750px;min-width:750px;max-width:750px;height:600px;min-height:600px;max-height:600px;padding:26px;display:grid;grid-template-rows:auto 1fr auto;gap:14px;overflow:hidden;background:linear-gradient(160deg,rgba(255,255,255,0.12),rgba(255,255,255,0.04)),radial-gradient(circle at 10% 0,rgba(255,255,255,0.12),transparent),linear-gradient(135deg," + cfg.colors.bgStart + "," + cfg.colors.bgEnd + ");opacity:0;transform:translateY(26px);pointer-events:none;}"
-      + "." + PREFIX + "-display[hidden]{display:none !important;}"
       + "." + PREFIX + "-display.is-visible{pointer-events:auto;}"
       + "." + PREFIX + "-display." + PREFIX + "-response-animate{animation:" + PREFIX + "-panel-fade .46s ease forwards;}"
       + "." + PREFIX + "-display-head{display:flex;justify-content:space-between;gap:10px;align-items:flex-start;}"
