@@ -2,28 +2,28 @@
   var EMBEDDED_CONFIG = {
   "mode": "inline",
   "targetId": "chatbot-widget",
-  "webhookUrl": "https://n8n.srv1291312.hstgr.cloud/webhook/a368d690-b760-49a9-ba19-67c4a6971fa3/chat",
-  "avatar": "l",
-  "kicker": "Legal Workflow Console",
-  "title": "Tools for the lawyers of tomorrow",
-  "subtitle": "Research you can trust and draft with confidence, from first facts to final filing.",
-  "fontFamily": "'Inter', 'Segoe UI', sans-serif",
-  "headingSize": 42,
-  "bodySize": 13,
-  "fontWeight": 300,
+  "webhookUrl": "https://your-n8n-instance.com/webhook-test/YOUR_TEST_ID",
+  "avatar": "A",
+  "kicker": "ASTIG MEDIA",
+  "title": "Assistant",
+  "subtitle": "",
+  "fontFamily": "'Sora', 'Trebuchet MS', sans-serif",
+  "headingSize": 56,
+  "bodySize": 15,
+  "fontWeight": 400,
   "fontColor": "#f8edff",
-  "inputFontFamily": "'Inter', 'Segoe UI', sans-serif",
-  "inputFontSize": 13,
+  "inputFontFamily": "'Sora', 'Trebuchet MS', sans-serif",
+  "inputFontSize": 16,
   "inputFontColor": "#f8edff",
   "letterSpacing": 0,
   "typography": {
-    "fontFamily": "'Inter', 'Segoe UI', sans-serif",
-    "headingSize": 42,
-    "bodySize": 13,
-    "fontWeight": 300,
+    "fontFamily": "'Sora', 'Trebuchet MS', sans-serif",
+    "headingSize": 56,
+    "bodySize": 15,
+    "fontWeight": 400,
     "fontColor": "#f8edff",
-    "inputFontFamily": "'Inter', 'Segoe UI', sans-serif",
-    "inputFontSize": 13,
+    "inputFontFamily": "'Sora', 'Trebuchet MS', sans-serif",
+    "inputFontSize": 16,
     "inputFontColor": "#f8edff",
     "letterSpacing": 0
   },
@@ -40,14 +40,7 @@
     "position": "bottom-right",
     "size": 54
   },
-  "chips": [
-    {
-      "id": "chip-1772695663537",
-      "label": "KMEP",
-      "icon": "💡",
-      "query": "KMEP"
-    }
-  ]
+  "chips": []
 };
   var PREFIX = "cw3d";
   var STYLE_ID = PREFIX + "-style";
