@@ -40,7 +40,14 @@
     "position": "bottom-right",
     "size": 54
   },
-  "chips": []
+  "chips": [
+    {
+      "id": "chip-1772695663537",
+      "label": "New Action",
+      "icon": "💡",
+      "query": "New Action"
+    }
+  ]
 };
   var PREFIX = "cw3d";
   var STYLE_ID = PREFIX + "-style";
