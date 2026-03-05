@@ -21,14 +21,7 @@
     "position": "bottom-right",
     "size": 54
   },
-  "chips": [
-    {
-      "id": "chip-1772639884450",
-      "label": "New Action",
-      "icon": "💡",
-      "query": "New Action"
-    }
-  ]
+  "chips": []
 };
   var PREFIX = "cw3d";
   var STYLE_ID = PREFIX + "-style";
