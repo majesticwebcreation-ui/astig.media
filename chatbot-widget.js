@@ -101,7 +101,7 @@
       + "." + PREFIX + "-button-icon{width:24px;height:24px;display:block;pointer-events:none;object-fit:contain;filter:drop-shadow(0 2px 2px rgba(18,28,66,.24));}"
       + "." + PREFIX + "-shortcut-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px;max-height:44px;overflow:hidden;}"
       + "." + PREFIX + "-shortcut-row:empty{display:none;}"
-      + "." + PREFIX + "-shortcut-chip{border:1px solid rgba(255,255,255,.3);border-radius:999px;background:linear-gradient(150deg,#e8edf5,#c8d4e4);color:#273244;font-size:.8rem;font-weight:600;padding:9px 14px;cursor:pointer;box-shadow:0 6px 12px rgba(48,63,86,.28),inset 0 1px 0 rgba(255,255,255,.85);transition:border-color .18s ease,background .18s ease,transform .12s ease,box-shadow .12s ease;}"
+      + "." + PREFIX + "-shortcut-chip{border:1px solid rgba(255,255,255,.3);border-radius:999px;background:linear-gradient(150deg,#e8edf5,#c8d4e4);color:#273244;font-size:.8rem;font-weight:600;padding:9px 14px;cursor:pointer;box-shadow:0 6px 12px rgba(48,63,86,.28),inset 0 1px 0 rgba(255,255,255,.85);transition:border-color .18s ease,background .18s ease,transform .12s ease,box-shadow .12s ease;font-family:" + cfg.fontFamily + ",'Segoe UI Emoji','Apple Color Emoji','Noto Color Emoji',sans-serif;}"
       + "." + PREFIX + "-shortcut-chip:hover{border-color:rgba(255,255,255,.55);background:linear-gradient(150deg,#edf3fb,#d5e0ef);transform:translateY(-1px);box-shadow:0 10px 16px rgba(48,63,86,.32),inset 0 1px 0 rgba(255,255,255,.9);}"
       + "." + PREFIX + "-shortcut-chip:active{transform:translateY(2px) scale(.985);box-shadow:0 2px 5px rgba(20,28,40,.28),inset 0 3px 6px rgba(64,84,112,.22);}"
       + "." + PREFIX + "-shortcut-row ." + PREFIX + "-shortcut-chip:first-child{background:linear-gradient(150deg,#3d4657,#2c3340);border-color:rgba(255,255,255,.16);color:#f4f7fb;box-shadow:0 8px 14px rgba(16,21,30,.38),inset 0 1px 0 rgba(255,255,255,.18);}"
@@ -404,7 +404,12 @@
         var button = document.createElement("button");
         button.type = "button";
         button.className = PREFIX + "-shortcut-chip";
-        button.textContent = label;
+        var icon = String(chip.icon || "").trim();
+        if (icon) {
+          button.innerHTML = "<span aria-hidden=\"true\">" + escapeHtml(icon) + "</span> " + escapeHtml(label);
+        } else {
+          button.textContent = label;
+        }
         button.addEventListener("click", function () {
           input.value = query;
           input.focus();
