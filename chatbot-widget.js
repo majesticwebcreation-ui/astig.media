@@ -8,11 +8,24 @@
   "title": "Tools for the lawyers of tomorrow",
   "subtitle": "Research you can trust and draft with confidence, from first facts to final filing.",
   "fontFamily": "'Inter', 'Segoe UI', sans-serif",
+  "headingSize": 42,
+  "bodySize": 13,
+  "fontWeight": 300,
+  "fontColor": "#f8edff",
+  "letterSpacing": 0,
+  "typography": {
+    "fontFamily": "'Inter', 'Segoe UI', sans-serif",
+    "headingSize": 42,
+    "bodySize": 13,
+    "fontWeight": 300,
+    "fontColor": "#f8edff",
+    "letterSpacing": 0
+  },
   "colors": {
     "bgStart": "#1a0533",
     "bgEnd": "#db2777",
     "accent": "#db2777",
-    "text": "#f8fafc",
+    "text": "#f8edff",
     "muted": "rgba(226, 232, 240, 0.82)"
   },
   "glassOpacity": 0.07,
@@ -637,10 +650,18 @@
     (windowCfg && windowCfg.typography) || {}
   );
   if (!config.typography.fontFamily) config.typography.fontFamily = config.fontFamily || "'Sora', 'Trebuchet MS', sans-serif";
-  if (!config.typography.headingSize) config.typography.headingSize = 56;
-  if (!config.typography.bodySize) config.typography.bodySize = 15;
-  if (!config.typography.fontWeight) config.typography.fontWeight = 400;
-  if (!config.typography.fontColor) config.typography.fontColor = (config.colors && config.colors.text) || "#f8edff";
+  if (!config.typography.headingSize) config.typography.headingSize = Number(config.headingSize) || 56;
+  if (!config.typography.bodySize) config.typography.bodySize = Number(config.bodySize) || 15;
+  if (!config.typography.fontWeight) config.typography.fontWeight = Number(config.fontWeight) || 400;
+  if (!config.typography.fontColor) config.typography.fontColor = config.fontColor || (config.colors && config.colors.text) || "#f8edff";
+  config.typography.letterSpacing = (typeof config.typography.letterSpacing === "number" && isFinite(config.typography.letterSpacing))
+    ? config.typography.letterSpacing
+    : (isFinite(Number(config.letterSpacing)) ? Number(config.letterSpacing) : 0);
+  config.headingSize = config.typography.headingSize;
+  config.bodySize = config.typography.bodySize;
+  config.fontWeight = config.typography.fontWeight;
+  config.fontColor = config.typography.fontColor;
+  config.letterSpacing = config.typography.letterSpacing;
   if (typeof config.typography.letterSpacing !== "number") config.typography.letterSpacing = 0;
   config.fontFamily = config.typography.fontFamily;
   if (!config.colors.bgStart) config.colors.bgStart = "#1a0533";
