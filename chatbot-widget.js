@@ -7,7 +7,7 @@
   "kicker": "Legal Workflow Console",
   "title": "Tools for the lawyers of tomorrow",
   "subtitle": "Research you can trust and draft with confidence, from first facts to final filing.",
-  "fontFamily": "'Sora', 'Trebuchet MS', sans-serif",
+  "fontFamily": "'Inter', 'Segoe UI', sans-serif",
   "colors": {
     "bgStart": "#1a0533",
     "bgEnd": "#db2777",
@@ -158,7 +158,7 @@
 
   function applyInlineMarkdown(text) {
     return String(text || "")
-      .replace(/`([^`]+)`/g, "<code>$1</code>")
+      .replace(/\x60([^\x60]+)\x60/g, "<code>$1</code>")
       .replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")
       .replace(/__(.+?)__/g, "<strong>$1</strong>")
       .replace(/\*(.+?)\*/g, "<em>$1</em>")
