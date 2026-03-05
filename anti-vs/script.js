@@ -106,67 +106,7 @@ const EMBED_RAW_RUNTIME_JS_URL = 'https://raw.githubusercontent.com/majesticwebc
 const EMBED_RAW_CSS_URL = 'https://raw.githubusercontent.com/majesticwebcreation-ui/astig.media/main/astig-chat.css';
 const EMBED_RUNTIME_JS_URL = EMBED_DEFAULT_JS_URL;
 const EMBED_LOCKED_SNIPPET = `<!-- Astig Media Chatbot Widget -->
-<script>
-(function () {
-  var RAW_JS = 'https://raw.githubusercontent.com/majesticwebcreation-ui/astig.media/main/astig-chat-widgets.js';
-  var RAW_CSS = 'https://raw.githubusercontent.com/majesticwebcreation-ui/astig.media/main/astig-chat.css';
-  var FALLBACK_JS = 'https://cdn.jsdelivr.net/gh/majesticwebcreation-ui/astig.media/astig-chat-widgets.js';
-  var FALLBACK_CSS = 'https://cdn.jsdelivr.net/gh/majesticwebcreation-ui/astig.media/astig-chat.css';
-  var RUNTIME_MARKER = 'renderLauncher';
-
-  function hasRuntimeCode(source) {
-    return typeof source === 'string' && source.indexOf(RUNTIME_MARKER) !== -1;
-  }
-
-  function injectRuntimeScript(source) {
-    if (!hasRuntimeCode(source)) throw new Error('Invalid runtime source');
-    if (document.querySelector('script[data-astig-chat-runtime-inline]')) return;
-    var node = document.createElement('script');
-    node.setAttribute('data-astig-chat-runtime-inline', '1');
-    node.text = source;
-    document.head.appendChild(node);
-  }
-
-  function loadFallbackRuntime() {
-    if (document.querySelector('script[data-astig-chat-runtime-fallback]')) return;
-    var node = document.createElement('script');
-    node.src = FALLBACK_JS;
-    node.defer = true;
-    node.setAttribute('data-astig-chat-runtime-fallback', '1');
-    document.head.appendChild(node);
-  }
-
-  function injectCssText(cssText) {
-    if (!cssText || !cssText.trim()) throw new Error('Invalid css source');
-    var styleNode = document.querySelector('style[data-astig-chat-css-inline]');
-    if (!styleNode) {
-      styleNode = document.createElement('style');
-      styleNode.setAttribute('data-astig-chat-css-inline', '1');
-      document.head.appendChild(styleNode);
-    }
-    styleNode.textContent = cssText;
-  }
-
-  function loadFallbackCss() {
-    if (document.querySelector('link[data-astig-chat-css-fallback]')) return;
-    var link = document.createElement('link');
-    link.rel = 'stylesheet';
-    link.href = FALLBACK_CSS;
-    link.setAttribute('data-astig-chat-css-fallback', '1');
-    document.head.appendChild(link);
-  }
-
-  fetch(RAW_CSS, { cache: 'no-store' })
-    .then(function (res) { if (!res.ok) throw new Error('CSS fetch failed'); return res.text(); })
-    .then(injectCssText)
-    .catch(loadFallbackCss);
-
-  fetch(RAW_JS, { cache: 'no-store' })
-    .then(function (res) { if (!res.ok) throw new Error('Runtime fetch failed'); return res.text(); })
-    .then(injectRuntimeScript)
-    .catch(loadFallbackRuntime);
-})();
-</script>`;
+<script defer src="https://cdn.jsdelivr.net/gh/majesticwebcreation-ui/astig.media/anti-vs/astig-chat-widgets.js"></script>`;
 const EMBED_DEFAULT_WEBHOOK_URL = 'https://n8n.srv1291312.hstgr.cloud/webhook/a4d3520b-1922-4e9b-b162-3b15a5060985/chat';
 const EMBED_LOCAL_JS_FILENAME = 'astig-chat-widgets.js';
 const EMBED_LEGACY_RUNTIME_JS_FILENAME = 'astig-chat.js';
@@ -186,6 +126,166 @@ const GITHUB_DEPLOY_DEFAULT_REPO = 'majesticwebcreation-ui/astig.media';
 const GITHUB_DEPLOY_DEFAULT_BRANCH = 'main';
 const GITHUB_DEPLOY_TARGET_STORAGE_KEY = 'astig-github-deploy-target-v1';
 const GITHUB_DEPLOY_TOKEN_STORAGE_KEY = 'astig-github-deploy-token-v1';
+const DEPLOY_TEMPLATE_RUNTIME_CSS = `
+.chat-widget.chat-widget--maximum-support {
+    background: #eef2f7;
+    border-color: #d4dce7;
+    border-radius: 18px;
+    box-shadow: 0 22px 48px rgba(25, 44, 72, 0.24);
+    overflow: hidden;
+}
+.chat-widget.chat-widget--maximum-support .chat-widget__header {
+    min-height: 250px;
+    position: relative;
+    align-items: flex-start;
+    background-image: linear-gradient(180deg, rgba(27, 104, 238, 0.78) 0%, rgba(22, 100, 236, 0.92) 100%);
+    background-size: cover;
+    background-position: center;
+    border-bottom: none;
+    padding: 20px 18px 22px;
+    overflow: hidden;
+}
+.chat-widget.chat-widget--maximum-support .chat-widget__header > * { position: relative; z-index: 2; }
+.chat-widget.chat-widget--maximum-support .max-support-hero-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 1; }
+.chat-widget.chat-widget--maximum-support .chat-widget__header-avatar {
+    width: 28px; height: 28px; border-radius: 8px; background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.45); color: #ffffff; font-size: 14px; margin-top: 2px;
+}
+.chat-widget.chat-widget--maximum-support .chat-widget__header-info { margin-left: 0; margin-top: 126px; flex: 1; min-width: 0; }
+.chat-widget.chat-widget--maximum-support .chat-widget__header-name {
+    color: #ffffff; font-size: 44px; line-height: 1.02; font-weight: 800; letter-spacing: -0.6px;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+.chat-widget.chat-widget--maximum-support .chat-widget__header-status {
+    display: block; margin-top: 10px; color: rgba(236, 244, 255, 0.98);
+    font-size: 12px; font-weight: 600; line-height: 1.45; max-width: 310px;
+}
+.chat-widget.chat-widget--maximum-support .chat-widget__header-status::before { display: none; }
+.chat-widget.chat-widget--maximum-support .chat-widget__header-actions { position: absolute; right: 12px; top: 10px; gap: 6px; }
+.chat-widget.chat-widget--maximum-support #cwRestartBtn { display: none !important; }
+.chat-widget.chat-widget--maximum-support #cwCloseBtn { display: none !important; }
+.chat-widget.chat-widget--maximum-support #cwDownloadBtn {
+    width: 30px; height: 30px; border: 1px solid rgba(255, 255, 255, 0.48);
+    background: rgba(13, 52, 128, 0.28); color: #ffffff; backdrop-filter: blur(2px);
+}
+.chat-widget.chat-widget--maximum-support .chat-widget__messages {
+    background: #eef2f7; margin-top: -34px; border-top-left-radius: 22px; border-top-right-radius: 22px;
+    padding: 12px 16px 10px; gap: 10px;
+}
+.chat-widget.chat-widget--maximum-support .chat-widget__divider { display: none; }
+.chat-widget.chat-widget--maximum-support .msg { gap: 8px; }
+.chat-widget.chat-widget--maximum-support .msg__avatar { display: none; }
+.chat-widget.chat-widget--maximum-support .msg__bubble {
+    max-width: 320px; border-radius: 18px; padding: 4px 12px 2px; background: #ffffff; color: #1f2b3d;
+    border: 1px solid #d7deea; box-shadow: 0 3px 8px rgba(45, 70, 108, 0.06); min-height: 0;
+}
+.chat-widget.chat-widget--maximum-support .msg__header { display: none; }
+.chat-widget.chat-widget--maximum-support .msg__text { font-size: 15px; line-height: 1; margin: 0; }
+.chat-widget.chat-widget--maximum-support .chat-options { display: block; padding: 0; margin: 0; }
+.chat-widget.chat-widget--maximum-support .chat-option-btn {
+    width: 100%; display: flex; align-items: center; justify-content: space-between;
+    padding: 15px 16px; margin: 0; border-radius: 0; border: 0; border-bottom: 1px solid #dde3ed;
+    background: #ffffff; color: #1f2b3d; font-size: 16px; font-weight: 600; text-align: left;
+}
+.chat-widget.chat-widget--maximum-support .chat-option-btn:first-child { border-top-left-radius: 16px; border-top-right-radius: 16px; }
+.chat-widget.chat-widget--maximum-support .chat-option-btn:last-child { border-bottom: 0; border-bottom-left-radius: 16px; border-bottom-right-radius: 16px; }
+.chat-widget.chat-widget--maximum-support .chat-option-btn::after { content: '\\203A'; font-size: 25px; line-height: 1; color: #17263e; }
+.chat-widget.chat-widget--maximum-support .chat-option-btn:hover { transform: none; background: #f6f9ff; color: #0f1f39; }
+.chat-widget.chat-widget--maximum-support .chat-widget__input-row { background: #eef2f7; border-top: none; padding: 10px 14px 12px; }
+.chat-widget.chat-widget--maximum-support .chat-widget__input { background: #ffffff; border: 1px solid #d6deea; color: #1f2b3d; }
+.chat-widget.chat-widget--maximum-support .chat-widget__input::placeholder { color: #7d8ca3; }
+.chat-widget.chat-widget--maximum-support #cwSendBtn {
+    background: #ffffff; border: 1px solid #d6deea;
+    box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.95), 0 3px 10px rgba(35, 58, 93, 0.15);
+}
+.chat-widget.chat-widget--maximum-support .chat-widget__footer {
+    background: #eef2f7; border-top: none; padding: 10px 12px 12px;
+    color: #6e7f99; letter-spacing: 0.04em; font-weight: 600;
+}
+.chat-widget.chat-widget--orders-online {
+    width: 420px; height: 700px; background: #f4f7fb; border-color: #d7e2f2;
+    border-radius: 28px; box-shadow: 0 22px 50px rgba(28, 61, 120, 0.22); overflow: hidden;
+}
+.chat-widget.chat-widget--orders-online .chat-widget__header {
+    background: linear-gradient(135deg, #007BFF 0%, #27c4ff 100%); border-bottom: none;
+    padding: 14px 16px 0; min-height: 120px; align-items: flex-start; flex-wrap: wrap; position: relative;
+}
+.chat-widget.chat-widget--orders-online .chat-widget__header::after {
+    content: ''; position: absolute; left: -6%; right: -6%; bottom: -14px; height: 28px;
+    background: #f4f7fb; border-radius: 0 0 50% 50%;
+}
+.chat-widget.chat-widget--orders-online .chat-widget__header-avatar {
+    width: 42px; height: 42px; border: 2px solid rgba(255, 255, 255, 0.66);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); margin-top: 1px;
+}
+.chat-widget.chat-widget--orders-online .chat-widget__header-info { margin-left: 10px; flex: 1 1 auto; min-width: 0; }
+.chat-widget.chat-widget--orders-online .chat-widget__header-name { color: #ffffff; font-size: 33px; font-weight: 700; line-height: 1.05; }
+.chat-widget.chat-widget--orders-online .chat-widget__header-name::before {
+    content: 'Chat with'; display: block; font-size: 12px; font-weight: 500; opacity: 0.92;
+    margin-bottom: 3px; letter-spacing: 0.01em;
+}
+.chat-widget.chat-widget--orders-online .chat-widget__header-status {
+    order: 3; width: auto; margin: 10px 0 0 52px; padding: 0; color: #ecf6ff; font-size: 13px;
+    font-weight: 500; background: transparent; border: none; backdrop-filter: none; gap: 8px;
+}
+.chat-widget.chat-widget--orders-online .chat-widget__header-status::before { width: 8px; height: 8px; background: #6dff9e; box-shadow: 0 0 8px #6dff9e; }
+.chat-widget.chat-widget--orders-online .chat-widget__header-actions { margin-left: 10px; gap: 6px; padding-top: 4px; }
+.chat-widget.chat-widget--orders-online .chat-widget__header-btn {
+    width: 24px; height: 24px; border: none; background: transparent; color: rgba(244, 252, 255, 0.96); box-shadow: none;
+}
+.chat-widget.chat-widget--orders-online .chat-widget__header-btn:hover { background: rgba(255, 255, 255, 0.14); color: #ffffff; transform: none; }
+.chat-widget.chat-widget--orders-online .chat-widget__messages { background: #f4f7fb; padding: 22px 18px 12px; gap: 11px; }
+.chat-widget.chat-widget--orders-online .chat-widget__divider { display: none; }
+.chat-widget.chat-widget--orders-online .msg { gap: 8px; }
+.chat-widget.chat-widget--orders-online .msg__avatar,
+.chat-widget.chat-widget--orders-online .msg__header { display: none; }
+.chat-widget.chat-widget--orders-online .msg--other { justify-content: flex-end; }
+.chat-widget.chat-widget--orders-online .msg--me { justify-content: flex-start; }
+.chat-widget.chat-widget--orders-online .msg--other .msg__bubble {
+    background: #e8edf4; color: #1c2737; border-radius: 22px; border-bottom-right-radius: 12px;
+    box-shadow: 0 4px 12px rgba(35, 48, 77, 0.08);
+}
+.chat-widget.chat-widget--orders-online .msg--me .msg__bubble {
+    background: linear-gradient(135deg, #304be6 0%, #25c6f9 100%); color: #ffffff;
+    border-radius: 22px; border-bottom-left-radius: 12px; box-shadow: 0 10px 20px rgba(36, 116, 230, 0.26);
+}
+.chat-widget.chat-widget--orders-online .msg__text { font-size: 14px; line-height: 1.35; }
+.chat-widget.chat-widget--orders-online .chat-options { width: 100%; padding: 0; margin-top: 2px; gap: 8px; justify-content: flex-end; }
+.chat-widget.chat-widget--orders-online .chat-option-btn {
+    width: auto; min-width: 0; padding: 8px 18px; border-radius: 999px; border: 2px solid #2f81f9;
+    background: rgba(255, 255, 255, 0.95); color: #1f67d5; font-size: 13px; font-weight: 600;
+    box-shadow: 0 10px 18px rgba(35, 120, 221, 0.16);
+}
+.chat-widget.chat-widget--orders-online .chat-option-btn:hover { background: #eef5ff; transform: translateY(-1px); color: #1457bd; }
+.chat-widget.chat-widget--orders-online .chat-widget__input-row {
+    background: rgba(255, 255, 255, 0.76); backdrop-filter: blur(10px);
+    border-top: 1px solid rgba(193, 208, 226, 0.7); padding: 10px 12px 12px; gap: 8px;
+}
+.chat-widget.chat-widget--orders-online .chat-widget__input { border: none; background: transparent; color: #4e6078; font-size: 15px; padding-left: 6px; }
+.chat-widget.chat-widget--orders-online .chat-widget__input::placeholder { color: #9eaac0; }
+.chat-widget.chat-widget--orders-online #cwUploadBtn,
+.chat-widget.chat-widget--orders-online #cwEmojiBtn {
+    width: 30px; height: 30px; border-radius: 8px; background: transparent;
+    border: none; color: #7f8fa7; box-shadow: none;
+}
+.chat-widget.chat-widget--orders-online #cwUploadBtn:hover,
+.chat-widget.chat-widget--orders-online #cwEmojiBtn:hover {
+    background: rgba(114, 147, 193, 0.12); color: #496ea8; transform: none;
+}
+.chat-widget.chat-widget--orders-online #cwSendBtn {
+    width: 54px; height: 54px; border: none;
+    background: linear-gradient(135deg, #256ff5 0%, #20b8ff 100%);
+    box-shadow: 0 10px 24px rgba(34, 123, 243, 0.36);
+}
+.chat-widget.chat-widget--orders-online #cwSendBtn:hover { transform: translateY(-1px) scale(1.02); }
+.chat-widget.chat-widget--orders-online .chat-widget__footer {
+    background: rgba(255, 255, 255, 0.76); border-top: none; color: #9aa7bc;
+    font-size: 10px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+}
+@media (max-width: 520px) {
+    .chat-widget.chat-widget--orders-online { width: 100%; height: 100%; border-radius: 20px; }
+}
+`;
 
 const CHATBOT_TEMPLATES = {
     support: {
@@ -732,6 +832,7 @@ let createBotLastFocusedEl = null;
 let autoSaveTimer = null;
 let autoSaveSuspended = false;
 let hasStartedFresh = false;
+let createModeSelectedTemplateId = '';
 let deployInProgress = false;
 const AUTO_SAVE_DELAY_MS = 700;
 
@@ -782,7 +883,33 @@ function toggleCreateModeTemplateChooser(showChooser) {
     if (!showChooser) {
         const select = document.getElementById('createModeTemplateSelect');
         if (select) select.value = '';
+        createModeSelectedTemplateId = '';
     }
+    syncCreateModeTemplateCardSelection();
+}
+
+function syncCreateModeTemplateCardSelection() {
+    const select = document.getElementById('createModeTemplateSelect');
+    const selected = select && select.value
+        ? String(select.value)
+        : String(createModeSelectedTemplateId || '');
+    const cards = document.querySelectorAll('#createModeTemplateGallery .template-card');
+    cards.forEach((card) => {
+        const templateId = String(card.getAttribute('data-template-id') || '');
+        const isActive = !!selected && templateId === selected;
+        card.classList.toggle('is-selected', isActive);
+        card.setAttribute('aria-selected', isActive ? 'true' : 'false');
+    });
+}
+
+function setCreateModeTemplateSelection(templateId) {
+    const normalized = String(templateId || '').trim();
+    createModeSelectedTemplateId = normalized;
+    const select = document.getElementById('createModeTemplateSelect');
+    if (select) {
+        select.value = normalized;
+    }
+    syncCreateModeTemplateCardSelection();
 }
 
 function setCreateBotMode(enabled, options = {}) {
@@ -835,26 +962,37 @@ function startFreshFromCreateMode() {
 
 function openCreateModeTemplateFlow() {
     toggleCreateModeTemplateChooser(true);
-    const select = document.getElementById('createModeTemplateSelect');
-    if (!select) return;
-    window.setTimeout(() => {
-        select.focus();
-        try {
-            if (typeof select.showPicker === 'function') select.showPicker();
-        } catch (e) {
-            // no-op for browsers that block programmatic picker opening
+    const selected = createModeSelectedTemplateId
+        || String((document.getElementById('createModeTemplateSelect') || {}).value || '').trim();
+    if (!selected) {
+        const firstTemplateId = String((document.querySelector('#createModeTemplateGallery .template-card') || {}).getAttribute?.('data-template-id') || '').trim();
+        if (firstTemplateId) {
+            setCreateModeTemplateSelection(firstTemplateId);
         }
+    }
+    const selectedCard = document.querySelector('#createModeTemplateGallery .template-card.is-selected');
+    const firstCard = document.querySelector('#createModeTemplateGallery .template-card');
+    const targetCard = selectedCard || firstCard;
+    if (!targetCard) return;
+    window.setTimeout(() => {
+        targetCard.focus();
     }, 80);
 }
 
 function applyCreateModeTemplateSelection() {
     const select = document.getElementById('createModeTemplateSelect');
-    if (!select || !select.value) {
+    const selectedCard = document.querySelector('#createModeTemplateGallery .template-card.is-selected');
+    const templateId = String(
+        (select && select.value)
+        || createModeSelectedTemplateId
+        || (selectedCard && selectedCard.getAttribute('data-template-id'))
+        || ''
+    ).trim();
+    if (!templateId) {
         const notif = showProgressNotification('Template Selection');
         if (notif) notif.update(100, 'Please choose a template first.', 'error');
         return;
     }
-    const templateId = select.value;
     hasStartedFresh = true;
     applyTemplatePreset(templateId);
     toggleCreateModeTemplateChooser(false);
@@ -889,6 +1027,38 @@ function initCreateBotModeActions() {
     }
     if (dropzoneBtn) dropzoneBtn.addEventListener('click', openCreateModeTemplateFlow);
     if (applyTemplateBtn) applyTemplateBtn.addEventListener('click', applyCreateModeTemplateSelection);
+    if (templateSelect) {
+        templateSelect.addEventListener('change', () => {
+            createModeSelectedTemplateId = String(templateSelect.value || '').trim();
+            syncCreateModeTemplateCardSelection();
+        });
+    }
+    const templateGallery = document.getElementById('createModeTemplateGallery');
+    if (templateGallery) {
+        templateGallery.addEventListener('click', (event) => {
+            const target = event.target;
+            if (!(target instanceof HTMLElement)) return;
+            const card = target.closest('.template-card');
+            if (!card) return;
+            const templateId = String(card.getAttribute('data-template-id') || '').trim();
+            if (!templateId) return;
+            setCreateModeTemplateSelection(templateId);
+            applyCreateModeTemplateSelection();
+        });
+    }
+}
+
+function normalizeCreateModeTemplateSelection() {
+    const select = document.getElementById('createModeTemplateSelect');
+    const current = String((select && select.value) || createModeSelectedTemplateId || '').trim();
+    if (current && CHATBOT_TEMPLATES[current]) {
+        setCreateModeTemplateSelection(current);
+        return;
+    }
+    const firstTemplateId = String((document.querySelector('#createModeTemplateGallery .template-card') || {}).getAttribute?.('data-template-id') || '').trim();
+    if (firstTemplateId && CHATBOT_TEMPLATES[firstTemplateId]) {
+        setCreateModeTemplateSelection(firstTemplateId);
+    }
 }
 
 function bootBuilderApp() {
@@ -900,6 +1070,7 @@ function bootBuilderApp() {
     hydrateGitHubIntegrationPanel();
     initAutoSave();
     initCreateBotModeActions();
+    normalizeCreateModeTemplateSelection();
 
     // Load saved settings if available and use it as startup state
     const hasSavedConfig = loadFromLocalStorage();
@@ -912,6 +1083,7 @@ function bootBuilderApp() {
     initBackendTelemetryPanel();
 
     renderChat();
+    populateEmbedSnippetOutput();
 
     // Auto-open widget for preview convenience
     if (widget) {
@@ -955,6 +1127,9 @@ function initTabs() {
             tab.classList.add('active');
             const panelId = `panel-${tab.dataset.tab}`;
             document.getElementById(panelId).classList.add('active');
+            if (tab.dataset.tab === 'embed') {
+                populateEmbedSnippetOutput();
+            }
         });
     });
 }
@@ -1040,6 +1215,17 @@ function stringifyForInlineScript(value) {
 
 function getEmbedSnippetText() {
     return EMBED_LOCKED_SNIPPET;
+}
+
+function populateEmbedSnippetOutput(options = {}) {
+    const { notify = false, message = 'Embeddable widget snippet generated.' } = options;
+    const embedCodeOutput = document.getElementById('embedCodeOutput');
+    if (!(embedCodeOutput instanceof HTMLTextAreaElement)) return false;
+    embedCodeOutput.value = getEmbedSnippetText();
+    if (notify) {
+        notifyEmbedAction('Embed Code', message, 'success');
+    }
+    return true;
 }
 
 function getEmbedJsFileText() {
@@ -1353,7 +1539,8 @@ async function fetchGitHubFileMeta({ owner, repo, branch, path, token }) {
     const url = `https://api.github.com/repos/${encodeURIComponent(owner)}/${encodeURIComponent(repo)}/contents/${encodedPath}?ref=${encodeURIComponent(branch)}`;
     const response = await fetch(url, {
         method: 'GET',
-        headers: getGitHubDeployHeaders(token)
+        headers: getGitHubDeployHeaders(token),
+        cache: 'no-store'
     });
     if (response.status === 404) return null;
     if (!response.ok) {
@@ -1367,7 +1554,8 @@ async function fetchGitHubRepoMeta({ owner, repo, token }) {
     const url = `https://api.github.com/repos/${encodeURIComponent(owner)}/${encodeURIComponent(repo)}`;
     const response = await fetch(url, {
         method: 'GET',
-        headers: getGitHubDeployHeaders(token)
+        headers: getGitHubDeployHeaders(token),
+        cache: 'no-store'
     });
     if (!response.ok) {
         const message = await readGitHubApiError(response);
@@ -1382,7 +1570,8 @@ async function checkGitHubBranchExists({ owner, repo, branch, token }) {
     const url = `https://api.github.com/repos/${encodeURIComponent(owner)}/${encodeURIComponent(repo)}/branches/${encodeURIComponent(value)}`;
     const response = await fetch(url, {
         method: 'GET',
-        headers: getGitHubDeployHeaders(token)
+        headers: getGitHubDeployHeaders(token),
+        cache: 'no-store'
     });
     if (response.status === 404) return false;
     if (!response.ok) {
@@ -1419,33 +1608,50 @@ async function resolveGitHubDeployBranch({ owner, repo, token, preferredBranch }
 }
 
 async function upsertGitHubFile({ owner, repo, branch, path, token, content, message }) {
-    const existing = await fetchGitHubFileMeta({ owner, repo, branch, path, token });
-    if (existing && typeof existing.content === 'string') {
-        const existingContent = base64ToUtf8(existing.content);
-        if (existingContent === content) {
-            return { skipped: true, path };
-        }
-    }
-
     const encodedPath = encodeGitHubContentPath(path);
     const url = `https://api.github.com/repos/${encodeURIComponent(owner)}/${encodeURIComponent(repo)}/contents/${encodedPath}`;
-    const payload = {
-        message,
-        branch,
-        content: utf8ToBase64(content)
-    };
-    if (existing && existing.sha) payload.sha = existing.sha;
+    const encodedContent = utf8ToBase64(content);
+    const maxAttempts = 3;
+    let lastMessage = '';
 
-    const response = await fetch(url, {
-        method: 'PUT',
-        headers: getGitHubDeployHeaders(token, true),
-        body: JSON.stringify(payload)
-    });
-    if (!response.ok) {
+    for (let attempt = 1; attempt <= maxAttempts; attempt += 1) {
+        const existing = await fetchGitHubFileMeta({ owner, repo, branch, path, token });
+        if (existing && typeof existing.content === 'string') {
+            const existingContent = base64ToUtf8(existing.content);
+            if (existingContent === content) {
+                return { skipped: true, path };
+            }
+        }
+
+        const payload = {
+            message,
+            branch,
+            content: encodedContent
+        };
+        if (existing && existing.sha) payload.sha = existing.sha;
+
+        const response = await fetch(url, {
+            method: 'PUT',
+            headers: getGitHubDeployHeaders(token, true),
+            body: JSON.stringify(payload),
+            cache: 'no-store'
+        });
+        if (response.ok) return response.json();
+
         const apiMessage = await readGitHubApiError(response);
+        lastMessage = apiMessage;
+        const shaMismatch =
+            response.status === 409 ||
+            (response.status === 422 && /does not match|sha/i.test(apiMessage));
+
+        if (shaMismatch && attempt < maxAttempts) {
+            await new Promise((resolve) => setTimeout(resolve, 150 * attempt));
+            continue;
+        }
         throw new Error(`Unable to update ${path}: ${apiMessage}`);
     }
-    return response.json();
+
+    throw new Error(`Unable to update ${path}: ${lastMessage || 'Unknown error'}`);
 }
 
 function toJsDelivrPurgeUrl(url) {
@@ -1504,12 +1710,21 @@ function stripDeployInjectedConfig(runtimeSource) {
 function injectDeployRuntimeConfig(runtimeSource, configLiteral, webhookUrl) {
     const cleanedRuntime = stripDeployInjectedConfig(runtimeSource);
     const webhookLiteral = JSON.stringify(webhookUrl || EMBED_DEFAULT_WEBHOOK_URL);
+    const templateCssLiteral = JSON.stringify(DEPLOY_TEMPLATE_RUNTIME_CSS || '');
     const bootstrap = [
         '/*__ASTIG_DEPLOY_CONFIG_START__*/',
         '(function() {',
         '  window.RSVPChatConfig = window.RSVPChatConfig || {};',
         `  window.RSVPChatConfig.webhookUrl = ${webhookLiteral};`,
         `  window.RSVPChatConfig.fullConfig = ${configLiteral};`,
+        '  try {',
+        '    if (!document.querySelector(\'style[data-astig-template-runtime]\')) {',
+        '      var __astigTemplateStyle = document.createElement(\'style\');',
+        '      __astigTemplateStyle.setAttribute(\'data-astig-template-runtime\', \'1\');',
+        `      __astigTemplateStyle.textContent = ${templateCssLiteral};`,
+        '      (document.head || document.documentElement).appendChild(__astigTemplateStyle);',
+        '    }',
+        '  } catch (e) {}',
         '})();',
         '/*__ASTIG_DEPLOY_CONFIG_END__*/',
         ''
@@ -1635,10 +1850,7 @@ async function deployCurrentSettingsToGitHub() {
         );
         const purgeFailures = purgeResults.filter((result) => result.status === 'rejected').length;
 
-        const embedCodeOutput = document.getElementById('embedCodeOutput');
-        if (embedCodeOutput instanceof HTMLTextAreaElement) {
-            embedCodeOutput.value = getEmbedSnippetText();
-        }
+        populateEmbedSnippetOutput();
         if (purgeFailures > 0) {
             notify(100, `Deploy complete (${repoSlug}@${resolvedBranch}). CDN purge warnings: ${purgeFailures}`, 'success');
         } else {
@@ -1999,15 +2211,17 @@ function initInputs() {
 
     if (generateEmbedCodeBtn && embedCodeOutput) {
         generateEmbedCodeBtn.addEventListener('click', () => {
-            embedCodeOutput.value = getEmbedSnippetText();
-            notifyEmbedAction('Embed Code', 'Static embed code generated. Click Deploy to sync latest builder UX.', 'success');
+            populateEmbedSnippetOutput({
+                notify: true,
+                message: 'Embeddable widget snippet generated. Click Deploy to sync latest builder UX.'
+            });
         });
     }
 
     if (copyEmbedCodeBtn && embedCodeOutput) {
         copyEmbedCodeBtn.addEventListener('click', async () => {
             if (!embedCodeOutput.value.trim()) {
-                embedCodeOutput.value = getEmbedSnippetText();
+                populateEmbedSnippetOutput();
             }
             const copied = await copyTextToClipboard(embedCodeOutput.value);
             notifyEmbedAction('Embed Code', copied ? 'Embed code copied to clipboard.' : 'Unable to copy embed code.', copied ? 'success' : 'error');
