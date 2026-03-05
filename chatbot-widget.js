@@ -85,9 +85,20 @@
       + "." + PREFIX + "-action-btn{border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.1);color:#fff;font-weight:700;font-size:1rem;border-radius:999px;min-width:36px;min-height:36px;display:inline-flex;align-items:center;justify-content:center;padding:0;cursor:pointer;transition:background .2s ease,border-color .2s ease,color .2s ease,transform .2s ease;}"
       + "." + PREFIX + "-action-btn:disabled{opacity:.45;cursor:default;}"
       + "." + PREFIX + "-action-btn:not(:disabled):hover{border-color:rgba(255,255,255,.5);background:rgba(255,255,255,.18);transform:translateY(-1px);}"
-      + "." + PREFIX + "-out{border:1px solid rgba(255,255,255,.16);background:rgba(4,1,10,.34);border-radius:16px;padding:16px;min-height:0;max-height:none;height:100%;overflow:auto;white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.5;}"
-      + "." + PREFIX + "-out pre,." + PREFIX + "-out p,." + PREFIX + "-out li{font-family:'Consolas','Courier New',monospace;font-size:.84rem;line-height:1.5;color:#f9edff;text-align:left;}"
-      + "." + PREFIX + "-out ul{margin:.4rem 0 .45rem;padding-left:1.2rem;}"
+      + "." + PREFIX + "-out{border:1px solid rgba(255,255,255,.16);background:rgba(4,1,10,.34);border-radius:16px;padding:16px;min-height:0;max-height:none;height:100%;overflow:auto;white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.55;font-family:" + cfg.fontFamily + ";font-size:1rem;color:rgba(248,250,252,.96);}"
+      + "." + PREFIX + "-out p{margin:0 0 .7rem;font-family:" + cfg.fontFamily + ";font-size:1rem;line-height:1.58;font-weight:500;color:rgba(248,250,252,.96);text-align:left;}"
+      + "." + PREFIX + "-out p:empty{height:.55rem;margin:0;}"
+      + "." + PREFIX + "-out h1,." + PREFIX + "-out h2,." + PREFIX + "-out h3,." + PREFIX + "-out h4{margin:0 0 .65rem;font-family:" + cfg.fontFamily + ";font-weight:800;line-height:1.25;color:#ffffff;}"
+      + "." + PREFIX + "-out h1{font-size:1.35rem;}"
+      + "." + PREFIX + "-out h2{font-size:1.25rem;}"
+      + "." + PREFIX + "-out h3{font-size:1.16rem;}"
+      + "." + PREFIX + "-out h4{font-size:1.08rem;}"
+      + "." + PREFIX + "-out ul,." + PREFIX + "-out ol{margin:.2rem 0 .75rem 1.2rem;padding:0;}"
+      + "." + PREFIX + "-out li{margin:.2rem 0;font-family:" + cfg.fontFamily + ";font-size:1rem;line-height:1.55;color:rgba(248,250,252,.95);text-align:left;}"
+      + "." + PREFIX + "-out strong{color:#fff;font-weight:800;}"
+      + "." + PREFIX + "-out em{font-style:italic;color:rgba(248,250,252,.95);}"
+      + "." + PREFIX + "-out code{font-family:'Consolas','Courier New',monospace;font-size:.9em;padding:.1em .34em;border-radius:.35em;background:rgba(14,8,30,.45);color:#fdf4ff;}"
+      + "." + PREFIX + "-out blockquote{margin:.35rem 0 .8rem;padding:.4rem .75rem;border-left:3px solid color-mix(in srgb," + cfg.colors.accent + " 55%,#fff 45%);background:rgba(255,255,255,.06);border-radius:.4rem;color:rgba(248,250,252,.92);}"
       + "." + PREFIX + "-input-panel{width:750px;min-width:750px;max-width:750px;height:170px;min-height:170px;max-height:170px;overflow:hidden;padding:12px;display:grid;align-content:start;gap:0;background:linear-gradient(160deg,rgba(255,255,255,0.14),rgba(255,255,255,0.06)),linear-gradient(120deg,rgba(120,40,110,.22),rgba(60,20,90,.22));animation:" + PREFIX + "-panel-slide .46s ease both;}"
       + "." + PREFIX + "-kicker{display:none;}"
       + "." + PREFIX + "-row{display:flex;flex-direction:row;width:100%;min-height:0;border-radius:18px;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.08);padding:10px 12px;align-items:center;gap:10px;}"
@@ -145,41 +156,83 @@
     return "";
   }
 
+  function applyInlineMarkdown(text) {
+    return String(text || "")
+      .replace(/`([^`]+)`/g, "<code>$1</code>")
+      .replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")
+      .replace(/__(.+?)__/g, "<strong>$1</strong>")
+      .replace(/\*(.+?)\*/g, "<em>$1</em>")
+      .replace(/_(.+?)_/g, "<em>$1</em>");
+  }
+
   function markdownToHtml(text) {
     var escaped = escapeHtml(text);
     var lines = escaped.split(/\r?\n/);
     var html = "";
-    var inList = false;
+    var listMode = "";
+
     function closeList() {
-      if (!inList) return;
-      html += "</ul>";
-      inList = false;
+      if (!listMode) return;
+      html += listMode === "ol" ? "</ol>" : "</ul>";
+      listMode = "";
     }
+
     lines.forEach(function (line) {
-      if (/^\s*[-*]\s+/.test(line)) {
-        if (!inList) {
-          html += "<ul>";
-          inList = true;
-        }
-        html += "<li>" + line.replace(/^\s*[-*]\s+/, "") + "</li>";
-        return;
-      }
-      closeList();
-      if (!line.trim()) {
+      var trimmed = line.trim();
+      if (!trimmed) {
+        closeList();
         html += "<p></p>";
         return;
       }
-      html += "<p>" + line + "</p>";
+
+      var headingMatch = trimmed.match(/^(#{1,4})\s+(.+)$/);
+      if (headingMatch) {
+        closeList();
+        html += "<h" + headingMatch[1].length + ">" + applyInlineMarkdown(headingMatch[2]) + "</h" + headingMatch[1].length + ">";
+        return;
+      }
+
+      if (/^\s*>\s+/.test(line)) {
+        closeList();
+        html += "<blockquote>" + applyInlineMarkdown(line.replace(/^\s*>\s+/, "")) + "</blockquote>";
+        return;
+      }
+
+      if (/^\s*[-*]\s+/.test(line)) {
+        if (listMode !== "ul") {
+          closeList();
+          html += "<ul>";
+          listMode = "ul";
+        }
+        html += "<li>" + applyInlineMarkdown(line.replace(/^\s*[-*]\s+/, "")) + "</li>";
+        return;
+      }
+
+      if (/^\s*\d+\.\s+/.test(line)) {
+        if (listMode !== "ol") {
+          closeList();
+          html += "<ol>";
+          listMode = "ol";
+        }
+        html += "<li>" + applyInlineMarkdown(line.replace(/^\s*\d+\.\s+/, "")) + "</li>";
+        return;
+      }
+
+      closeList();
+      html += "<p>" + applyInlineMarkdown(line) + "</p>";
     });
+
     closeList();
-    return html
-      .replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")
-      .replace(/\*(.+?)\*/g, "<em>$1</em>");
+    return html;
   }
 
   function renderOutput(out, text) {
     var value = String(text || "");
-    out.textContent = value;
+    if (!value.trim()) {
+      out.textContent = "";
+      return;
+    }
+    out.innerHTML = markdownToHtml(value);
   }
 
   async function parseResponse(response, onStreamUpdate) {
@@ -499,7 +552,7 @@
       }).then(function (text) {
         var display = String(text || "").trim() || "No content returned.";
         lastText = display;
-        renderTypewriter(display);
+        renderOutput(out, display);
         setActionState(false);
         input.value = "";
       }).catch(function (error) {
