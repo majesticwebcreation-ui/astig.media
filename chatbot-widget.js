@@ -43,9 +43,9 @@
   "chips": [
     {
       "id": "chip-1772695663537",
-      "label": "New Action",
+      "label": "KMEP",
       "icon": "💡",
-      "query": "New Action"
+      "query": "KMEP"
     }
   ]
 };
