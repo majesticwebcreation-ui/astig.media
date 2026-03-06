@@ -1,12 +1,56 @@
-﻿/*__ASTIG_DEPLOY_CONFIG_START__*/
+/*__ASTIG_DEPLOY_CONFIG_START__*/
 (function() {
+  var __astigDeployStamp = "2026-03-06T05:09:35.441Z";
+  var __astigPrevStamp = String(window.__ASTIG_CHAT_DEPLOY_STAMP || '');
+  if (__astigPrevStamp && __astigDeployStamp && __astigPrevStamp > __astigDeployStamp) { return; }
+  if (__astigDeployStamp) window.__ASTIG_CHAT_DEPLOY_STAMP = __astigDeployStamp;
   window.RSVPChatConfig = window.RSVPChatConfig || {};
-  if (!window.RSVPChatConfig.webhookUrl) {
-    window.RSVPChatConfig.webhookUrl = "https://n8n.srv1291312.hstgr.cloud/webhook/a4d3520b-1922-4e9b-b162-3b15a5060985/chat";
-  }
-  if (!window.RSVPChatConfig.fullConfig || typeof window.RSVPChatConfig.fullConfig !== "object") {
-    window.RSVPChatConfig.fullConfig = {"theme":{"primaryColor":"#5aa7d9","bgColor":"#dfe8f1","surfaceColor":"#d5dee8","fontFamily":"'DM Sans', sans-serif","borderRadius":30,"mode":"solid","gradient":{"start":"#dfe8f1","end":"#d5dee8"},"headerBgColor":"#dfe8f1","headerTextColor":"#5e6873","topHeroMediaType":"none","topHeroMediaUrl":""},"header":{"title":"Aria","name":"Aria","status":"","fontFamily":"'Syne', sans-serif","nameFontSize":15,"nameFontWeight":600,"statusFontSize":12,"animation":"none","logoOffsetX":0,"logoOffsetY":0,"nameOffsetX":0,"nameOffsetY":0,"statusOffsetX":0,"statusOffsetY":0,"avatar":"EL","avatarSize":24,"logoSize":56,"logoType":"text","logoUrl":""},"assistant":{"name":"Aria"},"user":{"avatar":"","avatarSize":0},"launcher":{"position":"bottom-right","iconType":"icon","icon":"headset","imageUrl":"","size":48,"badgeEnabled":false,"text":"","bubbleEnabled":false,"bubbleText":"Ta-da! You've found your creative superpower spot.","bubbleMode":"instant","bubbleTimed":false,"bubbleDelaySec":5,"bubbleDurationSec":10,"bgStyle":"solid","bgColor":"#5aa7d9","gradientEnd":"#8ed1f0","animation":"none"},"video":{"layout":"inline","hideBehavior":"first-question","loop":false,"url":"","imageUrl":""},"questions":[{"id":1,"text":"Hi there, welcome to customer support. How can I help you?","type":"text"}],"questionsStyle":"solid","webhook":{"url":"https://n8n.srv1291312.hstgr.cloud/webhook/a4d3520b-1922-4e9b-b162-3b15a5060985/chat","testUrl":"","chatUrl":"https://n8n.srv1291312.hstgr.cloud/webhook/a4d3520b-1922-4e9b-b162-3b15a5060985/chat","production":true,"externalJsUrl":"https://cdn.jsdelivr.net/gh/majesticwebcreation-ui/astig.media/anti-vs/fwidgets-chat-embed-runtime.js"},"footer":{"text":"","url":"","fontFamily":"'Inter', sans-serif","animation":"none","textColor":"#93c5fd","fontSize":11,"position":"center"},"ui":{"showPipelineMonitor":false,"showRealtimeTelemetry":false,"showRealtimeFeed":false,"templateStyle":"support-reference"}};
-  }
+  if (!window.RSVPChatConfig.webhookUrl) window.RSVPChatConfig.webhookUrl = "https://n8n.srv1291312.hstgr.cloud/webhook/a4d3520b-1922-4e9b-b162-3b15a5060985/chat";
+  if (!window.RSVPChatConfig.fullConfig || typeof window.RSVPChatConfig.fullConfig !== 'object') window.RSVPChatConfig.fullConfig = {"theme":{"primaryColor":"#14b8a6","bgColor":"#0f172a","surfaceColor":"#12243d","fontFamily":"'DM Sans', sans-serif","borderRadius":18,"mode":"frosted","gradient":{"start":"#6c63ff","end":"#ff6584"},"headerBgColor":"#12243d","headerTextColor":"#e0f2fe","topHeroMediaType":"none","topHeroMediaUrl":""},"header":{"title":"River","name":"River","status":"Online","fontFamily":"'Inter', sans-serif","nameFontSize":15,"nameFontWeight":600,"statusFontSize":12,"animation":"pulse","logoOffsetX":0,"logoOffsetY":0,"nameOffsetX":20,"nameOffsetY":0,"statusOffsetX":19,"statusOffsetY":1,"avatar":"https://widjets.astigmedia.com/img/Assistant-logo.png","avatarSize":"40","logoSize":"50","logoType":"image","logoUrl":"https://widjets.astigmedia.com/img/Launcher-Logo.png"},"assistant":{"name":"River"},"user":{"avatar":"https://widjets.astigmedia.com/img/User-logo.png","avatarSize":"32"},"launcher":{"position":"bottom-right","iconType":"image","icon":"calendar-check","imageUrl":"https://widjets.astigmedia.com/img/Assistant-logo.png","size":"48","badgeEnabled":false,"text":"","bubbleEnabled":false,"bubbleText":"Ta-da! You've found your creative superpower spot.","bubbleMode":"instant","bubbleTimed":false,"bubbleDelaySec":5,"bubbleDurationSec":10,"bgStyle":"solid","bgColor":"#14b8a6","gradientEnd":"#38bdf8","animation":"pulse"},"video":{"layout":"inline","hideBehavior":"first-question","loop":false,"url":"","imageUrl":""},"questions":[{"id":1772766828698,"text":"👋I'm River. How can I help?","type":"text","displayMode":"typewriter","choices":""}],"questionsStyle":"solid","webhook":{"url":"https://n8n.srv1291312.hstgr.cloud/webhook/a4d3520b-1922-4e9b-b162-3b15a5060985/chat","testUrl":"","chatUrl":"https://n8n.srv1291312.hstgr.cloud/webhook/a4d3520b-1922-4e9b-b162-3b15a5060985/chat","activeMode":"chat","production":false,"externalJsUrl":"https://cdn.jsdelivr.net/gh/majesticwebcreation-ui/astig.media@0c87417b59fb08a891fae96ce81704b5a37294e7/anti-vs/fwidgets-chat-embed-runtime.js"},"footer":{"text":"","url":"","fontFamily":"'Inter', sans-serif","animation":"none","textColor":"#7070a0","fontSize":"11","position":"center"},"ui":{"showPipelineMonitor":false,"showRealtimeTelemetry":false,"showRealtimeFeed":false,"templateStyle":""}};
+  if (__astigDeployStamp) window.RSVPChatConfig.__deployedAt = __astigDeployStamp;
+  try {
+    var __astigTemplateStyleName = (((window.RSVPChatConfig.fullConfig || {}).ui || {}).templateStyle || '');
+    console.info('Astig Media Chatbot: Deploy config loaded', { stamp: __astigDeployStamp, templateStyle: __astigTemplateStyleName });
+  } catch (e) {}
+  try {
+    if (!document.querySelector('style[data-astig-template-runtime]')) {
+      var __astigTemplateRuntimeStyleNode = document.createElement('style');
+      __astigTemplateRuntimeStyleNode.setAttribute('data-astig-template-runtime', '1');
+      __astigTemplateRuntimeStyleNode.textContent = "\n.chat-widget.chat-widget--maximum-support {\n    background: #eef2f7;\n    border-color: #d4dce7;\n    border-radius: 18px;\n    box-shadow: 0 22px 48px rgba(25, 44, 72, 0.24);\n    overflow: hidden;\n}\n.chat-widget.chat-widget--maximum-support .chat-widget__header {\n    min-height: 250px;\n    position: relative;\n    align-items: flex-start;\n    background-image: linear-gradient(180deg, rgba(27, 104, 238, 0.78) 0%, rgba(22, 100, 236, 0.92) 100%);\n    background-size: cover;\n    background-position: center;\n    border-bottom: none;\n    padding: 20px 18px 22px;\n    overflow: hidden;\n}\n.chat-widget.chat-widget--maximum-support .chat-widget__header > * { position: relative; z-index: 2; }\n.chat-widget.chat-widget--maximum-support .max-support-hero-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 1; }\n.chat-widget.chat-widget--maximum-support .chat-widget__header-avatar {\n    width: 28px; height: 28px; border-radius: 8px; background: transparent;\n    border: 1px solid rgba(255, 255, 255, 0.45); color: #ffffff; font-size: 14px; margin-top: 2px;\n}\n.chat-widget.chat-widget--maximum-support .chat-widget__header-info { margin-left: 0; margin-top: 126px; flex: 1; min-width: 0; }\n.chat-widget.chat-widget--maximum-support .chat-widget__header-name {\n    color: #ffffff; font-size: 44px; line-height: 1.02; font-weight: 800; letter-spacing: -0.6px;\n    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);\n}\n.chat-widget.chat-widget--maximum-support .chat-widget__header-status {\n    display: block; margin-top: 10px; color: rgba(236, 244, 255, 0.98);\n    font-size: 12px; font-weight: 600; line-height: 1.45; max-width: 310px;\n}\n.chat-widget.chat-widget--maximum-support .chat-widget__header-status::before { display: none; }\n.chat-widget.chat-widget--maximum-support .chat-widget__header-actions { position: absolute; right: 12px; top: 10px; gap: 6px; }\n.chat-widget.chat-widget--maximum-support #cwRestartBtn { display: none !important; }\n.chat-widget.chat-widget--maximum-support #cwCloseBtn { display: none !important; }\n.chat-widget.chat-widget--maximum-support #cwDownloadBtn {\n    width: 30px; height: 30px; border: 1px solid rgba(255, 255, 255, 0.48);\n    background: rgba(13, 52, 128, 0.28); color: #ffffff; backdrop-filter: blur(2px);\n}\n.chat-widget.chat-widget--maximum-support .chat-widget__messages {\n    background: #eef2f7; margin-top: -34px; border-top-left-radius: 22px; border-top-right-radius: 22px;\n    padding: 12px 16px 10px; gap: 10px;\n}\n.chat-widget.chat-widget--maximum-support .chat-widget__divider { display: none; }\n.chat-widget.chat-widget--maximum-support .msg { gap: 8px; }\n.chat-widget.chat-widget--maximum-support .msg__avatar { display: none; }\n.chat-widget.chat-widget--maximum-support .msg__bubble {\n    max-width: 320px; border-radius: 18px; padding: 4px 12px 2px; background: #ffffff; color: #1f2b3d;\n    border: 1px solid #d7deea; box-shadow: 0 3px 8px rgba(45, 70, 108, 0.06); min-height: 0;\n}\n.chat-widget.chat-widget--maximum-support .msg__header { display: none; }\n.chat-widget.chat-widget--maximum-support .msg__text { font-size: 15px; line-height: 1; margin: 0; }\n.chat-widget.chat-widget--maximum-support .chat-options { display: block; padding: 0; margin: 0; }\n.chat-widget.chat-widget--maximum-support .chat-option-btn {\n    width: 100%; display: flex; align-items: center; justify-content: space-between;\n    padding: 15px 16px; margin: 0; border-radius: 0; border: 0; border-bottom: 1px solid #dde3ed;\n    background: #ffffff; color: #1f2b3d; font-size: 16px; font-weight: 600; text-align: left;\n}\n.chat-widget.chat-widget--maximum-support .chat-option-btn:first-child { border-top-left-radius: 16px; border-top-right-radius: 16px; }\n.chat-widget.chat-widget--maximum-support .chat-option-btn:last-child { border-bottom: 0; border-bottom-left-radius: 16px; border-bottom-right-radius: 16px; }\n.chat-widget.chat-widget--maximum-support .chat-option-btn::after { content: '\\203A'; font-size: 25px; line-height: 1; color: #17263e; }\n.chat-widget.chat-widget--maximum-support .chat-option-btn:hover { transform: none; background: #f6f9ff; color: #0f1f39; }\n.chat-widget.chat-widget--maximum-support .chat-widget__input-row { background: #eef2f7; border-top: none; padding: 10px 14px 12px; }\n.chat-widget.chat-widget--maximum-support .chat-widget__input { background: #ffffff; border: 1px solid #d6deea; color: #1f2b3d; }\n.chat-widget.chat-widget--maximum-support .chat-widget__input::placeholder { color: #7d8ca3; }\n.chat-widget.chat-widget--maximum-support #cwSendBtn {\n    background: #ffffff; border: 1px solid #d6deea;\n    box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.95), 0 3px 10px rgba(35, 58, 93, 0.15);\n}\n.chat-widget.chat-widget--maximum-support .chat-widget__footer {\n    background: #eef2f7; border-top: none; padding: 10px 12px 12px;\n    color: #6e7f99; letter-spacing: 0.04em; font-weight: 600;\n}\n.chat-widget.chat-widget--orders-online {\n    width: 420px; height: 700px; background: #f4f7fb; border-color: #d7e2f2;\n    border-radius: 28px; box-shadow: 0 22px 50px rgba(28, 61, 120, 0.22); overflow: hidden;\n}\n.chat-widget.chat-widget--orders-online .chat-widget__header {\n    background: linear-gradient(135deg, #007BFF 0%, #27c4ff 100%); border-bottom: none;\n    padding: 14px 16px 0; min-height: 120px; align-items: flex-start; flex-wrap: wrap; position: relative;\n}\n.chat-widget.chat-widget--orders-online .chat-widget__header::after {\n    content: ''; position: absolute; left: -6%; right: -6%; bottom: -14px; height: 28px;\n    background: #f4f7fb; border-radius: 0 0 50% 50%;\n}\n.chat-widget.chat-widget--orders-online .chat-widget__header-avatar {\n    width: 42px; height: 42px; border: 2px solid rgba(255, 255, 255, 0.66);\n    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); margin-top: 1px;\n}\n.chat-widget.chat-widget--orders-online .chat-widget__header-info { margin-left: 10px; flex: 1 1 auto; min-width: 0; }\n.chat-widget.chat-widget--orders-online .chat-widget__header-name { color: #ffffff; font-size: 33px; font-weight: 700; line-height: 1.05; }\n.chat-widget.chat-widget--orders-online .chat-widget__header-name::before {\n    content: 'Chat with'; display: block; font-size: 12px; font-weight: 500; opacity: 0.92;\n    margin-bottom: 3px; letter-spacing: 0.01em;\n}\n.chat-widget.chat-widget--orders-online .chat-widget__header-status {\n    order: 3; width: auto; margin: 10px 0 0 52px; padding: 0; color: #ecf6ff; font-size: 13px;\n    font-weight: 500; background: transparent; border: none; backdrop-filter: none; gap: 8px;\n}\n.chat-widget.chat-widget--orders-online .chat-widget__header-status::before { width: 8px; height: 8px; background: #6dff9e; box-shadow: 0 0 8px #6dff9e; }\n.chat-widget.chat-widget--orders-online .chat-widget__header-actions { margin-left: 10px; gap: 6px; padding-top: 4px; }\n.chat-widget.chat-widget--orders-online .chat-widget__header-btn {\n    width: 24px; height: 24px; border: none; background: transparent; color: rgba(244, 252, 255, 0.96); box-shadow: none;\n}\n.chat-widget.chat-widget--orders-online .chat-widget__header-btn:hover { background: rgba(255, 255, 255, 0.14); color: #ffffff; transform: none; }\n.chat-widget.chat-widget--orders-online .chat-widget__messages { background: #f4f7fb; padding: 22px 18px 12px; gap: 11px; }\n.chat-widget.chat-widget--orders-online .chat-widget__divider { display: none; }\n.chat-widget.chat-widget--orders-online .msg { gap: 8px; }\n.chat-widget.chat-widget--orders-online .msg__avatar,\n.chat-widget.chat-widget--orders-online .msg__header { display: none; }\n.chat-widget.chat-widget--orders-online .msg--other { justify-content: flex-end; }\n.chat-widget.chat-widget--orders-online .msg--me { justify-content: flex-start; }\n.chat-widget.chat-widget--orders-online .msg--other .msg__bubble {\n    background: #e8edf4; color: #1c2737; border-radius: 22px; border-bottom-right-radius: 12px;\n    box-shadow: 0 4px 12px rgba(35, 48, 77, 0.08);\n}\n.chat-widget.chat-widget--orders-online .msg--me .msg__bubble {\n    background: linear-gradient(135deg, #304be6 0%, #25c6f9 100%); color: #ffffff;\n    border-radius: 22px; border-bottom-left-radius: 12px; box-shadow: 0 10px 20px rgba(36, 116, 230, 0.26);\n}\n.chat-widget.chat-widget--orders-online .msg__text { font-size: 14px; line-height: 1.35; }\n.chat-widget.chat-widget--orders-online .chat-options { width: 100%; padding: 0; margin-top: 2px; gap: 8px; justify-content: flex-end; }\n.chat-widget.chat-widget--orders-online .chat-option-btn {\n    width: auto; min-width: 0; padding: 8px 18px; border-radius: 999px; border: 2px solid #2f81f9;\n    background: rgba(255, 255, 255, 0.95); color: #1f67d5; font-size: 13px; font-weight: 600;\n    box-shadow: 0 10px 18px rgba(35, 120, 221, 0.16);\n}\n.chat-widget.chat-widget--orders-online .chat-option-btn:hover { background: #eef5ff; transform: translateY(-1px); color: #1457bd; }\n.chat-widget.chat-widget--orders-online .chat-widget__input-row {\n    background: rgba(255, 255, 255, 0.76); backdrop-filter: blur(10px);\n    border-top: 1px solid rgba(193, 208, 226, 0.7); padding: 10px 12px 12px; gap: 8px;\n}\n.chat-widget.chat-widget--orders-online .chat-widget__input { border: none; background: transparent; color: #4e6078; font-size: 15px; padding-left: 6px; }\n.chat-widget.chat-widget--orders-online .chat-widget__input::placeholder { color: #9eaac0; }\n.chat-widget.chat-widget--orders-online #cwUploadBtn,\n.chat-widget.chat-widget--orders-online #cwEmojiBtn {\n    width: 30px; height: 30px; border-radius: 8px; background: transparent;\n    border: none; color: #7f8fa7; box-shadow: none;\n}\n.chat-widget.chat-widget--orders-online #cwUploadBtn:hover,\n.chat-widget.chat-widget--orders-online #cwEmojiBtn:hover {\n    background: rgba(114, 147, 193, 0.12); color: #496ea8; transform: none;\n}\n.chat-widget.chat-widget--orders-online #cwSendBtn {\n    width: 54px; height: 54px; border: none;\n    background: linear-gradient(135deg, #256ff5 0%, #20b8ff 100%);\n    box-shadow: 0 10px 24px rgba(34, 123, 243, 0.36);\n}\n.chat-widget.chat-widget--orders-online #cwSendBtn:hover { transform: translateY(-1px) scale(1.02); }\n.chat-widget.chat-widget--orders-online .chat-widget__footer {\n    background: rgba(255, 255, 255, 0.76); border-top: none; color: #9aa7bc;\n    font-size: 10px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;\n}\n@media (max-width: 520px) {\n    .chat-widget.chat-widget--orders-online { width: 100%; height: 100%; border-radius: 20px; }\n}\n";
+      (document.head || document.documentElement).appendChild(__astigTemplateRuntimeStyleNode);
+    }
+  } catch (e) {}
+  try {
+    var __astigWaveWebp = 'https://fonts.gstatic.com/s/e/notoemoji/latest/1f44b/512.webp';
+    var __astigWaveGif = 'https://fonts.gstatic.com/s/e/notoemoji/latest/1f44b/512.gif';
+    if (!document.querySelector('style[data-astig-emoji-wave]')) {
+      var __astigWaveStyle = document.createElement('style');
+      __astigWaveStyle.setAttribute('data-astig-emoji-wave', '1');
+      __astigWaveStyle.textContent = '.msg__text .emoji-picture-wave{display:inline-block;width:1em;height:1em;vertical-align:-0.08em;line-height:1;overflow:hidden;pointer-events:none;}.msg__text .emoji-picture-wave img{width:100%;height:100%;display:block;object-fit:contain;}';
+      (document.head || document.documentElement).appendChild(__astigWaveStyle);
+    }
+    var __astigWrapWave = function(root) {
+      if (!root || !root.querySelectorAll) return;
+      var targets = root.querySelectorAll('.msg__text');
+      for (var i = 0; i < targets.length; i += 1) {
+        var el = targets[i];
+        if (!el || el.getAttribute('data-astig-emoji-processed') === '1') continue;
+        var html = String(el.innerHTML || '');
+        if (!html) { el.setAttribute('data-astig-emoji-processed', '1'); continue; }
+        if (html.indexOf('emoji-picture-wave') !== -1) { el.setAttribute('data-astig-emoji-processed', '1'); continue; }
+        var repl = '<picture class="emoji-picture-wave"><source srcset="' + __astigWaveWebp + '" type="image/webp"><img src="' + __astigWaveGif + '" alt="👋" width="32" height="32"></picture>';
+        var next = html.split('\uD83D\uDC4B').join(repl).split('ðŸ‘‹').join(repl);
+        if (next !== html) el.innerHTML = next;
+        el.setAttribute('data-astig-emoji-processed', '1');
+      }
+    };
+    __astigWrapWave(document);
+    if (!window.__ASTIG_EMOJI_WAVE_OBSERVER && typeof MutationObserver === 'function') {
+      var __astigWaveObserver = new MutationObserver(function() { __astigWrapWave(document); });
+      __astigWaveObserver.observe(document.documentElement || document.body, { childList: true, subtree: true });
+      window.__ASTIG_EMOJI_WAVE_OBSERVER = __astigWaveObserver;
+    }
+  } catch (e) {}
 })();
 /*__ASTIG_DEPLOY_CONFIG_END__*/
 /**
@@ -16,7 +60,7 @@
  */
 (function() {
     // Current Configuration
-    const defaultBundleConfig = {"theme":{"primaryColor":"#5aa7d9","bgColor":"#dfe8f1","surfaceColor":"#d5dee8","fontFamily":"'DM Sans', sans-serif","borderRadius":30,"mode":"solid","gradient":{"start":"#dfe8f1","end":"#d5dee8"},"headerBgColor":"#dfe8f1","headerTextColor":"#5e6873","topHeroMediaType":"none","topHeroMediaUrl":""},"header":{"title":"Aria","name":"Aria","status":"","fontFamily":"'Syne', sans-serif","nameFontSize":15,"nameFontWeight":600,"statusFontSize":12,"animation":"none","logoOffsetX":0,"logoOffsetY":0,"nameOffsetX":0,"nameOffsetY":0,"statusOffsetX":0,"statusOffsetY":0,"avatar":"EL","avatarSize":24,"logoSize":56,"logoType":"text","logoUrl":""},"assistant":{"name":"Aria"},"user":{"avatar":"","avatarSize":0},"launcher":{"position":"bottom-right","iconType":"icon","icon":"headset","imageUrl":"","size":48,"badgeEnabled":false,"text":"","bubbleEnabled":false,"bubbleText":"Ta-da! You've found your creative superpower spot.","bubbleMode":"instant","bubbleTimed":false,"bubbleDelaySec":5,"bubbleDurationSec":10,"bgStyle":"solid","bgColor":"#5aa7d9","gradientEnd":"#8ed1f0","animation":"none"},"video":{"layout":"inline","hideBehavior":"first-question","loop":false,"url":"","imageUrl":""},"questions":[{"id":1,"text":"Hi there, welcome to customer support. How can I help you?","type":"text"}],"questionsStyle":"solid","webhook":{"url":"https://n8n.srv1291312.hstgr.cloud/webhook/a4d3520b-1922-4e9b-b162-3b15a5060985/chat","testUrl":"","chatUrl":"https://n8n.srv1291312.hstgr.cloud/webhook/a4d3520b-1922-4e9b-b162-3b15a5060985/chat","production":true,"externalJsUrl":"https://cdn.jsdelivr.net/gh/majesticwebcreation-ui/astig.media/anti-vs/fwidgets-chat-embed-runtime.js"},"footer":{"text":"","url":"","fontFamily":"'Inter', sans-serif","animation":"none","textColor":"#93c5fd","fontSize":11,"position":"center"},"ui":{"showPipelineMonitor":false,"showRealtimeTelemetry":false,"showRealtimeFeed":false,"templateStyle":"support-reference"}};
+    const defaultBundleConfig = {"theme":{"primaryColor":"#14b8a6","bgColor":"#0f172a","surfaceColor":"#12243d","fontFamily":"'DM Sans', sans-serif","borderRadius":18,"mode":"frosted","gradient":{"start":"#6c63ff","end":"#ff6584"},"headerBgColor":"#12243d","headerTextColor":"#e0f2fe","topHeroMediaType":"none","topHeroMediaUrl":""},"header":{"title":"River","name":"River","status":"Online","fontFamily":"'Inter', sans-serif","nameFontSize":15,"nameFontWeight":600,"statusFontSize":12,"animation":"pulse","logoOffsetX":0,"logoOffsetY":0,"nameOffsetX":20,"nameOffsetY":0,"statusOffsetX":19,"statusOffsetY":1,"avatar":"https://widjets.astigmedia.com/img/Assistant-logo.png","avatarSize":"40","logoSize":"50","logoType":"image","logoUrl":"https://widjets.astigmedia.com/img/Launcher-Logo.png"},"assistant":{"name":"River"},"user":{"avatar":"https://widjets.astigmedia.com/img/User-logo.png","avatarSize":"32"},"launcher":{"position":"bottom-right","iconType":"image","icon":"calendar-check","imageUrl":"https://widjets.astigmedia.com/img/Assistant-logo.png","size":"48","badgeEnabled":false,"text":"","bubbleEnabled":false,"bubbleText":"Ta-da! You've found your creative superpower spot.","bubbleMode":"instant","bubbleTimed":false,"bubbleDelaySec":5,"bubbleDurationSec":10,"bgStyle":"solid","bgColor":"#14b8a6","gradientEnd":"#38bdf8","animation":"pulse"},"video":{"layout":"inline","hideBehavior":"first-question","loop":false,"url":"","imageUrl":""},"questions":[{"id":1772766828698,"text":"👋I'm River. How can I help?","type":"text","displayMode":"typewriter","choices":""}],"questionsStyle":"solid","webhook":{"url":"https://n8n.srv1291312.hstgr.cloud/webhook/a4d3520b-1922-4e9b-b162-3b15a5060985/chat","testUrl":"","chatUrl":"https://n8n.srv1291312.hstgr.cloud/webhook/a4d3520b-1922-4e9b-b162-3b15a5060985/chat","activeMode":"chat","production":false,"externalJsUrl":"https://cdn.jsdelivr.net/gh/majesticwebcreation-ui/astig.media@0c87417b59fb08a891fae96ce81704b5a37294e7/anti-vs/fwidgets-chat-embed-runtime.js"},"footer":{"text":"","url":"","fontFamily":"'Inter', sans-serif","animation":"none","textColor":"#7070a0","fontSize":"11","position":"center"},"ui":{"showPipelineMonitor":false,"showRealtimeTelemetry":false,"showRealtimeFeed":false,"templateStyle":""}};
     const rsvp = window.RSVPChatConfig || {};
     const hasFullConfig = !!(rsvp && typeof rsvp.fullConfig === 'object' && rsvp.fullConfig);
     const config = hasFullConfig
@@ -146,56 +190,9 @@
             widget.style.setProperty('pointer-events', 'auto', 'important');
         }
     }
-    const WAVE_EMOJI_WEBP_URL = 'https://fonts.gstatic.com/s/e/notoemoji/latest/1f44b/512.webp';
-    const WAVE_EMOJI_GIF_URL = 'https://fonts.gstatic.com/s/e/notoemoji/latest/1f44b/512.gif';
-
-    function ensureLottiePlayerDependency() {
-        return;
-    }
-
-    function ensureEmojiAnimationStyles() {
-        if (document.getElementById('astig-chat-emoji-anim-style')) return;
-        const style = document.createElement('style');
-        style.id = 'astig-chat-emoji-anim-style';
-        style.textContent = [
-            '.msg__text .emoji-anim{display:inline-block;transform-origin:70% 70%;animation:chatEmojiPulse 1.4s ease-in-out infinite;}',
-            '.msg__text .emoji-anim--wave{animation:chatEmojiWave 1.2s ease-in-out infinite;}',
-            '.msg__text .emoji-picture-wave{display:inline-block;width:1em;height:1em;vertical-align:-0.08em;line-height:1;overflow:hidden;pointer-events:none;}',
-            '.msg__text .emoji-picture-wave img{width:100%;height:100%;display:block;object-fit:contain;}',
-            '@keyframes chatEmojiPulse{0%,100%{transform:translateY(0) scale(1);}35%{transform:translateY(-1px) scale(1.08);}70%{transform:translateY(0) scale(1.02);}}',
-            '@keyframes chatEmojiWave{0%,100%{transform:rotate(0deg);}15%{transform:rotate(14deg);}30%{transform:rotate(-8deg);}45%{transform:rotate(14deg);}60%{transform:rotate(-4deg);}75%{transform:rotate(10deg);}}'
-        ].join('');
-        document.head.appendChild(style);
-    }
-
-    function wrapAnimatedEmojisInHtml(htmlText) {
-        const html = String(htmlText || '');
-        if (!html) return html;
-        ensureLottiePlayerDependency();
-        const waveMarkup = '<picture class="emoji-picture-wave"><source srcset="' + WAVE_EMOJI_WEBP_URL + '" type="image/webp"><img src="' + WAVE_EMOJI_GIF_URL + '" alt="👋" width="32" height="32"></picture>';
-        const withLottieWave = html
-            .split('\uD83D\uDC4B').join(waveMarkup)
-            .split('ðŸ‘‹').join(waveMarkup);
-        const replacements = [
-            { emoji: '\uD83C\uDF89', cls: 'emoji-anim' }, // 🎉
-            { emoji: '\u2728', cls: 'emoji-anim' }, // ✨
-            { emoji: '\uD83D\uDD25', cls: 'emoji-anim' }, // 🔥
-            { emoji: '\uD83D\uDCAB', cls: 'emoji-anim' }, // 💫
-            { emoji: '\uD83D\uDCA5', cls: 'emoji-anim' }, // 💥
-            { emoji: '\uD83D\uDE80', cls: 'emoji-anim' } // 🚀
-        ];
-        return replacements.reduce((next, item) => {
-            return next.split(item.emoji).join('<span class="' + item.cls + '">' + item.emoji + '</span>');
-        }, withLottieWave);
-    }
-
-    function hydrateLottieWaveInNode(rootNode) {
-        void rootNode;
-    }
     
     function initDependencies() {
         console.log('Astig Media Chatbot: Loading dependencies...');
-        ensureLottiePlayerDependency();
         if (!window.marked) {
             const mScript = document.createElement('script');
             mScript.src = "https://cdn.jsdelivr.net/npm/marked/lib/marked.umd.js";
@@ -251,9 +248,14 @@
     function renderLauncher() {
         console.log('Astig Media Chatbot: Rendering Launcher...');
         injectVisibilitySafetyStyles();
-        ensureEmojiAnimationStyles();
         const existingWrapper = document.getElementById('astig-chat-wrapper');
         if (existingWrapper) {
+            const hasExistingLauncher = !!existingWrapper.querySelector('#cwLauncher');
+            const hasExistingWidget = !!existingWrapper.querySelector('#chatWidget');
+            if (hasExistingLauncher || hasExistingWidget) {
+                applyVisibilitySafetyStyles(existingWrapper);
+                return;
+            }
             try {
                 existingWrapper.remove();
             } catch (e) {
@@ -510,47 +512,6 @@
             if (!inputRow) return;
             const shouldHideInput = isMaximumSupportTemplate && !maximumSupportInputUnlocked;
             inputRow.style.display = shouldHideInput ? 'none' : 'flex';
-        }
-
-        function decorateAnimatedEmojisInNode(rootNode) {
-            if (!rootNode) return;
-            const targets = [];
-            if (rootNode instanceof Element && rootNode.matches('.msg__text')) targets.push(rootNode);
-            if (rootNode instanceof Element) {
-                rootNode.querySelectorAll('.msg__text').forEach((el) => targets.push(el));
-            }
-            targets.forEach((el) => {
-                if (!(el instanceof HTMLElement)) return;
-                const currentHtml = String(el.innerHTML || '');
-                if (!currentHtml) return;
-                if (!(currentHtml.includes('emoji-anim') || currentHtml.includes('emoji-picture-wave'))) {
-                    const wrappedHtml = wrapAnimatedEmojisInHtml(currentHtml);
-                    if (wrappedHtml !== currentHtml) {
-                        el.innerHTML = wrappedHtml;
-                    }
-                }
-                hydrateLottieWaveInNode(el);
-            });
-        }
-
-        function decorateAnimatedEmojisInMessages() {
-            decorateAnimatedEmojisInNode(msgList);
-        }
-
-        function ensureMessageEmojiObserver() {
-            if (!(msgList instanceof HTMLElement)) return null;
-            if (msgList.__emojiObserver) return msgList.__emojiObserver;
-            const observer = new MutationObserver((mutations) => {
-                mutations.forEach((mutation) => {
-                    mutation.addedNodes.forEach((node) => {
-                        if (!(node instanceof Element)) return;
-                        decorateAnimatedEmojisInNode(node);
-                    });
-                });
-            });
-            observer.observe(msgList, { childList: true, subtree: true });
-            msgList.__emojiObserver = observer;
-            return observer;
         }
 
         function getMaximumSupportHeroMedia() {
@@ -951,8 +912,6 @@
 
         applyConversationMediaLayout();
         ensureConversationMediaPlayback();
-        decorateAnimatedEmojisInMessages();
-        ensureMessageEmojiObserver();
         scheduleLauncherBadgeVisibility();
         scheduleLauncherBubbleVisibility();
         syncMaximumSupportInputVisibility();
@@ -1176,21 +1135,13 @@
                     return;
                 }
 
-                const finalizeQuestionStep = () => {
-                    if (config.questions && config.questions.length > 0 && currentQuestionIndex === 0) {
-                        scheduleVideoHideByMode('first-question');
-                    }
-                    if (choices.length > 0) addChoices(choices);
-                };
+                addMessage('other', getAssistantName(config), replyText, config.header.avatar);
+                if (config.questions && config.questions.length > 0 && currentQuestionIndex === 0) {
+                    scheduleVideoHideByMode('first-question');
+                }
 
-                const questionDisplayMode = ((config.questions && config.questions[currentQuestionIndex] && config.questions[currentQuestionIndex].displayMode) || 'instant')
-                    .toString()
-                    .toLowerCase();
-                if (questionDisplayMode === 'typewriter') {
-                    addMessageTypewriter('other', getAssistantName(config), replyText, config.header.avatar, finalizeQuestionStep);
-                } else {
-                    addMessage('other', getAssistantName(config), replyText, config.header.avatar);
-                    finalizeQuestionStep();
+                if (choices.length > 0) {
+                    addChoices(choices);
                 }
             }, 1000);
         }
@@ -1220,7 +1171,6 @@
                 div.appendChild(btn);
             });
             msgList.insertBefore(div, anchor);
-            decorateAnimatedEmojisInNode(div);
             scrollToBottom();
         }
 
@@ -1314,7 +1264,6 @@
             if (window.marked) {
                 parsedText = marked.parse(parsedText, { breaks: true });
             }
-            parsedText = wrapAnimatedEmojisInHtml(parsedText);
 
             div.innerHTML = '<div class="msg__avatar">' + avatarContent + '</div>' +
                 '<div class="msg__bubble">' +
@@ -1327,61 +1276,6 @@
             msgList.insertBefore(div, anchor);
             scrollToBottom();
         }
-
-        function addMessageTypewriter(who, name, text, avatarVal, onComplete = null, stepMs = 18) {
-            const time = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-            msgHistory.push({ who, name, text, time });
-            const div = document.createElement('div');
-            div.className = 'msg msg--' + who;
-
-            let avatarContent = '';
-            const fallbackInitial = name ? name.substring(0, 2).toUpperCase() : (who === 'me' ? 'U' : 'A');
-            if (isImage(avatarVal)) {
-                avatarContent = '<img src="' + avatarVal + '" style="width:100%;height:100%;object-fit:cover;border-radius:50%;" onerror="this.parentElement.textContent=\'' + fallbackInitial + '\'; this.remove()">';
-            } else {
-                avatarContent = avatarVal ? avatarVal.substring(0, 2).toUpperCase() : fallbackInitial;
-            }
-
-            div.innerHTML = '<div class="msg__avatar">' + avatarContent + '</div>' +
-                '<div class="msg__bubble">' +
-                    '<div class="msg__header">' +
-                        '<span class="msg__name">' + name + '</span>' +
-                        '<span class="msg__time">' + time + '</span>' +
-                    '</div>' +
-                    '<div class="msg__text"></div>' +
-                '</div>';
-            msgList.insertBefore(div, anchor);
-
-            const textEl = div.querySelector('.msg__text');
-            if (!textEl) {
-                if (typeof onComplete === 'function') onComplete();
-                return;
-            }
-
-            const full = String(text || '').replace(/\\n/g, '\n').replace(/\\r/g, '');
-            const chars = Array.from(full);
-            let idx = 0;
-            const delay = Math.max(8, Math.min(40, Number(stepMs) || 18));
-
-            const timer = setInterval(() => {
-                idx += 1;
-                textEl.textContent = chars.slice(0, idx).join('');
-                scrollToBottom();
-
-                if (idx >= chars.length) {
-                    clearInterval(timer);
-                    let parsedText = full;
-                    if (window.marked) {
-                        parsedText = marked.parse(parsedText, { breaks: true });
-                    }
-                    parsedText = wrapAnimatedEmojisInHtml(parsedText);
-                    textEl.innerHTML = parsedText;
-                    decorateAnimatedEmojisInNode(textEl);
-                    scrollToBottom();
-                    if (typeof onComplete === 'function') onComplete();
-                }
-            }, delay);
-        }
     }
 
     // --- START RENDERING ---
@@ -1392,6 +1286,3 @@
     }
 })();
     
-
-
-
