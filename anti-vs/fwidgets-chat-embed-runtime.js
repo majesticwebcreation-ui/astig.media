@@ -1,12 +1,12 @@
-/*__ASTIG_DEPLOY_CONFIG_START__*/
+﻿/*__ASTIG_DEPLOY_CONFIG_START__*/
 (function() {
-  var __astigDeployStamp = "2026-03-06T05:01:04.899Z";
+  var __astigDeployStamp = "2026-03-06T00:53:58.362Z";
   var __astigPrevStamp = String(window.__ASTIG_CHAT_DEPLOY_STAMP || '');
   if (__astigPrevStamp && __astigDeployStamp && __astigPrevStamp > __astigDeployStamp) { return; }
   if (__astigDeployStamp) window.__ASTIG_CHAT_DEPLOY_STAMP = __astigDeployStamp;
   window.RSVPChatConfig = window.RSVPChatConfig || {};
   if (!window.RSVPChatConfig.webhookUrl) window.RSVPChatConfig.webhookUrl = "https://n8n.srv1291312.hstgr.cloud/webhook/a4d3520b-1922-4e9b-b162-3b15a5060985/chat";
-  if (!window.RSVPChatConfig.fullConfig || typeof window.RSVPChatConfig.fullConfig !== 'object') window.RSVPChatConfig.fullConfig = {"theme":{"primaryColor":"#14b8a6","bgColor":"#0f172a","surfaceColor":"#12243d","fontFamily":"'DM Sans', sans-serif","borderRadius":18,"mode":"frosted","gradient":{"start":"#6c63ff","end":"#ff6584"},"headerBgColor":"#12243d","headerTextColor":"#e0f2fe","topHeroMediaType":"none","topHeroMediaUrl":""},"header":{"title":"River","name":"River","status":"Online","fontFamily":"'Inter', sans-serif","nameFontSize":15,"nameFontWeight":600,"statusFontSize":12,"animation":"pulse","logoOffsetX":0,"logoOffsetY":0,"nameOffsetX":20,"nameOffsetY":0,"statusOffsetX":19,"statusOffsetY":1,"avatar":"https://widjets.astigmedia.com/img/Assistant-logo.png","avatarSize":"40","logoSize":"50","logoType":"image","logoUrl":"https://widjets.astigmedia.com/img/Launcher-Logo.png"},"assistant":{"name":"River"},"user":{"avatar":"https://widjets.astigmedia.com/img/User-logo.png","avatarSize":"32"},"launcher":{"position":"bottom-right","iconType":"image","icon":"calendar-check","imageUrl":"https://widjets.astigmedia.com/img/Assistant-logo.png","size":"48","badgeEnabled":false,"text":"","bubbleEnabled":false,"bubbleText":"Ta-da! You've found your creative superpower spot.","bubbleMode":"instant","bubbleTimed":false,"bubbleDelaySec":5,"bubbleDurationSec":10,"bgStyle":"solid","bgColor":"#14b8a6","gradientEnd":"#38bdf8","animation":"pulse"},"video":{"layout":"inline","hideBehavior":"first-question","loop":false,"url":"","imageUrl":""},"questions":[{"id":1772766828698,"text":"👋I'm River. How can I help?","type":"text","displayMode":"typewriter","choices":""}],"questionsStyle":"solid","webhook":{"url":"https://n8n.srv1291312.hstgr.cloud/webhook/a4d3520b-1922-4e9b-b162-3b15a5060985/chat","testUrl":"","chatUrl":"https://n8n.srv1291312.hstgr.cloud/webhook/a4d3520b-1922-4e9b-b162-3b15a5060985/chat","activeMode":"chat","production":false,"externalJsUrl":"https://cdn.jsdelivr.net/gh/majesticwebcreation-ui/astig.media@0c87417b59fb08a891fae96ce81704b5a37294e7/anti-vs/fwidgets-chat-embed-runtime.js"},"footer":{"text":"","url":"","fontFamily":"'Inter', sans-serif","animation":"none","textColor":"#7070a0","fontSize":"11","position":"center"},"ui":{"showPipelineMonitor":false,"showRealtimeTelemetry":false,"showRealtimeFeed":false,"templateStyle":""}};
+  if (!window.RSVPChatConfig.fullConfig || typeof window.RSVPChatConfig.fullConfig !== 'object') window.RSVPChatConfig.fullConfig = {"theme":{"primaryColor":"#14b8a6","bgColor":"#0f172a","surfaceColor":"#12243d","fontFamily":"'DM Sans', sans-serif","borderRadius":18,"mode":"frosted","gradient":{"start":"#6c63ff","end":"#ff6584"},"headerBgColor":"#12243d","headerTextColor":"#e0f2fe","topHeroMediaType":"none","topHeroMediaUrl":""},"header":{"title":"River","name":"River","status":"Online","fontFamily":"'Inter', sans-serif","nameFontSize":15,"nameFontWeight":600,"statusFontSize":12,"animation":"pulse","logoOffsetX":0,"logoOffsetY":0,"nameOffsetX":20,"nameOffsetY":0,"statusOffsetX":19,"statusOffsetY":1,"avatar":"https://widjets.astigmedia.com/img/Assistant-logo.png","avatarSize":"40","logoSize":"50","logoType":"image","logoUrl":"https://widjets.astigmedia.com/img/Launcher-Logo.png"},"assistant":{"name":"River"},"user":{"avatar":"https://widjets.astigmedia.com/img/User-logo.png","avatarSize":"32"},"launcher":{"position":"bottom-right","iconType":"image","icon":"calendar-check","imageUrl":"https://widjets.astigmedia.com/img/Launcher-Logo.png","size":"48","badgeEnabled":false,"text":"","bubbleEnabled":false,"bubbleText":"Ta-da! You've found your creative superpower spot.","bubbleMode":"instant","bubbleTimed":false,"bubbleDelaySec":5,"bubbleDurationSec":10,"bgStyle":"solid","bgColor":"#14b8a6","gradientEnd":"#38bdf8","animation":"pulse"},"video":{"layout":"inline","hideBehavior":"first-question","loop":false,"url":"","imageUrl":""},"questions":[{"id":1772756462021,"text":"ðŸ‘‹Hi I'm River. How can I help?","type":"text","displayMode":"typewriter","choices":""}],"questionsStyle":"solid","webhook":{"url":"https://n8n.srv1291312.hstgr.cloud/webhook/a4d3520b-1922-4e9b-b162-3b15a5060985/chat","testUrl":"","chatUrl":"https://n8n.srv1291312.hstgr.cloud/webhook/a4d3520b-1922-4e9b-b162-3b15a5060985/chat","activeMode":"chat","production":false,"externalJsUrl":"https://cdn.jsdelivr.net/gh/majesticwebcreation-ui/astig.media/anti-vs/fwidgets-chat-embed-runtime.js"},"footer":{"text":"","url":"","fontFamily":"'Inter', sans-serif","animation":"none","textColor":"#7070a0","fontSize":"11","position":"center"},"ui":{"showPipelineMonitor":false,"showRealtimeTelemetry":false,"showRealtimeFeed":false,"templateStyle":""}};
   if (__astigDeployStamp) window.RSVPChatConfig.__deployedAt = __astigDeployStamp;
   try {
     var __astigTemplateStyleName = (((window.RSVPChatConfig.fullConfig || {}).ui || {}).templateStyle || '');
@@ -20,37 +20,6 @@
       (document.head || document.documentElement).appendChild(__astigTemplateRuntimeStyleNode);
     }
   } catch (e) {}
-  try {
-    var __astigWaveWebp = 'https://fonts.gstatic.com/s/e/notoemoji/latest/1f44b/512.webp';
-    var __astigWaveGif = 'https://fonts.gstatic.com/s/e/notoemoji/latest/1f44b/512.gif';
-    if (!document.querySelector('style[data-astig-emoji-wave]')) {
-      var __astigWaveStyle = document.createElement('style');
-      __astigWaveStyle.setAttribute('data-astig-emoji-wave', '1');
-      __astigWaveStyle.textContent = '.msg__text .emoji-picture-wave{display:inline-block;width:1em;height:1em;vertical-align:-0.08em;line-height:1;overflow:hidden;pointer-events:none;}.msg__text .emoji-picture-wave img{width:100%;height:100%;display:block;object-fit:contain;}';
-      (document.head || document.documentElement).appendChild(__astigWaveStyle);
-    }
-    var __astigWrapWave = function(root) {
-      if (!root || !root.querySelectorAll) return;
-      var targets = root.querySelectorAll('.msg__text');
-      for (var i = 0; i < targets.length; i += 1) {
-        var el = targets[i];
-        if (!el || el.getAttribute('data-astig-emoji-processed') === '1') continue;
-        var html = String(el.innerHTML || '');
-        if (!html) { el.setAttribute('data-astig-emoji-processed', '1'); continue; }
-        if (html.indexOf('emoji-picture-wave') !== -1) { el.setAttribute('data-astig-emoji-processed', '1'); continue; }
-        var repl = '<picture class="emoji-picture-wave"><source srcset="' + __astigWaveWebp + '" type="image/webp"><img src="' + __astigWaveGif + '" alt="👋" width="32" height="32"></picture>';
-        var next = html.split('\uD83D\uDC4B').join(repl).split('ðŸ‘‹').join(repl);
-        if (next !== html) el.innerHTML = next;
-        el.setAttribute('data-astig-emoji-processed', '1');
-      }
-    };
-    __astigWrapWave(document);
-    if (!window.__ASTIG_EMOJI_WAVE_OBSERVER && typeof MutationObserver === 'function') {
-      var __astigWaveObserver = new MutationObserver(function() { __astigWrapWave(document); });
-      __astigWaveObserver.observe(document.documentElement || document.body, { childList: true, subtree: true });
-      window.__ASTIG_EMOJI_WAVE_OBSERVER = __astigWaveObserver;
-    }
-  } catch (e) {}
 })();
 /*__ASTIG_DEPLOY_CONFIG_END__*/
 /**
@@ -60,7 +29,7 @@
  */
 (function() {
     // Current Configuration
-    const defaultBundleConfig = {"theme":{"primaryColor":"#14b8a6","bgColor":"#0f172a","surfaceColor":"#12243d","fontFamily":"'DM Sans', sans-serif","borderRadius":18,"mode":"frosted","gradient":{"start":"#6c63ff","end":"#ff6584"},"headerBgColor":"#12243d","headerTextColor":"#e0f2fe","topHeroMediaType":"none","topHeroMediaUrl":""},"header":{"title":"River","name":"River","status":"Online","fontFamily":"'Inter', sans-serif","nameFontSize":15,"nameFontWeight":600,"statusFontSize":12,"animation":"pulse","logoOffsetX":0,"logoOffsetY":0,"nameOffsetX":20,"nameOffsetY":0,"statusOffsetX":19,"statusOffsetY":1,"avatar":"https://widjets.astigmedia.com/img/Assistant-logo.png","avatarSize":"40","logoSize":"50","logoType":"image","logoUrl":"https://widjets.astigmedia.com/img/Launcher-Logo.png"},"assistant":{"name":"River"},"user":{"avatar":"https://widjets.astigmedia.com/img/User-logo.png","avatarSize":"32"},"launcher":{"position":"bottom-right","iconType":"image","icon":"calendar-check","imageUrl":"https://widjets.astigmedia.com/img/Assistant-logo.png","size":"48","badgeEnabled":false,"text":"","bubbleEnabled":false,"bubbleText":"Ta-da! You've found your creative superpower spot.","bubbleMode":"instant","bubbleTimed":false,"bubbleDelaySec":5,"bubbleDurationSec":10,"bgStyle":"solid","bgColor":"#14b8a6","gradientEnd":"#38bdf8","animation":"pulse"},"video":{"layout":"inline","hideBehavior":"first-question","loop":false,"url":"","imageUrl":""},"questions":[{"id":1772766828698,"text":"👋I'm River. How can I help?","type":"text","displayMode":"typewriter","choices":""}],"questionsStyle":"solid","webhook":{"url":"https://n8n.srv1291312.hstgr.cloud/webhook/a4d3520b-1922-4e9b-b162-3b15a5060985/chat","testUrl":"","chatUrl":"https://n8n.srv1291312.hstgr.cloud/webhook/a4d3520b-1922-4e9b-b162-3b15a5060985/chat","activeMode":"chat","production":false,"externalJsUrl":"https://cdn.jsdelivr.net/gh/majesticwebcreation-ui/astig.media@0c87417b59fb08a891fae96ce81704b5a37294e7/anti-vs/fwidgets-chat-embed-runtime.js"},"footer":{"text":"","url":"","fontFamily":"'Inter', sans-serif","animation":"none","textColor":"#7070a0","fontSize":"11","position":"center"},"ui":{"showPipelineMonitor":false,"showRealtimeTelemetry":false,"showRealtimeFeed":false,"templateStyle":""}};
+    const defaultBundleConfig = {"theme":{"primaryColor":"#14b8a6","bgColor":"#0f172a","surfaceColor":"#12243d","fontFamily":"'DM Sans', sans-serif","borderRadius":18,"mode":"frosted","gradient":{"start":"#6c63ff","end":"#ff6584"},"headerBgColor":"#12243d","headerTextColor":"#e0f2fe","topHeroMediaType":"none","topHeroMediaUrl":""},"header":{"title":"River","name":"River","status":"Online","fontFamily":"'Inter', sans-serif","nameFontSize":15,"nameFontWeight":600,"statusFontSize":12,"animation":"pulse","logoOffsetX":0,"logoOffsetY":0,"nameOffsetX":20,"nameOffsetY":0,"statusOffsetX":19,"statusOffsetY":1,"avatar":"https://widjets.astigmedia.com/img/Assistant-logo.png","avatarSize":"40","logoSize":"50","logoType":"image","logoUrl":"https://widjets.astigmedia.com/img/Launcher-Logo.png"},"assistant":{"name":"River"},"user":{"avatar":"https://widjets.astigmedia.com/img/User-logo.png","avatarSize":"32"},"launcher":{"position":"bottom-right","iconType":"image","icon":"calendar-check","imageUrl":"https://widjets.astigmedia.com/img/Launcher-Logo.png","size":"48","badgeEnabled":false,"text":"","bubbleEnabled":false,"bubbleText":"Ta-da! You've found your creative superpower spot.","bubbleMode":"instant","bubbleTimed":false,"bubbleDelaySec":5,"bubbleDurationSec":10,"bgStyle":"solid","bgColor":"#14b8a6","gradientEnd":"#38bdf8","animation":"pulse"},"video":{"layout":"inline","hideBehavior":"first-question","loop":false,"url":"","imageUrl":""},"questions":[{"id":1772756462021,"text":"ðŸ‘‹Hi I'm River. How can I help?","type":"text","displayMode":"typewriter","choices":""}],"questionsStyle":"solid","webhook":{"url":"https://n8n.srv1291312.hstgr.cloud/webhook/a4d3520b-1922-4e9b-b162-3b15a5060985/chat","testUrl":"","chatUrl":"https://n8n.srv1291312.hstgr.cloud/webhook/a4d3520b-1922-4e9b-b162-3b15a5060985/chat","activeMode":"chat","production":false,"externalJsUrl":"https://cdn.jsdelivr.net/gh/majesticwebcreation-ui/astig.media/anti-vs/fwidgets-chat-embed-runtime.js"},"footer":{"text":"","url":"","fontFamily":"'Inter', sans-serif","animation":"none","textColor":"#7070a0","fontSize":"11","position":"center"},"ui":{"showPipelineMonitor":false,"showRealtimeTelemetry":false,"showRealtimeFeed":false,"templateStyle":""}};
     const rsvp = window.RSVPChatConfig || {};
     const hasFullConfig = !!(rsvp && typeof rsvp.fullConfig === 'object' && rsvp.fullConfig);
     const config = hasFullConfig
@@ -190,9 +159,56 @@
             widget.style.setProperty('pointer-events', 'auto', 'important');
         }
     }
+    const WAVE_EMOJI_WEBP_URL = 'https://fonts.gstatic.com/s/e/notoemoji/latest/1f44b/512.webp';
+    const WAVE_EMOJI_GIF_URL = 'https://fonts.gstatic.com/s/e/notoemoji/latest/1f44b/512.gif';
+
+    function ensureLottiePlayerDependency() {
+        return;
+    }
+
+    function ensureEmojiAnimationStyles() {
+        if (document.getElementById('astig-chat-emoji-anim-style')) return;
+        const style = document.createElement('style');
+        style.id = 'astig-chat-emoji-anim-style';
+        style.textContent = [
+            '.msg__text .emoji-anim{display:inline-block;transform-origin:70% 70%;animation:chatEmojiPulse 1.4s ease-in-out infinite;}',
+            '.msg__text .emoji-anim--wave{animation:chatEmojiWave 1.2s ease-in-out infinite;}',
+            '.msg__text .emoji-picture-wave{display:inline-block;width:1em;height:1em;vertical-align:-0.08em;line-height:1;overflow:hidden;pointer-events:none;}',
+            '.msg__text .emoji-picture-wave img{width:100%;height:100%;display:block;object-fit:contain;}',
+            '@keyframes chatEmojiPulse{0%,100%{transform:translateY(0) scale(1);}35%{transform:translateY(-1px) scale(1.08);}70%{transform:translateY(0) scale(1.02);}}',
+            '@keyframes chatEmojiWave{0%,100%{transform:rotate(0deg);}15%{transform:rotate(14deg);}30%{transform:rotate(-8deg);}45%{transform:rotate(14deg);}60%{transform:rotate(-4deg);}75%{transform:rotate(10deg);}}'
+        ].join('');
+        document.head.appendChild(style);
+    }
+
+    function wrapAnimatedEmojisInHtml(htmlText) {
+        const html = String(htmlText || '');
+        if (!html) return html;
+        ensureLottiePlayerDependency();
+        const waveMarkup = '<picture class="emoji-picture-wave"><source srcset="' + WAVE_EMOJI_WEBP_URL + '" type="image/webp"><img src="' + WAVE_EMOJI_GIF_URL + '" alt="👋" width="32" height="32"></picture>';
+        const withLottieWave = html
+            .split('\uD83D\uDC4B').join(waveMarkup)
+            .split('ðŸ‘‹').join(waveMarkup);
+        const replacements = [
+            { emoji: '\uD83C\uDF89', cls: 'emoji-anim' }, // 🎉
+            { emoji: '\u2728', cls: 'emoji-anim' }, // ✨
+            { emoji: '\uD83D\uDD25', cls: 'emoji-anim' }, // 🔥
+            { emoji: '\uD83D\uDCAB', cls: 'emoji-anim' }, // 💫
+            { emoji: '\uD83D\uDCA5', cls: 'emoji-anim' }, // 💥
+            { emoji: '\uD83D\uDE80', cls: 'emoji-anim' } // 🚀
+        ];
+        return replacements.reduce((next, item) => {
+            return next.split(item.emoji).join('<span class="' + item.cls + '">' + item.emoji + '</span>');
+        }, withLottieWave);
+    }
+
+    function hydrateLottieWaveInNode(rootNode) {
+        void rootNode;
+    }
     
     function initDependencies() {
         console.log('Astig Media Chatbot: Loading dependencies...');
+        ensureLottiePlayerDependency();
         if (!window.marked) {
             const mScript = document.createElement('script');
             mScript.src = "https://cdn.jsdelivr.net/npm/marked/lib/marked.umd.js";
@@ -248,6 +264,7 @@
     function renderLauncher() {
         console.log('Astig Media Chatbot: Rendering Launcher...');
         injectVisibilitySafetyStyles();
+        ensureEmojiAnimationStyles();
         const existingWrapper = document.getElementById('astig-chat-wrapper');
         if (existingWrapper) {
             const hasExistingLauncher = !!existingWrapper.querySelector('#cwLauncher');
@@ -512,6 +529,47 @@
             if (!inputRow) return;
             const shouldHideInput = isMaximumSupportTemplate && !maximumSupportInputUnlocked;
             inputRow.style.display = shouldHideInput ? 'none' : 'flex';
+        }
+
+        function decorateAnimatedEmojisInNode(rootNode) {
+            if (!rootNode) return;
+            const targets = [];
+            if (rootNode instanceof Element && rootNode.matches('.msg__text')) targets.push(rootNode);
+            if (rootNode instanceof Element) {
+                rootNode.querySelectorAll('.msg__text').forEach((el) => targets.push(el));
+            }
+            targets.forEach((el) => {
+                if (!(el instanceof HTMLElement)) return;
+                const currentHtml = String(el.innerHTML || '');
+                if (!currentHtml) return;
+                if (!(currentHtml.includes('emoji-anim') || currentHtml.includes('emoji-picture-wave'))) {
+                    const wrappedHtml = wrapAnimatedEmojisInHtml(currentHtml);
+                    if (wrappedHtml !== currentHtml) {
+                        el.innerHTML = wrappedHtml;
+                    }
+                }
+                hydrateLottieWaveInNode(el);
+            });
+        }
+
+        function decorateAnimatedEmojisInMessages() {
+            decorateAnimatedEmojisInNode(msgList);
+        }
+
+        function ensureMessageEmojiObserver() {
+            if (!(msgList instanceof HTMLElement)) return null;
+            if (msgList.__emojiObserver) return msgList.__emojiObserver;
+            const observer = new MutationObserver((mutations) => {
+                mutations.forEach((mutation) => {
+                    mutation.addedNodes.forEach((node) => {
+                        if (!(node instanceof Element)) return;
+                        decorateAnimatedEmojisInNode(node);
+                    });
+                });
+            });
+            observer.observe(msgList, { childList: true, subtree: true });
+            msgList.__emojiObserver = observer;
+            return observer;
         }
 
         function getMaximumSupportHeroMedia() {
@@ -912,6 +970,8 @@
 
         applyConversationMediaLayout();
         ensureConversationMediaPlayback();
+        decorateAnimatedEmojisInMessages();
+        ensureMessageEmojiObserver();
         scheduleLauncherBadgeVisibility();
         scheduleLauncherBubbleVisibility();
         syncMaximumSupportInputVisibility();
@@ -1135,13 +1195,21 @@
                     return;
                 }
 
-                addMessage('other', getAssistantName(config), replyText, config.header.avatar);
-                if (config.questions && config.questions.length > 0 && currentQuestionIndex === 0) {
-                    scheduleVideoHideByMode('first-question');
-                }
+                const finalizeQuestionStep = () => {
+                    if (config.questions && config.questions.length > 0 && currentQuestionIndex === 0) {
+                        scheduleVideoHideByMode('first-question');
+                    }
+                    if (choices.length > 0) addChoices(choices);
+                };
 
-                if (choices.length > 0) {
-                    addChoices(choices);
+                const questionDisplayMode = ((config.questions && config.questions[currentQuestionIndex] && config.questions[currentQuestionIndex].displayMode) || 'instant')
+                    .toString()
+                    .toLowerCase();
+                if (questionDisplayMode === 'typewriter') {
+                    addMessageTypewriter('other', getAssistantName(config), replyText, config.header.avatar, finalizeQuestionStep);
+                } else {
+                    addMessage('other', getAssistantName(config), replyText, config.header.avatar);
+                    finalizeQuestionStep();
                 }
             }, 1000);
         }
@@ -1171,6 +1239,7 @@
                 div.appendChild(btn);
             });
             msgList.insertBefore(div, anchor);
+            decorateAnimatedEmojisInNode(div);
             scrollToBottom();
         }
 
@@ -1264,6 +1333,7 @@
             if (window.marked) {
                 parsedText = marked.parse(parsedText, { breaks: true });
             }
+            parsedText = wrapAnimatedEmojisInHtml(parsedText);
 
             div.innerHTML = '<div class="msg__avatar">' + avatarContent + '</div>' +
                 '<div class="msg__bubble">' +
@@ -1276,6 +1346,61 @@
             msgList.insertBefore(div, anchor);
             scrollToBottom();
         }
+
+        function addMessageTypewriter(who, name, text, avatarVal, onComplete = null, stepMs = 18) {
+            const time = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+            msgHistory.push({ who, name, text, time });
+            const div = document.createElement('div');
+            div.className = 'msg msg--' + who;
+
+            let avatarContent = '';
+            const fallbackInitial = name ? name.substring(0, 2).toUpperCase() : (who === 'me' ? 'U' : 'A');
+            if (isImage(avatarVal)) {
+                avatarContent = '<img src="' + avatarVal + '" style="width:100%;height:100%;object-fit:cover;border-radius:50%;" onerror="this.parentElement.textContent=\'' + fallbackInitial + '\'; this.remove()">';
+            } else {
+                avatarContent = avatarVal ? avatarVal.substring(0, 2).toUpperCase() : fallbackInitial;
+            }
+
+            div.innerHTML = '<div class="msg__avatar">' + avatarContent + '</div>' +
+                '<div class="msg__bubble">' +
+                    '<div class="msg__header">' +
+                        '<span class="msg__name">' + name + '</span>' +
+                        '<span class="msg__time">' + time + '</span>' +
+                    '</div>' +
+                    '<div class="msg__text"></div>' +
+                '</div>';
+            msgList.insertBefore(div, anchor);
+
+            const textEl = div.querySelector('.msg__text');
+            if (!textEl) {
+                if (typeof onComplete === 'function') onComplete();
+                return;
+            }
+
+            const full = String(text || '').replace(/\\n/g, '\n').replace(/\\r/g, '');
+            const chars = Array.from(full);
+            let idx = 0;
+            const delay = Math.max(8, Math.min(40, Number(stepMs) || 18));
+
+            const timer = setInterval(() => {
+                idx += 1;
+                textEl.textContent = chars.slice(0, idx).join('');
+                scrollToBottom();
+
+                if (idx >= chars.length) {
+                    clearInterval(timer);
+                    let parsedText = full;
+                    if (window.marked) {
+                        parsedText = marked.parse(parsedText, { breaks: true });
+                    }
+                    parsedText = wrapAnimatedEmojisInHtml(parsedText);
+                    textEl.innerHTML = parsedText;
+                    decorateAnimatedEmojisInNode(textEl);
+                    scrollToBottom();
+                    if (typeof onComplete === 'function') onComplete();
+                }
+            }, delay);
+        }
     }
 
     // --- START RENDERING ---
@@ -1286,3 +1411,6 @@
     }
 })();
     
+
+
+
