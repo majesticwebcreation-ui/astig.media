@@ -59,8 +59,10 @@
             padding-inline: 8px;
         }
 
-        .embed-toggle {
+        .telemetry-toggle {
             top: calc(50% + 128px);
+            background: linear-gradient(170deg, rgba(245, 158, 11, 0.32), rgba(180, 83, 9, 0.18));
+            border-color: rgba(245, 158, 11, 0.52);
         }
 
         .integration-toggle {
@@ -73,6 +75,101 @@
             top: calc(50% + 256px);
             background: linear-gradient(170deg, rgba(74, 222, 128, 0.32), rgba(16, 185, 129, 0.18));
             border-color: rgba(74, 222, 128, 0.52);
+        }
+
+        .embed-toggle {
+            top: calc(50% + 320px);
+            background: linear-gradient(170deg, rgba(37, 99, 235, 0.34), rgba(30, 64, 175, 0.2));
+            border-color: rgba(59, 130, 246, 0.5);
+        }
+
+        .embed-settings-panel {
+            position: fixed;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            z-index: 1261;
+            width: min(395px, 88vw);
+            border-radius: 0 20px 20px 0;
+            border-right: 1px solid rgba(255, 255, 255, 0.12);
+            background: linear-gradient(160deg, rgba(19, 19, 26, 0.92), rgba(26, 26, 36, 0.84));
+            box-shadow: 0 20px 48px rgba(3, 1, 15, 0.45);
+            padding: 16px;
+            display: none;
+            gap: 10px;
+            overflow-y: auto;
+        }
+
+        .embed-settings-panel.is-open {
+            display: grid;
+        }
+
+        .embed-settings-head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        .embed-settings-head h3 {
+            margin: 0;
+            font-size: 0.96rem;
+            color: #f8fafc;
+        }
+
+        .embed-settings-close {
+            border: 1px solid rgba(255, 255, 255, 0.28);
+            background: rgba(255, 255, 255, 0.08);
+            color: #fff;
+            width: 28px;
+            height: 28px;
+            border-radius: 999px;
+            cursor: pointer;
+        }
+
+        .embed-settings-grid {
+            display: grid;
+            gap: 8px;
+        }
+
+        .embed-settings-input {
+            width: 100%;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.08);
+            color: #fff;
+            font-size: 0.85rem;
+            padding: 10px 11px;
+        }
+
+        .embed-settings-code {
+            width: 100%;
+            min-height: 160px;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            border-radius: 12px;
+            background: rgba(6, 8, 15, 0.9);
+            color: #dbeafe;
+            font-size: 0.76rem;
+            line-height: 1.5;
+            padding: 10px;
+            resize: vertical;
+        }
+
+        .embed-settings-actions {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+        }
+
+        .embed-settings-actions .btn-primary {
+            grid-column: 1 / -1;
+        }
+
+        .embed-settings-note {
+            margin: 0;
+            min-height: 1.2em;
+            color: #bfdbfe;
+            font-size: 0.78rem;
         }
 
         .sidebar-toggle:hover,
@@ -99,6 +196,12 @@
         .integration-toggle:focus-visible {
             transform: translateY(calc(-50% - 2px));
             background: linear-gradient(170deg, rgba(56, 189, 248, 0.42), rgba(14, 116, 144, 0.28));
+        }
+
+        .telemetry-toggle:hover,
+        .telemetry-toggle:focus-visible {
+            transform: translateY(calc(-50% - 2px));
+            background: linear-gradient(170deg, rgba(245, 158, 11, 0.42), rgba(180, 83, 9, 0.28));
         }
 
         .sidebar-backdrop {
@@ -199,22 +302,38 @@
                 transform: none;
             }
 
-            .embed-toggle {
-                top: auto;
-                bottom: 118px;
-                transform: none;
-            }
-
             .integration-toggle {
                 top: auto;
-                bottom: 66px;
+                bottom: 170px;
                 transform: none;
             }
 
             .deploy-toggle {
                 top: auto;
-                bottom: 14px;
+                bottom: 118px;
                 transform: none;
+            }
+
+            .embed-toggle {
+                top: auto;
+                bottom: 66px;
+                transform: none;
+            }
+
+            .telemetry-toggle {
+                top: auto;
+                bottom: 222px;
+                transform: none;
+            }
+
+            .embed-settings-panel {
+                top: auto;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                width: 100vw;
+                height: min(88vh, 760px);
+                border-radius: 22px 22px 0 0;
             }
 
             .sidebar-toggle:hover,
@@ -245,17 +364,13 @@
         aria-expanded="false" aria-controls="builderSidebar">
         Menu
     </button>
-    <button id="resetFloatingBtn" class="sidebar-toggle reset-toggle" type="button"
-        aria-label="Open theme settings panel">
-        Theme
-    </button>
     <button id="webhookFloatingBtn" class="sidebar-toggle chatbot-builder-toggle" type="button"
         aria-label="Open webhook settings panel">
         Webhook
     </button>
-    <button id="embedFloatingBtn" class="sidebar-toggle embed-toggle" type="button"
-        aria-label="Open embed settings panel">
-        EMBED
+    <button id="telemetryFloatingBtn" class="sidebar-toggle telemetry-toggle" type="button"
+        aria-label="Open telemetry settings panel">
+        Telemetry
     </button>
     <button id="integrationFloatingBtn" class="sidebar-toggle integration-toggle" type="button"
         aria-label="Open integration settings panel">
@@ -265,6 +380,26 @@
         aria-label="Deploy widget files to GitHub">
         Deploy
     </button>
+    <button id="embedSettingsFloatingBtn" class="sidebar-toggle embed-toggle chatbot-builder-toggle" type="button"
+        aria-label="Open embed settings panel">
+        Embed
+    </button>
+    <div id="embedSettingsPanel" class="embed-settings-panel" role="dialog" aria-modal="false"
+        aria-labelledby="embedSettingsTitle" hidden>
+        <div class="embed-settings-head">
+            <h3 id="embedSettingsTitle">Embed Settings</h3>
+            <button id="embedSettingsCloseBtn" class="embed-settings-close" type="button" aria-label="Close embed settings">&times;</button>
+        </div>
+        <div class="embed-settings-grid">
+            <div class="embed-settings-actions">
+                <button id="generateEmbedCodeCompactBtn" type="button" class="btn-primary">Generate Embed Code</button>
+            </div>
+            <textarea id="embedSettingsCodeOutput" class="embed-settings-code" readonly
+                placeholder="Click Generate Embed Code"></textarea>
+            <button id="copyEmbedCodeCompactBtn" type="button" class="btn-secondary" style="width:100%;">Copy Embed Code</button>
+            <p id="embedSettingsStatus" class="embed-settings-note" role="status" aria-live="polite"></p>
+        </div>
+    </div>
     <div id="sidebarBackdrop" class="sidebar-backdrop" aria-hidden="true"></div>
 
     <div class="app-container" id="builderApp">
@@ -277,18 +412,18 @@
             </div>
 
             <nav class="sidebar-nav">
+                <button id="sidebarNavBackBtn" class="nav-btn nav-back-btn" type="button" hidden>Back</button>
                 <button class="nav-btn" data-tab="avatar">Avatar</button>
                 <button class="nav-btn" data-tab="footer">Footer</button>
                 <button class="nav-btn" data-tab="header">Header</button>
                 <button class="nav-btn" data-tab="launcher">Launcher</button>
                 <button class="nav-btn" data-tab="logo">Logo</button>
                 <button class="nav-btn" data-tab="questions">Questions</button>
-                <button class="nav-btn" data-tab="telemetry">Telemetry</button>
+                <button class="nav-btn" data-tab="telemetry" style="display:none" aria-hidden="true" tabindex="-1">Telemetry</button>
                 <button class="nav-btn active" data-tab="theme">Theme</button>
                 <button class="nav-btn" data-tab="video">Video - Image</button>
                 <button class="nav-btn" data-tab="webhook">Webhook</button>
                 <button class="nav-btn" data-tab="integration">Integration</button>
-                <button class="nav-btn" data-tab="embed">EMBED</button>
             </nav>
 
             <div class="sidebar-content">
@@ -587,6 +722,31 @@
                     <div class="control-group">
                         <button class="btn-primary" id="addQuestionBtn" style="width: 100%">+ Add Step</button>
                     </div>
+                    <div class="control-group">
+                        <label>Common Emojis</label>
+                        <div style="display:flex; flex-wrap:wrap; gap:6px;">
+                            <button type="button" class="question-emoji-btn" data-emoji="😀">😀</button>
+                            <button type="button" class="question-emoji-btn" data-emoji="😊">😊</button>
+                            <button type="button" class="question-emoji-btn" data-emoji="🙏">🙏</button>
+                            <button type="button" class="question-emoji-btn" data-emoji="👍">👍</button>
+                            <button type="button" class="question-emoji-btn" data-emoji="🎉">🎉</button>
+                            <button type="button" class="question-emoji-btn" data-emoji="❤️">❤️</button>
+                            <button type="button" class="question-emoji-btn" data-emoji="✨">✨</button>
+                            <button type="button" class="question-emoji-btn" data-emoji="📌">📌</button>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label>Animated Emojis</label>
+                        <div style="display:flex; flex-wrap:wrap; gap:6px;">
+                            <button type="button" class="question-emoji-btn question-emoji-btn--animated" data-emoji="&#128075;">&#128075;</button>
+                            <button type="button" class="question-emoji-btn question-emoji-btn--animated" data-emoji="&#127881;">&#127881;</button>
+                            <button type="button" class="question-emoji-btn question-emoji-btn--animated" data-emoji="&#10024;">&#10024;</button>
+                            <button type="button" class="question-emoji-btn question-emoji-btn--animated" data-emoji="&#128293;">&#128293;</button>
+                            <button type="button" class="question-emoji-btn question-emoji-btn--animated" data-emoji="&#128171;">&#128171;</button>
+                            <button type="button" class="question-emoji-btn question-emoji-btn--animated" data-emoji="&#128165;">&#128165;</button>
+                            <button type="button" class="question-emoji-btn question-emoji-btn--animated" data-emoji="&#128640;">&#128640;</button>
+                        </div>
+                    </div>
                     <div id="questionsList" style="display: flex; flex-direction: column; gap: 10px; margin-top: 15px;">
                         <!-- Questions will be injected here -->
                     </div>
@@ -693,33 +853,24 @@
                 <div id="panel-webhook" class="panel">
                     <h3>Webhook Settings</h3>
                     <div class="control-group">
-                        <label>Mode</label>
-                        <div style="display:flex; align-items:center; gap:10px;">
-                            <span style="font-size:13px; color:var(--text-secondary);">Production</span>
-                            <label class="switch">
-                                <input type="checkbox" id="webhookMode">
-                                <span class="slider round"></span>
-                            </label>
-                            <span style="font-size:13px; color:var(--text-primary);">Test</span>
-                        </div>
+                        <label>Active Webhook URL</label>
+                        <select id="webhookActiveMode">
+                            <option value="production">PROD URL</option>
+                            <option value="test">TEST URL</option>
+                            <option value="chat">CHAT URL</option>
+                        </select>
                     </div>
                     <div class="control-group">
                         <label>Webhook URL (Production)</label>
                         <input type="text" id="webhookUrl" placeholder="https://api.n8n.io/...">
                     </div>
-                    <div class="control-group" id="testUrlGroup" style="display:none;">
+                    <div class="control-group" id="testUrlGroup">
                         <label>Webhook URL (Test)</label>
                         <input type="text" id="webhookTestUrl" placeholder="https://test-api.n8n.io/...">
                     </div>
                     <div class="control-group">
                         <label>CHAT URL</label>
                         <input type="text" id="webhookChatUrl" placeholder="https://chat-api.n8n.io/...">
-                    </div>
-                    <div class="control-group">
-                        <label>External JS URL</label>
-                        <input type="text" id="externalJsUrl"
-                            value="https://cdn.jsdelivr.net/gh/majesticwebcreation-ui/astig.media/anti-vs/astig-chat-widgets.js"
-                            placeholder="https://cdn.jsdelivr.net/gh/majesticwebcreation-ui/astig.media/anti-vs/astig-chat-widgets.js">
                     </div>
                     <button class="btn-secondary" id="testWebhookBtn" style="width:100%; margin-bottom:10px;">Test
                         Connection</button>
@@ -754,26 +905,9 @@
                             <span class="checkmark"></span>
                         </label>
                     </div>
-                    <button class="btn-primary" id="saveGithubIntegrationBtn" style="width:100%">Save Integration</button>
-                </div>
-
-                <!-- Embed Settings -->
-                <div id="panel-embed" class="panel">
-                    <h3>Embed</h3>
                     <div class="control-group">
-                        <label>Generate embeddable widget snippet</label>
-                        <button class="btn-primary" id="generateEmbedCodeBtn" style="width:100%">Generate Embed Code</button>
-                    </div>
-                    <div class="control-group">
-                        <label>Embed Script</label>
-                        <textarea id="embedCodeOutput" class="embed-code-output" rows="5" readonly
-                            placeholder="Click Generate Embed Code to create your snippet"></textarea>
-                    </div>
-                    <div class="control-group">
-                        <button class="btn-secondary" id="copyEmbedCodeBtn" style="width:100%; margin-bottom:10px;">Copy Code</button>
-                        <button class="btn-secondary" id="downloadEmbedJsBtn" style="width:100%; margin-bottom:10px;">Download JS File</button>
-                        <button class="btn-secondary" id="downloadEmbedCssBtn" style="width:100%; margin-bottom:10px;">Download CSS File</button>
-                        <button class="btn-primary" id="deployEmbedBtn" style="width:100%;">Deploy</button>
+                        <button type="button" class="btn-primary" id="deployEmbedBtn" style="width:100%;">Deploy</button>
+                        <button class="btn-primary" id="saveGithubIntegrationBtn" style="width:100%; margin-top:10px;">Save Integration</button>
                     </div>
                 </div>
 
@@ -836,6 +970,8 @@
                     <div class="divider-vertical"></div>
                     <button class="btn-icon" id="viewMobile" title="Mobile View"><i
                             data-lucide="smartphone"></i></button>
+                    <button class="btn-icon" id="viewTablet" title="Tablet View"><i
+                            data-lucide="tablet"></i></button>
                     <button class="btn-icon" id="viewDesktop" title="Desktop View"><i
                             data-lucide="monitor"></i></button>
                     <button class="btn-secondary" id="aboutBtn" type="button" style="min-width:92px;">About</button>
@@ -907,8 +1043,46 @@
                         </div>
                         <div class="create-bot-mode__templates" id="createModeTemplateChooser" hidden>
                             <label for="createModeTemplateSelect">Choose a template</label>
+                            <div class="create-bot-mode__templates-gallery" id="createModeTemplateGallery" role="listbox" aria-label="Template gallery">
+                                <button class="template-card" type="button" role="option" aria-selected="false" data-template-id="support">
+                                    <span class="template-card__media" style="background-image:url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1000&q=80');"></span>
+                                    <span class="template-card__label">Customer Support</span>
+                                </button>
+                                <button class="template-card" type="button" role="option" aria-selected="false" data-template-id="orders-online">
+                                    <span class="template-card__media" style="background-image:url('https://images.unsplash.com/photo-1556740749-887f6717d7e4?auto=format&fit=crop&w=1000&q=80');"></span>
+                                    <span class="template-card__label">Orders Online</span>
+                                </button>
+                                <button class="template-card" type="button" role="option" aria-selected="false" data-template-id="maximum-support-chat">
+                                    <span class="template-card__media" style="background-image:url('https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1000&q=80');"></span>
+                                    <span class="template-card__label">Maximum Support Chat</span>
+                                </button>
+                                <button class="template-card" type="button" role="option" aria-selected="false" data-template-id="event-rsvp-martha">
+                                    <span class="template-card__media" style="background-image:url('https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=1000&q=80');"></span>
+                                    <span class="template-card__label">Event RSVP AI Agent</span>
+                                </button>
+                                <button class="template-card" type="button" role="option" aria-selected="false" data-template-id="sales">
+                                    <span class="template-card__media" style="background-image:url('https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1000&q=80');"></span>
+                                    <span class="template-card__label">Sales Assistant</span>
+                                </button>
+                                <button class="template-card" type="button" role="option" aria-selected="false" data-template-id="booking">
+                                    <span class="template-card__media" style="background-image:url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1000&q=80');"></span>
+                                    <span class="template-card__label">Booking Concierge</span>
+                                </button>
+                                <button class="template-card" type="button" role="option" aria-selected="false" data-template-id="rsvp">
+                                    <span class="template-card__media" style="background-image:url('https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=1000&q=80');"></span>
+                                    <span class="template-card__label">RSVP</span>
+                                </button>
+                                <button class="template-card" type="button" role="option" aria-selected="false" data-template-id="onboarding">
+                                    <span class="template-card__media" style="background-image:url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1000&q=80');"></span>
+                                    <span class="template-card__label">Onboarding Guide</span>
+                                </button>
+                                <button class="template-card" type="button" role="option" aria-selected="false" data-template-id="newsletter">
+                                    <span class="template-card__media" style="background-image:url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1000&q=80');"></span>
+                                    <span class="template-card__label">Newsletter Signup</span>
+                                </button>
+                            </div>
                             <div class="create-bot-mode__templates-row">
-                                <select id="createModeTemplateSelect">
+                                <select id="createModeTemplateSelect" aria-hidden="true" tabindex="-1" style="position:absolute; left:-9999px; width:1px; height:1px; opacity:0;">
                                     <option value="">Select template...</option>
                                     <option value="support">Customer Support</option>
                                     <option value="orders-online">Orders Online</option>
@@ -1067,6 +1241,10 @@
                                     <span class="backend-url-mode-text">Test URL</span>
                                     <span id="backendWebhookTestState" class="backend-status-symbol backend-status-symbol--bad" aria-label="Test URL inactive">✕</span>
                                 </div>
+                                <div class="backend-url-mode-row">
+                                    <span class="backend-url-mode-text">CHAT URL</span>
+                                    <span id="backendWebhookChatState" class="backend-status-symbol backend-status-symbol--bad" aria-label="CHAT URL inactive">✕</span>
+                                </div>
                             </div>
                             <div class="backend-notice__track"><span id="backendWebhookModeBar"></span></div>
                         </div>
@@ -1103,11 +1281,24 @@
             const sidebarToggle = document.getElementById('sidebarToggle');
             const sidebarClose = document.getElementById('sidebarClose');
             const sidebarBackdrop = document.getElementById('sidebarBackdrop');
-            const themeBtn = document.getElementById('resetFloatingBtn');
+            const sidebarNav = document.querySelector('.sidebar-nav');
+            const sidebarNavBackBtn = document.getElementById('sidebarNavBackBtn');
             const webhookBtn = document.getElementById('webhookFloatingBtn');
-            const embedBtn = document.getElementById('embedFloatingBtn');
+            const telemetryBtn = document.getElementById('telemetryFloatingBtn');
             const integrationBtn = document.getElementById('integrationFloatingBtn');
             const deployFloatingBtn = document.getElementById('deployFloatingBtn');
+            const embedSettingsFloatingBtn = document.getElementById('embedSettingsFloatingBtn');
+            const embedSettingsPanel = document.getElementById('embedSettingsPanel');
+            const embedSettingsCloseBtn = document.getElementById('embedSettingsCloseBtn');
+            const generateEmbedCodeCompactBtn = document.getElementById('generateEmbedCodeCompactBtn');
+            const copyEmbedCodeCompactBtn = document.getElementById('copyEmbedCodeCompactBtn');
+            const embedSettingsCodeOutput = document.getElementById('embedSettingsCodeOutput');
+            const embedSettingsStatus = document.getElementById('embedSettingsStatus');
+            const webhookSourceInput = document.getElementById('webhookUrl');
+            const webhookTestSourceInput = document.getElementById('webhookTestUrl');
+            const webhookChatSourceInput = document.getElementById('webhookChatUrl');
+            const webhookActiveModeSourceInput = document.getElementById('webhookActiveMode');
+            const externalJsSourceInput = document.getElementById('externalJsUrl');
 
             if (!sidebar || !sidebarToggle || !sidebarBackdrop) return;
 
@@ -1117,52 +1308,199 @@
                 sidebar.setAttribute('aria-hidden', open ? 'false' : 'true');
                 sidebarBackdrop.classList.toggle('is-visible', open);
             };
+            const setSidebarMenuOnly = (enabled) => {
+                body.classList.toggle('sidebar-menu-only', !!enabled);
+            };
+            const setSidebarHideNav = (enabled) => {
+                body.classList.toggle('sidebar-hide-nav', !!enabled);
+            };
+            const setSidebarNavSingleMode = (enabled) => {
+                if (!(sidebarNav instanceof HTMLElement)) return;
+                sidebarNav.classList.toggle('is-single', !!enabled);
+                if (sidebarNavBackBtn instanceof HTMLButtonElement) {
+                    sidebarNavBackBtn.hidden = !enabled;
+                }
+            };
 
             const activateNavPanel = (tabName) => {
                 const tab = document.querySelector(`.nav-btn[data-tab="${tabName}"]`);
                 if (tab) tab.click();
             };
 
+            const ASTIG_RUNTIME_MAIN_URL = 'https://cdn.jsdelivr.net/gh/majesticwebcreation-ui/astig.media/anti-vs/astig-chat-embed-runtime.js';
+            const ASTIG_RUNTIME_FALLBACK_URL = 'https://cdn.jsdelivr.net/gh/majesticwebcreation-ui/astig.media@main/anti-vs/astig-chat-embed-runtime.js';
+            const SCRIPT_CLOSE_TAG = '</' + 'script>';
+            const normalizeRuntimeUrl = (value) => {
+                const raw = String(value || '').trim();
+                if (!raw) return '';
+                if (/\/anti-vs\/astig-chat-widgets\.js(?:[?#]|$)/i.test(raw)) {
+                    return ASTIG_RUNTIME_MAIN_URL;
+                }
+                return raw;
+            };
+
+            const setEmbedStatus = (message) => {
+                if (embedSettingsStatus) embedSettingsStatus.textContent = message || '';
+            };
+
+            const setEmbedPanelOpen = (open) => {
+                if (!(embedSettingsPanel instanceof HTMLElement) || !(embedSettingsFloatingBtn instanceof HTMLButtonElement)) return;
+                embedSettingsPanel.hidden = !open;
+                embedSettingsPanel.classList.toggle('is-open', open);
+                embedSettingsFloatingBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+                if (open && generateEmbedCodeCompactBtn instanceof HTMLButtonElement) {
+                    setTimeout(() => generateEmbedCodeCompactBtn.focus(), 20);
+                }
+            };
+
+            const escapeSingleQuoted = (value) => String(value || '').replace(/\\/g, '\\\\').replace(/'/g, "\\'");
+            const stringifyForInlineScriptLiteral = (value) => JSON.stringify(value)
+                .replace(/<\//g, '<\\/')
+                .replace(/\u2028/g, '\\u2028')
+                .replace(/\u2029/g, '\\u2029');
+            const resolveCurrentRuntimeMainUrl = () => {
+                const fromInput = externalJsSourceInput instanceof HTMLInputElement ? externalJsSourceInput.value.trim() : '';
+                const normalizedInput = normalizeRuntimeUrl(fromInput);
+                if (externalJsSourceInput instanceof HTMLInputElement && normalizedInput && normalizedInput !== fromInput) {
+                    externalJsSourceInput.value = normalizedInput;
+                }
+                if (normalizedInput) return normalizedInput;
+                return ASTIG_RUNTIME_MAIN_URL;
+            };
+
+            const resolveCurrentEmbedWebhookUrl = () => {
+                if (typeof resolveEmbedWebhookUrl === 'function') {
+                    const resolved = String(resolveEmbedWebhookUrl() || '').trim();
+                    if (resolved) return resolved;
+                }
+
+                const productionUrl = webhookSourceInput instanceof HTMLInputElement ? webhookSourceInput.value.trim() : '';
+                const testUrl = webhookTestSourceInput instanceof HTMLInputElement ? webhookTestSourceInput.value.trim() : '';
+                const chatUrl = webhookChatSourceInput instanceof HTMLInputElement ? webhookChatSourceInput.value.trim() : '';
+                const activeMode = webhookActiveModeSourceInput instanceof HTMLSelectElement ? webhookActiveModeSourceInput.value : 'production';
+                const activeModeUrl = activeMode === 'test' ? testUrl : activeMode === 'chat' ? chatUrl : productionUrl;
+                return activeModeUrl || chatUrl || productionUrl || testUrl;
+            };
+
+            const buildCompactEmbedSnippet = (webhookUrl, runtimeMainUrl) => {
+                const safeWebhook = escapeSingleQuoted(webhookUrl);
+                const safeMainRuntimeUrl = escapeSingleQuoted(runtimeMainUrl || ASTIG_RUNTIME_MAIN_URL);
+                const fullConfig = typeof getEmbedConfigSnapshot === 'function' ? getEmbedConfigSnapshot() : null;
+                const fullConfigLiteral = fullConfig ? stringifyForInlineScriptLiteral(fullConfig) : '';
+                return [
+                    `<script>`,
+                    `window.RSVPChatConfig = window.RSVPChatConfig || {};`,
+                    `window.RSVPChatConfig.webhookUrl = '${safeWebhook}';`,
+                    ...(fullConfigLiteral ? [`window.RSVPChatConfig.fullConfig = ${fullConfigLiteral};`] : []),
+                    `(function (d) {`,
+                    `  var MAIN = '${safeMainRuntimeUrl}';`,
+                    `  var FALLBACK = '${ASTIG_RUNTIME_FALLBACK_URL}';`,
+                    `  function load(src, key, onError) {`,
+                    `    if (d.querySelector('script[data-astig-embed="' + key + '"]')) return;`,
+                    `    var s = d.createElement('script');`,
+                    `    s.defer = true;`,
+                    `    s.src = src + (src.indexOf('?') === -1 ? '?' : '&') + 'v=' + Date.now();`,
+                    `    s.setAttribute('data-astig-embed', key);`,
+                    `    if (typeof onError === 'function') s.onerror = onError;`,
+                    `    (d.head || d.documentElement).appendChild(s);`,
+                    `  }`,
+                    `  load(MAIN, 'main', function () { load(FALLBACK, 'fallback'); });`,
+                    `})(document);`,
+                    SCRIPT_CLOSE_TAG
+                ].join('\n');
+            };
+
+            const copyToClipboard = async (text) => {
+                const value = String(text || '');
+                if (!value) return false;
+                if (navigator.clipboard && window.isSecureContext) {
+                    try {
+                        await navigator.clipboard.writeText(value);
+                        return true;
+                    } catch (error) {
+                        void error;
+                    }
+                }
+                if (!(embedSettingsCodeOutput instanceof HTMLTextAreaElement)) return false;
+                const previousStart = embedSettingsCodeOutput.selectionStart;
+                const previousEnd = embedSettingsCodeOutput.selectionEnd;
+                embedSettingsCodeOutput.focus();
+                embedSettingsCodeOutput.select();
+                let copied = false;
+                try {
+                    copied = document.execCommand('copy');
+                } catch (error) {
+                    void error;
+                }
+                if (typeof previousStart === 'number' && typeof previousEnd === 'number') {
+                    embedSettingsCodeOutput.setSelectionRange(previousStart, previousEnd);
+                }
+                return copied;
+            };
+
             sidebarToggle.addEventListener('click', () => {
                 const nextState = !body.classList.contains('sidebar-open');
+                setSidebarMenuOnly(nextState);
+                setSidebarHideNav(false);
+                setSidebarNavSingleMode(false);
                 syncSidebarState(nextState);
             });
 
             if (sidebarClose) {
-                sidebarClose.addEventListener('click', () => syncSidebarState(false));
-            }
-
-            sidebarBackdrop.addEventListener('click', () => syncSidebarState(false));
-
-            document.addEventListener('keydown', (event) => {
-                if (event.key === 'Escape' && body.classList.contains('sidebar-open')) {
+                sidebarClose.addEventListener('click', () => {
                     syncSidebarState(false);
-                }
-            });
-
-            if (themeBtn) {
-                themeBtn.addEventListener('click', () => {
-                    activateNavPanel('theme');
-                    syncSidebarState(true);
+                    setSidebarMenuOnly(false);
+                    setSidebarHideNav(false);
+                    setSidebarNavSingleMode(false);
                 });
             }
 
+            sidebarBackdrop.addEventListener('click', () => {
+                syncSidebarState(false);
+                setSidebarMenuOnly(false);
+                setSidebarHideNav(false);
+                setSidebarNavSingleMode(false);
+            });
+
+            document.addEventListener('keydown', (event) => {
+                if (event.key !== 'Escape') return;
+                if (embedSettingsPanel instanceof HTMLElement && !embedSettingsPanel.hidden) {
+                    setEmbedPanelOpen(false);
+                    return;
+                }
+                if (body.classList.contains('sidebar-open')) {
+                    syncSidebarState(false);
+                    setSidebarMenuOnly(false);
+                    setSidebarHideNav(false);
+                    setSidebarNavSingleMode(false);
+                }
+            });
+
             if (webhookBtn) {
                 webhookBtn.addEventListener('click', () => {
+                    setSidebarMenuOnly(false);
+                    setSidebarHideNav(false);
+                    setSidebarNavSingleMode(true);
                     activateNavPanel('webhook');
                     syncSidebarState(true);
                 });
             }
 
-            if (embedBtn) {
-                embedBtn.addEventListener('click', () => {
-                    activateNavPanel('embed');
+            if (telemetryBtn) {
+                telemetryBtn.addEventListener('click', () => {
+                    setSidebarMenuOnly(false);
+                    setSidebarHideNav(false);
+                    setSidebarNavSingleMode(true);
+                    activateNavPanel('telemetry');
                     syncSidebarState(true);
                 });
             }
 
             if (integrationBtn) {
                 integrationBtn.addEventListener('click', () => {
+                    setSidebarMenuOnly(false);
+                    setSidebarHideNav(false);
+                    setSidebarNavSingleMode(true);
                     activateNavPanel('integration');
                     syncSidebarState(true);
                 });
@@ -1170,12 +1508,74 @@
 
             if (deployFloatingBtn) {
                 deployFloatingBtn.addEventListener('click', () => {
-                    activateNavPanel('embed');
+                    setSidebarMenuOnly(false);
+                    setSidebarHideNav(false);
+                    setSidebarNavSingleMode(true);
+                    activateNavPanel('integration');
                     syncSidebarState(true);
                     const deployPanelBtn = document.getElementById('deployEmbedBtn');
                     if (deployPanelBtn) {
                         setTimeout(() => deployPanelBtn.click(), 60);
                     }
+                });
+            }
+
+            if (embedSettingsFloatingBtn instanceof HTMLButtonElement) {
+                embedSettingsFloatingBtn.addEventListener('click', () => {
+                    const isOpen = embedSettingsPanel instanceof HTMLElement && !embedSettingsPanel.hidden;
+                    setEmbedPanelOpen(!isOpen);
+                });
+            }
+
+            if (embedSettingsCloseBtn instanceof HTMLButtonElement) {
+                embedSettingsCloseBtn.addEventListener('click', () => setEmbedPanelOpen(false));
+            }
+
+            document.addEventListener('click', (event) => {
+                if (!(embedSettingsPanel instanceof HTMLElement) || embedSettingsPanel.hidden) return;
+                const target = event.target;
+                if (!(target instanceof Node)) return;
+                if (embedSettingsPanel.contains(target)) return;
+                if (embedSettingsFloatingBtn instanceof HTMLElement && embedSettingsFloatingBtn.contains(target)) return;
+                setEmbedPanelOpen(false);
+            });
+
+            document.querySelectorAll('.sidebar-nav .nav-btn').forEach((btn) => {
+                btn.addEventListener('click', () => {
+                    setSidebarMenuOnly(false);
+                    setSidebarNavSingleMode(true);
+                });
+            });
+
+            if (sidebarNavBackBtn instanceof HTMLButtonElement) {
+                sidebarNavBackBtn.addEventListener('click', () => {
+                    setSidebarNavSingleMode(false);
+                });
+            }
+
+            if (generateEmbedCodeCompactBtn instanceof HTMLButtonElement && embedSettingsCodeOutput instanceof HTMLTextAreaElement) {
+                generateEmbedCodeCompactBtn.addEventListener('click', () => {
+                    const webhookUrl = resolveCurrentEmbedWebhookUrl();
+                    const runtimeMainUrl = resolveCurrentRuntimeMainUrl();
+                    if (!webhookUrl) {
+                        embedSettingsCodeOutput.value = '';
+                        setEmbedStatus('Set a webhook URL in Webhook Settings first.');
+                        return;
+                    }
+                    embedSettingsCodeOutput.value = buildCompactEmbedSnippet(webhookUrl, runtimeMainUrl);
+                    setEmbedStatus('Embed code is ready to copy.');
+                });
+            }
+
+            if (copyEmbedCodeCompactBtn instanceof HTMLButtonElement && embedSettingsCodeOutput instanceof HTMLTextAreaElement) {
+                copyEmbedCodeCompactBtn.addEventListener('click', async () => {
+                    const code = embedSettingsCodeOutput.value.trim();
+                    if (!code) {
+                        setEmbedStatus('Generate embed code first.');
+                        return;
+                    }
+                    const copied = await copyToClipboard(code);
+                    setEmbedStatus(copied ? 'Embed code copied to clipboard.' : 'Copy failed. Select and copy manually.');
                 });
             }
 
