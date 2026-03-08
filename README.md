@@ -1,2 +1,0 @@
-# astig.media
-JS Files
