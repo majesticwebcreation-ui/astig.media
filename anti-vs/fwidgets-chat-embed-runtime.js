@@ -1,6 +1,6 @@
 /*__ASTIG_DEPLOY_CONFIG_START__*/
 (function() {
-  var __astigDeployStamp = "2026-03-09T21:47:55.394Z";
+  var __astigDeployStamp = "2026-03-09T21:53:59.192Z";
   var __astigPrevStamp = String(window.__ASTIG_CHAT_DEPLOY_STAMP || '');
   if (__astigPrevStamp && __astigDeployStamp && __astigPrevStamp > __astigDeployStamp) { return; }
   if (__astigDeployStamp) window.__ASTIG_CHAT_DEPLOY_STAMP = __astigDeployStamp;
@@ -627,6 +627,9 @@
     const isSupportTemplate = templateStyle === 'support-reference';
     const isMaximumSupportTemplate = templateStyle === 'maximum-support';
     const isOrdersOnlineTemplate = templateStyle === 'orders-online';
+    const isMaxCustomerSupportTemplate = templateStyle === 'max-customer-support';
+    const isMaxCustomerServiceTemplate = templateStyle === 'max-customer-service';
+    const isMaxCustomerService2Template = templateStyle === 'max-customer-service-2';
         const supportAvatarText = ((config.header.status || getHeaderTitle(config) || 'A') + '').substring(0, 2).toUpperCase();
         const avatarHtml = (config.header.logoType === 'image' && config.header.logoUrl)
             ? '<img src="' + config.header.logoUrl + '" style="width:100%;height:100%;object-fit:cover;border-radius:50%;">'
@@ -672,10 +675,26 @@
         }
         const widgetTemplateClass = isSupportTemplate
             ? ' chat-widget--support-reference'
-            : (isMaximumSupportTemplate ? ' chat-widget--maximum-support' : (isOrdersOnlineTemplate ? ' chat-widget--orders-online' : ''));
+            : (isMaximumSupportTemplate
+                ? ' chat-widget--maximum-support'
+                : (isOrdersOnlineTemplate
+                    ? ' chat-widget--orders-online'
+                    : (isMaxCustomerSupportTemplate
+                        ? ' chat-widget--max-customer-support'
+                        : (isMaxCustomerServiceTemplate
+                            ? ' chat-widget--max-customer-service'
+                            : (isMaxCustomerService2Template ? ' chat-widget--max-customer-service-2' : '')))));
         const inputPlaceholder = isSupportTemplate
             ? 'Or send a message...'
-            : (isMaximumSupportTemplate ? 'Ask a question...' : (isOrdersOnlineTemplate ? 'Enter your message...' : 'Type a message...'));
+            : (isMaximumSupportTemplate
+                ? 'Ask a question...'
+                : (isOrdersOnlineTemplate
+                    ? 'Enter your message...'
+                    : (isMaxCustomerSupportTemplate
+                        ? 'Step into support...'
+                        : (isMaxCustomerServiceTemplate
+                            ? 'Write a service reply...'
+                            : (isMaxCustomerService2Template ? 'Send a message...' : 'Type a message...')))));
         const uploadBtnTitle = isSupportTemplate ? 'Mute Microphone' : 'Upload File';
         const uploadBtnInlineStyle = isSupportTemplate
             ? ''
@@ -755,6 +774,9 @@
         const isSupportTemplate = !!(config.ui && config.ui.templateStyle === 'support-reference');
         const isMaximumSupportTemplate = !!(config.ui && config.ui.templateStyle === 'maximum-support');
         const isOrdersOnlineTemplate = !!(config.ui && config.ui.templateStyle === 'orders-online');
+        const isMaxCustomerSupportTemplate = !!(config.ui && config.ui.templateStyle === 'max-customer-support');
+        const isMaxCustomerServiceTemplate = !!(config.ui && config.ui.templateStyle === 'max-customer-service');
+        const isMaxCustomerService2Template = !!(config.ui && config.ui.templateStyle === 'max-customer-service-2');
         const widget = document.getElementById('chatWidget');
         const launcher = document.getElementById('cwLauncher');
         const closeBtn = document.getElementById('cwCloseBtn');
