@@ -1,12 +1,12 @@
 /*__ASTIG_DEPLOY_CONFIG_START__*/
 (function() {
-  var __astigDeployStamp = "2026-03-09T19:49:41.486Z";
+  var __astigDeployStamp = "2026-03-09T19:56:47.211Z";
   var __astigPrevStamp = String(window.__ASTIG_CHAT_DEPLOY_STAMP || '');
   if (__astigPrevStamp && __astigDeployStamp && __astigPrevStamp > __astigDeployStamp) { return; }
   if (__astigDeployStamp) window.__ASTIG_CHAT_DEPLOY_STAMP = __astigDeployStamp;
   window.RSVPChatConfig = window.RSVPChatConfig || {};
-  if (!window.RSVPChatConfig.webhookUrl) window.RSVPChatConfig.webhookUrl = "https://n8n.srv1291312.hstgr.cloud/webhook/a368d690-b760-49a9-ba19-67c4a6971fa3/chat";
-  if (!window.RSVPChatConfig.fullConfig || typeof window.RSVPChatConfig.fullConfig !== 'object') window.RSVPChatConfig.fullConfig = {"theme":{"primaryColor":"#5aa7d9","bgColor":"#dfe8f1","surfaceColor":"#d5dee8","fontFamily":"'DM Sans', sans-serif","borderRadius":30,"mode":"solid","gradient":{"start":"#6c63ff","end":"#ff6584"},"headerBgColor":"#dfe8f1","headerTextColor":"#5e6873","topHeroMediaType":"none","topHeroMediaUrl":""},"header":{"title":"River","name":"River","status":"","fontFamily":"'Syne', sans-serif","nameFontSize":15,"nameFontWeight":600,"statusFontSize":12,"animation":"none","logoOffsetX":0,"logoOffsetY":0,"nameOffsetX":0,"nameOffsetY":0,"statusOffsetX":0,"statusOffsetY":0,"avatar":"EL","avatarSize":"24","logoSize":"56","logoType":"image","logoUrl":"https://widjets.astigmedia.com/img/main-logo.png"},"assistant":{"name":"Aria"},"user":{"avatar":"","avatarSize":"0"},"launcher":{"position":"bottom-right","shape":"circle","iconType":"image","icon":"headset","imageUrl":"https://widjets.astigmedia.com/img/Launcher-Logo.png","size":"48","badgeEnabled":true,"text":"Chat With Us","bubbleEnabled":false,"bubbleText":"Ta-da! You've found your creative superpower spot.","bubbleMode":"typewriter","bubbleTimed":false,"bubbleDelaySec":5,"bubbleDurationSec":10,"bgStyle":"solid","bgColor":"#5aa7d9","gradientEnd":"#8ed1f0","animation":"pulse"},"video":{"layout":"inline","hideBehavior":"first-question","loop":false,"url":"","imageUrl":""},"questions":[{"id":1,"text":"Hi there, welcome to customer support. How can I help you?","type":"text","displayMode":"typewriter","choices":""}],"questionsStyle":"solid","webhook":{"url":"https://n8n.srv1291312.hstgr.cloud/webhook/a368d690-b760-49a9-ba19-67c4a6971fa3/chat","testUrl":"","chatUrl":"https://n8n.srv1291312.hstgr.cloud/webhook/a368d690-b760-49a9-ba19-67c4a6971fa3/chat","activeMode":"chat","production":false,"externalJsUrl":"https://cdn.jsdelivr.net/gh/majesticwebcreation-ui/astig.media@main/anti-vs/fwidgets-chat-embed-runtime.js"},"auth":{"enabled":true,"headerName":"Authorization","headerPrefix":"Bearer","headerValue":"Basic SmFycm9kOlJpdmVyMjk3MyE=","useForWebhook":true,"withCredentials":false},"converse":{"typingEnabled":true,"typingText":"River Thinking...","statusDelaySec":3,"minVisibleSec":0.8,"animation":"pulse","bubbleFill":"glass","bubbleShape":"soft","indicatorColor":"#7070a0","bubbleBgColor":"#2a2a3d","bubbleGradientEnd":"#4b4f64"},"footer":{"text":"","url":"","fontFamily":"'Inter', sans-serif","animation":"none","textColor":"#7070a0","fontSize":"11","position":"center"},"ui":{"showPipelineMonitor":false,"showRealtimeTelemetry":false,"showRealtimeFeed":false,"templateStyle":"support-reference"}};
+  if (!window.RSVPChatConfig.webhookUrl) window.RSVPChatConfig.webhookUrl = "https://n8n.srv1291312.hstgr.cloud/webhook/a4d3520b-1922-4e9b-b162-3b15a5060985/chat";
+  if (!window.RSVPChatConfig.fullConfig || typeof window.RSVPChatConfig.fullConfig !== 'object') window.RSVPChatConfig.fullConfig = {"theme":{"primaryColor":"#5aa7d9","bgColor":"#dfe8f1","surfaceColor":"#d5dee8","fontFamily":"'DM Sans', sans-serif","borderRadius":30,"mode":"solid","gradient":{"start":"#6c63ff","end":"#ff6584"},"headerBgColor":"#dfe8f1","headerTextColor":"#5e6873","topHeroMediaType":"none","topHeroMediaUrl":""},"header":{"title":"River","name":"River","status":"","fontFamily":"'Syne', sans-serif","nameFontSize":15,"nameFontWeight":600,"statusFontSize":12,"animation":"none","logoOffsetX":0,"logoOffsetY":0,"nameOffsetX":0,"nameOffsetY":0,"statusOffsetX":0,"statusOffsetY":0,"avatar":"EL","avatarSize":"24","logoSize":"56","logoType":"image","logoUrl":"https://widjets.astigmedia.com/img/main-logo.png"},"assistant":{"name":"Aria"},"user":{"avatar":"","avatarSize":"0"},"launcher":{"position":"bottom-right","shape":"circle","iconType":"image","icon":"headset","imageUrl":"https://widjets.astigmedia.com/img/Assistant-logo.png","size":"48","badgeEnabled":false,"text":"","bubbleEnabled":false,"bubbleText":"Ta-da! You've found your creative superpower spot.","bubbleMode":"instant","bubbleTimed":false,"bubbleDelaySec":5,"bubbleDurationSec":10,"bgStyle":"solid","bgColor":"#5aa7d9","gradientEnd":"#8ed1f0","animation":"none"},"video":{"layout":"inline","hideBehavior":"first-question","loop":false,"url":"","imageUrl":""},"questions":[{"id":1,"text":"Hi there, welcome to customer support. How can I help you?","type":"text","displayMode":"instant","choices":""}],"questionsStyle":"solid","webhook":{"url":"https://n8n.srv1291312.hstgr.cloud/webhook/a4d3520b-1922-4e9b-b162-3b15a5060985/chat","testUrl":"","chatUrl":"https://n8n.srv1291312.hstgr.cloud/webhook/a4d3520b-1922-4e9b-b162-3b15a5060985/chat","activeMode":"production","production":true,"externalJsUrl":"https://cdn.jsdelivr.net/gh/majesticwebcreation-ui/astig.media@main/anti-vs/fwidgets-chat-embed-runtime.js"},"auth":{"enabled":true,"headerName":"Authorization","headerPrefix":"Bearer","headerValue":"","useForWebhook":true,"withCredentials":false},"converse":{"typingEnabled":true,"typingText":"River Thinking ...","statusDelaySec":3,"minVisibleSec":0.8,"animation":"bounce","bubbleFill":"solid","bubbleShape":"soft","indicatorColor":"#7070a0","bubbleBgColor":"#2a2a3d","bubbleGradientEnd":"#4b4f64"},"footer":{"text":"","url":"","fontFamily":"'Inter', sans-serif","animation":"none","textColor":"#7070a0","fontSize":"11","position":"center"},"ui":{"showPipelineMonitor":false,"showRealtimeTelemetry":false,"showRealtimeFeed":false,"templateStyle":"support-reference"}};
   if (__astigDeployStamp) window.RSVPChatConfig.__deployedAt = __astigDeployStamp;
   try {
     var __astigTemplateStyleName = (((window.RSVPChatConfig.fullConfig || {}).ui || {}).templateStyle || '');
@@ -60,7 +60,7 @@
  */
 (function() {
     // Current Configuration
-    const defaultBundleConfig = {"theme":{"primaryColor":"#5aa7d9","bgColor":"#dfe8f1","surfaceColor":"#d5dee8","fontFamily":"'DM Sans', sans-serif","borderRadius":30,"mode":"solid","gradient":{"start":"#6c63ff","end":"#ff6584"},"headerBgColor":"#dfe8f1","headerTextColor":"#5e6873","topHeroMediaType":"none","topHeroMediaUrl":""},"header":{"title":"River","name":"River","status":"","fontFamily":"'Syne', sans-serif","nameFontSize":15,"nameFontWeight":600,"statusFontSize":12,"animation":"none","logoOffsetX":0,"logoOffsetY":0,"nameOffsetX":0,"nameOffsetY":0,"statusOffsetX":0,"statusOffsetY":0,"avatar":"EL","avatarSize":"24","logoSize":"56","logoType":"image","logoUrl":"https://widjets.astigmedia.com/img/main-logo.png"},"assistant":{"name":"Aria"},"user":{"avatar":"","avatarSize":"0"},"launcher":{"position":"bottom-right","shape":"circle","iconType":"image","icon":"headset","imageUrl":"https://widjets.astigmedia.com/img/Launcher-Logo.png","size":"48","badgeEnabled":true,"text":"Chat With Us","bubbleEnabled":false,"bubbleText":"Ta-da! You've found your creative superpower spot.","bubbleMode":"typewriter","bubbleTimed":false,"bubbleDelaySec":5,"bubbleDurationSec":10,"bgStyle":"solid","bgColor":"#5aa7d9","gradientEnd":"#8ed1f0","animation":"pulse"},"video":{"layout":"inline","hideBehavior":"first-question","loop":false,"url":"","imageUrl":""},"questions":[{"id":1,"text":"Hi there, welcome to customer support. How can I help you?","type":"text","displayMode":"typewriter","choices":""}],"questionsStyle":"solid","webhook":{"url":"https://n8n.srv1291312.hstgr.cloud/webhook/a368d690-b760-49a9-ba19-67c4a6971fa3/chat","testUrl":"","chatUrl":"https://n8n.srv1291312.hstgr.cloud/webhook/a368d690-b760-49a9-ba19-67c4a6971fa3/chat","activeMode":"chat","production":false,"externalJsUrl":"https://cdn.jsdelivr.net/gh/majesticwebcreation-ui/astig.media@main/anti-vs/fwidgets-chat-embed-runtime.js"},"auth":{"enabled":true,"headerName":"Authorization","headerPrefix":"Bearer","headerValue":"Basic SmFycm9kOlJpdmVyMjk3MyE=","useForWebhook":true,"withCredentials":false},"converse":{"typingEnabled":true,"typingText":"River Thinking...","statusDelaySec":3,"minVisibleSec":0.8,"animation":"pulse","bubbleFill":"glass","bubbleShape":"soft","indicatorColor":"#7070a0","bubbleBgColor":"#2a2a3d","bubbleGradientEnd":"#4b4f64"},"footer":{"text":"","url":"","fontFamily":"'Inter', sans-serif","animation":"none","textColor":"#7070a0","fontSize":"11","position":"center"},"ui":{"showPipelineMonitor":false,"showRealtimeTelemetry":false,"showRealtimeFeed":false,"templateStyle":"support-reference"}};
+    const defaultBundleConfig = {"theme":{"primaryColor":"#5aa7d9","bgColor":"#dfe8f1","surfaceColor":"#d5dee8","fontFamily":"'DM Sans', sans-serif","borderRadius":30,"mode":"solid","gradient":{"start":"#6c63ff","end":"#ff6584"},"headerBgColor":"#dfe8f1","headerTextColor":"#5e6873","topHeroMediaType":"none","topHeroMediaUrl":""},"header":{"title":"River","name":"River","status":"","fontFamily":"'Syne', sans-serif","nameFontSize":15,"nameFontWeight":600,"statusFontSize":12,"animation":"none","logoOffsetX":0,"logoOffsetY":0,"nameOffsetX":0,"nameOffsetY":0,"statusOffsetX":0,"statusOffsetY":0,"avatar":"EL","avatarSize":"24","logoSize":"56","logoType":"image","logoUrl":"https://widjets.astigmedia.com/img/main-logo.png"},"assistant":{"name":"Aria"},"user":{"avatar":"","avatarSize":"0"},"launcher":{"position":"bottom-right","shape":"circle","iconType":"image","icon":"headset","imageUrl":"https://widjets.astigmedia.com/img/Assistant-logo.png","size":"48","badgeEnabled":false,"text":"","bubbleEnabled":false,"bubbleText":"Ta-da! You've found your creative superpower spot.","bubbleMode":"instant","bubbleTimed":false,"bubbleDelaySec":5,"bubbleDurationSec":10,"bgStyle":"solid","bgColor":"#5aa7d9","gradientEnd":"#8ed1f0","animation":"none"},"video":{"layout":"inline","hideBehavior":"first-question","loop":false,"url":"","imageUrl":""},"questions":[{"id":1,"text":"Hi there, welcome to customer support. How can I help you?","type":"text","displayMode":"instant","choices":""}],"questionsStyle":"solid","webhook":{"url":"https://n8n.srv1291312.hstgr.cloud/webhook/a4d3520b-1922-4e9b-b162-3b15a5060985/chat","testUrl":"","chatUrl":"https://n8n.srv1291312.hstgr.cloud/webhook/a4d3520b-1922-4e9b-b162-3b15a5060985/chat","activeMode":"production","production":true,"externalJsUrl":"https://cdn.jsdelivr.net/gh/majesticwebcreation-ui/astig.media@main/anti-vs/fwidgets-chat-embed-runtime.js"},"auth":{"enabled":true,"headerName":"Authorization","headerPrefix":"Bearer","headerValue":"","useForWebhook":true,"withCredentials":false},"converse":{"typingEnabled":true,"typingText":"River Thinking ...","statusDelaySec":3,"minVisibleSec":0.8,"animation":"bounce","bubbleFill":"solid","bubbleShape":"soft","indicatorColor":"#7070a0","bubbleBgColor":"#2a2a3d","bubbleGradientEnd":"#4b4f64"},"footer":{"text":"","url":"","fontFamily":"'Inter', sans-serif","animation":"none","textColor":"#7070a0","fontSize":"11","position":"center"},"ui":{"showPipelineMonitor":false,"showRealtimeTelemetry":false,"showRealtimeFeed":false,"templateStyle":"support-reference"}};
     const rsvp = window.RSVPChatConfig || {};
     const hasFullConfig = !!(rsvp && typeof rsvp.fullConfig === 'object' && rsvp.fullConfig);
     const config = hasFullConfig
@@ -87,6 +87,219 @@
         cfg.header.name = cfg.header.title;
     }
     ensureHeaderAssistantSeparation(config);
+
+    function normalizeConverseConfigShape(converse) {
+        var next = converse && typeof converse === 'object' ? converse : {};
+        next.typingEnabled = next.typingEnabled !== false;
+        next.typingText = String(next.typingText || '');
+        var statusDelaySec = Number(next.statusDelaySec);
+        next.statusDelaySec = Number.isFinite(statusDelaySec) ? Math.max(0, statusDelaySec) : 5;
+        var minVisibleSec = Number(next.minVisibleSec);
+        next.minVisibleSec = Number.isFinite(minVisibleSec) ? Math.max(0, minVisibleSec) : 0.8;
+        next.animation = next.animation === 'pulse' || next.animation === 'wave' || next.animation === 'none'
+            ? next.animation
+            : 'bounce';
+        next.bubbleFill = next.bubbleFill === 'gradient' || next.bubbleFill === 'glass' || next.bubbleFill === 'outline'
+            ? next.bubbleFill
+            : 'solid';
+        next.bubbleShape = next.bubbleShape === 'pill' || next.bubbleShape === 'sharp'
+            ? next.bubbleShape
+            : 'soft';
+        next.indicatorColor = String(next.indicatorColor || '#7070a0').trim() || '#7070a0';
+        next.bubbleBgColor = String(next.bubbleBgColor || '#2a2a3d').trim() || '#2a2a3d';
+        next.bubbleGradientEnd = String(next.bubbleGradientEnd || '#4b4f64').trim() || '#4b4f64';
+        return next;
+    }
+
+    function getConverseConfig(cfg) {
+        var source = cfg && typeof cfg === 'object' ? cfg : {};
+        if (!source.converse || typeof source.converse !== 'object') source.converse = {};
+        return normalizeConverseConfigShape(source.converse);
+    }
+
+    function getConverseTypingText(cfg) {
+        var converse = getConverseConfig(cfg);
+        var custom = String(converse.typingText || '').trim();
+        if (custom) return custom;
+        return (getAssistantName(cfg) || 'Chat') + ' typing...';
+    }
+
+    function hasCustomConverseTypingText(cfg) {
+        return String(getConverseConfig(cfg).typingText || '').trim().length > 0;
+    }
+
+    function getConverseStatusDelayMs(cfg) {
+        return Math.max(0, Math.round(getConverseConfig(cfg).statusDelaySec * 1000));
+    }
+
+    function getConverseMinVisibleMs(cfg) {
+        return Math.max(0, Math.round(getConverseConfig(cfg).minVisibleSec * 1000));
+    }
+
+    function convertHexToRgba(color, alpha) {
+        var raw = String(color || '').trim();
+        var opacity = Number.isFinite(alpha) ? alpha : 1;
+        if (!/^#([0-9a-f]{3}|[0-9a-f]{6})$/i.test(raw)) return 'rgba(42, 42, 61, ' + opacity + ')';
+        var normalized = raw.length === 4
+            ? '#' + raw[1] + raw[1] + raw[2] + raw[2] + raw[3] + raw[3]
+            : raw;
+        var value = normalized.slice(1);
+        var r = parseInt(value.slice(0, 2), 16);
+        var g = parseInt(value.slice(2, 4), 16);
+        var b = parseInt(value.slice(4, 6), 16);
+        return 'rgba(' + r + ', ' + g + ', ' + b + ', ' + opacity + ')';
+    }
+
+    function getTypingDotAnimation(converse) {
+        if (converse.animation === 'none') return 'none';
+        if (converse.animation === 'pulse') return 'slowTypingPulse 1.05s ease-in-out infinite';
+        if (converse.animation === 'wave') return 'typingWave 1s ease-in-out infinite';
+        return 'typeBounce 1.1s ease-in-out infinite';
+    }
+
+    function getTypingStatusAnimation(converse) {
+        if (converse.animation === 'none') return 'none';
+        if (converse.animation === 'wave') return 'typingWaveText 1.2s ease-in-out infinite';
+        return 'slowTypingPulse 1.2s ease-in-out infinite';
+    }
+
+    function applyTypingIndicatorAppearance(rootEl, cfg) {
+        if (!rootEl || !rootEl.querySelector) return;
+        var converse = getConverseConfig(cfg);
+        var bubbleEl = rootEl.querySelector('.typing-bubble');
+        var stackEl = rootEl.querySelector('.typing-stack');
+        var statusEl = rootEl.querySelector('.typing-status');
+        var dotEls = rootEl.querySelectorAll('.typing-dot');
+        var bubbleColor = converse.bubbleBgColor;
+        var indicatorColor = converse.indicatorColor;
+
+        rootEl.style.display = 'flex';
+        rootEl.style.alignItems = 'flex-end';
+        rootEl.style.gap = '8px';
+        rootEl.style.animation = 'msgIn 280ms ease both';
+        if (stackEl) {
+            stackEl.style.display = 'flex';
+            stackEl.style.flexDirection = 'column';
+            stackEl.style.gap = '6px';
+        }
+        if (bubbleEl) {
+            bubbleEl.style.padding = '14px 18px';
+            bubbleEl.style.display = 'flex';
+            bubbleEl.style.gap = '5px';
+            bubbleEl.style.alignItems = 'center';
+            bubbleEl.style.border = 'none';
+            bubbleEl.style.boxShadow = '';
+            bubbleEl.style.backdropFilter = '';
+            bubbleEl.style.webkitBackdropFilter = '';
+            bubbleEl.style.background = bubbleColor;
+            bubbleEl.style.backgroundColor = bubbleColor;
+            if (converse.bubbleFill === 'gradient') {
+                bubbleEl.style.background = 'linear-gradient(135deg, ' + bubbleColor + ', ' + converse.bubbleGradientEnd + ')';
+            } else if (converse.bubbleFill === 'glass') {
+                bubbleEl.style.background = convertHexToRgba(bubbleColor, 0.2);
+                bubbleEl.style.border = '1px solid ' + convertHexToRgba(indicatorColor, 0.28);
+                bubbleEl.style.backdropFilter = 'blur(10px)';
+                bubbleEl.style.webkitBackdropFilter = 'blur(10px)';
+                bubbleEl.style.boxShadow = '0 10px 24px ' + convertHexToRgba(bubbleColor, 0.2);
+            } else if (converse.bubbleFill === 'outline') {
+                bubbleEl.style.background = 'transparent';
+                bubbleEl.style.border = '1px solid ' + bubbleColor;
+            }
+            if (converse.bubbleShape === 'pill') {
+                bubbleEl.style.borderRadius = '999px';
+                bubbleEl.style.borderBottomLeftRadius = '999px';
+            } else if (converse.bubbleShape === 'sharp') {
+                bubbleEl.style.borderRadius = '12px';
+                bubbleEl.style.borderBottomLeftRadius = '3px';
+            } else {
+                bubbleEl.style.borderRadius = 'var(--w-bubble-r)';
+                bubbleEl.style.borderBottomLeftRadius = '4px';
+            }
+        }
+        if (statusEl) {
+            statusEl.textContent = getConverseTypingText(cfg);
+            statusEl.style.fontSize = '11px';
+            statusEl.style.lineHeight = '1.2';
+            statusEl.style.color = indicatorColor;
+            statusEl.style.opacity = '0.95';
+            statusEl.style.display = 'none';
+        }
+        if (dotEls && dotEls.forEach) {
+            dotEls.forEach(function(dotEl, index) {
+                if (!dotEl) return;
+                dotEl.style.width = '7px';
+                dotEl.style.height = '7px';
+                dotEl.style.borderRadius = '50%';
+                dotEl.style.background = indicatorColor;
+                dotEl.style.animation = getTypingDotAnimation(converse);
+                dotEl.style.animationDelay = converse.animation === 'none' ? '0s' : (index * 0.18) + 's';
+            });
+        }
+    }
+
+    function waitForTypingMinimumDuration(typingHandle, cfg) {
+        var minVisibleMs = getConverseMinVisibleMs(cfg);
+        var startedAt = Number(typingHandle && typingHandle.startedAt) || Date.now();
+        var remaining = Math.max(0, minVisibleMs - (Date.now() - startedAt));
+        return remaining > 0
+            ? new Promise(function(resolve) { setTimeout(resolve, remaining); })
+            : Promise.resolve();
+    }
+
+    function resolveActiveWebhookUrl(cfg, runtimeConfig) {
+        var sourceConfig = (cfg && typeof cfg === 'object') ? cfg : {};
+        var webhook = (sourceConfig.webhook && typeof sourceConfig.webhook === 'object') ? sourceConfig.webhook : {};
+        var productionUrl = String(webhook.url || '').trim();
+        var testUrl = String(webhook.testUrl || '').trim();
+        var chatUrl = String(webhook.chatUrl || '').trim();
+        var mode = webhook.activeMode === 'test' || webhook.activeMode === 'chat' || webhook.activeMode === 'production'
+            ? webhook.activeMode
+            : (webhook.production === false ? 'test' : 'production');
+        var activeUrl = mode === 'test' ? testUrl : mode === 'chat' ? chatUrl : productionUrl;
+        var runtimeWebhookUrl = runtimeConfig && typeof runtimeConfig.webhookUrl === 'string'
+            ? runtimeConfig.webhookUrl.trim()
+            : '';
+        return activeUrl || chatUrl || productionUrl || testUrl || runtimeWebhookUrl;
+    }
+
+    function resolveWebhookAuthContext(cfg, runtimeConfig) {
+        var sourceConfig = (cfg && typeof cfg === 'object') ? cfg : {};
+        var configAuth = (sourceConfig.auth && typeof sourceConfig.auth === 'object') ? sourceConfig.auth : {};
+        var runtimeAuth = (runtimeConfig && runtimeConfig.auth && typeof runtimeConfig.auth === 'object') ? runtimeConfig.auth : {};
+        var enabled = (runtimeAuth.enabled !== undefined ? runtimeAuth.enabled : configAuth.enabled) !== false;
+        var useForWebhook = (runtimeAuth.useForWebhook !== undefined ? runtimeAuth.useForWebhook : configAuth.useForWebhook) !== false;
+        var withCredentials = (runtimeAuth.withCredentials !== undefined ? runtimeAuth.withCredentials : configAuth.withCredentials) === true;
+        var headerName = String(runtimeAuth.headerName || configAuth.headerName || 'Authorization').trim() || 'Authorization';
+        var headerValue = String(runtimeAuth.headerValue || configAuth.headerValue || '').trim();
+        return {
+            enabled: enabled,
+            useForWebhook: useForWebhook,
+            withCredentials: withCredentials,
+            headerName: headerName,
+            headerValue: headerValue
+        };
+    }
+
+    function buildWebhookFetchInit(body, cfg, runtimeConfig) {
+        var auth = resolveWebhookAuthContext(cfg, runtimeConfig);
+        var headers = { 'Content-Type': 'application/json' };
+        if (auth.enabled && auth.useForWebhook && auth.headerValue) {
+            headers[auth.headerName] = auth.headerValue;
+        }
+        var requestInit = {
+            method: 'POST',
+            headers: headers,
+            body: JSON.stringify(body)
+        };
+        if (auth.enabled && auth.useForWebhook && auth.withCredentials) {
+            requestInit.credentials = 'include';
+        }
+        return requestInit;
+    }
+
+    var initialWebhookUrl = resolveActiveWebhookUrl(config, rsvp);
+    if (!config.webhook || typeof config.webhook !== 'object') config.webhook = {};
+    if (initialWebhookUrl) config.webhook.url = initialWebhookUrl;
     
     // Helper used by multiple parts of the script
     const isImage = (v) => v && (typeof v === 'string') && (v.includes('://') || v.startsWith('data:') || v.match(/.(jpeg|jpg|gif|png|webp|svg)$/i));
@@ -153,6 +366,15 @@
     const style = document.createElement('style');
     style.innerHTML = "\n    :root {\n        --w-bg: #dfe8f1;\n        --w-surface: #d5dee8;\n        --w-border: #2a2a3d;\n        --w-accent: #5aa7d9;\n        --w-accent-2: #ff6584; /* Helper */\n        --w-me-bg: #5aa7d9;\n        --w-me-text: #ffffff;\n        --w-other-bg: #2a2a3d;\n        --w-other-text: #e8e8f0;\n        --w-muted: #7070a0;\n        --w-input-bg: #111118;\n        --w-radius: 30px;\n        --w-bubble-r: 16px;\n        --avatar-size-bot: 24px;\n        --avatar-size-user: 0px;\n        --font-family: 'DM Sans', sans-serif;\n    }\n    \n    .chat-widget {\n        width: 490px; height: 700px;\n        background: var(--w-bg);\n        border-radius: var(--w-radius);\n        border: 1px solid var(--w-border);\n        display: flex; flex-direction: column;\n        overflow: hidden;\n        position: relative;\n        font-family: var(--font-family);\n        box-shadow: 0 10px 40px rgba(0,0,0,0.2);\n    }\n    .chat-widget.mode-transparent .chat-widget__messages { background: transparent; }\n\n    .chat-widget__conversation-media { position: sticky; top: 0; z-index: 0; width: 100%; height: 220px; min-height: 220px; max-height: 220px; flex: 0 0 220px; overflow-anchor: none; margin: 0 0 12px 0; border-radius: 12px; overflow: hidden; border: none; background: #ffffff; opacity: 1; margin-bottom: 0; }\n    .chat-widget__conversation-media.is-hiding { animation: videoFadeAway 0.8s ease forwards; pointer-events: none; }\n    .chat-widget__conversation-video { width: 100%; height: 100%; display: block; object-fit: contain; object-position: center center; background: #ffffff; }\n    .chat-widget__conversation-image { width: 100%; height: 100%; display: block; object-fit: contain; object-position: center center; background: #ffffff; }\n    \n    .chat-widget__header { display: flex; align-items: center; justify-content: flex-start; gap: 4px; padding: 16px 20px; background: #dfe8f1; border-bottom: 1px solid var(--w-border); }\n    .chat-widget__header-avatar { width: 56px; height: 56px; font-size: 28px; border-radius: 50%; background: var(--w-accent); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; overflow: hidden; }\n    .chat-widget__header-name { color: #5e6873; font-weight: 600; font-family: 'Syne', sans-serif; font-size: 15px; }\n    .chat-widget__header-info { flex: 1; margin-left: -1px; }\n    .chat-widget__header-status { font-size: 12px; font-family: 'Syne', sans-serif; color: var(--w-muted); display: flex; align-items: center; gap: 5px; }\n    .chat-widget__header-status::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: #4ade80; box-shadow: 0 0 6px #4ade80; display: inline-block; }\n    \n    .chat-widget__header-btn { width: 32px; height: 32px; border-radius: 50%; background: transparent; border: 1px solid var(--w-border); cursor: pointer; color: var(--w-muted); display: flex; align-items: center; justify-content: center; transition: background .2s, color .2s; }\n    .chat-widget__header-btn:hover { background: var(--w-border); color: #e8e8f5; }\n    \n    .chat-widget__messages { flex: 1; padding: 20px; overflow-y: auto; display: flex; flex-direction: column; gap: 14px; }\n    .chat-widget__messages::-webkit-scrollbar { width: 4px; }\n    .chat-widget__messages::-webkit-scrollbar-thumb { background: var(--w-border); border-radius: 4px; }\n    \n    .chat-widget__divider { display: flex; align-items: center; gap: 10px; color: var(--w-muted); font-size: 11px; text-transform: uppercase; margin: 0 0 4px 0; }\n    .chat-widget__messages.video-hidden .chat-widget__divider { margin: 0 0 4px 0; }\n    .chat-widget__divider::before, .chat-widget__divider::after { content: ''; flex: 1; height: 1px; background: var(--w-border); }\n    .chat-widget__messages:not(.video-hidden) .msg, .chat-widget__messages:not(.video-hidden) .chat-widget__typing { animation: none; }\n    .chat-widget__divider, .msg, .chat-widget__typing, .chat-options, #cwAnchor { position: relative; z-index: 3; }\n    .chat-widget__messages.chat-widget__messages--media-bg { position: relative; }\n    .chat-widget__messages.chat-widget__messages--media-bg .chat-widget__conversation-media { position: absolute; inset: 0; z-index: 0; width: 100%; height: 100%; min-height: 100%; max-height: 100%; margin: 0; border-radius: 0; opacity: .28; pointer-events: none; }\n    .chat-widget__messages.chat-widget__messages--media-bg .chat-widget__divider, .chat-widget__messages.chat-widget__messages--media-bg .msg, .chat-widget__messages.chat-widget__messages--media-bg .chat-widget__typing, .chat-widget__messages.chat-widget__messages--media-bg .chat-options, .chat-widget__messages.chat-widget__messages--media-bg #cwAnchor { position: relative; z-index: 3; }\n    \n    .msg { display: flex; gap: 10px; align-items: flex-end; animation: msgIn 280ms cubic-bezier(.34, 1.4, .64, 1) both; }\n    .msg--me { flex-direction: row-reverse; }\n    .msg__avatar { width: var(--avatar-size-bot); height: var(--avatar-size-bot); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 700; color: #fff; background: linear-gradient(135deg, var(--w-accent), var(--w-accent-2)); flex-shrink: 0; overflow: hidden; }\n    .msg--me .msg__avatar { width: var(--avatar-size-user); height: var(--avatar-size-user); background: linear-gradient(135deg, var(--w-accent), #a78bfa); }\n    .msg__bubble { display: flex; flex-direction: column; width: fit-content; min-width: 64px; max-width: 320px; padding: 4px 12px 2px; border-radius: var(--w-bubble-r); position: relative; min-height: 0; }\n    .msg--other .msg__bubble { background: var(--w-other-bg); color: var(--w-other-text); border-bottom-left-radius: 4px; }\n    .msg--me .msg__bubble { background: var(--w-me-bg); color: var(--w-me-text); border-bottom-right-radius: 4px; box-shadow: 0 4px 20px rgba(108, 99, 255, .35); }\n    .msg__header { display: flex; align-items: baseline; gap: 0; margin-bottom: 2px; }\n    .msg__name { font-size: 10px; font-weight: 600; opacity: .75; }\n    .msg__name::after { content: ', '; }\n    .msg__time { font-size: 9px; opacity: .55; margin-left: 2px; }\n    .msg__text { font-size: 15px; line-height: 1; white-space: pre-wrap; overflow-wrap: anywhere; margin:0; }\n    .msg__text p { margin: 0 0 16px 0; }\n    .msg__text p:last-child { margin-bottom: 0; }\n    .msg__text ul, .msg__text ol { margin: 8px 0; padding-left: 20px; }\n    .msg__text li { margin-bottom: 4px; }\n    .msg__text h1, .msg__text h2, .msg__text h3, .msg__text h4 { margin: 12px 0 8px 0; font-weight: 600; font-size: 16px; line-height: 1.3;}\n    .msg__text h1:first-child, .msg__text h2:first-child, .msg__text h3:first-child, .msg__text h4:first-child { margin-top: 0; }\n    .msg__text a { color: inherit; text-decoration: underline; font-weight: 500;}\n    .msg__text strong { font-weight: 600; }\n    \n    .chat-widget__input-row { padding: 14px; background: var(--w-surface); display: flex; gap: 10px; border-top: 1px solid var(--w-border); }\n    .chat-widget__footer { padding: 8px 14px 12px; border-top: 1px solid var(--w-border); display: none; align-items: center; min-height: 24px; }\n    .chat-widget__footer a, .chat-widget__footer span { line-height: 1.35; }\n    .chat-widget__input { flex: 1; padding: 10px 16px; border-radius: 24px; border: 1px solid var(--w-border); background: var(--w-input-bg); color: white; outline: none; }\n    .chat-widget__send { width: 42px; height: 42px; border-radius: 50%; background: #f8fbff; border: 1px solid #d8e2ef; color: white; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: transform .15s; flex-shrink:0; box-shadow: inset 0 2px 2px rgba(255, 255, 255, 0.95), inset 0 -2px 3px rgba(177, 188, 204, 0.45), 0 8px 18px rgba(35, 53, 82, 0.28); }\n    .chat-widget__send:hover { transform: scale(1.08); }\n    .chat-widget__send:active { transform: scale(.95); }\n    .chat-widget__send-plane { width: 48px; height: 48px; object-fit: contain; display: block; pointer-events: none; filter: drop-shadow(0 1px 1px rgba(9, 18, 38, 0.35)); }\n    #cwSendBtn { width: 50px; height: 50px; background: linear-gradient(145deg, #4cc9ff 0%, #2f8cff 55%, #1f6be6 100%); border: 1px solid rgba(189, 226, 255, 0.9); box-shadow: inset 0 2px 3px rgba(255, 255, 255, 0.65), inset 0 -4px 8px rgba(9, 54, 139, 0.45), 0 9px 18px rgba(8, 30, 78, 0.44); transition: transform .14s ease, box-shadow .14s ease, filter .14s ease; animation: sendBtnIdle 2s ease-in-out infinite; }\n    #cwSendBtn:hover { transform: translateY(-2px) scale(1.03); box-shadow: inset 0 2px 3px rgba(255, 255, 255, 0.72), inset 0 -4px 8px rgba(7, 44, 118, 0.52), 0 12px 22px rgba(8, 30, 78, 0.48); filter: saturate(1.08); }\n    #cwSendBtn:active { animation: none; transform: translateY(2px) scale(0.96); box-shadow: inset 0 2px 4px rgba(3, 24, 67, 0.55), inset 0 -1px 2px rgba(255, 255, 255, 0.22), 0 4px 10px rgba(6, 20, 48, 0.34); }\n    #cwSendBtn .chat-widget__send-plane { filter: drop-shadow(0 1px 1px rgba(9, 18, 38, 0.35)); }\n    .chat-widget__send-icon { width: 18px; height: 18px; object-fit: contain; display: block; }\n    \n    .chat-options { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; justify-content: flex-end; padding: 0 14px; }\n    .chat-option-btn { padding: 8px 16px; border-radius: 20px; border: 1px solid var(--w-accent); background: transparent; color: var(--w-accent); font-size: 13px; cursor: pointer; transition: all 0.2s; font-family: var(--font-family); }\n    .chat-option-btn:hover { background: var(--w-accent); color: white; }\n    .chat-option-btn.gradient { border: none; background: linear-gradient(135deg, var(--w-accent), var(--w-accent-2)); color: white; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); }\n    .chat-option-btn.gradient:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3); }\n\n    .chat-widget__typing { display: flex; align-items: flex-end; gap: 8px; animation: msgIn 280ms ease both; }\n    .typing-bubble { background: var(--w-other-bg); border-radius: var(--w-bubble-r); border-bottom-left-radius: 4px; padding: 14px 18px; display: flex; gap: 5px; align-items: center; }\n    .typing-stack { display: flex; flex-direction: column; gap: 6px; }\n    .typing-status { font-size: 11px; line-height: 1.2; color: var(--w-muted); opacity: .95; }\n    .typing-status.is-visible { animation: slowTypingPulse 1.2s ease-in-out infinite; }\n    .typing-dot { width: 7px; height: 7px; background: var(--w-muted); border-radius: 50%; animation: typeBounce 1.1s ease-in-out infinite; }\n    .typing-dot:nth-child(1) { animation-delay: 0s; }\n    .typing-dot:nth-child(2) { animation-delay: .18s; }\n    .typing-dot:nth-child(3) { animation-delay: .36s; }\n    @keyframes typeBounce { 0%, 80%, 100% { transform: translateY(0); opacity: .55; } 40% { transform: translateY(-6px); opacity: 1; } }\n    @keyframes slowTypingPulse { 0%, 100% { opacity: .55; } 50% { opacity: 1; } }\n    @keyframes videoFadeAway { from { opacity: 1; height: 360px; margin-bottom: 0; } to { opacity: 0; height: 0; margin-bottom: 0; } }\n\n    @keyframes msgIn { from { opacity: 0; transform: translateY(12px) scale(.97); } to { opacity: 1; transform: none; } }\n    @keyframes sendBtnIdle { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-1px); } }\n    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }\n    @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(108, 99, 255, 0.7); } 70% { box-shadow: 0 0 0 10px rgba(108, 99, 255, 0); } 100% { box-shadow: 0 0 0 0 rgba(108, 99, 255, 0); } }\n    @keyframes bounce { 0%, 20%, 50%, 80%, 100% { transform: translateY(0); } 40% { transform: translateY(-10px); } 60% { transform: translateY(-5px); } }\n    @keyframes spin { 100% { transform: rotate(360deg); } }\n    @keyframes headerSlideUp { from { opacity: .65; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }\n    \n    .anim-pulse { animation: pulse 2s infinite; }\n    .anim-bounce { animation: bounce 2s infinite; }\n    .anim-spin { animation: spin 4s linear infinite; }\n    .anim-header-pulse { animation: pulse 2s infinite; }\n    .anim-header-fade { animation: fadeIn 0.8s ease-out; }\n    .anim-header-slide-up { animation: headerSlideUp 0.6s cubic-bezier(0.25, 0.8, 0.25, 1); }\n    \n    .chat-widget.chat-widget--support-reference { background: linear-gradient(180deg, #e3ebf3 0%, #dbe5ee 100%); border-color: #c8d3de; border-radius: 30px; box-shadow: 0 22px 52px rgba(45, 61, 84, 0.26); }\n    .chat-widget.chat-widget--support-reference .chat-widget__header { position: relative; background: transparent; border-bottom: none; padding: 18px 16px 8px; }\n    .chat-widget.chat-widget--support-reference .chat-widget__header-actions { display: flex; gap: 8px; margin-left: auto; }\n    .chat-widget.chat-widget--support-reference #cwCloseBtn { position: absolute; top: 18px; right: 22px; z-index: 11; width: 44px; height: 44px; border-radius: 50%; display: flex !important; align-items: center; justify-content: center; animation: none; background: linear-gradient(180deg, #d7e0e9 0%, #c7d2dd 100%); border: 1px solid rgba(154, 168, 184, 0.34); color: #5d6a77; box-shadow: 0 0 0 1px rgba(255,255,255,0.42), inset 0 1px 0 rgba(255,255,255,0.96), inset 0 -1px 1px rgba(123,140,159,0.28), 0 3px 7px rgba(56,69,90,0.16); }\n    .chat-widget.chat-widget--support-reference .chat-widget__header-info { flex: 0 0 auto; width: fit-content; margin-left: 6px; background: rgba(177, 189, 202, 0.44); border: 1px solid rgba(154, 169, 184, 0.42); padding: 5px 8px; border-radius: 999px; max-width: 140px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }\n    .chat-widget.chat-widget--support-reference .chat-widget__header-name { color: #667381; font-size: 13px; font-weight: 600; letter-spacing: 0; display: inline-flex; align-items: center; gap: 6px; }\n    .chat-widget.chat-widget--support-reference .chat-widget__header-name::after { content: ''; width: 7px; height: 7px; border-radius: 50%; background: #6fd38f; box-shadow: 0 0 0 0 rgba(111, 211, 143, 0.45); animation: supportOnlinePulse 1.5s ease-out infinite; }\n    .chat-widget.chat-widget--support-reference .chat-widget__header-status { display: none; }\n    .chat-widget.chat-widget--support-reference .chat-widget__messages { padding: 8px 16px 14px; gap: 12px; }\n    .chat-widget.chat-widget--support-reference .chat-widget__divider { display: none; }\n    .chat-widget.chat-widget--support-reference .msg { gap: 7px; }\n    .chat-widget.chat-widget--support-reference .msg__avatar { box-shadow: none; }\n    .chat-widget.chat-widget--support-reference .msg--me .msg__avatar { display: none; }\n    .chat-widget.chat-widget--support-reference .msg__bubble { display: inline-flex; flex-direction: row; align-items: center; justify-content: center; height: auto; padding: 4px 12px 2px !important; border-radius: 18px; max-width: 320px; min-height: 0; }\n    .chat-widget.chat-widget--support-reference .msg--other .msg__bubble { background: #ced8e1; color: #5a6673; border-bottom-left-radius: 18px; }\n    .chat-widget.chat-widget--support-reference .msg--me .msg__bubble { background: #0c0c0f; color: #eef2f7; border-bottom-right-radius: 18px; box-shadow: none; }\n    .chat-widget.chat-widget--support-reference .msg__header { display: none; }\n    .chat-widget.chat-widget--support-reference .msg__text { font-size: 15px; line-height: 1 !important; margin: 0; padding: 0; display: inline !important; }\n    .chat-widget.chat-widget--support-reference .msg__text p { margin: 0 !important; display: inline !important; }\n    .chat-widget.chat-widget--support-reference .msg__text > * { margin: 0 !important; }\n    .chat-widget.chat-widget--support-reference .msg__text * { margin: 0 !important; padding: 0 !important; line-height: 1 !important; }\n    .chat-widget.chat-widget--support-reference .msg__text br:last-child { display: none !important; }\n    .chat-widget.chat-widget--support-reference .typing-bubble { background: #ced8e1; border-bottom-left-radius: 18px; }\n    .chat-widget.chat-widget--support-reference .chat-widget__input-row { padding: 10px 12px 14px; border-top: none; background: transparent; gap: 8px; }\n    .chat-widget.chat-widget--support-reference .chat-widget__input { order: 1; color: #697685; background: rgba(187, 198, 210, 0.55); border: 1px solid rgba(162, 175, 189, 0.5); box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.45); }\n    .chat-widget.chat-widget--support-reference .chat-widget__input::placeholder { color: #7a8795; }\n    .chat-widget.chat-widget--support-reference #cwUploadBtn, .chat-widget.chat-widget--support-reference #cwUploadBtnExtra, .chat-widget.chat-widget--support-reference #cwSendBtn { width: 44px; height: 44px; order: 2; animation: none; background: linear-gradient(180deg, #d7e0e9 0%, #c7d2dd 100%); border: 1px solid rgba(154, 168, 184, 0.34); color: #5d6a77; box-shadow: 0 0 0 1px rgba(255,255,255,0.42), inset 0 1px 0 rgba(255,255,255,0.96), inset 0 -1px 1px rgba(123,140,159,0.28), 0 3px 7px rgba(56,69,90,0.16); }\n    .chat-widget.chat-widget--support-reference #cwUploadBtn, .chat-widget.chat-widget--support-reference #cwUploadBtnExtra { position: absolute; top: 18px; z-index: 8; order: initial; }\n    .chat-widget.chat-widget--support-reference #cwUploadBtn { right: 126px !important; }\n    .chat-widget.chat-widget--support-reference #cwUploadBtnExtra { right: 74px !important; }\n    .chat-widget.chat-widget--support-reference #cwUploadBtn:hover, .chat-widget.chat-widget--support-reference #cwUploadBtnExtra:hover, .chat-widget.chat-widget--support-reference #cwSendBtn:hover, .chat-widget.chat-widget--support-reference #cwCloseBtn:hover { transform: translateY(-1px); filter: none; }\n    .chat-widget.chat-widget--support-reference #cwUploadBtn:active, .chat-widget.chat-widget--support-reference #cwUploadBtnExtra:active, .chat-widget.chat-widget--support-reference #cwSendBtn:active, .chat-widget.chat-widget--support-reference #cwCloseBtn:active { transform: translateY(0); }\n    @keyframes supportOnlinePulse { 0% { box-shadow: 0 0 0 0 rgba(111,211,143,0.42); opacity: 1; } 70% { box-shadow: 0 0 0 7px rgba(111,211,143,0); opacity: .88; } 100% { box-shadow: 0 0 0 0 rgba(111,211,143,0); opacity: 1; } }\n\n    \n    \n\n    .cw-launcher {\n        box-shadow: 0 4px 15px rgba(0,0,0,0.2);\n    }\n\n    .cw-launcher-badge {\n        position: absolute;\n        background: #1f1f2e;\n        color: white;\n        padding: 10px 18px;\n        border-radius: 12px;\n        font-size: 14px;\n        font-weight: 600;\n        white-space: nowrap;\n        box-shadow: 0 4px 12px rgba(0,0,0,0.15);\n        z-index: 99999;\n        pointer-events: none;\n        animation: fadeInBadge 0.3s ease-out forwards;\n        display: flex;\n        align-items: center;\n        justify-content: center;\n    }\n\n    .cw-launcher-badge.pos-left { right: 100%; margin-right: 15px; }\n    .cw-launcher-badge.pos-right { left: 100%; margin-left: 15px; }\n\n    .cw-launcher-message {\n        position: absolute;\n        max-width: 260px;\n        min-width: 180px;\n        background: #ffffff;\n        color: #2a2a2a;\n        border-radius: 16px;\n        padding: 12px 14px;\n        font-size: 14px;\n        font-weight: 600;\n        line-height: 1.35;\n        box-shadow: 0 12px 26px rgba(0,0,0,0.16);\n        z-index: 99999;\n        pointer-events: none;\n    }\n    .cw-launcher-message.pos-left { right: 0; }\n    .cw-launcher-message.pos-right { left: 0; }\n    .cw-launcher-message.pos-above { bottom: calc(100% + 14px); }\n    .cw-launcher-message.pos-below { top: calc(100% + 14px); }\n    .cw-launcher-message__text { display: block; white-space: normal; word-break: break-word; }\n    .cw-launcher-message__tail {\n        position: absolute;\n        width: 0;\n        height: 0;\n        border-left: 10px solid transparent;\n        border-right: 10px solid transparent;\n    }\n    .cw-launcher-message.pos-above .cw-launcher-message__tail { bottom: -9px; right: 28px; border-top: 10px solid #ffffff; }\n    .cw-launcher-message.pos-below .cw-launcher-message__tail { top: -9px; right: 28px; border-bottom: 10px solid #ffffff; }\n\n    @keyframes fadeInBadge {\n        from { opacity: 0; transform: translateX(10px); }\n        to { opacity: 1; transform: translateX(0); }\n    }\n    ";
     document.head.appendChild(style);
+    if (!document.getElementById('astig-chat-converse-style')) {
+        const converseStyle = document.createElement('style');
+        converseStyle.id = 'astig-chat-converse-style';
+        converseStyle.textContent = [
+            '@keyframes typingWave{0%,100%{transform:translateY(0) scale(.92);opacity:.5;}50%{transform:translateY(-3px) scale(1.12);opacity:1;}}',
+            '@keyframes typingWaveText{0%,100%{transform:translateX(0);opacity:.55;}50%{transform:translateX(2px);opacity:1;}}'
+        ].join('');
+        document.head.appendChild(converseStyle);
+    }
 
     function injectVisibilitySafetyStyles() {
         if (document.getElementById('astig-chat-safety-styles')) return;
@@ -216,17 +438,17 @@
         const html = String(htmlText || '');
         if (!html) return html;
         ensureLottiePlayerDependency();
-        const waveMarkup = '<picture class="emoji-picture-wave"><source srcset="' + WAVE_EMOJI_WEBP_URL + '" type="image/webp"><img src="' + WAVE_EMOJI_GIF_URL + '" alt="👋" width="32" height="32"></picture>';
+        const waveMarkup = '<picture class="emoji-picture-wave"><source srcset="' + WAVE_EMOJI_WEBP_URL + '" type="image/webp"><img src="' + WAVE_EMOJI_GIF_URL + '" alt="??" width="32" height="32"></picture>';
         const withLottieWave = html
             .split('\uD83D\uDC4B').join(waveMarkup)
-            .split('ðŸ‘‹').join(waveMarkup);
+            .split('👋').join(waveMarkup);
         const replacements = [
-            { emoji: '\uD83C\uDF89', cls: 'emoji-anim' }, // 🎉
-            { emoji: '\u2728', cls: 'emoji-anim' }, // ✨
-            { emoji: '\uD83D\uDD25', cls: 'emoji-anim' }, // 🔥
-            { emoji: '\uD83D\uDCAB', cls: 'emoji-anim' }, // 💫
-            { emoji: '\uD83D\uDCA5', cls: 'emoji-anim' }, // 💥
-            { emoji: '\uD83D\uDE80', cls: 'emoji-anim' } // 🚀
+            { emoji: '\uD83C\uDF89', cls: 'emoji-anim' }, // ??
+            { emoji: '\u2728', cls: 'emoji-anim' }, // ?
+            { emoji: '\uD83D\uDD25', cls: 'emoji-anim' }, // ??
+            { emoji: '\uD83D\uDCAB', cls: 'emoji-anim' }, // ??
+            { emoji: '\uD83D\uDCA5', cls: 'emoji-anim' }, // ??
+            { emoji: '\uD83D\uDE80', cls: 'emoji-anim' } // ??
         ];
         return replacements.reduce((next, item) => {
             return next.split(item.emoji).join('<span class="' + item.cls + '">' + item.emoji + '</span>');
@@ -364,7 +586,7 @@
             const badgePosClass = config.launcher.position.includes('right') ? 'pos-left' : 'pos-right';
             const badgeText = (config.launcher.text && String(config.launcher.text).trim())
                 ? String(config.launcher.text).trim()
-                : (getAssistantName(config) ? getAssistantName(config) + ' typing...' : 'Chat typing...');
+                : getConverseTypingText(config);
             launcherInnerHtml += '<div class="cw-launcher-badge ' + badgePosClass + '" style="display:none;">' + badgeText + '</div>';
         }
         if (config.launcher.bubbleEnabled && (config.launcher.bubbleText && String(config.launcher.bubbleText).trim())) {
@@ -1139,7 +1361,8 @@
 
         function simulateReply(userReplyText) {
             const sessionId = currentSessionId;
-            const typing = showTyping();
+            const converse = getConverseConfig(config);
+            const typing = converse.typingEnabled ? showTyping() : { remove: function() {}, showSlow: function() {}, startedAt: Date.now() };
             scrollToBottom();
 
             setTimeout(() => {
@@ -1147,25 +1370,23 @@
                 typing.remove();
                 
                 // Webhook logic
-                if (config.webhook.url && userReplyText) {
+                var webhookUrl = resolveActiveWebhookUrl(config, rsvp);
+                if (webhookUrl && userReplyText) {
                     if (!webhookSessionId) webhookSessionId = createStableSessionId('rsvp');
                     // Show a new typing indicator while waiting for the network
-                    const networkTyping = showTyping();
+                    const networkTyping = converse.typingEnabled ? showTyping() : { remove: function() {}, showSlow: function() {}, startedAt: Date.now() };
                     const slowTypingTimer = setTimeout(() => {
                         if (sessionId === currentSessionId) networkTyping.showSlow();
-                    }, 5000);
+                    }, getConverseStatusDelayMs(config));
                     scrollToBottom();
                     
-                    fetch(config.webhook.url, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ 
-                            message: userReplyText, 
-                            chatInput: userReplyText, // Added for n8n Chat Triggers
-                            sessionId: webhookSessionId,
-                            formattingRules: "You must always present responses with a clear structure and readable layout.\n\nUse bold headings for main sections and insert one line break before each heading.\n\nSeparate each paragraph or section with one line break to maintain proper spacing in chat.\n\nUse bullet points for lists, numbered points for step-by-step instructions, and short paragraphs for context.\n\nOnly include headers when the response covers multiple sections.\n\nDo not include summaries at the end of long responses unless they help the user better understand the main ideas."
-                        })
-                    })
+                    config.webhook.url = webhookUrl;
+                    fetch(webhookUrl, buildWebhookFetchInit({
+                        message: userReplyText, 
+                        chatInput: userReplyText, // Added for n8n Chat Triggers
+                        sessionId: webhookSessionId,
+                        formattingRules: "You must always present responses with a clear structure and readable layout.\n\nUse bold headings for main sections and insert one line break before each heading.\n\nSeparate each paragraph or section with one line break to maintain proper spacing in chat.\n\nUse bullet points for lists, numbered points for step-by-step instructions, and short paragraphs for context.\n\nOnly include headers when the response covers multiple sections.\n\nDo not include summaries at the end of long responses unless they help the user better understand the main ideas."
+                    }, config, rsvp))
                     .then(async (res) => {
                         const contentType = res.headers.get('content-type') || '';
                         const rawResponse = await res.text();
@@ -1183,8 +1404,11 @@
                             return;
                         }
                         clearTimeout(slowTypingTimer);
-                        networkTyping.remove();
-                        addMessage('other', getAssistantName(config), replyText, config.header.avatar);
+                        waitForTypingMinimumDuration(networkTyping, config).then(function() {
+                            if (sessionId !== currentSessionId) return;
+                            networkTyping.remove();
+                            addMessage('other', getAssistantName(config), replyText, config.header.avatar);
+                        });
                     })
                     .catch(err => {
                         if (sessionId !== currentSessionId) {
@@ -1193,9 +1417,11 @@
                         }
                         console.error('Astig Media Chatbot: Webhook error', err);
                         clearTimeout(slowTypingTimer);
-                        networkTyping.remove();
-                        // Fallback response if webhook fails
-                        addMessage('other', getAssistantName(config), 'Error reaching webhook: ' + err.message, config.header.avatar);
+                        waitForTypingMinimumDuration(networkTyping, config).then(function() {
+                            if (sessionId !== currentSessionId) return;
+                            networkTyping.remove();
+                            addMessage('other', getAssistantName(config), 'Error reaching webhook: ' + err.message, config.header.avatar);
+                        });
                     });
 
                     return; // Prevent local fallback logic from running below
@@ -1278,7 +1504,6 @@
             const el = document.createElement('div');
             el.className = 'chat-widget__typing';
             const val = config.header.avatar;
-            const typingName = (getAssistantName(config) || 'Assistant').trim();
             
             let avatarContent = '';
             if (isImage(val)) {
@@ -1294,15 +1519,23 @@
                   '<div class="typing-dot"></div>' +
                   '<div class="typing-dot"></div>' +
                 '</div>' +
-                '<div class="typing-status" style="display:none;">' + typingName + ' typing...</div>' +
+                '<div class="typing-status" style="display:none;">' + getConverseTypingText(config) + '</div>' +
               '</div>';
             msgList.insertBefore(el, anchor);
+            applyTypingIndicatorAppearance(el, config);
             const statusEl = el.querySelector('.typing-status');
+            if (statusEl && hasCustomConverseTypingText(config)) {
+                statusEl.style.setProperty('display', 'block', 'important');
+                statusEl.classList.add('is-visible');
+                statusEl.style.animation = getTypingStatusAnimation(getConverseConfig(config));
+            }
             return {
+                startedAt: Date.now(),
                 showSlow: () => {
                     if (statusEl) {
-                        statusEl.style.display = 'block';
+                        statusEl.style.setProperty('display', 'block', 'important');
                         statusEl.classList.add('is-visible');
+                        statusEl.style.animation = getTypingStatusAnimation(getConverseConfig(config));
                         scrollToBottom();
                     }
                 },
@@ -1442,6 +1675,7 @@
     }
 })();
     
+
 
 
 
