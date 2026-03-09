@@ -1,6 +1,6 @@
 /*__ASTIG_DEPLOY_CONFIG_START__*/
 (function() {
-  var __astigDeployStamp = "2026-03-09T21:31:56.015Z";
+  var __astigDeployStamp = "2026-03-09T21:36:16.820Z";
   var __astigPrevStamp = String(window.__ASTIG_CHAT_DEPLOY_STAMP || '');
   if (__astigPrevStamp && __astigDeployStamp && __astigPrevStamp > __astigDeployStamp) { return; }
   if (__astigDeployStamp) window.__ASTIG_CHAT_DEPLOY_STAMP = __astigDeployStamp;
