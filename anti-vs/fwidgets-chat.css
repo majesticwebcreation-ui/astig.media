@@ -1803,6 +1803,57 @@ input[type="range"] {
     height: 700px;
 }
 
+@keyframes astigWidgetFadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes astigWidgetFadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
+
+@keyframes astigWidgetScaleIn {
+    from { opacity: 0; transform: translateY(10px) scale(0.94); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes astigWidgetScaleOut {
+    from { opacity: 1; transform: translateY(0) scale(1); }
+    to { opacity: 0; transform: translateY(10px) scale(0.94); }
+}
+
+@keyframes astigWidgetPopIn {
+    0% { opacity: 0; transform: translateY(12px) scale(0.86); }
+    60% { opacity: 1; transform: translateY(-2px) scale(1.02); }
+    100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes astigWidgetPopOut {
+    from { opacity: 1; transform: translateY(0) scale(1); }
+    to { opacity: 0; transform: translateY(12px) scale(0.9); }
+}
+
+@keyframes astigWidgetSlideFromBottomIn {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes astigWidgetSlideToBottomOut {
+    from { opacity: 1; transform: translateY(0); }
+    to { opacity: 0; transform: translateY(16px); }
+}
+
+@keyframes astigWidgetSlideFromTopIn {
+    from { opacity: 0; transform: translateY(-16px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes astigWidgetSlideToTopOut {
+    from { opacity: 1; transform: translateY(0); }
+    to { opacity: 0; transform: translateY(-16px); }
+}
+
 .chat-widget__conversation-media {
     position: sticky;
     top: 0;
