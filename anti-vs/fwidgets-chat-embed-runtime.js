@@ -1,12 +1,12 @@
 /*__ASTIG_DEPLOY_CONFIG_START__*/
 (function() {
-  var __astigDeployStamp = "2026-03-10T10:36:52.745Z";
+  var __astigDeployStamp = "2026-03-10T19:28:18.036Z";
   var __astigPrevStamp = String(window.__ASTIG_CHAT_DEPLOY_STAMP || '');
   if (__astigPrevStamp && __astigDeployStamp && __astigPrevStamp > __astigDeployStamp) { return; }
   if (__astigDeployStamp) window.__ASTIG_CHAT_DEPLOY_STAMP = __astigDeployStamp;
   window.RSVPChatConfig = window.RSVPChatConfig || {};
   if (!window.RSVPChatConfig.webhookUrl) window.RSVPChatConfig.webhookUrl = "https://n8n.srv1291312.hstgr.cloud/webhook/a368d690-b760-49a9-ba19-67c4a6971fa3/chat";
-  if (!window.RSVPChatConfig.fullConfig || typeof window.RSVPChatConfig.fullConfig !== 'object') window.RSVPChatConfig.fullConfig = {"theme":{"primaryColor":"#5aa7d9","bgColor":"#dfe8f1","surfaceColor":"#d5dee8","fontFamily":"'DM Sans', sans-serif","borderRadius":30,"mode":"solid","gradient":{"start":"#6c63ff","end":"#ff6584"},"headerBgColor":"#dfe8f1","headerTextColor":"#5e6873","topHeroMediaType":"none","topHeroMediaUrl":""},"header":{"title":"River","name":"River","status":"","fontFamily":"'Syne', sans-serif","nameFontSize":15,"nameFontWeight":600,"statusFontSize":12,"animation":"none","logoOffsetX":0,"logoOffsetY":0,"nameOffsetX":-1,"nameOffsetY":1,"statusOffsetX":0,"statusOffsetY":0,"avatar":"https://widjets.astigmedia.com/img/Assistant-logo.png","avatarSize":"32","logoSize":"56","logoType":"image","logoUrl":"https://widjets.astigmedia.com/img/main-logo.png"},"assistant":{"name":"River"},"user":{"avatar":"https://widjets.astigmedia.com/img/User-logo.png","avatarSize":"32"},"launcher":{"position":"bottom-right","shape":"circle","iconType":"icon","icon":"headset","imageUrl":"","size":"48","badgeEnabled":false,"text":"","bubbleEnabled":false,"bubbleText":"Ta-da! You've found your creative superpower spot.","bubbleMode":"instant","bubbleTimed":false,"bubbleDelaySec":5,"bubbleDurationSec":10,"bgStyle":"solid","bgColor":"#5aa7d9","gradientEnd":"#8ed1f0","animation":"none"},"video":{"layout":"inline","hideBehavior":"first-question","loop":false,"url":"","imageUrl":""},"questions":[{"id":1,"text":"Hi there, welcome to customer support. How can I help you?","type":"text","displayMode":"instant","choices":""}],"questionsStyle":"solid","webhook":{"url":"https://n8n.srv1291312.hstgr.cloud/webhook/a368d690-b760-49a9-ba19-67c4a6971fa3/chat","testUrl":"","chatUrl":"https://n8n.srv1291312.hstgr.cloud/webhook/a368d690-b760-49a9-ba19-67c4a6971fa3/chat","activeMode":"chat","production":false,"externalJsUrl":"https://cdn.jsdelivr.net/gh/majesticwebcreation-ui/astig.media@fb09d4a235cc7ef2c2768d41701184c3b1a5f5d0/anti-vs/fwidgets-chat-embed-runtime.js"},"auth":{"enabled":true,"headerName":"Authorization","headerPrefix":"Bearer","headerValue":"Basic SmFycm9kOlJpdmVyMjk3MyE=","useForWebhook":true,"withCredentials":false},"converse":{"typingEnabled":true,"typingText":"","statusDelaySec":5,"minVisibleSec":0.8,"animation":"bounce","bubbleFill":"solid","bubbleShape":"soft","indicatorColor":"#7070a0","bubbleBgColor":"#2a2a3d","bubbleGradientEnd":"#4b4f64"},"footer":{"text":"","url":"","fontFamily":"'Inter', sans-serif","animation":"none","textColor":"#7070a0","fontSize":"11","position":"center"},"ui":{"showPipelineMonitor":false,"showRealtimeTelemetry":false,"showRealtimeFeed":false,"templateStyle":"support-reference"}};
+  if (!window.RSVPChatConfig.fullConfig || typeof window.RSVPChatConfig.fullConfig !== 'object') window.RSVPChatConfig.fullConfig = {"theme":{"primaryColor":"#5aa7d9","bgColor":"#dfe8f1","surfaceColor":"#d5dee8","fontFamily":"'DM Sans', sans-serif","borderRadius":30,"mode":"solid","gradient":{"start":"#6c63ff","end":"#ff6584"},"headerBgColor":"#dfe8f1","headerTextColor":"#5e6873","topHeroMediaType":"none","topHeroMediaUrl":""},"header":{"title":"River","name":"River","status":"","fontFamily":"'Syne', sans-serif","nameFontSize":15,"nameFontWeight":600,"statusFontSize":12,"animation":"none","logoOffsetX":0,"logoOffsetY":0,"nameOffsetX":-1,"nameOffsetY":1,"statusOffsetX":0,"statusOffsetY":0,"avatar":"https://widjets.astigmedia.com/img/Assistant-logo.png","avatarSize":"32","logoSize":"56","logoType":"image","logoUrl":"https://widjets.astigmedia.com/img/main-logo.png"},"assistant":{"name":"River"},"user":{"avatar":"https://widjets.astigmedia.com/img/User-logo.png","avatarSize":"32"},"launcher":{"position":"bottom-right","shape":"circle","iconType":"icon","icon":"headset","imageUrl":"","size":"48","badgeEnabled":false,"text":"","bubbleEnabled":false,"bubbleText":"Ta-da! You've found your creative superpower spot.","bubbleMode":"instant","bubbleTimed":false,"bubbleDelaySec":5,"bubbleDurationSec":10,"bgStyle":"solid","bgColor":"#5aa7d9","gradientEnd":"#8ed1f0","animation":"none"},"video":{"layout":"inline","hideBehavior":"first-question","loop":false,"url":"","imageUrl":""},"questions":[{"id":1,"text":"Hi there, welcome to customer support. How can I help you?","type":"text","displayMode":"instant","choices":""}],"questionsStyle":"solid","webhook":{"url":"https://n8n.srv1291312.hstgr.cloud/webhook/a368d690-b760-49a9-ba19-67c4a6971fa3/chat","testUrl":"","chatUrl":"https://n8n.srv1291312.hstgr.cloud/webhook/a368d690-b760-49a9-ba19-67c4a6971fa3/chat","activeMode":"chat","production":false,"externalJsUrl":"https://cdn.jsdelivr.net/gh/majesticwebcreation-ui/astig.media@fb09d4a235cc7ef2c2768d41701184c3b1a5f5d0/anti-vs/fwidgets-chat-embed-runtime.js"},"auth":{"enabled":true,"headerName":"Authorization","headerPrefix":"Bearer","headerValue":"Basic SmFycm9kOlJpdmVyMjk3MyE=","useForWebhook":true,"withCredentials":false},"converse":{"typingEnabled":true,"typingText":"","statusDelaySec":5,"minVisibleSec":0.8,"animation":"bounce","conversationFill":"3d","conversationBgColor":"#17171f","conversationGradientEnd":"#1f1f2e","bubbleFill":"glass","bubbleShape":"soft","indicatorColor":"#b8b8d6","bubbleBgColor":"#7d7dba","bubbleGradientEnd":"#4b4f64","userBubbleFontFamily":"'Inter', sans-serif","userBubbleFontSizePx":15,"userBubbleBgColor":"#b3c2cc","userBubbleAnimation":"pop"},"footer":{"text":"","url":"","fontFamily":"'Inter', sans-serif","animation":"none","textColor":"#7070a0","fontSize":"11","position":"center"},"ui":{"showPipelineMonitor":false,"showRealtimeTelemetry":false,"showRealtimeFeed":false,"templateStyle":"support-reference"}};
   if (__astigDeployStamp) window.RSVPChatConfig.__deployedAt = __astigDeployStamp;
   try {
     var __astigTemplateStyleName = (((window.RSVPChatConfig.fullConfig || {}).ui || {}).templateStyle || '');
@@ -60,7 +60,7 @@
  */
 (function() {
     // Current Configuration
-    const defaultBundleConfig = {"theme":{"primaryColor":"#5aa7d9","bgColor":"#dfe8f1","surfaceColor":"#d5dee8","fontFamily":"'DM Sans', sans-serif","borderRadius":30,"mode":"solid","gradient":{"start":"#6c63ff","end":"#ff6584"},"headerBgColor":"#dfe8f1","headerTextColor":"#5e6873","topHeroMediaType":"none","topHeroMediaUrl":""},"header":{"title":"River","name":"River","status":"","fontFamily":"'Syne', sans-serif","nameFontSize":15,"nameFontWeight":600,"statusFontSize":12,"animation":"none","logoOffsetX":0,"logoOffsetY":0,"nameOffsetX":-1,"nameOffsetY":1,"statusOffsetX":0,"statusOffsetY":0,"avatar":"https://widjets.astigmedia.com/img/Assistant-logo.png","avatarSize":"32","logoSize":"56","logoType":"image","logoUrl":"https://widjets.astigmedia.com/img/main-logo.png"},"assistant":{"name":"River"},"user":{"avatar":"https://widjets.astigmedia.com/img/User-logo.png","avatarSize":"32"},"launcher":{"position":"bottom-right","shape":"circle","iconType":"icon","icon":"headset","imageUrl":"","size":"48","badgeEnabled":false,"text":"","bubbleEnabled":false,"bubbleText":"Ta-da! You've found your creative superpower spot.","bubbleMode":"instant","bubbleTimed":false,"bubbleDelaySec":5,"bubbleDurationSec":10,"bgStyle":"solid","bgColor":"#5aa7d9","gradientEnd":"#8ed1f0","animation":"none"},"video":{"layout":"inline","hideBehavior":"first-question","loop":false,"url":"","imageUrl":""},"questions":[{"id":1,"text":"Hi there, welcome to customer support. How can I help you?","type":"text","displayMode":"instant","choices":""}],"questionsStyle":"solid","webhook":{"url":"https://n8n.srv1291312.hstgr.cloud/webhook/a368d690-b760-49a9-ba19-67c4a6971fa3/chat","testUrl":"","chatUrl":"https://n8n.srv1291312.hstgr.cloud/webhook/a368d690-b760-49a9-ba19-67c4a6971fa3/chat","activeMode":"chat","production":false,"externalJsUrl":"https://cdn.jsdelivr.net/gh/majesticwebcreation-ui/astig.media@fb09d4a235cc7ef2c2768d41701184c3b1a5f5d0/anti-vs/fwidgets-chat-embed-runtime.js"},"auth":{"enabled":true,"headerName":"Authorization","headerPrefix":"Bearer","headerValue":"Basic SmFycm9kOlJpdmVyMjk3MyE=","useForWebhook":true,"withCredentials":false},"converse":{"typingEnabled":true,"typingText":"","statusDelaySec":5,"minVisibleSec":0.8,"animation":"bounce","bubbleFill":"solid","bubbleShape":"soft","indicatorColor":"#7070a0","bubbleBgColor":"#2a2a3d","bubbleGradientEnd":"#4b4f64"},"footer":{"text":"","url":"","fontFamily":"'Inter', sans-serif","animation":"none","textColor":"#7070a0","fontSize":"11","position":"center"},"ui":{"showPipelineMonitor":false,"showRealtimeTelemetry":false,"showRealtimeFeed":false,"templateStyle":"support-reference"}};
+    const defaultBundleConfig = {"theme":{"primaryColor":"#5aa7d9","bgColor":"#dfe8f1","surfaceColor":"#d5dee8","fontFamily":"'DM Sans', sans-serif","borderRadius":30,"mode":"solid","gradient":{"start":"#6c63ff","end":"#ff6584"},"headerBgColor":"#dfe8f1","headerTextColor":"#5e6873","topHeroMediaType":"none","topHeroMediaUrl":""},"header":{"title":"River","name":"River","status":"","fontFamily":"'Syne', sans-serif","nameFontSize":15,"nameFontWeight":600,"statusFontSize":12,"animation":"none","logoOffsetX":0,"logoOffsetY":0,"nameOffsetX":-1,"nameOffsetY":1,"statusOffsetX":0,"statusOffsetY":0,"avatar":"https://widjets.astigmedia.com/img/Assistant-logo.png","avatarSize":"32","logoSize":"56","logoType":"image","logoUrl":"https://widjets.astigmedia.com/img/main-logo.png"},"assistant":{"name":"River"},"user":{"avatar":"https://widjets.astigmedia.com/img/User-logo.png","avatarSize":"32"},"launcher":{"position":"bottom-right","shape":"circle","iconType":"icon","icon":"headset","imageUrl":"","size":"48","badgeEnabled":false,"text":"","bubbleEnabled":false,"bubbleText":"Ta-da! You've found your creative superpower spot.","bubbleMode":"instant","bubbleTimed":false,"bubbleDelaySec":5,"bubbleDurationSec":10,"bgStyle":"solid","bgColor":"#5aa7d9","gradientEnd":"#8ed1f0","animation":"none"},"video":{"layout":"inline","hideBehavior":"first-question","loop":false,"url":"","imageUrl":""},"questions":[{"id":1,"text":"Hi there, welcome to customer support. How can I help you?","type":"text","displayMode":"instant","choices":""}],"questionsStyle":"solid","webhook":{"url":"https://n8n.srv1291312.hstgr.cloud/webhook/a368d690-b760-49a9-ba19-67c4a6971fa3/chat","testUrl":"","chatUrl":"https://n8n.srv1291312.hstgr.cloud/webhook/a368d690-b760-49a9-ba19-67c4a6971fa3/chat","activeMode":"chat","production":false,"externalJsUrl":"https://cdn.jsdelivr.net/gh/majesticwebcreation-ui/astig.media@fb09d4a235cc7ef2c2768d41701184c3b1a5f5d0/anti-vs/fwidgets-chat-embed-runtime.js"},"auth":{"enabled":true,"headerName":"Authorization","headerPrefix":"Bearer","headerValue":"Basic SmFycm9kOlJpdmVyMjk3MyE=","useForWebhook":true,"withCredentials":false},"converse":{"typingEnabled":true,"typingText":"","statusDelaySec":5,"minVisibleSec":0.8,"animation":"bounce","conversationFill":"3d","conversationBgColor":"#17171f","conversationGradientEnd":"#1f1f2e","bubbleFill":"glass","bubbleShape":"soft","indicatorColor":"#b8b8d6","bubbleBgColor":"#7d7dba","bubbleGradientEnd":"#4b4f64","userBubbleFontFamily":"'Inter', sans-serif","userBubbleFontSizePx":15,"userBubbleBgColor":"#b3c2cc","userBubbleAnimation":"pop"},"footer":{"text":"","url":"","fontFamily":"'Inter', sans-serif","animation":"none","textColor":"#7070a0","fontSize":"11","position":"center"},"ui":{"showPipelineMonitor":false,"showRealtimeTelemetry":false,"showRealtimeFeed":false,"templateStyle":"support-reference"}};
     const rsvp = window.RSVPChatConfig || {};
     const hasFullConfig = !!(rsvp && typeof rsvp.fullConfig === 'object' && rsvp.fullConfig);
     const config = hasFullConfig
@@ -99,7 +99,16 @@
         next.animation = next.animation === 'pulse' || next.animation === 'wave' || next.animation === 'none'
             ? next.animation
             : 'bounce';
-        next.bubbleFill = next.bubbleFill === 'gradient' || next.bubbleFill === 'glass' || next.bubbleFill === 'outline'
+
+        next.conversationFill = next.conversationFill === 'solid' || next.conversationFill === 'gradient' || next.conversationFill === 'glass' || next.conversationFill === '3d'
+            ? next.conversationFill
+            : 'theme';
+        var conversationBgColor = String(next.conversationBgColor || '#17171f').trim();
+        next.conversationBgColor = /^#([0-9a-f]{3}|[0-9a-f]{6})$/i.test(conversationBgColor) ? conversationBgColor : '#17171f';
+        var conversationGradientEnd = String(next.conversationGradientEnd || '#1f1f2e').trim();
+        next.conversationGradientEnd = /^#([0-9a-f]{3}|[0-9a-f]{6})$/i.test(conversationGradientEnd) ? conversationGradientEnd : '#1f1f2e';
+
+        next.bubbleFill = next.bubbleFill === 'gradient' || next.bubbleFill === 'glass' || next.bubbleFill === 'outline' || next.bubbleFill === '3d'
             ? next.bubbleFill
             : 'solid';
         next.bubbleShape = next.bubbleShape === 'pill' || next.bubbleShape === 'sharp'
@@ -108,6 +117,29 @@
         next.indicatorColor = String(next.indicatorColor || '#7070a0').trim() || '#7070a0';
         next.bubbleBgColor = String(next.bubbleBgColor || '#2a2a3d').trim() || '#2a2a3d';
         next.bubbleGradientEnd = String(next.bubbleGradientEnd || '#4b4f64').trim() || '#4b4f64';
+
+        var allowedUserFonts = {
+            '': true,
+            "'Inter', sans-serif": true,
+            "'DM Sans', sans-serif": true,
+            "'Syne', sans-serif": true,
+            "system-ui, -apple-system, 'Segoe UI', sans-serif": true,
+            "Georgia, 'Times New Roman', serif": true,
+            "'JetBrains Mono', Consolas, monospace": true
+        };
+        var userBubbleFontFamily = String(next.userBubbleFontFamily || '').trim();
+        next.userBubbleFontFamily = allowedUserFonts[userBubbleFontFamily] ? userBubbleFontFamily : '';
+
+        var fontSizePx = Number(next.userBubbleFontSizePx);
+        next.userBubbleFontSizePx = Number.isFinite(fontSizePx) ? Math.max(10, Math.min(22, Math.round(fontSizePx))) : 15;
+
+        var userBubbleBgColor = String(next.userBubbleBgColor || '').trim();
+        next.userBubbleBgColor = /^#([0-9a-f]{3}|[0-9a-f]{6})$/i.test(userBubbleBgColor) ? userBubbleBgColor : '';
+
+        var userBubbleAnimation = String(next.userBubbleAnimation || '').trim();
+        next.userBubbleAnimation = userBubbleAnimation === 'pop' || userBubbleAnimation === 'slide' || userBubbleAnimation === 'bounce' || userBubbleAnimation === 'fade' || userBubbleAnimation === 'none'
+            ? userBubbleAnimation
+            : 'none';
         return next;
     }
 
@@ -207,6 +239,10 @@
                 bubbleEl.style.backdropFilter = 'blur(10px)';
                 bubbleEl.style.webkitBackdropFilter = 'blur(10px)';
                 bubbleEl.style.boxShadow = '0 10px 24px ' + convertHexToRgba(bubbleColor, 0.2);
+            } else if (converse.bubbleFill === '3d') {
+                bubbleEl.style.background = bubbleColor;
+                bubbleEl.style.border = '1px solid ' + convertHexToRgba('#ffffff', 0.08);
+                bubbleEl.style.boxShadow = 'inset 0 1px 0 ' + convertHexToRgba('#ffffff', 0.14) + ', inset 0 -10px 18px ' + convertHexToRgba('#000000', 0.3) + ', 0 12px 26px ' + convertHexToRgba('#000000', 0.25);
             } else if (converse.bubbleFill === 'outline') {
                 bubbleEl.style.background = 'transparent';
                 bubbleEl.style.border = '1px solid ' + bubbleColor;
@@ -241,6 +277,139 @@
                 dotEl.style.animationDelay = converse.animation === 'none' ? '0s' : (index * 0.18) + 's';
             });
         }
+    }
+
+    function applyUserBubbleConversationAppearance(bubbleEl, cfg) {
+        if (!bubbleEl || bubbleEl.nodeType !== 1) return;
+        var converse = getConverseConfig(cfg);
+
+        var fontFamily = String(converse.userBubbleFontFamily || '').trim();
+        bubbleEl.style.fontFamily = fontFamily || '';
+
+        var bgColor = String(converse.userBubbleBgColor || '').trim();
+        if (/^#([0-9a-f]{3}|[0-9a-f]{6})$/i.test(bgColor)) {
+            bubbleEl.style.background = bgColor;
+            bubbleEl.style.backgroundColor = bgColor;
+        } else {
+            bubbleEl.style.background = '';
+            bubbleEl.style.backgroundColor = '';
+        }
+
+        var sizePx = Number(converse.userBubbleFontSizePx);
+        var textEl = bubbleEl.querySelector ? bubbleEl.querySelector('.msg__text') : null;
+        if (textEl && textEl.style) {
+            textEl.style.fontSize = (Number.isFinite(sizePx) && sizePx > 0) ? (sizePx + 'px') : '';
+        }
+    }
+
+    function applyAssistantBubbleConversationAppearance(bubbleEl, cfg) {
+        if (!bubbleEl || bubbleEl.nodeType !== 1) return;
+        var converse = getConverseConfig(cfg);
+        var bubbleColor = converse.bubbleBgColor;
+        var indicatorColor = converse.indicatorColor;
+
+        bubbleEl.style.border = 'none';
+        bubbleEl.style.boxShadow = '';
+        bubbleEl.style.backdropFilter = '';
+        bubbleEl.style.webkitBackdropFilter = '';
+        bubbleEl.style.background = bubbleColor;
+        bubbleEl.style.backgroundColor = bubbleColor;
+
+        if (converse.bubbleFill === 'gradient') {
+            bubbleEl.style.background = 'linear-gradient(135deg, ' + bubbleColor + ', ' + converse.bubbleGradientEnd + ')';
+        } else if (converse.bubbleFill === 'glass') {
+            bubbleEl.style.background = convertHexToRgba(bubbleColor, 0.2);
+            bubbleEl.style.border = '1px solid ' + convertHexToRgba(indicatorColor, 0.28);
+            bubbleEl.style.backdropFilter = 'blur(10px)';
+            bubbleEl.style.webkitBackdropFilter = 'blur(10px)';
+            bubbleEl.style.boxShadow = '0 10px 24px ' + convertHexToRgba(bubbleColor, 0.2);
+        } else if (converse.bubbleFill === '3d') {
+            bubbleEl.style.background = bubbleColor;
+            bubbleEl.style.border = '1px solid ' + convertHexToRgba('#ffffff', 0.08);
+            bubbleEl.style.boxShadow = 'inset 0 1px 0 ' + convertHexToRgba('#ffffff', 0.14) + ', inset 0 -12px 20px ' + convertHexToRgba('#000000', 0.3) + ', 0 14px 28px ' + convertHexToRgba('#000000', 0.22);
+        } else if (converse.bubbleFill === 'outline') {
+            bubbleEl.style.background = 'transparent';
+            bubbleEl.style.border = '1px solid ' + bubbleColor;
+        }
+
+        if (converse.bubbleShape === 'pill') {
+            bubbleEl.style.borderRadius = '999px';
+            bubbleEl.style.borderBottomLeftRadius = '999px';
+        } else if (converse.bubbleShape === 'sharp') {
+            bubbleEl.style.borderRadius = '12px';
+            bubbleEl.style.borderBottomLeftRadius = '3px';
+        } else {
+            bubbleEl.style.borderRadius = 'var(--w-bubble-r)';
+            bubbleEl.style.borderBottomLeftRadius = '4px';
+        }
+    }
+
+    function applyConverseConversationBackground(messageArea, cfg) {
+        if (!messageArea || messageArea.nodeType !== 1) return;
+        var converse = getConverseConfig(cfg);
+        var mode = String(converse.conversationFill || 'theme');
+
+        messageArea.style.backdropFilter = '';
+        messageArea.style.webkitBackdropFilter = '';
+        messageArea.style.border = '';
+        messageArea.style.boxShadow = '';
+
+        if (mode === 'theme') return;
+
+        var start = String(converse.conversationBgColor || ((cfg && cfg.theme) ? cfg.theme.bgColor : '') || '#17171f').trim() || '#17171f';
+        var end = String(converse.conversationGradientEnd || ((cfg && cfg.theme) ? cfg.theme.surfaceColor : '') || '#1f1f2e').trim() || '#1f1f2e';
+
+        if (mode === 'gradient') {
+            messageArea.style.background = 'linear-gradient(135deg, ' + start + ', ' + end + ')';
+            return;
+        }
+        if (mode === 'glass') {
+            messageArea.style.background = convertHexToRgba(start, 0.18);
+            messageArea.style.backdropFilter = 'blur(16px)';
+            messageArea.style.webkitBackdropFilter = 'blur(16px)';
+            messageArea.style.border = '1px solid ' + convertHexToRgba('#ffffff', 0.08);
+            messageArea.style.boxShadow = 'inset 0 1px 0 ' + convertHexToRgba('#ffffff', 0.08) + ', 0 12px 30px ' + convertHexToRgba('#000000', 0.18);
+            return;
+        }
+        if (mode === '3d') {
+            messageArea.style.background = start;
+            messageArea.style.border = '1px solid ' + convertHexToRgba('#ffffff', 0.06);
+            messageArea.style.boxShadow = 'inset 0 1px 0 ' + convertHexToRgba('#ffffff', 0.1) + ', inset 0 -18px 30px ' + convertHexToRgba('#000000', 0.22);
+            return;
+        }
+        // solid
+        messageArea.style.background = start;
+    }
+
+    function animateUserBubbleConversation(bubbleEl, cfg) {
+        if (!bubbleEl || bubbleEl.nodeType !== 1) return;
+        var prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (prefersReducedMotion) return;
+
+        var converse = getConverseConfig(cfg);
+        var mode = String(converse.userBubbleAnimation || 'none');
+        if (mode === 'none') return;
+        if (typeof bubbleEl.animate !== 'function') return;
+
+        var base = { duration: 240, easing: 'cubic-bezier(0.2, 0.8, 0.2, 1)', fill: 'both' };
+        if (mode === 'fade') {
+            bubbleEl.animate([{ opacity: 0.0 }, { opacity: 1.0 }], { duration: 200, easing: base.easing, fill: base.fill });
+            return;
+        }
+        if (mode === 'slide') {
+            bubbleEl.animate([{ opacity: 0.0, transform: 'translateX(16px)' }, { opacity: 1.0, transform: 'translateX(0)' }], base);
+            return;
+        }
+        if (mode === 'bounce') {
+            bubbleEl.animate([
+                { opacity: 0.0, transform: 'translateY(10px) scale(0.98)' },
+                { opacity: 1.0, transform: 'translateY(-2px) scale(1.01)' },
+                { opacity: 1.0, transform: 'translateY(0) scale(1)' }
+            ], { duration: 320, easing: 'cubic-bezier(0.16, 1, 0.3, 1)', fill: base.fill });
+            return;
+        }
+        // pop
+        bubbleEl.animate([{ opacity: 0.0, transform: 'scale(0.96) translateY(6px)' }, { opacity: 1.0, transform: 'scale(1) translateY(0)' }], base);
     }
 
     function waitForTypingMinimumDuration(typingHandle, cfg) {
@@ -792,6 +961,8 @@
         let scrollAnimFrame = null;
         let maximumSupportInputUnlocked = false;
         let initialConversationBooted = false;
+
+        if (msgList) applyConverseConversationBackground(msgList, config);
 
         function isMaximumSupportInputTrigger(choiceText) {
             return /chat with/i.test((choiceText || '').trim());
@@ -1642,6 +1813,14 @@
                     }
                 }
             }
+            if (who === 'me') {
+                var bubbleEl = div.querySelector('.msg__bubble');
+                applyUserBubbleConversationAppearance(bubbleEl, config);
+                animateUserBubbleConversation(bubbleEl, config);
+            } else {
+                var bubbleElOther = div.querySelector('.msg__bubble');
+                applyAssistantBubbleConversationAppearance(bubbleElOther, config);
+            }
             msgList.insertBefore(div, anchor);
             scrollToBottom();
         }
@@ -1678,6 +1857,14 @@
                         avatarEl.style.height = avatarSize + 'px';
                     }
                 }
+            }
+            if (who === 'me') {
+                var bubbleEl2 = div.querySelector('.msg__bubble');
+                applyUserBubbleConversationAppearance(bubbleEl2, config);
+                animateUserBubbleConversation(bubbleEl2, config);
+            } else {
+                var bubbleElOther2 = div.querySelector('.msg__bubble');
+                applyAssistantBubbleConversationAppearance(bubbleElOther2, config);
             }
             msgList.insertBefore(div, anchor);
 
