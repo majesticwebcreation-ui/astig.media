@@ -4090,9 +4090,11 @@ input:checked+.slider:before {
 */
 .notifications-rail {
     position: fixed;
-    top: 146px;
+    top: auto;
     right: 0;
     left: auto;
+    bottom: 18px;
+    bottom: calc(18px + env(safe-area-inset-bottom));
     z-index: 100000;
     width: min(360px, 100vw);
     padding-right: max(12px, env(safe-area-inset-right));
@@ -4240,10 +4242,12 @@ input:checked+.slider:before {
 
 @media (max-width: 768px) {
     .notifications-rail {
-        top: 126px;
+        top: auto;
         right: 0;
-        width: 100vw;
-        padding-right: 8px;
+        bottom: 12px;
+        bottom: calc(12px + env(safe-area-inset-bottom));
+        width: min(360px, calc(100vw - 24px));
+        padding-right: max(12px, env(safe-area-inset-right));
     }
 
     .notifications-panel {
