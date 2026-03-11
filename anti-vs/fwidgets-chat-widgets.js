@@ -1,6 +1,6 @@
 /*__ASTIG_DEPLOY_CONFIG_START__*/
 (function() {
-  var __astigDeployStamp = "2026-03-11T20:43:39.614Z";
+  var __astigDeployStamp = "2026-03-11T20:55:47.167Z";
   var __astigPrevStamp = String(window.__ASTIG_CHAT_DEPLOY_STAMP || '');
   if (__astigPrevStamp && __astigDeployStamp && __astigPrevStamp > __astigDeployStamp) { return; }
   if (__astigDeployStamp) window.__ASTIG_CHAT_DEPLOY_STAMP = __astigDeployStamp;
@@ -611,6 +611,19 @@
         if (rsvp.assistantAvatar !== undefined) config.header.avatar = rsvp.assistantAvatar;
         if (rsvp.logoType) config.header.logoType = rsvp.logoType;
         if (rsvp.logoUrl) config.header.logoUrl = rsvp.logoUrl;
+        if (rsvp.logoShape) config.header.logoShape = rsvp.logoShape;
+        if (rsvp.logoSize !== undefined) {
+            const logoSize = Number(rsvp.logoSize);
+            if (Number.isFinite(logoSize) && logoSize > 0) config.header.logoSize = logoSize;
+        }
+        if (rsvp.logoOffsetX !== undefined) {
+            const logoOffsetX = Number(rsvp.logoOffsetX);
+            if (Number.isFinite(logoOffsetX)) config.header.logoOffsetX = logoOffsetX;
+        }
+        if (rsvp.logoOffsetY !== undefined) {
+            const logoOffsetY = Number(rsvp.logoOffsetY);
+            if (Number.isFinite(logoOffsetY)) config.header.logoOffsetY = logoOffsetY;
+        }
         if (rsvp.launcherIconType) config.launcher.iconType = rsvp.launcherIconType;
         if (rsvp.launcherImageUrl) config.launcher.imageUrl = rsvp.launcherImageUrl;
         if (rsvp.launcherIcon) config.launcher.icon = rsvp.launcherIcon;
