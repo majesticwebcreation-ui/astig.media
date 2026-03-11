@@ -1,12 +1,12 @@
 /*__ASTIG_DEPLOY_CONFIG_START__*/
 (function() {
-  var __astigDeployStamp = "2026-03-10T22:59:58.302Z";
+  var __astigDeployStamp = "2026-03-11T09:44:05.923Z";
   var __astigPrevStamp = String(window.__ASTIG_CHAT_DEPLOY_STAMP || '');
   if (__astigPrevStamp && __astigDeployStamp && __astigPrevStamp > __astigDeployStamp) { return; }
   if (__astigDeployStamp) window.__ASTIG_CHAT_DEPLOY_STAMP = __astigDeployStamp;
   window.RSVPChatConfig = window.RSVPChatConfig || {};
-  if (!window.RSVPChatConfig.webhookUrl) window.RSVPChatConfig.webhookUrl = "https://n8n.srv1291312.hstgr.cloud/webhook/a368d690-b760-49a9-ba19-67c4a6971fa3/chat";
-  if (!window.RSVPChatConfig.fullConfig || typeof window.RSVPChatConfig.fullConfig !== 'object') window.RSVPChatConfig.fullConfig = {"theme":{"primaryColor":"#5aa7d9","bgColor":"#dfe8f1","surfaceColor":"#d5dee8","fontFamily":"'DM Sans', sans-serif","borderRadius":30,"mode":"solid","gradient":{"start":"#6c63ff","end":"#ff6584"},"headerBgColor":"#dfe8f1","headerTextColor":"#5e6873","topHeroMediaType":"none","topHeroMediaUrl":""},"header":{"title":"River","name":"River","status":"","fontFamily":"'Syne', sans-serif","nameFontSize":15,"nameFontWeight":600,"statusFontSize":12,"animation":"none","logoOffsetX":0,"logoOffsetY":0,"nameOffsetX":0,"nameOffsetY":0,"statusOffsetX":0,"statusOffsetY":0,"avatar":"EL","avatarSize":"24","logoSize":"56","logoType":"image","logoUrl":"https://widjets.astigmedia.com/img/main-logo.png"},"assistant":{"name":"Aria"},"user":{"avatar":"","avatarSize":"0"},"launcher":{"position":"bottom-right","shape":"circle","iconType":"image","icon":"headset","imageUrl":"https://widjets.astigmedia.com/img/Launcher-Logo.png","size":"48","widgetToggleAnimation":"none","badgeEnabled":true,"text":"Chat With Us","bubbleEnabled":false,"bubbleText":"Ta-da! You've found your creative superpower spot.","bubbleMode":"typewriter","bubbleTimed":false,"bubbleDelaySec":5,"bubbleDurationSec":10,"bgStyle":"solid","bgColor":"#5aa7d9","gradientEnd":"#8ed1f0","animation":"pulse"},"video":{"layout":"inline","hideBehavior":"first-question","loop":false,"url":"","imageUrl":""},"questions":[{"id":1,"text":"Hi there, welcome to customer support. How can I help you?","type":"text","displayMode":"typewriter","choices":""}],"questionsStyle":"solid","webhook":{"url":"https://n8n.srv1291312.hstgr.cloud/webhook/a368d690-b760-49a9-ba19-67c4a6971fa3/chat","testUrl":"","chatUrl":"https://n8n.srv1291312.hstgr.cloud/webhook/a368d690-b760-49a9-ba19-67c4a6971fa3/chat","proxyUrl":"","activeMode":"chat","production":false,"externalJsUrl":"https://cdn.jsdelivr.net/gh/majesticwebcreation-ui/astig.media@main/anti-vs/fwidgets-chat-embed-runtime.js"},"auth":{"enabled":false,"headerName":"Authorization","headerPrefix":"Bearer","headerValue":"","useForWebhook":false,"withCredentials":false},"converse":{"typingEnabled":true,"typingText":"River Thinking...","statusDelaySec":3,"minVisibleSec":0.8,"animation":"pulse","conversationFill":"theme","conversationBgColor":"#17171f","conversationGradientEnd":"#1f1f2e","bubbleFill":"glass","bubbleShape":"soft","indicatorColor":"#7070a0","bubbleBgColor":"#2a2a3d","bubbleGradientEnd":"#4b4f64","userBubbleFontFamily":"","userBubbleFontSizePx":15,"userBubbleBgColor":"#5aa7d9","userBubbleAnimation":"none","composer":{"fill":"theme","bgColor":"#1f1f2e","gradientEnd":"#17171f","fontFamily":"","fontSizePx":14},"sendButton":{"fill":"gradient","bgColor":"#4cc9ff","gradientEnd":"#1f6be6","iconUrl":"","sizePx":50,"shape":"circle"},"uploadButton":{"iconUrl":""}},"footer":{"text":"","url":"","fontFamily":"'Inter', sans-serif","animation":"none","textColor":"#7070a0","fontSize":"11","position":"center"},"ui":{"showPipelineMonitor":false,"showRealtimeTelemetry":false,"showRealtimeFeed":false,"templateStyle":"support-reference"}};
+  if (!window.RSVPChatConfig.webhookUrl) window.RSVPChatConfig.webhookUrl = "https://n8n.srv1291312.hstgr.cloud/webhook/a4d3520b-1922-4e9b-b162-3b15a5060985/chat";
+  if (!window.RSVPChatConfig.fullConfig || typeof window.RSVPChatConfig.fullConfig !== 'object') window.RSVPChatConfig.fullConfig = {"theme":{"primaryColor":"#5aa7d9","bgColor":"#dfe8f1","surfaceColor":"#d5dee8","fontFamily":"'DM Sans', sans-serif","borderRadius":30,"mode":"solid","gradient":{"start":"#6c63ff","end":"#ff6584"},"headerBgColor":"#dfe8f1","headerTextColor":"#5e6873","topHeroMediaType":"none","topHeroMediaUrl":""},"header":{"title":"Aria","name":"Aria","status":"","fontFamily":"'Syne', sans-serif","nameFontSize":15,"nameFontWeight":600,"statusFontSize":12,"animation":"none","logoOffsetX":0,"logoOffsetY":0,"nameOffsetX":0,"nameOffsetY":0,"statusOffsetX":0,"statusOffsetY":0,"avatar":"EL","avatarSize":"24","logoSize":"56","logoType":"text","logoUrl":""},"assistant":{"name":"Aria"},"user":{"avatar":"","avatarSize":"0"},"launcher":{"position":"bottom-right","shape":"circle","iconType":"icon","icon":"headset","imageUrl":"","size":"48","widgetToggleAnimation":"none","badgeEnabled":false,"text":"","bubbleEnabled":false,"bubbleText":"Ta-da! You've found your creative superpower spot.","bubbleMode":"instant","bubbleTimed":false,"bubbleDelaySec":5,"bubbleDurationSec":10,"bgStyle":"solid","bgColor":"#5aa7d9","gradientEnd":"#8ed1f0","animation":"none"},"video":{"layout":"inline","hideBehavior":"first-question","loop":false,"url":"","imageUrl":""},"questions":[{"id":1,"text":"Hi there, welcome to customer support. How can I help you?","type":"text","displayMode":"instant","choices":""}],"questionsStyle":"solid","webhook":{"url":"https://n8n.srv1291312.hstgr.cloud/webhook/a4d3520b-1922-4e9b-b162-3b15a5060985/chat","testUrl":"","chatUrl":"https://n8n.srv1291312.hstgr.cloud/webhook/a4d3520b-1922-4e9b-b162-3b15a5060985/chat","proxyUrl":"","activeMode":"production","production":true,"externalJsUrl":"https://cdn.jsdelivr.net/gh/majesticwebcreation-ui/astig.media@main/anti-vs/fwidgets-chat-embed-runtime.js"},"auth":{"enabled":false,"headerName":"Authorization","headerPrefix":"Bearer","headerValue":"","useForWebhook":false,"withCredentials":false},"converse":{"typingEnabled":true,"typingText":"","statusDelaySec":5,"minVisibleSec":0.8,"animation":"bounce","conversationFill":"glass","conversationBgColor":"#c7c7e6","conversationGradientEnd":"#1f1f2e","bubbleFill":"3d","bubbleShape":"sharp","indicatorColor":"#7070a0","bubbleBgColor":"#bbbbce","bubbleGradientEnd":"#4b4f64","userBubbleFontFamily":"","userBubbleFontSizePx":15,"userBubbleBgColor":"#5aa7d9","userBubbleAnimation":"slide","composer":{"fill":"theme","bgColor":"#1f1f2e","gradientEnd":"#17171f","fontFamily":"","fontSizePx":14},"sendButton":{"fill":"gradient","bgColor":"#4cc9ff","gradientEnd":"#1f6be6","iconUrl":"","sizePx":50,"shape":"circle"},"uploadButton":{"iconUrl":""}},"footer":{"text":"","url":"","fontFamily":"'Inter', sans-serif","animation":"none","textColor":"#7070a0","fontSize":"11","position":"center"},"ui":{"showPipelineMonitor":false,"showRealtimeTelemetry":false,"showRealtimeFeed":false,"templateStyle":"support-reference"}};
   if (__astigDeployStamp) window.RSVPChatConfig.__deployedAt = __astigDeployStamp;
   try {
     var __astigTemplateStyleName = (((window.RSVPChatConfig.fullConfig || {}).ui || {}).templateStyle || '');
@@ -60,7 +60,7 @@
  */
 (function() {
     // Current Configuration
-    const defaultBundleConfig = {"theme":{"primaryColor":"#5aa7d9","bgColor":"#dfe8f1","surfaceColor":"#d5dee8","fontFamily":"'DM Sans', sans-serif","borderRadius":30,"mode":"solid","gradient":{"start":"#6c63ff","end":"#ff6584"},"headerBgColor":"#dfe8f1","headerTextColor":"#5e6873","topHeroMediaType":"none","topHeroMediaUrl":""},"header":{"title":"River","name":"River","status":"","fontFamily":"'Syne', sans-serif","nameFontSize":15,"nameFontWeight":600,"statusFontSize":12,"animation":"none","logoOffsetX":0,"logoOffsetY":0,"nameOffsetX":0,"nameOffsetY":0,"statusOffsetX":0,"statusOffsetY":0,"avatar":"EL","avatarSize":"24","logoSize":"56","logoType":"image","logoUrl":"https://widjets.astigmedia.com/img/main-logo.png"},"assistant":{"name":"Aria"},"user":{"avatar":"","avatarSize":"0"},"launcher":{"position":"bottom-right","shape":"circle","iconType":"image","icon":"headset","imageUrl":"https://widjets.astigmedia.com/img/Launcher-Logo.png","size":"48","widgetToggleAnimation":"none","badgeEnabled":true,"text":"Chat With Us","bubbleEnabled":false,"bubbleText":"Ta-da! You've found your creative superpower spot.","bubbleMode":"typewriter","bubbleTimed":false,"bubbleDelaySec":5,"bubbleDurationSec":10,"bgStyle":"solid","bgColor":"#5aa7d9","gradientEnd":"#8ed1f0","animation":"pulse"},"video":{"layout":"inline","hideBehavior":"first-question","loop":false,"url":"","imageUrl":""},"questions":[{"id":1,"text":"Hi there, welcome to customer support. How can I help you?","type":"text","displayMode":"typewriter","choices":""}],"questionsStyle":"solid","webhook":{"url":"https://n8n.srv1291312.hstgr.cloud/webhook/a368d690-b760-49a9-ba19-67c4a6971fa3/chat","testUrl":"","chatUrl":"https://n8n.srv1291312.hstgr.cloud/webhook/a368d690-b760-49a9-ba19-67c4a6971fa3/chat","proxyUrl":"","activeMode":"chat","production":false,"externalJsUrl":"https://cdn.jsdelivr.net/gh/majesticwebcreation-ui/astig.media@main/anti-vs/fwidgets-chat-embed-runtime.js"},"auth":{"enabled":false,"headerName":"Authorization","headerPrefix":"Bearer","headerValue":"","useForWebhook":false,"withCredentials":false},"converse":{"typingEnabled":true,"typingText":"River Thinking...","statusDelaySec":3,"minVisibleSec":0.8,"animation":"pulse","conversationFill":"theme","conversationBgColor":"#17171f","conversationGradientEnd":"#1f1f2e","bubbleFill":"glass","bubbleShape":"soft","indicatorColor":"#7070a0","bubbleBgColor":"#2a2a3d","bubbleGradientEnd":"#4b4f64","userBubbleFontFamily":"","userBubbleFontSizePx":15,"userBubbleBgColor":"#5aa7d9","userBubbleAnimation":"none","composer":{"fill":"theme","bgColor":"#1f1f2e","gradientEnd":"#17171f","fontFamily":"","fontSizePx":14},"sendButton":{"fill":"gradient","bgColor":"#4cc9ff","gradientEnd":"#1f6be6","iconUrl":"","sizePx":50,"shape":"circle"},"uploadButton":{"iconUrl":""}},"footer":{"text":"","url":"","fontFamily":"'Inter', sans-serif","animation":"none","textColor":"#7070a0","fontSize":"11","position":"center"},"ui":{"showPipelineMonitor":false,"showRealtimeTelemetry":false,"showRealtimeFeed":false,"templateStyle":"support-reference"}};
+    const defaultBundleConfig = {"theme":{"primaryColor":"#5aa7d9","bgColor":"#dfe8f1","surfaceColor":"#d5dee8","fontFamily":"'DM Sans', sans-serif","borderRadius":30,"mode":"solid","gradient":{"start":"#6c63ff","end":"#ff6584"},"headerBgColor":"#dfe8f1","headerTextColor":"#5e6873","topHeroMediaType":"none","topHeroMediaUrl":""},"header":{"title":"Aria","name":"Aria","status":"","fontFamily":"'Syne', sans-serif","nameFontSize":15,"nameFontWeight":600,"statusFontSize":12,"animation":"none","logoOffsetX":0,"logoOffsetY":0,"nameOffsetX":0,"nameOffsetY":0,"statusOffsetX":0,"statusOffsetY":0,"avatar":"EL","avatarSize":"24","logoSize":"56","logoType":"text","logoUrl":""},"assistant":{"name":"Aria"},"user":{"avatar":"","avatarSize":"0"},"launcher":{"position":"bottom-right","shape":"circle","iconType":"icon","icon":"headset","imageUrl":"","size":"48","widgetToggleAnimation":"none","badgeEnabled":false,"text":"","bubbleEnabled":false,"bubbleText":"Ta-da! You've found your creative superpower spot.","bubbleMode":"instant","bubbleTimed":false,"bubbleDelaySec":5,"bubbleDurationSec":10,"bgStyle":"solid","bgColor":"#5aa7d9","gradientEnd":"#8ed1f0","animation":"none"},"video":{"layout":"inline","hideBehavior":"first-question","loop":false,"url":"","imageUrl":""},"questions":[{"id":1,"text":"Hi there, welcome to customer support. How can I help you?","type":"text","displayMode":"instant","choices":""}],"questionsStyle":"solid","webhook":{"url":"https://n8n.srv1291312.hstgr.cloud/webhook/a4d3520b-1922-4e9b-b162-3b15a5060985/chat","testUrl":"","chatUrl":"https://n8n.srv1291312.hstgr.cloud/webhook/a4d3520b-1922-4e9b-b162-3b15a5060985/chat","proxyUrl":"","activeMode":"production","production":true,"externalJsUrl":"https://cdn.jsdelivr.net/gh/majesticwebcreation-ui/astig.media@main/anti-vs/fwidgets-chat-embed-runtime.js"},"auth":{"enabled":false,"headerName":"Authorization","headerPrefix":"Bearer","headerValue":"","useForWebhook":false,"withCredentials":false},"converse":{"typingEnabled":true,"typingText":"","statusDelaySec":5,"minVisibleSec":0.8,"animation":"bounce","conversationFill":"glass","conversationBgColor":"#c7c7e6","conversationGradientEnd":"#1f1f2e","bubbleFill":"3d","bubbleShape":"sharp","indicatorColor":"#7070a0","bubbleBgColor":"#bbbbce","bubbleGradientEnd":"#4b4f64","userBubbleFontFamily":"","userBubbleFontSizePx":15,"userBubbleBgColor":"#5aa7d9","userBubbleAnimation":"slide","composer":{"fill":"theme","bgColor":"#1f1f2e","gradientEnd":"#17171f","fontFamily":"","fontSizePx":14},"sendButton":{"fill":"gradient","bgColor":"#4cc9ff","gradientEnd":"#1f6be6","iconUrl":"","sizePx":50,"shape":"circle"},"uploadButton":{"iconUrl":""}},"footer":{"text":"","url":"","fontFamily":"'Inter', sans-serif","animation":"none","textColor":"#7070a0","fontSize":"11","position":"center"},"ui":{"showPipelineMonitor":false,"showRealtimeTelemetry":false,"showRealtimeFeed":false,"templateStyle":"support-reference"}};
     const rsvp = window.RSVPChatConfig || {};
     const hasFullConfig = !!(rsvp && typeof rsvp.fullConfig === 'object' && rsvp.fullConfig);
     const config = hasFullConfig
@@ -381,6 +381,109 @@
         messageArea.style.background = start;
     }
 
+    function applyConverseComposerAppearance(inputRow, inputEl, sendBtnEl, cfg) {
+        if (inputRow && inputRow.nodeType === 1) {
+            inputRow.style.background = '';
+            inputRow.style.borderTop = '';
+            inputRow.style.boxShadow = '';
+            inputRow.style.backdropFilter = '';
+            inputRow.style.webkitBackdropFilter = '';
+
+            var sourceConverse = (cfg && cfg.converse && typeof cfg.converse === 'object') ? cfg.converse : {};
+            var composer = (sourceConverse.composer && typeof sourceConverse.composer === 'object') ? sourceConverse.composer : {};
+            var fill = String(composer.fill || 'theme');
+
+            var themeSurface = String((cfg && cfg.theme && cfg.theme.surfaceColor) || '#1f1f2e').trim() || '#1f1f2e';
+            var start = String(composer.bgColor || themeSurface).trim() || themeSurface;
+            var end = String(composer.gradientEnd || themeSurface).trim() || themeSurface;
+
+            if (fill === 'solid') {
+                inputRow.style.background = start;
+                inputRow.style.borderTop = '1px solid ' + convertHexToRgba('#ffffff', 0.06);
+            } else if (fill === 'gradient') {
+                inputRow.style.background = 'linear-gradient(135deg, ' + start + ', ' + end + ')';
+                inputRow.style.borderTop = '1px solid ' + convertHexToRgba('#ffffff', 0.08);
+            } else if (fill === 'glass') {
+                inputRow.style.background = convertHexToRgba(start, 0.16);
+                inputRow.style.backdropFilter = 'blur(16px)';
+                inputRow.style.webkitBackdropFilter = 'blur(16px)';
+                inputRow.style.borderTop = '1px solid ' + convertHexToRgba('#ffffff', 0.12);
+                inputRow.style.boxShadow = 'inset 0 1px 0 ' + convertHexToRgba('#ffffff', 0.08) + ', 0 -10px 24px ' + convertHexToRgba('#000000', 0.22);
+            } else if (fill === '3d') {
+                inputRow.style.background = start;
+                inputRow.style.borderTop = '1px solid ' + convertHexToRgba('#ffffff', 0.06);
+                inputRow.style.boxShadow = 'inset 0 1px 0 ' + convertHexToRgba('#ffffff', 0.1) + ', inset 0 -18px 30px ' + convertHexToRgba('#000000', 0.28);
+            } else {
+                inputRow.style.background = themeSurface;
+            }
+        }
+
+        if (inputEl && inputEl.nodeType === 1) {
+            var sourceConverseForFont = (cfg && cfg.converse && typeof cfg.converse === 'object') ? cfg.converse : {};
+            var composerForFont = (sourceConverseForFont.composer && typeof sourceConverseForFont.composer === 'object') ? sourceConverseForFont.composer : {};
+            var fontFamily = String(composerForFont.fontFamily || '').trim();
+            inputEl.style.fontFamily = fontFamily || '';
+            var sizePx = Number(composerForFont.fontSizePx);
+            inputEl.style.fontSize = (Number.isFinite(sizePx) ? sizePx : 14) + 'px';
+        }
+
+        if (sendBtnEl && sendBtnEl.nodeType === 1) {
+            sendBtnEl.style.background = '';
+            sendBtnEl.style.border = '';
+            sendBtnEl.style.boxShadow = '';
+            sendBtnEl.style.backdropFilter = '';
+            sendBtnEl.style.webkitBackdropFilter = '';
+            sendBtnEl.style.animation = '';
+
+            var sourceConverseForSend = (cfg && cfg.converse && typeof cfg.converse === 'object') ? cfg.converse : {};
+            var send = (sourceConverseForSend.sendButton && typeof sourceConverseForSend.sendButton === 'object') ? sourceConverseForSend.sendButton : {};
+            var sizeVal = Number(send.sizePx);
+            var resolvedSize = Number.isFinite(sizeVal) ? Math.max(32, Math.min(64, Math.round(sizeVal))) : 50;
+            sendBtnEl.style.width = resolvedSize + 'px';
+            sendBtnEl.style.height = resolvedSize + 'px';
+
+            var shape = String(send.shape || 'circle');
+            sendBtnEl.style.borderRadius = shape === 'square' ? '12px' : (shape === 'rounded' ? '18px' : '50%');
+
+            var fillMode = String(send.fill || 'theme');
+            var themeStart = String((cfg && cfg.theme && cfg.theme.primaryColor) || '#4cc9ff').trim() || '#4cc9ff';
+            var themeEnd = String((cfg && cfg.theme && cfg.theme.gradient && cfg.theme.gradient.end) || '#1f6be6').trim() || '#1f6be6';
+            var startColor = String(send.bgColor || themeStart).trim() || themeStart;
+            var endColor = String(send.gradientEnd || themeEnd).trim() || themeEnd;
+
+            if (fillMode === 'solid') {
+                sendBtnEl.style.background = startColor;
+                sendBtnEl.style.border = '1px solid ' + convertHexToRgba('#ffffff', 0.24);
+                sendBtnEl.style.boxShadow = 'inset 0 2px 3px ' + convertHexToRgba('#ffffff', 0.52) + ', inset 0 -4px 8px ' + convertHexToRgba('#000000', 0.26) + ', 0 9px 18px ' + convertHexToRgba('#000000', 0.32);
+            } else if (fillMode === 'gradient' || fillMode === 'theme') {
+                sendBtnEl.style.background = 'linear-gradient(145deg, ' + startColor + ' 0%, ' + endColor + ' 100%)';
+                sendBtnEl.style.border = '1px solid ' + convertHexToRgba('#ffffff', 0.28);
+                sendBtnEl.style.boxShadow = 'inset 0 2px 3px ' + convertHexToRgba('#ffffff', 0.55) + ', inset 0 -4px 8px ' + convertHexToRgba('#000000', 0.28) + ', 0 10px 20px ' + convertHexToRgba('#000000', 0.36);
+            } else if (fillMode === 'glass') {
+                sendBtnEl.style.background = convertHexToRgba(startColor, 0.22);
+                sendBtnEl.style.backdropFilter = 'blur(12px)';
+                sendBtnEl.style.webkitBackdropFilter = 'blur(12px)';
+                sendBtnEl.style.border = '1px solid ' + convertHexToRgba('#ffffff', 0.2);
+                sendBtnEl.style.boxShadow = 'inset 0 1px 2px ' + convertHexToRgba('#ffffff', 0.22) + ', 0 10px 22px ' + convertHexToRgba('#000000', 0.34);
+            } else if (fillMode === '3d') {
+                sendBtnEl.style.background = startColor;
+                sendBtnEl.style.border = '1px solid ' + convertHexToRgba('#ffffff', 0.18);
+                sendBtnEl.style.boxShadow = 'inset 0 2px 3px ' + convertHexToRgba('#ffffff', 0.4) + ', inset 0 -6px 10px ' + convertHexToRgba('#000000', 0.34) + ', 0 10px 20px ' + convertHexToRgba('#000000', 0.38);
+            } else if (fillMode === 'outline') {
+                sendBtnEl.style.background = 'transparent';
+                sendBtnEl.style.border = '2px solid ' + startColor;
+                sendBtnEl.style.boxShadow = 'none';
+            }
+
+            var iconEl = sendBtnEl.querySelector ? sendBtnEl.querySelector('.chat-widget__send-plane') : null;
+            if (iconEl && iconEl.nodeType === 1) {
+                var nextIconPx = Math.max(22, Math.min(56, Math.round(resolvedSize * 0.96)));
+                iconEl.style.width = nextIconPx + 'px';
+                iconEl.style.height = nextIconPx + 'px';
+            }
+        }
+    }
+
     function animateUserBubbleConversation(bubbleEl, cfg) {
         if (!bubbleEl || bubbleEl.nodeType !== 1) return;
         var prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -612,6 +715,25 @@
         document.head.appendChild(style);
     }
 
+    function ensureWidgetToggleAnimationStyles() {
+        if (document.getElementById('astig-chat-widget-toggle-anim-style')) return;
+        const style = document.createElement('style');
+        style.id = 'astig-chat-widget-toggle-anim-style';
+        style.textContent = [
+            '@keyframes astigWidgetFadeIn{from{opacity:0}to{opacity:1}}',
+            '@keyframes astigWidgetFadeOut{from{opacity:1}to{opacity:0}}',
+            '@keyframes astigWidgetScaleIn{from{opacity:0;transform:translateY(10px) scale(.94)}to{opacity:1;transform:translateY(0) scale(1)}}',
+            '@keyframes astigWidgetScaleOut{from{opacity:1;transform:translateY(0) scale(1)}to{opacity:0;transform:translateY(10px) scale(.94)}}',
+            '@keyframes astigWidgetPopIn{0%{opacity:0;transform:translateY(12px) scale(.86)}60%{opacity:1;transform:translateY(-2px) scale(1.02)}100%{opacity:1;transform:translateY(0) scale(1)}}',
+            '@keyframes astigWidgetPopOut{from{opacity:1;transform:translateY(0) scale(1)}to{opacity:0;transform:translateY(12px) scale(.9)}}',
+            '@keyframes astigWidgetSlideFromBottomIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}',
+            '@keyframes astigWidgetSlideToBottomOut{from{opacity:1;transform:translateY(0)}to{opacity:0;transform:translateY(16px)}}',
+            '@keyframes astigWidgetSlideFromTopIn{from{opacity:0;transform:translateY(-16px)}to{opacity:1;transform:translateY(0)}}',
+            '@keyframes astigWidgetSlideToTopOut{from{opacity:1;transform:translateY(0)}to{opacity:0;transform:translateY(-16px)}}'
+        ].join('');
+        document.head.appendChild(style);
+    }
+
     function wrapAnimatedEmojisInHtml(htmlText) {
         const html = String(htmlText || '');
         if (!html) return html;
@@ -691,11 +813,28 @@
         return '';
     }
 
+    function escapeHtmlAttribute(value) {
+        return String(value || '')
+            .replace(/&/g, '&amp;')
+            .replace(/"/g, '&quot;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;');
+    }
+
+    function normalizeIconUrl(value) {
+        var raw = String(value || '').trim();
+        if (!raw) return '';
+        if (/^javascript:/i.test(raw)) return '';
+        if (/[\"<>]/.test(raw)) return '';
+        return raw;
+    }
+
     // --- PROGRESSIVE RENDERING: Launcher Rendered First ---
     function renderLauncher() {
         console.log('Astig Media Chatbot: Rendering Launcher...');
         injectVisibilitySafetyStyles();
         ensureEmojiAnimationStyles();
+        ensureWidgetToggleAnimationStyles();
         const existingWrapper = document.getElementById('astig-chat-wrapper');
         if (existingWrapper) {
             const hasExistingLauncher = !!existingWrapper.querySelector('#cwLauncher');
@@ -863,11 +1002,14 @@
         const uploadBtnInlineStyle = isSupportTemplate
             ? ''
             : "background:transparent; color:var(--w-muted); border:none; padding:0; width:30px; cursor:pointer;";
-        const uploadIconHtml = isSupportTemplate
-            ? '<svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="1" y1="1" x2="23" y2="23"></line><path d="M9 9v3a3 3 0 0 0 5.12 2.12"></path><path d="M15 9.34V4a3 3 0 0 0-5.68-1.33"></path><path d="M17 16.95A7 7 0 0 1 5 12v-2"></path><path d="M19 10v2a7 7 0 0 1-2.08 4.95"></path><line x1="12" y1="19" x2="12" y2="23"></line><line x1="8" y1="23" x2="16" y2="23"></line></svg>'
-            : (isOrdersOnlineTemplate
-                ? '<svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h3l2-2h6l2 2h3a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2z"></path><circle cx="12" cy="13" r="3"></circle></svg>'
-                : '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"></path></svg>');
+        const uploadIconOverrideUrl = normalizeIconUrl(((config.converse && config.converse.uploadButton) ? config.converse.uploadButton.iconUrl : '') || '');
+        const uploadIconHtml = uploadIconOverrideUrl
+            ? '<img alt="Upload" src="' + escapeHtmlAttribute(uploadIconOverrideUrl) + '" style="width:20px;height:20px;object-fit:contain;display:block;pointer-events:none;" />'
+            : (isSupportTemplate
+                ? '<svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="1" y1="1" x2="23" y2="23"></line><path d="M9 9v3a3 3 0 0 0 5.12 2.12"></path><path d="M15 9.34V4a3 3 0 0 0-5.68-1.33"></path><path d="M17 16.95A7 7 0 0 1 5 12v-2"></path><path d="M19 10v2a7 7 0 0 1-2.08 4.95"></path><line x1="12" y1="19" x2="12" y2="23"></line><line x1="8" y1="23" x2="16" y2="23"></line></svg>'
+                : (isOrdersOnlineTemplate
+                    ? '<svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h3l2-2h6l2 2h3a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2z"></path><circle cx="12" cy="13" r="3"></circle></svg>'
+                    : '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"></path></svg>'));
         const restartIconHtml = isOrdersOnlineTemplate
             ? '<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="5" r="1.8"></circle><circle cx="12" cy="12" r="1.8"></circle><circle cx="12" cy="19" r="1.8"></circle></svg>'
             : '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path><path d="M3 3v5h5"></path></svg>';
@@ -879,9 +1021,12 @@
                 '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"></path></svg>' +
             '</button>'
         );
-        const sendIconHtml = isSupportTemplate
-            ? '<img class="chat-widget__send-plane" src="' + SEND_PLANE_ICON_DATA_URI + '" alt="Send" />'
-            : '<img class="chat-widget__send-plane" src="' + SEND_PLANE_ICON_DATA_URI + '" alt="Send" />';
+        const sendIconOverrideUrl = normalizeIconUrl(((config.converse && config.converse.sendButton) ? config.converse.sendButton.iconUrl : '') || '');
+        const sendIconHtml = sendIconOverrideUrl
+            ? '<img class="chat-widget__send-plane" src="' + escapeHtmlAttribute(sendIconOverrideUrl) + '" alt="Send" />'
+            : (isSupportTemplate
+                ? '<img class="chat-widget__send-plane" src="' + SEND_PLANE_ICON_DATA_URI + '" alt="Send" />'
+                : '<img class="chat-widget__send-plane" src="' + SEND_PLANE_ICON_DATA_URI + '" alt="Send" />');
         const extraUploadButtonHtml = isSupportTemplate
             ? '<button class="chat-widget__send" id="cwUploadBtnExtra" title="Upload File"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"></path></svg></button>'
             : (isOrdersOnlineTemplate
@@ -915,7 +1060,7 @@
                 '<input type="file" id="cwFileInput" style="display:none;" />' +
                 '<input class="chat-widget__input" id="cwInput" type="text" placeholder="' + inputPlaceholder + '" autocomplete="off" />' +
                 extraUploadButtonHtml +
-                '<button class="chat-widget__send" id="cwSendBtn">' +
+                '<button class="chat-widget__send chat-widget__send--primary" id="cwSendBtn">' +
                     sendIconHtml +
                 '</button>' +
             '</div>' +
@@ -961,6 +1106,7 @@
         let initialConversationBooted = false;
 
         if (msgList) applyConverseConversationBackground(msgList, config);
+        applyConverseComposerAppearance(inputRow, input, sendBtn, config);
 
         function isMaximumSupportInputTrigger(choiceText) {
             return /chat with/i.test((choiceText || '').trim());
@@ -1305,38 +1451,100 @@
             }, delayMs);
         }
 
-        function toggleWidget() {
-            if (widget.style.display === 'none') {
-                widget.style.display = 'flex';
-                widget.style.animation = 'msgIn 0.3s ease forwards';
-                scheduleVideoHideByMode('initial');
-                ensureConversationMediaPlayback();
-                if (msgHistory.length === 0) {
-                    initialConversationBooted = true;
-                    currentSessionId++;
-                    webhookSessionId = createStableSessionId('rsvp');
-                    const sessionId = currentSessionId;
-                    if (config.questions && config.questions.length > 0) {
-                        setTimeout(() => { if (sessionId === currentSessionId) simulateReply(null); }, 500);
-                    } else {
-                        const openingTranscript = (config.transcript || '').trim();
-                        if (getAssistantName(config) && openingTranscript) {
-                            setTimeout(() => {
-                               if (sessionId === currentSessionId) {
-                                   addMessage('other', getAssistantName(config), openingTranscript, config.header.avatar);
-                               }
-                            }, 500);
-                        }
+        function resolveWidgetTransformOrigin() {
+            var pos = String((config && config.launcher && config.launcher.position) || 'bottom-right');
+            var x = pos.indexOf('left') !== -1 ? 'left' : 'right';
+            var y = pos.indexOf('top') !== -1 ? 'top' : 'bottom';
+            return x + ' ' + y;
+        }
+
+        function resolveWidgetToggleAnimationMode() {
+            var mode = String((config && config.launcher && config.launcher.widgetToggleAnimation) || 'none').trim();
+            return mode === 'fade' || mode === 'scale' || mode === 'slide' || mode === 'pop' ? mode : 'none';
+        }
+
+        function resolveWidgetToggleKeyframe(opening) {
+            var mode = resolveWidgetToggleAnimationMode();
+            if (mode === 'none') return '';
+            var pos = String((config && config.launcher && config.launcher.position) || 'bottom-right');
+            var isTop = pos.indexOf('top') !== -1;
+            if (mode === 'fade') return opening ? 'astigWidgetFadeIn' : 'astigWidgetFadeOut';
+            if (mode === 'scale') return opening ? 'astigWidgetScaleIn' : 'astigWidgetScaleOut';
+            if (mode === 'pop') return opening ? 'astigWidgetPopIn' : 'astigWidgetPopOut';
+            return opening
+                ? (isTop ? 'astigWidgetSlideFromTopIn' : 'astigWidgetSlideFromBottomIn')
+                : (isTop ? 'astigWidgetSlideToTopOut' : 'astigWidgetSlideToBottomOut');
+        }
+
+        function clearPendingWidgetClose() {
+            if (!widget || !widget.__astigWidgetCloseHandler) return;
+            widget.removeEventListener('animationend', widget.__astigWidgetCloseHandler);
+            widget.__astigWidgetCloseHandler = null;
+        }
+
+        function openWidget() {
+            if (!widget) return;
+            clearPendingWidgetClose();
+            widget.style.display = 'flex';
+            widget.style.transformOrigin = resolveWidgetTransformOrigin();
+            widget.style.animation = '';
+            var prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            var keyframe = (!prefersReducedMotion) ? resolveWidgetToggleKeyframe(true) : '';
+            if (keyframe) {
+                widget.style.animation = keyframe + ' 240ms cubic-bezier(0.2, 0.9, 0.2, 1) both';
+            }
+
+            scheduleVideoHideByMode('initial');
+            ensureConversationMediaPlayback();
+            if (msgHistory.length === 0) {
+                initialConversationBooted = true;
+                currentSessionId++;
+                webhookSessionId = createStableSessionId('rsvp');
+                const sessionId = currentSessionId;
+                if (config.questions && config.questions.length > 0) {
+                    setTimeout(() => { if (sessionId === currentSessionId) simulateReply(null); }, 500);
+                } else {
+                    const openingTranscript = (config.transcript || '').trim();
+                    if (getAssistantName(config) && openingTranscript) {
+                        setTimeout(() => {
+                           if (sessionId === currentSessionId) {
+                               addMessage('other', getAssistantName(config), openingTranscript, config.header.avatar);
+                           }
+                        }, 500);
                     }
                 }
-            } else {
-                widget.style.display = 'none';
             }
+        }
+
+        function closeWidget() {
+            if (!widget) return;
+            clearPendingWidgetClose();
+            widget.style.transformOrigin = resolveWidgetTransformOrigin();
+            widget.style.animation = '';
+            var prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            var keyframe = (!prefersReducedMotion) ? resolveWidgetToggleKeyframe(false) : '';
+            if (!keyframe) {
+                widget.style.display = 'none';
+                return;
+            }
+            widget.style.animation = keyframe + ' 200ms cubic-bezier(0.2, 0.9, 0.2, 1) both';
+            widget.__astigWidgetCloseHandler = function() {
+                clearPendingWidgetClose();
+                widget.style.display = 'none';
+                widget.style.animation = '';
+            };
+            widget.addEventListener('animationend', widget.__astigWidgetCloseHandler);
+        }
+
+        function toggleWidget() {
+            if (!widget) return;
+            if (widget.style.display === 'none') openWidget();
+            else closeWidget();
         }
         scheduleLauncherBadgeVisibility();
         scheduleLauncherBubbleVisibility();
         launcher.addEventListener('click', toggleWidget);
-        if (closeBtn) closeBtn.addEventListener('click', toggleWidget);
+        if (closeBtn) closeBtn.addEventListener('click', closeWidget);
 
         if (restartBtn) {
             restartBtn.addEventListener('click', () => {
