@@ -1,6 +1,6 @@
 /*__ASTIG_DEPLOY_CONFIG_START__*/
 (function() {
-  var __astigDeployStamp = "2026-03-11T10:12:17.720Z";
+  var __astigDeployStamp = "2026-03-11T10:18:10.498Z";
   var __astigPrevStamp = String(window.__ASTIG_CHAT_DEPLOY_STAMP || '');
   if (__astigPrevStamp && __astigDeployStamp && __astigPrevStamp > __astigDeployStamp) { return; }
   if (__astigDeployStamp) window.__ASTIG_CHAT_DEPLOY_STAMP = __astigDeployStamp;
@@ -829,6 +829,32 @@
         return raw;
     }
 
+    function getLogoShapeStyle(cfg) {
+        const header = (cfg && cfg.header) || {};
+        const rawSize = Number(header.logoSize);
+        const size = Number.isFinite(rawSize) && rawSize > 0 ? rawSize : 56;
+        const shape = String(header.logoShape || 'circle').toLowerCase();
+
+        let width = size;
+        let height = size;
+        let borderRadius = '50%';
+
+        if (shape === 'rectangle') {
+            width = Math.round(size * 1.6);
+            height = size;
+            borderRadius = '12px';
+        } else if (shape === 'rounded') {
+            borderRadius = '12px';
+        } else if (shape === 'square') {
+            borderRadius = '0px';
+        } else {
+            borderRadius = '50%';
+        }
+
+        const fontSize = Math.max(12, Math.round(height * 0.5));
+        return { width, height, borderRadius, fontSize };
+    }
+
     // --- PROGRESSIVE RENDERING: Launcher Rendered First ---
     function renderLauncher() {
         console.log('Astig Media Chatbot: Rendering Launcher...');
@@ -945,7 +971,7 @@
     const isMaxCustomerService2Template = templateStyle === 'max-customer-service-2';
         const supportAvatarText = ((config.header.status || getHeaderTitle(config) || 'A') + '').substring(0, 2).toUpperCase();
         const avatarHtml = (config.header.logoType === 'image' && config.header.logoUrl)
-            ? '<img src="' + config.header.logoUrl + '" style="width:100%;height:100%;object-fit:cover;border-radius:50%;">'
+            ? '<img src="' + config.header.logoUrl + '" style="width:100%;height:100%;object-fit:cover;border-radius:' + logoShape.borderRadius + ';">'
             : (isSupportTemplate ? supportAvatarText : (getHeaderTitle(config) ? getHeaderTitle(config).substring(0, 2).toUpperCase() : 'A'));
         const logoOffsetStyle = 'transform:translate(' + (Number(config.header.logoOffsetX) || 0) + 'px,' + (Number(config.header.logoOffsetY) || 0) + 'px);';
         const nameOffsetStyle = 'transform:translate(' + (Number(config.header.nameOffsetX) || 0) + 'px,' + (Number(config.header.nameOffsetY) || 0) + 'px);';
@@ -955,8 +981,9 @@
         const headerTextColor = (config.theme && config.theme.headerTextColor) ? config.theme.headerTextColor : '';
         const headerNameStyle = nameOffsetStyle + 'font-family:' + headerFontFamily + ';font-size:' + (Number(config.header.nameFontSize) || 15) + 'px;font-weight:' + (Number(config.header.nameFontWeight) || 600) + ';' + (headerTextColor ? ('color:' + headerTextColor + ';') : '');
         const headerStatusStyle = statusOffsetStyle + 'font-family:' + headerFontFamily + ';font-size:' + (Number(config.header.statusFontSize) || 12) + 'px;' + (headerTextColor ? ('color:' + headerTextColor + ';') : '');
-        const logoSizePx = Number(config.header.logoSize) || 56;
-        const avatarSizeStyle = 'width:' + logoSizePx + 'px;height:' + logoSizePx + 'px;font-size:' + Math.max(12, Math.round(logoSizePx * 0.5)) + 'px;';
+        const logoShape = getLogoShapeStyle(config);
+        const logoSizePx = logoShape.width;
+        const avatarSizeStyle = 'width:' + logoShape.width + 'px;height:' + logoShape.height + 'px;font-size:' + logoShape.fontSize + 'px;border-radius:' + logoShape.borderRadius + ';overflow:hidden;';
         const headerBgInlineStyle = (config.theme && config.theme.headerBgColor && !isMaximumSupportTemplate && !isOrdersOnlineTemplate)
             ? ' style="background:' + config.theme.headerBgColor + ';"'
             : '';
