@@ -4498,3 +4498,77 @@ input:checked+.slider:before {
 .chat-widget.chat-widget--rsvp-timeline .chat-widget__input::placeholder {
     color: rgba(233, 244, 255, 0.72);
 }
+
+.template-runtime-panel {
+    width: 490px;
+    max-width: 490px;
+    margin: 0 0 18px;
+    padding: 0;
+    border: none;
+    border-radius: 20px;
+    background: transparent;
+    box-shadow: none;
+    grid-area: 1 / 1;
+    justify-self: center;
+    align-self: center;
+    position: relative;
+    overflow: visible;
+    z-index: 2;
+}
+
+.template-runtime-panel iframe {
+    transition: opacity 220ms ease, transform 240ms ease, visibility 0s linear;
+}
+
+.template-runtime-panel.template-runtime-panel--widget-closed iframe {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateY(8px) scale(0.98);
+}
+
+.template-runtime-panel__launcher-mount {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 4;
+    overflow: visible;
+}
+
+.template-runtime-panel__launcher-mount .cw-launcher {
+    position: absolute;
+    pointer-events: auto;
+}
+
+.preview-area.preview-area--runtime-open .create-bot-btn {
+    position: fixed;
+    top: 86px;
+    right: 20px;
+    left: auto;
+    opacity: 1;
+    pointer-events: auto;
+    transform: none;
+    display: inline-flex;
+    visibility: visible;
+    z-index: 200000;
+}
+
+.preview-area.preview-area--runtime-open .preview-layout {
+    width: min(1120px, 100%);
+    justify-content: flex-end;
+    align-items: flex-start;
+    padding: 18px;
+}
+
+.preview-area.preview-area--runtime-open .chat-preview-stack {
+    display: none;
+}
+
+.preview-area.preview-area--runtime-open .template-runtime-panel {
+    margin: 28px auto 18px;
+}
+
+.preview-area.preview-area--runtime-open.preview-area--runtime-with-telemetry .template-runtime-panel {
+    justify-self: start;
+    margin: 28px 0 18px 24px;
+}
