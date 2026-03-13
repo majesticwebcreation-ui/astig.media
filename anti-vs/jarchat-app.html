@@ -25,6 +25,14 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+*::-webkit-scrollbar {
+    width: 0 !important;
+    height: 0 !important;
+    display: none !important;
 }
 
 html {
@@ -56,6 +64,17 @@ body::-webkit-scrollbar {
     width: 0;
     height: 0;
     display: none;
+}
+
+iframe {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+iframe::-webkit-scrollbar {
+    width: 0 !important;
+    height: 0 !important;
+    display: none !important;
 }
 
 /* reused background animations */
@@ -319,6 +338,31 @@ body::-webkit-scrollbar {
     display: flex;
     align-items: center;
     gap: 10px;
+}
+
+.brand-logo {
+    width: 28px;
+    height: 28px;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    color: var(--text-main);
+    font-size: 0.75rem;
+    font-weight: 700;
+    line-height: 1;
+    text-transform: uppercase;
+    flex-shrink: 0;
+}
+
+.brand-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
 }
 
 .status-dot {
@@ -856,6 +900,7 @@ input:checked+.slider:before {
             <header class="form-header">
                 <div class="brand">
                     <div class="status-dot"></div>
+                    <div class="brand-logo" aria-hidden="true"></div>
                     <h1>Cherry</h1>
                 </div>
                 <div class="header-actions">
@@ -922,7 +967,7 @@ input:checked+.slider:before {
     </main>
 
 
-    <script>window.__ASTIG_JARCHAT_RUNTIME_CONFIG = {"theme":{"bgColor":"#0f172a","surfaceColor":"#1b2248","primaryColor":"#06b6d4","secondaryColor":"#ec4899","accentColor":"#8b5cf6","borderRadius":30},"header":{"title":"Aria","name":"Aria","status":"","fontFamily":"'Syne', sans-serif","nameFontSize":15,"nameFontWeight":600,"statusFontSize":12,"animation":"none","logoOffsetX":0,"logoOffsetY":0,"nameOffsetX":0,"nameOffsetY":0,"statusOffsetX":0,"statusOffsetY":0,"avatar":"EL","avatarSize":"24","logoSize":"56","logoShape":"circle","logoType":"image","logoUrl":""},"footer":{"text":"","url":"","fontFamily":"'Inter', sans-serif","animation":"none","textColor":"#7070a0","fontSize":"11","position":"center"},"webhook":{"url":"","testUrl":"","chatUrl":"","proxyUrl":"","activeMode":"production","production":true,"externalJsUrl":"https://cdn.jsdelivr.net/gh/majesticwebcreation-ui/astig.media@main/anti-vs/fwidgets-chat-embed-runtime.js"},"converse":{"typingEnabled":true,"typingText":"","statusDelaySec":5,"minVisibleSec":0.8,"animation":"bounce"},"ui":{"showPipelineMonitor":false,"showRealtimeTelemetry":false,"showRealtimeFeed":false,"templateStyle":"support-reference"}};</script>
+    <script>window.__ASTIG_JARCHAT_RUNTIME_CONFIG = {"theme":{"bgColor":"#0f172a","surfaceColor":"#1b2248","primaryColor":"#06b6d4","secondaryColor":"#ec4899","accentColor":"#8b5cf6","borderRadius":30},"header":{"title":"Aria","name":"Aria","status":"","fontFamily":"'Syne', sans-serif","nameFontSize":15,"nameFontWeight":600,"statusFontSize":12,"animation":"none","logoOffsetX":0,"logoOffsetY":0,"nameOffsetX":0,"nameOffsetY":0,"statusOffsetX":0,"statusOffsetY":0,"avatar":"https://i.postimg.cc/cCqSzMhK/Assistant_logo.png","avatarSize":"24","logoSize":"56","logoShape":"circle","logoType":"image","logoUrl":"https://i.postimg.cc/MHkSLb57/main_logo.png"},"footer":{"text":"","url":"","fontFamily":"'Inter', sans-serif","animation":"none","textColor":"#7070a0","fontSize":"11","position":"center"},"webhook":{"url":"","testUrl":"","chatUrl":"","proxyUrl":"","activeMode":"production","production":true,"externalJsUrl":"https://cdn.jsdelivr.net/gh/majesticwebcreation-ui/astig.media@main/anti-vs/fwidgets-chat-embed-runtime.js"},"converse":{"typingEnabled":true,"typingText":"","statusDelaySec":5,"minVisibleSec":0.8,"animation":"bounce"},"ui":{"showPipelineMonitor":false,"showRealtimeTelemetry":false,"showRealtimeFeed":false,"templateStyle":"support-reference"}};</script>
 <script>
 document.addEventListener('DOMContentLoaded', () => {
     const DEFAULT_CHERRY_AVATAR_URL = 'https://cdn.jsdelivr.net/gh/majesticwebcreation-ui/astig.media@main/assets/templates/jarchat-source/assets/character_standin.png';
@@ -936,6 +981,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const formInterface = document.querySelector('.form-interface');
     const inputWrapper = document.querySelector('.input-wrapper');
     const headerTitle = document.querySelector('.brand h1');
+    const brandLogo = document.querySelector('.brand-logo');
     const statusDot = document.querySelector('.status-dot');
     const toggleLabel = document.querySelector('.toggle-label');
     const brandLink = document.querySelector('.brand-link');
@@ -1046,6 +1092,73 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    function isImageSourceValue(value) {
+        const normalized = String(value || '').trim();
+        if (!normalized) return false;
+        return normalized.startsWith('data:')
+            || normalized.startsWith('blob:')
+            || /^https?:\/\//i.test(normalized)
+            || /\.(png|jpe?g|gif|webp|svg)(\?.*)?$/i.test(normalized);
+    }
+
+    function getAssistantDisplayName() {
+        const assistant = runtimeConfig && runtimeConfig.assistant && typeof runtimeConfig.assistant === 'object'
+            ? runtimeConfig.assistant
+            : {};
+        const header = runtimeConfig && runtimeConfig.header && typeof runtimeConfig.header === 'object'
+            ? runtimeConfig.header
+            : {};
+        return String(assistant.name || header.title || header.name || 'Cherry').trim() || 'Cherry';
+    }
+
+    function getAssistantAvatarSource() {
+        const header = runtimeConfig && runtimeConfig.header && typeof runtimeConfig.header === 'object'
+            ? runtimeConfig.header
+            : {};
+        if (isImageSourceValue(header.avatar)) return String(header.avatar).trim();
+        if (header.logoType === 'image' && isImageSourceValue(header.logoUrl)) return String(header.logoUrl).trim();
+        return DEFAULT_CHERRY_AVATAR_URL;
+    }
+
+    function buildAssistantAvatarMarkup() {
+        const assistantName = getAssistantDisplayName();
+        const avatarSource = getAssistantAvatarSource();
+        return `<img src="${avatarSource}" alt="${assistantName}">`;
+    }
+
+    function renderHeaderLogo(header = {}) {
+        if (!brandLogo) return;
+
+        const logoType = String(header.logoType || '').trim().toLowerCase();
+        const logoUrl = String(header.logoUrl || '').trim();
+        const assistantName = getAssistantDisplayName();
+        const logoSize = Math.max(18, Number(header.logoSize) || 28);
+
+        brandLogo.style.width = `${logoSize}px`;
+        brandLogo.style.height = `${logoSize}px`;
+
+        if (logoType === 'image' && isImageSourceValue(logoUrl)) {
+            brandLogo.innerHTML = `<img src="${logoUrl}" alt="${assistantName} logo">`;
+            brandLogo.style.display = 'inline-flex';
+            return;
+        }
+
+        const avatarText = String(header.avatar || assistantName || 'A').trim().substring(0, 2).toUpperCase();
+        if (avatarText) {
+            brandLogo.textContent = avatarText;
+            brandLogo.style.display = 'inline-flex';
+        } else {
+            brandLogo.textContent = '';
+            brandLogo.style.display = 'none';
+        }
+    }
+
+    function refreshAssistantAvatars() {
+        document.querySelectorAll('.message-wrapper .avatar').forEach((avatarNode) => {
+            avatarNode.innerHTML = buildAssistantAvatarMarkup();
+        });
+    }
+
     function getActiveWebhookSelection() {
         const webhook = runtimeConfig && runtimeConfig.webhook && typeof runtimeConfig.webhook === 'object'
             ? runtimeConfig.webhook
@@ -1096,6 +1209,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (headerTitle && header.title) {
             headerTitle.textContent = String(header.title).trim() || headerTitle.textContent;
         }
+        renderHeaderLogo(header);
         if (statusDot && theme.primaryColor) {
             statusDot.style.background = theme.primaryColor;
             statusDot.style.boxShadow = `0 0 10px ${theme.primaryColor}`;
@@ -1178,6 +1292,8 @@ document.addEventListener('DOMContentLoaded', () => {
         if (header.logoType === 'text' && header.logoValue && headerTitle) {
             headerTitle.textContent = String(header.logoValue).trim() || headerTitle.textContent;
         }
+
+        refreshAssistantAvatars();
     }
 
     const initialRuntimeConfig = window.__ASTIG_JARCHAT_RUNTIME_CONFIG
@@ -1277,7 +1393,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Add Avatar
         const avatarDiv = document.createElement('div');
         avatarDiv.className = 'avatar';
-        avatarDiv.innerHTML = `<img src="${DEFAULT_CHERRY_AVATAR_URL}" alt="Cherry">`;
+        avatarDiv.innerHTML = buildAssistantAvatarMarkup();
         wrapper.appendChild(avatarDiv);
 
         // Add Content Area
