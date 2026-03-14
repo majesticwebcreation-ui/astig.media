@@ -899,8 +899,8 @@ input:checked+.slider:before {
             <!-- Character container moved inside chat-layout below -->
             <header class="form-header">
                 <div class="brand">
-                    <div class="status-dot"></div>
                     <div class="brand-logo" aria-hidden="true"></div>
+                    <div class="status-dot"></div>
                     <h1>Cherry</h1>
                 </div>
                 <div class="header-actions">
@@ -967,7 +967,7 @@ input:checked+.slider:before {
     </main>
 
 
-    <script>window.__ASTIG_JARCHAT_RUNTIME_CONFIG = {"theme":{"bgColor":"#0f172a","surfaceColor":"#1b2248","primaryColor":"#06b6d4","secondaryColor":"#ec4899","accentColor":"#8b5cf6","borderRadius":30},"header":{"title":"Aria","name":"Aria","status":"","fontFamily":"'Syne', sans-serif","nameFontSize":15,"nameFontWeight":600,"statusFontSize":12,"animation":"none","logoOffsetX":0,"logoOffsetY":0,"nameOffsetX":0,"nameOffsetY":0,"statusOffsetX":0,"statusOffsetY":0,"avatar":"https://i.postimg.cc/cCqSzMhK/Assistant_logo.png","avatarSize":"24","logoSize":"56","logoShape":"circle","logoType":"image","logoUrl":"https://i.postimg.cc/MHkSLb57/main_logo.png"},"footer":{"text":"","url":"","fontFamily":"'Inter', sans-serif","animation":"none","textColor":"#7070a0","fontSize":"11","position":"center"},"webhook":{"url":"","testUrl":"","chatUrl":"","proxyUrl":"","activeMode":"production","production":true,"externalJsUrl":"https://cdn.jsdelivr.net/gh/majesticwebcreation-ui/astig.media@main/anti-vs/fwidgets-chat-embed-runtime.js"},"converse":{"typingEnabled":true,"typingText":"","statusDelaySec":5,"minVisibleSec":0.8,"animation":"bounce"},"ui":{"showPipelineMonitor":false,"showRealtimeTelemetry":false,"showRealtimeFeed":false,"templateStyle":"support-reference"}};</script>
+    <script>window.__ASTIG_JARCHAT_RUNTIME_CONFIG = {"theme":{"bgColor":"#0f172a","surfaceColor":"#1b2248","primaryColor":"#06b6d4","secondaryColor":"#ec4899","accentColor":"#8b5cf6","borderRadius":30},"header":{"title":"Aria","name":"Aria","status":"","fontFamily":"'Syne', sans-serif","nameFontSize":15,"nameFontWeight":600,"statusFontSize":12,"animation":"none","logoOffsetX":0,"logoOffsetY":0,"nameOffsetX":0,"nameOffsetY":0,"statusOffsetX":0,"statusOffsetY":0,"avatar":"https://i.postimg.cc/cCqSzMhK/Assistant_logo.png","avatarSize":"24","logoSize":"56","logoShape":"square","logoType":"image","logoUrl":"https://i.postimg.cc/MHkSLb57/main_logo.png"},"assistant":{"name":"River"},"questions":[{"id":1773452812214,"text":"I'm River. What's you name?","type":"text","displayMode":"typewriter","choices":""},{"id":1773452841738,"text":"Thanks {Name}, How can I Help?","type":"text","displayMode":"typewriter","choices":""}],"questionsStyle":"solid","footer":{"text":"","url":"","fontFamily":"'Inter', sans-serif","animation":"none","textColor":"#7070a0","fontSize":"11","position":"center"},"webhook":{"url":"","testUrl":"","chatUrl":"","proxyUrl":"","activeMode":"production","production":true,"externalJsUrl":"https://cdn.jsdelivr.net/gh/majesticwebcreation-ui/astig.media@main/anti-vs/fwidgets-chat-embed-runtime.js"},"converse":{"typingEnabled":true,"typingText":"","statusDelaySec":5,"minVisibleSec":0.8,"animation":"bounce"},"ui":{"showPipelineMonitor":false,"showRealtimeTelemetry":false,"showRealtimeFeed":false,"templateStyle":"support-reference"}};</script>
 <script>
 document.addEventListener('DOMContentLoaded', () => {
     const DEFAULT_CHERRY_AVATAR_URL = 'https://cdn.jsdelivr.net/gh/majesticwebcreation-ui/astig.media@main/assets/templates/jarchat-source/assets/character_standin.png';
@@ -996,6 +996,14 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentWebhookMode = 'production';
     let currentWebhookUrl = webhookUrls.production;
     let runtimeConfig = null;
+    let currentStep = 0;
+    let steps = [];
+    const formData = {
+        sessionId: generateSessionId(),
+        name: '',
+        email: '',
+        inquiry: ''
+    };
     const AUTH_HEADER_PATTERN = /^(basic|bearer)\s+\S+/i;
 
     // State for interactive actions
@@ -1126,19 +1134,51 @@ document.addEventListener('DOMContentLoaded', () => {
         return `<img src="${avatarSource}" alt="${assistantName}">`;
     }
 
+    function getHeaderLogoShapeStyle(header = {}) {
+        const rawSize = Number(header.logoSize);
+        const size = Number.isFinite(rawSize) && rawSize > 0 ? rawSize : 28;
+        const shape = String(header.logoShape || 'circle').trim().toLowerCase();
+
+        let width = size;
+        let height = size;
+        let borderRadius = '50%';
+
+        switch (shape) {
+            case 'rectangle':
+                width = Math.round(size * 1.6);
+                height = size;
+                borderRadius = '12px';
+                break;
+            case 'rounded':
+                borderRadius = '12px';
+                break;
+            case 'square':
+                borderRadius = '0px';
+                break;
+            default:
+                borderRadius = '50%';
+                break;
+        }
+
+        const fontSize = Math.max(10, Math.round(height * 0.42));
+        return { width, height, borderRadius, fontSize };
+    }
+
     function renderHeaderLogo(header = {}) {
         if (!brandLogo) return;
 
         const logoType = String(header.logoType || '').trim().toLowerCase();
         const logoUrl = String(header.logoUrl || '').trim();
         const assistantName = getAssistantDisplayName();
-        const logoSize = Math.max(18, Number(header.logoSize) || 28);
+        const { width, height, borderRadius, fontSize } = getHeaderLogoShapeStyle(header);
 
-        brandLogo.style.width = `${logoSize}px`;
-        brandLogo.style.height = `${logoSize}px`;
+        brandLogo.style.width = `${width}px`;
+        brandLogo.style.height = `${height}px`;
+        brandLogo.style.borderRadius = borderRadius;
+        brandLogo.style.fontSize = `${fontSize}px`;
 
         if (logoType === 'image' && isImageSourceValue(logoUrl)) {
-            brandLogo.innerHTML = `<img src="${logoUrl}" alt="${assistantName} logo">`;
+            brandLogo.innerHTML = `<img src="${logoUrl}" alt="${assistantName} logo" style="border-radius:${borderRadius};">`;
             brandLogo.style.display = 'inline-flex';
             return;
         }
@@ -1157,6 +1197,31 @@ document.addEventListener('DOMContentLoaded', () => {
         document.querySelectorAll('.message-wrapper .avatar').forEach((avatarNode) => {
             avatarNode.innerHTML = buildAssistantAvatarMarkup();
         });
+    }
+
+    function stripHtml(value) {
+        const container = document.createElement('div');
+        container.innerHTML = String(value || '');
+        return (container.textContent || container.innerText || '').trim();
+    }
+
+    function getJarchatConfiguredSteps() {
+        const configuredQuestions = runtimeConfig && Array.isArray(runtimeConfig.questions)
+            ? runtimeConfig.questions
+            : [];
+        const normalizedQuestions = configuredQuestions
+            .map((question) => ({
+                text: String(question && question.text ? question.text : ''),
+                displayMode: String(question && question.displayMode ? question.displayMode : 'instant').trim()
+            }))
+            .filter((question) => question.text.trim().length > 0);
+
+        return normalizedQuestions.map((question, index) => ({
+            field: index === 0 ? 'name' : index === 1 ? 'inquiry' : `question_${index + 1}`,
+            question: question.text,
+            placeholder: 'Type here...',
+            displayMode: question.displayMode === 'typewriter' ? 'typewriter' : 'instant'
+        }));
     }
 
     function getActiveWebhookSelection() {
@@ -1293,6 +1358,13 @@ document.addEventListener('DOMContentLoaded', () => {
             headerTitle.textContent = String(header.logoValue).trim() || headerTitle.textContent;
         }
 
+        steps = getJarchatConfiguredSteps();
+        if (currentStep === 0 && flowContainer && !flowContainer.querySelector('.history-item')) {
+            flowContainer.innerHTML = '';
+            renderStep();
+            return;
+        }
+
         refreshAssistantAvatars();
     }
 
@@ -1305,7 +1377,11 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('message', (event) => {
         const payload = event && event.data;
         if (!payload || payload.type !== runtimeMessageType) return;
-        applyRuntimeConfig(payload.payload || {});
+        const nextConfig = payload.payload || {};
+        applyRuntimeConfig(nextConfig);
+        if (nextConfig && nextConfig.restartConversation) {
+            restart();
+        }
     });
 
     if (downloadBtn) {
@@ -1319,15 +1395,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (restartBtn) {
         restartBtn.addEventListener('click', restart);
     }
-
-    // Form State
-    let currentStep = 0;
-    const formData = {
-        sessionId: generateSessionId(),
-        name: '',
-        email: '',
-        inquiry: ''
-    };
 
     // ... rest of initialization ...
 
@@ -1366,22 +1433,12 @@ document.addEventListener('DOMContentLoaded', () => {
     // Form State
     // Steps Definition
 
-    const steps = [
-        {
-            field: 'name',
-            question: "I'm Cherry.<br>Who am I speaking with?",
-            placeholder: "Type here..."
-        },
-
-        {
-            field: 'inquiry',
-            question: "Nice to meet you, <span class='highlight'>{name}</span>.<br>What's on your mind?",
-            placeholder: "Type here..."
-        }
-    ];
+    steps = getJarchatConfiguredSteps();
 
     // Initialize
-    renderStep();
+    if (!flowContainer.children.length) {
+        renderStep();
+    }
 
 
 
@@ -1416,16 +1473,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Replace placeholders
             if (formData.name) {
-                qText = qText.replace('{name}', formData.name);
+                qText = qText.replace(/\{name\}/gi, stripHtml(formData.name));
             }
 
             // Create Message Block with Avatar
             const stepDiv = createBotMessage();
             stepDiv.innerHTML = `<h2></h2>`;
 
-            // Trigger typing
+            // Trigger prompt rendering
             const h2 = stepDiv.querySelector('h2');
-            typeText(h2, qText);
+            if (stepData.displayMode === 'typewriter') {
+                typeText(h2, qText);
+            } else {
+                h2.innerHTML = qText;
+            }
 
             userInput.placeholder = stepData.placeholder;
             userInput.value = '';
