@@ -169,9 +169,28 @@ iframe::-webkit-scrollbar {
     gap: 12px;
     margin-bottom: 0;
     flex: 1;
+    height: auto;
     overflow: hidden;
     min-height: 0;
-    max-height: 100%;
+    max-height: none;
+}
+
+.chat-scroll-region {
+    flex: 1;
+    min-width: 0;
+    min-height: 0;
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    overscroll-behavior: contain;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.chat-scroll-region::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+    display: none;
 }
 
 .character-container {
@@ -207,14 +226,15 @@ iframe::-webkit-scrollbar {
 
 /* Conversation Flow */
 .conversation-flow {
-    flex: 1;
+    flex: 0 0 auto;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     gap: 15px;
-    overflow-y: auto;
+    overflow: visible;
     padding-right: 0;
-    min-height: 0;
+    min-height: 100%;
+    min-width: 0;
     scrollbar-width: none;
     -ms-overflow-style: none;
 }
@@ -231,6 +251,8 @@ iframe::-webkit-scrollbar {
     align-items: flex-start;
     gap: 15px;
     width: 100%;
+    min-width: 0;
+    overflow: visible;
 }
 
 .avatar {
@@ -256,11 +278,13 @@ iframe::-webkit-scrollbar {
     padding: 0;
     margin-top: 0;
     padding-left: 0;
-    flex: 0 0 auto;
+    flex: 1 1 auto;
     max-height: none;
     overflow: visible;
     padding-right: 0;
     min-width: 0;
+    width: 100%;
+    max-width: 100%;
 }
 
 /* Custom Scrollbar for response bubbles */
@@ -281,6 +305,10 @@ iframe::-webkit-scrollbar {
     color: var(--text-main);
     animation: none;
     /* remove slide up */
+    white-space: normal;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+    max-width: 100%;
 }
 
 @keyframes lookAround {
@@ -329,8 +357,8 @@ iframe::-webkit-scrollbar {
     -webkit-backdrop-filter: blur(20px);
     border: 1px solid var(--glass-border);
     border-radius: 24px;
-    display: grid;
-    grid-template-rows: auto minmax(0, 1fr) auto auto;
+    display: flex;
+    flex-direction: column;
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
     padding: 16px 16px 12px;
     position: relative;
@@ -345,8 +373,7 @@ iframe::-webkit-scrollbar {
     justify-content: space-between;
     align-items: center;
     margin-bottom: 12px;
-    position: sticky;
-    top: 0;
+    position: relative;
     z-index: 4;
     background: inherit;
     padding-bottom: 6px;
@@ -423,9 +450,23 @@ iframe::-webkit-scrollbar {
 }
 
 .assistant-reply {
+    display: block;
+    width: 100%;
+    min-width: 0;
     color: var(--text-main);
     font-size: 1.05rem;
     line-height: 1.55;
+    white-space: normal;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+    max-width: 100%;
+}
+
+.assistant-reply * {
+    max-width: 100%;
+    white-space: normal;
+    overflow-wrap: anywhere;
+    word-break: break-word;
 }
 
 .assistant-reply h3 {
@@ -463,16 +504,17 @@ iframe::-webkit-scrollbar {
 
 /* Conversation Flow */
 .conversation-flow {
-    flex: 1;
+    flex: 0 0 auto;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     gap: 14px;
-    overflow-y: auto;
-    margin-bottom: 12px;
-    padding: 4px 0 12px 0;
+    overflow: visible;
+    margin-bottom: 0;
+    padding: 4px 0 16px 0;
     scroll-behavior: smooth;
-    min-height: 0;
+    min-height: 100%;
+    min-width: 0;
     overscroll-behavior: contain;
     scrollbar-width: none;
     -ms-overflow-style: none;
@@ -486,11 +528,13 @@ iframe::-webkit-scrollbar {
 
 /* History Items */
 .history-item {
+    flex: 1 1 auto;
     opacity: 0.5;
     transition: opacity 0.5s;
     border-left: 2px solid var(--primary);
     padding-left: 15px;
     margin-bottom: 10px;
+    min-width: 0;
 }
 
 .history-q {
@@ -498,12 +542,17 @@ iframe::-webkit-scrollbar {
     font-size: 0.9rem;
     color: var(--text-muted);
     margin-bottom: 4px;
+    width: 100%;
     max-height: 200px;
     /* Limit history height */
     overflow-y: auto;
+    overflow-x: hidden;
     padding-right: 0;
     scrollbar-width: none;
     -ms-overflow-style: none;
+    white-space: normal;
+    overflow-wrap: anywhere;
+    word-break: break-word;
 }
 
 .history-q::-webkit-scrollbar {
@@ -516,6 +565,10 @@ iframe::-webkit-scrollbar {
     display: block;
     font-size: 1rem;
     color: var(--text-main);
+    width: 100%;
+    white-space: normal;
+    overflow-wrap: anywhere;
+    word-break: break-word;
 }
 
 /* Current Question */
@@ -570,8 +623,7 @@ iframe::-webkit-scrollbar {
     margin-top: 0;
     padding-bottom: 6px;
     flex-shrink: 0;
-    position: sticky;
-    bottom: 0;
+    position: relative;
     z-index: 4;
     background: inherit;
     padding-top: 8px;
@@ -582,8 +634,7 @@ iframe::-webkit-scrollbar {
     justify-content: center;
     flex-shrink: 0;
     padding-top: 4px;
-    position: sticky;
-    bottom: 0;
+    position: relative;
     z-index: 4;
     background: inherit;
 }
@@ -821,9 +872,28 @@ iframe::-webkit-scrollbar {
 
 /* Show label on larger screens or always? Keeping it. */
 @media (max-width: 400px) {
-    .toggle-label {
-        display: none;
-    }
+.toggle-label {
+    display: none;
+}
+
+.message-wrapper > * {
+    min-width: 0;
+}
+
+.current-step,
+.history-item,
+.assistant-reply,
+.assistant-reply p,
+.assistant-reply li,
+.history-q,
+.history-a,
+.current-step h2 {
+    max-width: 100%;
+    min-width: 0;
+    white-space: normal !important;
+    overflow-wrap: anywhere !important;
+    word-break: break-word !important;
+}
 }
 
 .switch {
@@ -981,8 +1051,10 @@ input:checked+.slider:before {
             </header>
 
             <div class="chat-layout">
-                <div class="conversation-flow" id="conversation-flow">
-                    <!-- Dynamic Content Injected Here -->
+                <div class="chat-scroll-region" id="chat-scroll-region">
+                    <div class="conversation-flow" id="conversation-flow">
+                        <!-- Dynamic Content Injected Here -->
+                    </div>
                 </div>
             </div>
 
@@ -1007,6 +1079,7 @@ input:checked+.slider:before {
 document.addEventListener('DOMContentLoaded', () => {
     const DEFAULT_CHERRY_AVATAR_URL = 'https://cdn.jsdelivr.net/gh/majesticwebcreation-ui/astig.media@main/assets/templates/jarchat-source/assets/character_standin.png';
     const flowContainer = document.getElementById('conversation-flow');
+    const scrollRegion = document.getElementById('chat-scroll-region');
     const userInput = document.getElementById('user-input');
     const sendBtn = document.getElementById('send-btn');
     const restartBtn = document.getElementById('restart-btn');
@@ -1946,7 +2019,8 @@ document.addEventListener('DOMContentLoaded', () => {
     function scrollToBottom() {
         // Use timeout to ensure DOM has updated
         setTimeout(() => {
-            flowContainer.scrollTop = flowContainer.scrollHeight;
+            const scrollHost = scrollRegion || flowContainer;
+            scrollHost.scrollTop = scrollHost.scrollHeight;
         }, 400);
     }
 
