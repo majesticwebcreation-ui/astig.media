@@ -1148,7 +1148,7 @@ input:checked+.slider:before {
     </main>
 
 
-    <script>window.__ASTIG_JARCHAT_RUNTIME_CONFIG = {"theme":{"bgColor":"#112941","surfaceColor":"#142a43","primaryColor":"#04121a","secondaryColor":"#ec4899","accentColor":"#8b5cf6","borderRadius":30,"headerTransparency":0,"fontFamily":"'DM Sans', sans-serif","mode":"frosted","gradient":{"start":"#6c63ff","end":"#ff6584"},"headerBgColor":"#dfe8f1","headerTextColor":"#5e6873","topHeroMediaType":"none","topHeroMediaUrl":""},"header":{"title":"River","name":"River","status":"Online","fontFamily":"'Syne', sans-serif","nameFontSize":15,"nameFontWeight":600,"statusFontSize":12,"animation":"fade","logoOffsetX":0,"logoOffsetY":0,"nameOffsetX":0,"nameOffsetY":0,"statusOffsetX":0,"statusOffsetY":0,"avatar":"https://i.postimg.cc/cCqSzMhK/Assistant_logo.png","avatarSize":"32","logoSize":"56","logoShape":"circle","logoType":"image","logoUrl":"https://widjets.astigmedia.com/img/main-logo.png"},"assistant":{"name":"River"},"video":{"layout":"inline","hideBehavior":"first-question","loop":false,"url":"https://widjets.astigmedia.com/vid/Rivers.mp4","imageUrl":""},"questions":[{"id":1,"text":"Hey. I'm River. What's your name?","type":"text","displayMode":"typewriter","choices":""},{"id":1773493191147,"text":"Thanks {Name}, How can I Help?","type":"text","displayMode":"typewriter","choices":""}],"questionsStyle":"solid","footer":{"text":"","url":"","fontFamily":"'Inter', sans-serif","animation":"none","textColor":"#7070a0","fontSize":"11","position":"center"},"webhook":{"url":"","testUrl":"","chatUrl":"","proxyUrl":"","activeMode":"production","production":true,"externalJsUrl":"https://cdn.jsdelivr.net/gh/majesticwebcreation-ui/astig.media@main/anti-vs/fwidgets-chat-embed-runtime.js"},"converse":{"typingEnabled":true,"typingText":"","statusDelaySec":5,"minVisibleSec":0.8,"animation":"bounce"},"ui":{"showPipelineMonitor":false,"showRealtimeTelemetry":false,"showRealtimeFeed":false,"templateStyle":"support-reference"}};</script>
+    <script>window.__ASTIG_JARCHAT_RUNTIME_CONFIG = {"theme":{"bgColor":"#0a141f","surfaceColor":"#182a3f","primaryColor":"#06141e","secondaryColor":"#ec4899","accentColor":"#8b5cf6","borderRadius":30,"headerTransparency":0,"fontFamily":"'DM Sans', sans-serif","mode":"solid","gradient":{"start":"#6c63ff","end":"#ff6584"},"headerBgColor":"#dfe8f1","headerTextColor":"#5e6873","topHeroMediaType":"none","topHeroMediaUrl":""},"header":{"title":"Aria","name":"Aria","status":"","fontFamily":"'Syne', sans-serif","nameFontSize":15,"nameFontWeight":600,"statusFontSize":12,"animation":"none","logoOffsetX":0,"logoOffsetY":0,"nameOffsetX":0,"nameOffsetY":0,"statusOffsetX":0,"statusOffsetY":0,"avatar":"EL","avatarSize":"24","logoSize":"56","logoShape":"circle","logoType":"image","logoUrl":"https://widjets.astigmedia.com/img/main-logo.png"},"assistant":{"name":"Aria"},"video":{"layout":"inline","hideBehavior":"first-question","loop":false,"url":"https://widjets.astigmedia.com/vid/Rivers.mp4","imageUrl":""},"questions":[{"id":1,"text":"Hi there, welcome to customer support. How can I help you?","type":"text","displayMode":"instant","choices":""}],"questionsStyle":"solid","footer":{"text":"","url":"","fontFamily":"'Inter', sans-serif","animation":"none","textColor":"#7070a0","fontSize":"11","position":"center"},"webhook":{"url":"","testUrl":"","chatUrl":"","proxyUrl":"","activeMode":"production","production":true,"externalJsUrl":"https://cdn.jsdelivr.net/gh/majesticwebcreation-ui/astig.media@main/anti-vs/fwidgets-chat-embed-runtime.js"},"converse":{"typingEnabled":true,"typingText":"","statusDelaySec":5,"minVisibleSec":0.8,"animation":"bounce"},"ui":{"showPipelineMonitor":false,"showRealtimeTelemetry":false,"showRealtimeFeed":false,"templateStyle":"support-reference"}};</script>
 <script>
 document.addEventListener('DOMContentLoaded', () => {
     const DEFAULT_CHERRY_AVATAR_URL = 'https://cdn.jsdelivr.net/gh/majesticwebcreation-ui/astig.media@main/assets/templates/jarchat-source/assets/character_standin.png';
@@ -1501,6 +1501,24 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!mediaRoot) return;
         const videoNode = mediaRoot.querySelector('video');
         if (!(videoNode instanceof HTMLVideoElement)) return;
+        const originalUrl = String(videoNode.getAttribute('data-media-url') || '').trim();
+
+        if (!videoNode.__astigConversationErrorBind) {
+            videoNode.__astigConversationErrorBind = true;
+            videoNode.addEventListener('error', () => {
+                if (videoNode.__astigConversationRetried) return;
+                videoNode.__astigConversationRetried = true;
+                if (originalUrl) {
+                    videoNode.removeAttribute('src');
+                    videoNode.src = originalUrl;
+                    videoNode.load();
+                    const retryAttempt = videoNode.play();
+                    if (retryAttempt && typeof retryAttempt.catch === 'function') {
+                        retryAttempt.catch(() => {});
+                    }
+                }
+            });
+        }
 
         const playAttempt = videoNode.play();
         if (playAttempt && typeof playAttempt.catch === 'function') {
@@ -1539,9 +1557,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const loopAttr = media.loop ? ' loop' : '';
         mediaRoot.innerHTML =
-            `<video class="conversation-media-root__video" autoplay muted playsinline preload="metadata"${loopAttr}>` +
-            `<source src="${escapeAttribute(media.url)}">` +
-            '</video>';
+            `<video class="conversation-media-root__video" autoplay muted playsinline preload="metadata" data-media-url="${escapeAttribute(media.url)}" src="${escapeAttribute(media.url)}"${loopAttr}></video>`;
         scrollRegion.classList.toggle('chat-scroll-region--media-bg', media.layout === 'background');
         ensureConversationMediaPlayback(mediaRoot);
     }
