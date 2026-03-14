@@ -1076,7 +1076,7 @@ input:checked+.slider:before {
     </main>
 
 
-    <script>window.__ASTIG_JARCHAT_RUNTIME_CONFIG = {"theme":{"bgColor":"#0f172a","surfaceColor":"#1b2248","primaryColor":"#06b6d4","secondaryColor":"#ec4899","accentColor":"#8b5cf6","borderRadius":30},"header":{"title":"Aria","name":"Aria","status":"","fontFamily":"'Syne', sans-serif","nameFontSize":15,"nameFontWeight":600,"statusFontSize":12,"animation":"none","logoOffsetX":0,"logoOffsetY":0,"nameOffsetX":0,"nameOffsetY":0,"statusOffsetX":0,"statusOffsetY":0,"avatar":"https://i.postimg.cc/cCqSzMhK/Assistant_logo.png","avatarSize":"24","logoSize":"56","logoShape":"square","logoType":"image","logoUrl":"https://i.postimg.cc/MHkSLb57/main_logo.png"},"assistant":{"name":"River"},"questions":[{"id":1773452812214,"text":"I'm River. What's you name?","type":"text","displayMode":"typewriter","choices":""},{"id":1773452841738,"text":"Thanks {Name}, How can I Help?","type":"text","displayMode":"typewriter","choices":""}],"questionsStyle":"solid","footer":{"text":"","url":"","fontFamily":"'Inter', sans-serif","animation":"none","textColor":"#7070a0","fontSize":"11","position":"center"},"webhook":{"url":"","testUrl":"","chatUrl":"","proxyUrl":"","activeMode":"production","production":true,"externalJsUrl":"https://cdn.jsdelivr.net/gh/majesticwebcreation-ui/astig.media@main/anti-vs/fwidgets-chat-embed-runtime.js"},"converse":{"typingEnabled":true,"typingText":"","statusDelaySec":5,"minVisibleSec":0.8,"animation":"bounce"},"ui":{"showPipelineMonitor":false,"showRealtimeTelemetry":false,"showRealtimeFeed":false,"templateStyle":"support-reference"}};</script>
+    <script>window.__ASTIG_JARCHAT_RUNTIME_CONFIG = {"theme":{"bgColor":"#17171f","surfaceColor":"#1f1f2e","primaryColor":"#6c63ff","secondaryColor":"#ec4899","accentColor":"#8b5cf6","borderRadius":20,"headerTransparency":0,"fontFamily":"'DM Sans', sans-serif","mode":"transparent","gradient":{"start":"#6c63ff","end":"#ff6584"},"headerBgColor":"#1f1f2e","headerTextColor":"#ffffff","topHeroMediaType":"none","topHeroMediaUrl":""},"header":{"title":"Aria","name":"Aria","status":"Online","fontFamily":"'Syne', sans-serif","nameFontSize":15,"nameFontWeight":600,"statusFontSize":12,"animation":"none","logoOffsetX":0,"logoOffsetY":0,"nameOffsetX":0,"nameOffsetY":0,"statusOffsetX":0,"statusOffsetY":0,"avatar":"https://i.postimg.cc/cCqSzMhK/Assistant_logo.png","avatarSize":"40","logoSize":"42","logoShape":"circle","logoType":"image","logoUrl":"https://i.postimg.cc/MHkSLb57/main_logo.png"},"assistant":{"name":"River"},"questions":[],"questionsStyle":"solid","footer":{"text":"","url":"","fontFamily":"'Inter', sans-serif","animation":"none","textColor":"#7070a0","fontSize":"11","position":"center"},"webhook":{"url":"","testUrl":"","chatUrl":"","proxyUrl":"","activeMode":"production","production":true,"externalJsUrl":"https://cdn.jsdelivr.net/gh/majesticwebcreation-ui/astig.media@main/anti-vs/fwidgets-chat-embed-runtime.js"},"converse":{"typingEnabled":true,"typingText":"","statusDelaySec":5,"minVisibleSec":0.8,"animation":"bounce"},"ui":{"showPipelineMonitor":false,"showRealtimeTelemetry":false,"showRealtimeFeed":false,"templateStyle":""}};</script>
 <script>
 document.addEventListener('DOMContentLoaded', () => {
     const DEFAULT_CHERRY_AVATAR_URL = 'https://cdn.jsdelivr.net/gh/majesticwebcreation-ui/astig.media@main/assets/templates/jarchat-source/assets/character_standin.png';
@@ -1089,6 +1089,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const emailBtn = document.getElementById('email-btn');
     const webhookToggle = document.getElementById('webhook-toggle');
     const formInterface = document.querySelector('.form-interface');
+    const formHeader = document.querySelector('.form-header');
     const inputWrapper = document.querySelector('.input-wrapper');
     const headerTitle = document.querySelector('.brand h1');
     const brandLogo = document.querySelector('.brand-logo');
@@ -1353,6 +1354,19 @@ document.addEventListener('DOMContentLoaded', () => {
         return { mode, url };
     }
 
+    function convertHexToRgba(color, alpha = 1) {
+        const raw = String(color || '').trim();
+        if (!/^#([0-9a-f]{3}|[0-9a-f]{6})$/i.test(raw)) return `rgba(31, 31, 46, ${alpha})`;
+        const normalized = raw.length === 4
+            ? `#${raw[1]}${raw[1]}${raw[2]}${raw[2]}${raw[3]}${raw[3]}`
+            : raw;
+        const value = normalized.slice(1);
+        const r = parseInt(value.slice(0, 2), 16);
+        const g = parseInt(value.slice(2, 4), 16);
+        const b = parseInt(value.slice(4, 6), 16);
+        return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+    }
+
     function applyRuntimeConfig(nextConfig) {
         runtimeConfig = nextConfig && typeof nextConfig === 'object' ? nextConfig : null;
         const webhook = runtimeConfig && runtimeConfig.webhook && typeof runtimeConfig.webhook === 'object'
@@ -1381,6 +1395,10 @@ document.addEventListener('DOMContentLoaded', () => {
         currentWebhookMode = String(activeSelection.mode || currentWebhookMode || 'production').trim();
         currentWebhookUrl = String(activeSelection.url || currentWebhookUrl || '').trim();
 
+        if (theme.fontFamily) {
+            document.body.style.fontFamily = String(theme.fontFamily).trim();
+            if (userInput) userInput.style.fontFamily = String(theme.fontFamily).trim();
+        }
         if (headerTitle && header.title) {
             headerTitle.textContent = String(header.title).trim() || headerTitle.textContent;
         }
@@ -1389,6 +1407,19 @@ document.addEventListener('DOMContentLoaded', () => {
             statusDot.style.background = theme.primaryColor;
             statusDot.style.boxShadow = `0 0 10px ${theme.primaryColor}`;
         }
+        if (formHeader) {
+            const headerAlpha = Math.max(0, Math.min(1, Number(theme.headerTransparency ?? 100) / 100));
+            formHeader.style.background = theme.headerBgColor
+                ? convertHexToRgba(String(theme.headerBgColor).trim(), headerAlpha)
+                : '';
+            formHeader.style.color = theme.headerTextColor ? String(theme.headerTextColor).trim() : '';
+        }
+        if (headerTitle && theme.headerTextColor) {
+            headerTitle.style.color = String(theme.headerTextColor).trim();
+        }
+        document.querySelectorAll('.settings-btn').forEach((button) => {
+            button.style.color = theme.headerTextColor ? String(theme.headerTextColor).trim() : '';
+        });
         if (formInterface) {
             const conversationFill = String(converse.conversationFill || 'theme').trim();
             const conversationBg = String(converse.conversationBgColor || theme.bgColor || '').trim();
@@ -1397,6 +1428,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 formInterface.style.background = `linear-gradient(180deg, ${conversationBg}, ${conversationGradientEnd})`;
             } else if (conversationFill === 'solid' && conversationBg) {
                 formInterface.style.background = conversationBg;
+            } else if (theme.mode === 'gradient' && theme.gradient && theme.gradient.start && theme.gradient.end) {
+                formInterface.style.background = `linear-gradient(180deg, ${theme.gradient.start}, ${theme.gradient.end})`;
+            } else if (theme.mode === 'solid' && theme.bgColor) {
+                formInterface.style.background = theme.bgColor;
+            } else if (theme.mode === 'transparent') {
+                formInterface.style.background = 'transparent';
             } else if (theme.bgColor && theme.surfaceColor) {
                 formInterface.style.background = `linear-gradient(180deg, ${theme.surfaceColor}, ${theme.bgColor})`;
             }
@@ -1469,6 +1506,13 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         steps = getJarchatConfiguredSteps();
+        const hasRenderedConversation = !!(flowContainer && flowContainer.querySelector('.message-wrapper'));
+        if (flowContainer && steps.length > 0 && (!hasRenderedConversation || currentStep < 0 || currentStep > steps.length)) {
+            currentStep = 0;
+            flowContainer.innerHTML = '';
+            renderStep();
+            return;
+        }
         if (currentStep === 0 && flowContainer && !flowContainer.querySelector('.history-item')) {
             flowContainer.innerHTML = '';
             renderStep();
