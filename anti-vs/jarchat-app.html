@@ -850,105 +850,25 @@ iframe::-webkit-scrollbar {
     /* Subtle expansion hover effect */
 }
 
-/* Webhook Toggle */
-.webhook-toggle-container {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    /* Slightly tighter gap for header */
-    margin-bottom: 0;
-    /* Remove bottom margin */
-    margin-left: 0;
-    margin-right: 0;
-}
-
-.toggle-label {
-    display: none;
-    /* Hide label on mobile if needed, but keeping for now */
-    font-size: 0.7rem;
-    /* Smaller for header */
-    color: var(--text-muted);
-    font-weight: 500;
-    text-transform: uppercase;
-}
-
-/* Show label on larger screens or always? Keeping it. */
 @media (max-width: 400px) {
-.toggle-label {
-    display: none;
-}
+    .message-wrapper > * {
+        min-width: 0;
+    }
 
-.message-wrapper > * {
-    min-width: 0;
-}
-
-.current-step,
-.history-item,
-.assistant-reply,
-.assistant-reply p,
-.assistant-reply li,
-.history-q,
-.history-a,
-.current-step h2 {
-    max-width: 100%;
-    min-width: 0;
-    white-space: normal !important;
-    overflow-wrap: anywhere !important;
-    word-break: break-word !important;
-}
-}
-
-.switch {
-    position: relative;
-    display: inline-block;
-    width: 36px;
-    height: 20px;
-}
-
-.switch input {
-    opacity: 0;
-    width: 0;
-    height: 0;
-}
-
-.slider {
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(255, 255, 255, 0.1);
-    transition: .4s;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-.slider:before {
-    position: absolute;
-    content: "";
-    height: 14px;
-    width: 14px;
-    left: 2px;
-    bottom: 2px;
-    background-color: var(--text-muted);
-    transition: .4s;
-    border-radius: 50%;
-}
-
-input:checked+.slider {
-    background-color: rgba(139, 92, 246, 0.3);
-    /* Primary color low opacity */
-    border-color: var(--primary);
-}
-
-input:checked+.slider:before {
-    transform: translateX(16px);
-    background-color: var(--text-main);
-}
-
-/* Rounded sliders */
-.slider.round {
-    border-radius: 34px;
+    .current-step,
+    .history-item,
+    .assistant-reply,
+    .assistant-reply p,
+    .assistant-reply li,
+    .history-q,
+    .history-a,
+    .current-step h2 {
+        max-width: 100%;
+        min-width: 0;
+        white-space: normal !important;
+        overflow-wrap: anywhere !important;
+        word-break: break-word !important;
+    }
 }
 
 /* Loading Dots Animation */
@@ -1011,13 +931,6 @@ input:checked+.slider:before {
                     <h1>Cherry</h1>
                 </div>
                 <div class="header-actions">
-                    <div class="webhook-toggle-container">
-                        <label class="switch">
-                            <input type="checkbox" id="webhook-toggle">
-                            <span class="slider round"></span>
-                        </label>
-                        <span class="toggle-label">Test Mode</span>
-                    </div>
                     <a href="https://deejayedson.com/" class="settings-btn" aria-label="Home">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                             stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -1076,7 +989,7 @@ input:checked+.slider:before {
     </main>
 
 
-    <script>window.__ASTIG_JARCHAT_RUNTIME_CONFIG = {"theme":{"bgColor":"#0c2136","surfaceColor":"#0e223a","primaryColor":"#031e30","secondaryColor":"#ec4899","accentColor":"#8b5cf6","borderRadius":30,"headerTransparency":0,"fontFamily":"'DM Sans', sans-serif","mode":"solid","gradient":{"start":"#6c63ff","end":"#ff6584"},"headerBgColor":"#dfe8f1","headerTextColor":"#5e6873","topHeroMediaType":"none","topHeroMediaUrl":""},"header":{"title":"River","name":"River","status":"Online","fontFamily":"'Syne', sans-serif","nameFontSize":15,"nameFontWeight":600,"statusFontSize":12,"animation":"none","logoOffsetX":0,"logoOffsetY":0,"nameOffsetX":0,"nameOffsetY":0,"statusOffsetX":0,"statusOffsetY":0,"avatar":"https://i.postimg.cc/cCqSzMhK/Assistant_logo.png","avatarSize":"26","logoSize":"56","logoShape":"circle","logoType":"image","logoUrl":"https://i.postimg.cc/MHkSLb57/main_logo.png"},"assistant":{"name":"River"},"user":{"avatar":"","avatarSize":"32"},"questions":[{"id":1773468227793,"text":"Hey, I'm River. What is your name?","type":"text","displayMode":"typewriter","choices":""},{"id":1773468270978,"text":"Thanks, {Name}.  How can I help?","type":"text","displayMode":"typewriter","choices":""}],"questionsStyle":"solid","footer":{"text":"","url":"","fontFamily":"'Inter', sans-serif","animation":"none","textColor":"#7070a0","fontSize":"11","position":"center"},"webhook":{"url":"","testUrl":"","chatUrl":"https://n8n.srv1291312.hstgr.cloud/webhook/a368d690-b760-49a9-ba19-67c4a6971fa3/chat","proxyUrl":"","activeMode":"chat","production":false,"externalJsUrl":"https://cdn.jsdelivr.net/gh/majesticwebcreation-ui/astig.media@main/anti-vs/fwidgets-chat-embed-runtime.js"},"converse":{"typingEnabled":true,"typingText":"","statusDelaySec":5,"minVisibleSec":0.8,"animation":"bounce","conversationFill":"theme","conversationBgColor":"#0b0b2d","conversationGradientEnd":"#1f1f2e","bubbleFill":"solid","bubbleShape":"soft","indicatorColor":"#07075f","bubbleBgColor":"#2a2a3d","bubbleGradientEnd":"#b8bfe5","userBubbleFontFamily":"'DM Sans', sans-serif","userBubbleFontSizePx":15,"userBubbleBgColor":"#4b7ea0","userBubbleAnimation":"none","composer":{"fill":"theme","bgColor":"#1f1f2e","gradientEnd":"#17171f","fontFamily":"","fontSizePx":16},"sendButton":{"fill":"gradient","bgColor":"#4cc9ff","gradientEnd":"#1f6be6","iconUrl":"","sizePx":50,"shape":"circle"},"uploadButton":{"iconUrl":""}},"ui":{"showPipelineMonitor":false,"showRealtimeTelemetry":false,"showRealtimeFeed":false,"templateStyle":"support-reference"}};</script>
+    <script>window.__ASTIG_JARCHAT_RUNTIME_CONFIG = {"theme":{"bgColor":"#17171f","surfaceColor":"#1f1f2e","primaryColor":"#6c63ff","secondaryColor":"#ec4899","accentColor":"#8b5cf6","borderRadius":20,"headerTransparency":0,"fontFamily":"'DM Sans', sans-serif","mode":"solid","gradient":{"start":"#6c63ff","end":"#ff6584"},"headerBgColor":"#1f1f2e","headerTextColor":"#ffffff","topHeroMediaType":"none","topHeroMediaUrl":""},"header":{"title":"River","name":"River","status":"Online","fontFamily":"'Syne', sans-serif","nameFontSize":15,"nameFontWeight":600,"statusFontSize":12,"animation":"none","logoOffsetX":0,"logoOffsetY":0,"nameOffsetX":11,"nameOffsetY":-1,"statusOffsetX":12,"statusOffsetY":-1,"avatar":"A","avatarSize":"40","logoSize":"40","logoShape":"circle","logoType":"image","logoUrl":"https://i.postimg.cc/MHkSLb57/main_logo.png"},"assistant":{"name":"River"},"user":{"avatar":"U","avatarSize":"32"},"questions":[{"id":1773483244357,"text":"I'm Cherry. whats your name?","type":"text","displayMode":"typewriter","choices":""},{"id":1773483262566,"text":"Thanks {Name}. How can I help?","type":"text","displayMode":"typewriter","choices":""}],"questionsStyle":"solid","footer":{"text":"","url":"","fontFamily":"'Inter', sans-serif","animation":"none","textColor":"#7070a0","fontSize":"11","position":"center"},"webhook":{"url":"","testUrl":"","chatUrl":"","proxyUrl":"","activeMode":"production","production":true,"externalJsUrl":"https://cdn.jsdelivr.net/gh/majesticwebcreation-ui/astig.media@main/anti-vs/fwidgets-chat-embed-runtime.js"},"converse":{"typingEnabled":true,"typingText":"","statusDelaySec":5,"minVisibleSec":0.8,"animation":"bounce","conversationFill":"theme","conversationBgColor":"#17171f","conversationGradientEnd":"#1f1f2e","bubbleFill":"solid","bubbleShape":"soft","indicatorColor":"#7070a0","bubbleBgColor":"#2a2a3d","bubbleGradientEnd":"#4b4f64","userBubbleFontFamily":"","userBubbleFontSizePx":15,"userBubbleBgColor":"#6c63ff","userBubbleAnimation":"none","composer":{"fill":"theme","bgColor":"#1f1f2e","gradientEnd":"#17171f","fontFamily":"","fontSizePx":14},"sendButton":{"fill":"gradient","bgColor":"#4cc9ff","gradientEnd":"#1f6be6","iconUrl":"","sizePx":50,"shape":"circle"},"uploadButton":{"iconUrl":""}},"ui":{"showPipelineMonitor":false,"showRealtimeTelemetry":false,"showRealtimeFeed":false,"templateStyle":""}};</script>
 <script>
 document.addEventListener('DOMContentLoaded', () => {
     const DEFAULT_CHERRY_AVATAR_URL = 'https://cdn.jsdelivr.net/gh/majesticwebcreation-ui/astig.media@main/assets/templates/jarchat-source/assets/character_standin.png';
@@ -1087,14 +1000,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const restartBtn = document.getElementById('restart-btn');
     const downloadBtn = document.getElementById('download-btn');
     const emailBtn = document.getElementById('email-btn');
-    const webhookToggle = document.getElementById('webhook-toggle');
     const formInterface = document.querySelector('.form-interface');
     const formHeader = document.querySelector('.form-header');
     const inputWrapper = document.querySelector('.input-wrapper');
     const headerTitle = document.querySelector('.brand h1');
     const brandLogo = document.querySelector('.brand-logo');
     const statusDot = document.querySelector('.status-dot');
-    const toggleLabel = document.querySelector('.toggle-label');
     const brandLink = document.querySelector('.brand-link');
     const runtimeMessageType = 'ASTIG_JARCHAT_RUNTIME_CONFIG';
 
@@ -1203,12 +1114,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const nextMode = mode === 'test' || mode === 'chat' || mode === 'production' ? mode : 'production';
         currentWebhookMode = nextMode;
         currentWebhookUrl = webhookUrls[nextMode] || webhookUrls.chat || webhookUrls.production || webhookUrls.test || '';
-        if (webhookToggle) {
-            webhookToggle.checked = nextMode === 'test';
-        }
-        if (toggleLabel) {
-            toggleLabel.textContent = nextMode === 'chat' ? 'Chat Mode' : 'Test Mode';
-        }
     }
 
     function isImageSourceValue(value) {
@@ -2087,19 +1992,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // Event Listeners
     sendBtn.addEventListener('click', handleNext);
     restartBtn.addEventListener('click', restart);
-
-    // Toggle Event Listener
-    if (webhookToggle) {
-        webhookToggle.addEventListener('change', (e) => {
-            if (e.target.checked) {
-                setCurrentWebhookMode('test');
-                console.log("Switched to Test Webhook");
-            } else {
-                setCurrentWebhookMode('production');
-                console.log("Switched to Prod Webhook");
-            }
-        });
-    }
 
     userInput.addEventListener('keydown', (e) => {
         if (e.key === 'Enter') {
