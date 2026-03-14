@@ -181,11 +181,83 @@ iframe::-webkit-scrollbar {
     min-width: 0;
     min-height: 0;
     height: 100%;
+    position: relative;
     overflow-y: auto;
     overflow-x: hidden;
     overscroll-behavior: contain;
     scrollbar-width: none;
     -ms-overflow-style: none;
+}
+
+.conversation-media-root {
+    width: 100%;
+    display: block;
+    overflow: hidden;
+}
+
+.conversation-media-root[hidden] {
+    display: none !important;
+}
+
+.conversation-media-root--inline {
+    position: relative;
+    z-index: 1;
+    min-height: 220px;
+    max-height: 220px;
+    height: 220px;
+    margin: 0 0 16px;
+    border-radius: 22px;
+    background: rgba(6, 11, 22, 0.82);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 14px 40px rgba(0, 0, 0, 0.28);
+}
+
+.conversation-media-root--inline.conversation-media-root--pinned {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+}
+
+.conversation-media-root--background {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    border-radius: 28px;
+    opacity: 0.22;
+    pointer-events: none;
+}
+
+.conversation-media-root--background::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(8, 12, 22, 0.3) 0%, rgba(8, 12, 22, 0.76) 100%);
+}
+
+.conversation-media-root__video,
+.conversation-media-root__image {
+    width: 100%;
+    height: 100%;
+    display: block;
+    background: rgba(4, 9, 20, 0.9);
+}
+
+.conversation-media-root--inline .conversation-media-root__video,
+.conversation-media-root--inline .conversation-media-root__image {
+    object-fit: contain;
+    object-position: center;
+}
+
+.conversation-media-root--background .conversation-media-root__video,
+.conversation-media-root--background .conversation-media-root__image {
+    object-fit: cover;
+    object-position: center;
+}
+
+.chat-scroll-region--media-bg .conversation-flow,
+.chat-scroll-region--media-bg .message-wrapper {
+    position: relative;
+    z-index: 1;
 }
 
 .chat-scroll-region::-webkit-scrollbar {
@@ -1367,6 +1439,126 @@ document.addEventListener('DOMContentLoaded', () => {
         return `rgba(${r}, ${g}, ${b}, ${alpha})`;
     }
 
+    function escapeAttribute(value) {
+        return String(value || '')
+            .replace(/&/g, '&amp;')
+            .replace(/"/g, '&quot;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;');
+    }
+
+    function getConversationMediaConfig() {
+        const video = runtimeConfig && runtimeConfig.video && typeof runtimeConfig.video === 'object'
+            ? runtimeConfig.video
+            : {};
+        const imageUrl = String(video.imageUrl || '').trim();
+        const videoUrl = String(video.url || '').trim();
+        const layout = String(video.layout || 'inline').trim().toLowerCase() === 'background'
+            ? 'background'
+            : 'inline';
+        const hideBehavior = String(video.hideBehavior || 'first-question').trim().toLowerCase();
+        const loop = video.loop !== false;
+
+        if (imageUrl) {
+            return { type: 'image', url: imageUrl, layout, hideBehavior, loop: false };
+        }
+
+        if (videoUrl) {
+            return { type: 'video', url: videoUrl, layout, hideBehavior, loop };
+        }
+
+        return { type: 'none', url: '', layout, hideBehavior, loop: false };
+    }
+
+    function ensureConversationMediaRoot() {
+        if (!scrollRegion || !flowContainer) return null;
+        let mediaRoot = document.getElementById('conversation-media-root');
+        if (mediaRoot) return mediaRoot;
+        mediaRoot = document.createElement('div');
+        mediaRoot.id = 'conversation-media-root';
+        mediaRoot.className = 'conversation-media-root';
+        mediaRoot.hidden = true;
+        scrollRegion.insertBefore(mediaRoot, flowContainer);
+        return mediaRoot;
+    }
+
+    function stopConversationMediaPlayback(mediaRoot) {
+        if (!mediaRoot) return;
+        mediaRoot.querySelectorAll('video').forEach((videoNode) => {
+            try {
+                videoNode.pause();
+                videoNode.removeAttribute('src');
+                const sourceNode = videoNode.querySelector('source');
+                if (sourceNode) sourceNode.removeAttribute('src');
+                videoNode.load();
+            } catch (error) {
+                void error;
+            }
+        });
+    }
+
+    function ensureConversationMediaPlayback(mediaRoot) {
+        if (!mediaRoot) return;
+        const videoNode = mediaRoot.querySelector('video');
+        if (!(videoNode instanceof HTMLVideoElement)) return;
+
+        const playAttempt = videoNode.play();
+        if (playAttempt && typeof playAttempt.catch === 'function') {
+            playAttempt.catch(() => {
+                videoNode.muted = true;
+                videoNode.play().catch(() => {});
+            });
+        }
+    }
+
+    function renderConversationMedia() {
+        const mediaRoot = ensureConversationMediaRoot();
+        if (!mediaRoot || !scrollRegion) return;
+
+        const media = getConversationMediaConfig();
+        stopConversationMediaPlayback(mediaRoot);
+        mediaRoot.innerHTML = '';
+        mediaRoot.hidden = true;
+        mediaRoot.className = 'conversation-media-root';
+        scrollRegion.classList.remove('chat-scroll-region--media-bg');
+
+        if (media.type === 'none' || !media.url) return;
+
+        mediaRoot.hidden = false;
+        mediaRoot.classList.add(
+            media.layout === 'background'
+                ? 'conversation-media-root--background'
+                : 'conversation-media-root--inline'
+        );
+
+        if (media.type === 'image') {
+            mediaRoot.innerHTML = `<img class="conversation-media-root__image" src="${escapeAttribute(media.url)}" alt="Conversation media">`;
+            scrollRegion.classList.toggle('chat-scroll-region--media-bg', media.layout === 'background');
+            return;
+        }
+
+        const loopAttr = media.loop ? ' loop' : '';
+        mediaRoot.innerHTML =
+            `<video class="conversation-media-root__video" autoplay muted playsinline preload="metadata"${loopAttr}>` +
+            `<source src="${escapeAttribute(media.url)}">` +
+            '</video>';
+        scrollRegion.classList.toggle('chat-scroll-region--media-bg', media.layout === 'background');
+        ensureConversationMediaPlayback(mediaRoot);
+    }
+
+    function shouldKeepInlineMediaVisible() {
+        const mediaRoot = document.getElementById('conversation-media-root');
+        if (!(mediaRoot instanceof HTMLElement) || mediaRoot.hidden) return false;
+        if (!mediaRoot.classList.contains('conversation-media-root--inline')) return false;
+        return currentStep === 0 && !flowContainer.querySelector('.history-item');
+    }
+
+    function syncConversationMediaPinState() {
+        const mediaRoot = document.getElementById('conversation-media-root');
+        if (!(mediaRoot instanceof HTMLElement) || mediaRoot.hidden) return;
+        mediaRoot.classList.toggle('conversation-media-root--pinned', shouldKeepInlineMediaVisible());
+    }
+
     function applyRuntimeConfig(nextConfig) {
         runtimeConfig = nextConfig && typeof nextConfig === 'object' ? nextConfig : null;
         const webhook = runtimeConfig && runtimeConfig.webhook && typeof runtimeConfig.webhook === 'object'
@@ -1504,6 +1696,8 @@ document.addEventListener('DOMContentLoaded', () => {
         if (header.logoType === 'text' && header.logoValue && headerTitle) {
             headerTitle.textContent = String(header.logoValue).trim() || headerTitle.textContent;
         }
+
+        renderConversationMedia();
 
         steps = getJarchatConfiguredSteps();
         const hasRenderedConversation = !!(flowContainer && flowContainer.querySelector('.message-wrapper'));
@@ -2066,6 +2260,11 @@ document.addEventListener('DOMContentLoaded', () => {
         // Use timeout to ensure DOM has updated
         setTimeout(() => {
             const scrollHost = scrollRegion || flowContainer;
+            syncConversationMediaPinState();
+            if (shouldKeepInlineMediaVisible()) {
+                scrollHost.scrollTop = 0;
+                return;
+            }
             scrollHost.scrollTop = scrollHost.scrollHeight;
         }, 400);
     }
