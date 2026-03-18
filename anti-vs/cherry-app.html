@@ -535,6 +535,35 @@ body::-webkit-scrollbar {
     display: none;
 }
 
+.choice-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 12px 0 10px;
+}
+
+.choice-action-btn {
+    appearance: none;
+    border: 1px solid rgba(129, 140, 248, 0.35);
+    background: rgba(129, 140, 248, 0.12);
+    color: #eef2ff;
+    border-radius: 999px;
+    padding: 10px 14px;
+    font: inherit;
+    font-size: 0.92rem;
+    line-height: 1.2;
+    cursor: pointer;
+    transition: background 0.18s ease, border-color 0.18s ease, transform 0.18s ease;
+}
+
+.choice-action-btn:hover,
+.choice-action-btn:focus-visible {
+    background: linear-gradient(135deg, rgba(108, 99, 255, 0.9), rgba(76, 201, 255, 0.9));
+    border-color: rgba(255, 255, 255, 0.32);
+    outline: none;
+    transform: translateY(-1px);
+}
+
 .input-wrapper:focus-within {
     border-bottom-color: rgba(140, 124, 255, 1);
 }
@@ -1028,7 +1057,7 @@ input:checked+.slider:before {
     </main>
 
 
-    <script>window.__ASTIG_CHERRY_RUNTIME_CONFIG = {"theme":{"bgColor":"#17171f","surfaceColor":"#1f1f2e","primaryColor":"#6c63ff","secondaryColor":"#ec4899","accentColor":"#06b6d4","borderRadius":20,"headerTransparency":100,"fontFamily":"'DM Sans', sans-serif","mode":"solid","gradient":{"start":"#6c63ff","end":"#ff6584"},"headerBgColor":"#1f1f2e","headerTextColor":"#ffffff","topHeroMediaType":"none","topHeroMediaUrl":""},"header":{"title":"Assistant","name":"Assistant","status":"","subtitle":"","subtitleEmojiUrl":"","subtitleEmojiStripEnabled":true,"subtitleEmojiWave":true,"subtitleEmojiPray":true,"subtitleEmojiSmile":true,"subtitleEmojiThumb":true,"subtitleEmojiParty":true,"fontFamily":"'Syne', sans-serif","nameFontSize":15,"nameFontWeight":600,"statusFontSize":12,"animation":"none","logoOffsetX":0,"logoOffsetY":0,"nameOffsetX":0,"nameOffsetY":0,"subtitleOffsetX":0,"subtitleOffsetY":0,"actionsOffsetX":0,"actionsOffsetY":0,"statusOffsetX":0,"statusOffsetY":0,"avatar":"","avatarSize":0,"avatarOffsetX":0,"avatarOffsetY":0,"logoSize":"24","logoShape":"circle","logoType":"text","logoUrl":"","subtitleHtml":""},"assistant":{"name":"Assistant","avatar":"AS","avatarSize":40},"video":{"layout":"inline","hideBehavior":"first-question","loop":true,"url":"","imageUrl":""},"questions":[],"questionsStyle":"solid","footer":{"text":"","url":"","fontFamily":"'Inter', sans-serif","animation":"none","textColor":"#7070a0","fontSize":"11","position":"center"},"webhook":{"url":"","testUrl":"","chatUrl":"","proxyUrl":"","activeMode":"production","production":true,"externalJsUrl":"https://cdn.jsdelivr.net/gh/majesticwebcreation-ui/astig.media@main/anti-vs/fwidgets-chat-embed-runtime.js"},"converse":{"typingEnabled":true,"typingText":"","statusDelaySec":5,"minVisibleSec":0.8,"animation":"bounce","conversationFill":"theme","conversationBgColor":"#17171f","conversationGradientEnd":"#1f1f2e","bubbleFill":"solid","bubbleShape":"soft","indicatorColor":"#7070a0","bubbleBgColor":"#2a2a3d","bubbleGradientEnd":"#4b4f64","userBubbleFontFamily":"","userBubbleFontSizePx":15,"userBubbleBgColor":"#6c63ff","userBubbleAnimation":"none","composer":{"fill":"theme","bgColor":"#1f1f2e","transparencyPct":100,"gradientEnd":"#17171f","fontFamily":"","fontSizePx":14,"paddingHeightPx":6},"sendButton":{"fill":"gradient","bgColor":"#4cc9ff","gradientEnd":"#1f6be6","iconUrl":"","sizePx":50,"shape":"circle"},"uploadButton":{"iconUrl":""},"assistantBubbleFontFamily":"","assistantBubbleFontSizePx":15,"assistantBubbleAnimation":"none"},"ui":{"showPipelineMonitor":false,"showRealtimeTelemetry":false,"showRealtimeFeed":false,"templateStyle":"","blankReset":false}};</script>
+    <script>window.__ASTIG_CHERRY_RUNTIME_CONFIG = {"theme":{"bgColor":"#17171f","surfaceColor":"#1f1f2e","primaryColor":"#6c63ff","secondaryColor":"#ec4899","accentColor":"#06b6d4","borderRadius":20,"headerTransparency":100,"fontFamily":"'DM Sans', sans-serif","mode":"solid","gradient":{"start":"#6c63ff","end":"#ff6584"},"headerBgColor":"#1f1f2e","headerTextColor":"#ffffff","topHeroMediaType":"none","topHeroMediaUrl":""},"header":{"title":"Assistant","name":"Assistant","status":"","subtitle":"","subtitleEmojiUrl":"","subtitleEmojiStripEnabled":true,"subtitleEmojiWave":true,"subtitleEmojiPray":true,"subtitleEmojiSmile":true,"subtitleEmojiThumb":true,"subtitleEmojiParty":true,"fontFamily":"'Syne', sans-serif","nameFontSize":15,"nameFontWeight":600,"statusFontSize":12,"animation":"none","logoOffsetX":0,"logoOffsetY":0,"nameOffsetX":0,"nameOffsetY":0,"subtitleOffsetX":0,"subtitleOffsetY":0,"actionsOffsetX":0,"actionsOffsetY":0,"statusOffsetX":0,"statusOffsetY":0,"avatar":"https://widjets.astigmedia.com/img/User-logo.png","avatarSize":40,"avatarOffsetX":0,"avatarOffsetY":0,"logoSize":"24","logoShape":"circle","logoType":"text","logoUrl":"","subtitleHtml":""},"assistant":{"name":"Assistant","avatar":"https://widjets.astigmedia.com/img/User-logo.png","avatarSize":40},"video":{"layout":"inline","hideBehavior":"first-question","loop":true,"url":"","imageUrl":""},"questions":[],"questionsStyle":"solid","footer":{"text":"","url":"","fontFamily":"'Inter', sans-serif","animation":"none","textColor":"#7070a0","fontSize":"11","position":"center"},"webhook":{"url":"","testUrl":"","chatUrl":"","proxyUrl":"","activeMode":"production","production":true,"externalJsUrl":"https://cdn.jsdelivr.net/gh/majesticwebcreation-ui/astig.media@main/anti-vs/fwidgets-chat-embed-runtime.js"},"converse":{"typingEnabled":true,"typingText":"","statusDelaySec":5,"minVisibleSec":0.8,"animation":"bounce","conversationFill":"theme","conversationBgColor":"#17171f","conversationGradientEnd":"#1f1f2e","bubbleFill":"solid","bubbleShape":"soft","indicatorColor":"#7070a0","bubbleBgColor":"#2a2a3d","bubbleGradientEnd":"#4b4f64","userBubbleFontFamily":"","userBubbleFontSizePx":15,"userBubbleBgColor":"#6c63ff","userBubbleTransparencyPct":0,"userBubbleAnimation":"none","composer":{"fill":"theme","bgColor":"#1f1f2e","transparencyPct":100,"gradientEnd":"#17171f","fontFamily":"","fontSizePx":14,"paddingHeightPx":6},"sendButton":{"fill":"gradient","bgColor":"#4cc9ff","gradientEnd":"#1f6be6","iconUrl":"","sizePx":50,"shape":"circle"},"uploadButton":{"iconUrl":""},"assistantBubbleFontFamily":"","assistantBubbleFontSizePx":15,"assistantBubbleAnimation":"none"},"ui":{"showPipelineMonitor":false,"showRealtimeTelemetry":false,"showRealtimeFeed":false,"templateStyle":"","blankReset":false}};</script>
 <script>
 document.addEventListener('DOMContentLoaded', () => {
     const flowContainer = document.getElementById('conversation-flow');
@@ -1041,6 +1070,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const emailBtn = document.getElementById('email-btn');
     const webhookToggle = document.getElementById('webhook-toggle');
     const brandHeading = document.querySelector('.brand h1');
+    const inputArea = document.querySelector('.input-area');
+    const brandFooter = document.querySelector('.brand-footer');
 
     if (!flowContainer || !userInput || !sendBtn) return;
 
@@ -1077,6 +1108,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentWebhookMode = resolveWebhookMode(runtimeConfig);
     let currentWebhookUrl = resolveWebhookUrl(runtimeConfig, currentWebhookMode);
     let pendingScrollTimer = 0;
+    let activeChoiceContainer = null;
     const formData = createInitialFormData();
 
     applyRuntimeConfig(runtimeConfig);
@@ -1178,6 +1210,7 @@ document.addEventListener('DOMContentLoaded', () => {
             brandHeading.textContent = assistantName || 'Cherry';
         }
         document.title = `${assistantName || 'Cherry'} - Messages`;
+        refreshAssistantAvatars();
     }
 
     function normalizeConverseConfig(converse) {
@@ -1396,11 +1429,14 @@ document.addEventListener('DOMContentLoaded', () => {
     function buildSteps(cfg) {
         const sourceQuestions = Array.isArray(cfg.questions) && cfg.questions.length ? cfg.questions : DEFAULT_STEPS;
         const mapped = sourceQuestions
-            .filter((item) => item && String(item.type || 'text') === 'text' && String(item.text || '').trim())
+            .filter((item) => item && String(item.text || '').trim())
             .map((item, index) => ({
                 field: index === 0 ? 'name' : index === 1 ? 'inquiry' : `answer_${index + 1}`,
                 question: String(item.text || ''),
-                placeholder: 'Type here...'
+                placeholder: 'Type here...',
+                type: String(item.type || 'text').trim().toLowerCase() === 'choice' ? 'choice' : 'text',
+                choices: String(item.choices || ''),
+                displayMode: String(item.displayMode || '').trim().toLowerCase() === 'typewriter' ? 'typewriter' : 'instant'
             }));
         return mapped.length ? mapped : DEFAULT_STEPS.slice();
     }
@@ -1435,7 +1471,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const avatarDiv = document.createElement('div');
         avatarDiv.className = 'avatar';
-        avatarDiv.innerHTML = `<img src="${resolveAvatarUrl()}" alt="Cherry">`;
+        avatarDiv.innerHTML = `<img src="${resolveAvatarUrl()}" alt="${escapeHtml(getAssistantDisplayName())}">`;
         wrapper.appendChild(avatarDiv);
 
         const stepDiv = document.createElement('div');
@@ -1446,11 +1482,78 @@ document.addEventListener('DOMContentLoaded', () => {
         return stepDiv;
     }
 
+    function getAssistantDisplayName() {
+        return String(runtimeConfig?.assistant?.name || runtimeConfig?.header?.title || runtimeConfig?.header?.name || 'Cherry').trim() || 'Cherry';
+    }
+
+    function isImageSourceValue(value) {
+        const normalized = String(value || '').trim();
+        if (!normalized) return false;
+        return normalized.startsWith('data:')
+            || normalized.startsWith('blob:')
+            || /^https?:\/\//i.test(normalized)
+            || /\.(png|jpe?g|gif|webp|svg)(\?.*)?$/i.test(normalized);
+    }
+
     function resolveAvatarUrl() {
+        const header = runtimeConfig?.header && typeof runtimeConfig.header === 'object' ? runtimeConfig.header : {};
+        const assistant = runtimeConfig?.assistant && typeof runtimeConfig.assistant === 'object' ? runtimeConfig.assistant : {};
+        if (isImageSourceValue(header.avatar)) return String(header.avatar).trim();
+        if (String(header.logoType || '').trim().toLowerCase() === 'image' && isImageSourceValue(header.logoUrl)) {
+            return String(header.logoUrl).trim();
+        }
+        if (isImageSourceValue(assistant.avatar)) return String(assistant.avatar).trim();
         return 'assets/character_standin.png';
     }
 
+    function refreshAssistantAvatars() {
+        const avatarUrl = resolveAvatarUrl();
+        const assistantName = getAssistantDisplayName();
+        flowContainer.querySelectorAll('.message-wrapper .avatar img').forEach((img) => {
+            img.src = avatarUrl;
+            img.alt = assistantName;
+        });
+    }
+
+    function clearChoiceButtons() {
+        if (activeChoiceContainer && activeChoiceContainer.parentNode) {
+            activeChoiceContainer.parentNode.removeChild(activeChoiceContainer);
+        }
+        activeChoiceContainer = null;
+    }
+
+    function parseChoiceList(value) {
+        return String(value || '')
+            .split(',')
+            .map((item) => item.trim())
+            .filter(Boolean);
+    }
+
+    function renderChoiceButtons(stepData) {
+        clearChoiceButtons();
+        if (!(inputArea instanceof HTMLElement)) return;
+        const choices = parseChoiceList(stepData && stepData.choices);
+        if (!choices.length) return;
+
+        const container = document.createElement('div');
+        container.className = 'choice-actions';
+        choices.forEach((choice) => {
+            const button = document.createElement('button');
+            button.type = 'button';
+            button.className = 'choice-action-btn';
+            button.textContent = choice;
+            button.addEventListener('click', () => {
+                handleStepAnswer(choice);
+            });
+            container.appendChild(button);
+        });
+
+        inputArea.insertBefore(container, brandFooter || null);
+        activeChoiceContainer = container;
+    }
+
     function renderStep() {
+        clearChoiceButtons();
         archiveCurrentStep();
 
         if (currentStep < steps.length) {
@@ -1462,11 +1565,15 @@ document.addEventListener('DOMContentLoaded', () => {
             const stepDiv = createBotMessage();
             stepDiv.innerHTML = '<h2></h2>';
             const heading = stepDiv.querySelector('h2');
-            if (heading) typeText(heading, questionText);
+            if (heading) {
+                if (stepData.displayMode === 'typewriter') typeText(heading, questionText);
+                else heading.innerHTML = questionText;
+            }
             userInput.placeholder = stepData.placeholder;
             userInput.value = '';
             userInput.disabled = false;
             userInput.focus();
+            if (stepData.type === 'choice') renderChoiceButtons(stepData);
         } else {
             submitForm();
         }
@@ -1534,12 +1641,18 @@ document.addEventListener('DOMContentLoaded', () => {
     async function handleNext() {
         const text = String(userInput.value || '').trim();
         if (!text) return;
+        handleStepAnswer(text);
+    }
 
-        addToHistory(text);
+    function handleStepAnswer(text) {
+        const normalizedText = String(text || '').trim();
+        if (!normalizedText) return;
+        clearChoiceButtons();
+        addToHistory(normalizedText);
 
         if (isAskingForEmail) {
-            formData.email = text;
-            formData.inquiry = `[User provided email: ${text}]`;
+            formData.email = normalizedText;
+            formData.inquiry = `[User provided email: ${normalizedText}]`;
             isAskingForEmail = false;
             archiveCurrentStep();
             userInput.value = '';
@@ -1549,7 +1662,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         if (currentStep < steps.length) {
-            formData[steps[currentStep].field] = text;
+            formData[steps[currentStep].field] = normalizedText;
             currentStep += 1;
             userInput.value = '';
             renderStep();
@@ -1557,7 +1670,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         archiveCurrentStep();
-        formData.inquiry = text;
+        formData.inquiry = normalizedText;
         userInput.value = '';
         scrollToBottom();
         submitForm();
