@@ -80,10 +80,11 @@
   frame.referrerPolicy = 'strict-origin-when-cross-origin';
   frame.allow = 'autoplay; clipboard-write';
   frame.onload = function () { scheduleRuntimeConfigRetries(frame); };
-  if (runtimeUrl) frame.src = runtimeUrl;
-  else {
+  if (frameSrcdoc) {
     frame.srcdoc = frameSrcdoc;
     frame.src = 'data:text/html;charset=utf-8,' + encodeURIComponent(frameSrcdoc);
+  } else if (runtimeUrl) {
+    frame.src = runtimeUrl;
   }
   frame.style.position = 'fixed';
   frame.style.right = edge + 'px';
