@@ -19,6 +19,7 @@
   var runtimePayload = entry.runtimePayload || null;
   var runtimeUrl = String(entry.runtimeUrl || '').trim();
   var frameSrcdoc = String(entry.frameSrcdoc || '').trim();
+  var shouldPushRuntimePayload = !runtimeUrl;
   function getLauncherIconSvg(name) {
     var icon = String(name || 'message-circle').toLowerCase();
     switch (icon) {
@@ -40,7 +41,7 @@
   }
   function pushRuntimeConfig(frame, shouldRestart) {
     try {
-      if (!frame || !frame.contentWindow || !runtimePayload) return;
+      if (!shouldPushRuntimePayload || !frame || !frame.contentWindow || !runtimePayload) return;
       frame.contentWindow.postMessage({ type: runtimeMessageType, payload: runtimePayload, restartConversation: !!shouldRestart }, '*');
     } catch (err) {}
   }
