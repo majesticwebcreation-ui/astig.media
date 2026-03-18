@@ -162,7 +162,7 @@
   var floatingHeaderLogo = d.createElement('div');
   floatingHeaderLogo.setAttribute('aria-hidden', 'true');
   floatingHeaderLogo.style.position = 'fixed';
-  floatingHeaderLogo.style.right = 'calc(' + edge + 'px + ' + frameWidthCss + ' - 42px)';
+  floatingHeaderLogo.style.right = 'calc(' + edge + 'px + ' + frameWidthCss + ' + 12px)';
   floatingHeaderLogo.style.top = 'calc(100vh - ' + (edge + launcherSize + gap) + 'px - ' + frameHeightCss + ' + 16px)';
   floatingHeaderLogo.style.pointerEvents = 'none';
   floatingHeaderLogo.style.zIndex = '2147483002';
