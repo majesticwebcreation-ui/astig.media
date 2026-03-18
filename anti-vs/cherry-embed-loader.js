@@ -33,7 +33,9 @@
       logoType: String(branding.logoType || header.logoType || '').trim().toLowerCase(),
       logoUrl: String(branding.logoUrl || header.logoUrl || '').trim(),
       logoSize: Number.isFinite(rawSize) && rawSize > 0 ? rawSize : 22,
-      logoShape: String(branding.logoShape || header.logoShape || 'circle').trim().toLowerCase()
+      logoShape: String(branding.logoShape || header.logoShape || 'circle').trim().toLowerCase(),
+      offsetX: Number(header.logoOffsetX) || 0,
+      offsetY: Number(header.logoOffsetY) || 0
     };
   }
   function renderFloatingHeaderLogo(el) {
@@ -57,6 +59,7 @@
     el.style.color = '#ffffff';
     el.style.fontSize = Math.max(10, Math.round(size * 0.45)) + 'px';
     el.style.fontWeight = '700';
+    el.style.transform = 'translate(' + logo.offsetX + 'px, ' + logo.offsetY + 'px)';
     if (imageUrl) {
       var img = d.createElement('img');
       img.src = imageUrl;
