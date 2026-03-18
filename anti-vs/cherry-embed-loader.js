@@ -82,7 +82,6 @@
   frame.onload = function () { scheduleRuntimeConfigRetries(frame); };
   if (frameSrcdoc) {
     frame.srcdoc = frameSrcdoc;
-    frame.src = 'data:text/html;charset=utf-8,' + encodeURIComponent(frameSrcdoc);
   } else if (runtimeUrl) {
     frame.src = runtimeUrl;
   }
