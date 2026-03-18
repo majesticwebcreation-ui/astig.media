@@ -20,6 +20,61 @@
   var runtimeUrl = String(entry.runtimeUrl || '').trim();
   var frameSrcdoc = String(entry.frameSrcdoc || '').trim();
   var shouldPushRuntimePayload = !runtimeUrl;
+  function isImageLike(value) {
+    var raw = String(value || '').trim();
+    return !!raw && (/^(https?:)?\/\//i.test(raw) || /^data:/i.test(raw) || /^blob:/i.test(raw) || /^\//.test(raw) || /\.(png|jpe?g|gif|webp|svg)(\?.*)?$/i.test(raw));
+  }
+  function getHeaderLogoConfig() {
+    var payload = runtimePayload && typeof runtimePayload === 'object' ? runtimePayload : {};
+    var branding = payload.branding && typeof payload.branding === 'object' ? payload.branding : {};
+    var header = payload.header && typeof payload.header === 'object' ? payload.header : {};
+    var rawSize = Number(branding.logoSize != null ? branding.logoSize : header.logoSize);
+    return {
+      logoType: String(branding.logoType || header.logoType || '').trim().toLowerCase(),
+      logoUrl: String(branding.logoUrl || header.logoUrl || '').trim(),
+      logoSize: Number.isFinite(rawSize) && rawSize > 0 ? rawSize : 22,
+      logoShape: String(branding.logoShape || header.logoShape || 'circle').trim().toLowerCase()
+    };
+  }
+  function renderFloatingHeaderLogo(el) {
+    if (!el) return false;
+    var logo = getHeaderLogoConfig();
+    var imageUrl = logo.logoType === 'image' && isImageLike(logo.logoUrl) ? logo.logoUrl : '';
+    var size = Math.max(16, Number(logo.logoSize || 22));
+    var width = logo.logoShape === 'rectangle' ? Math.round(size * 1.55) : size;
+    var radius = logo.logoShape === 'square' ? '4px' : (logo.logoShape === 'rounded' ? '8px' : (logo.logoShape === 'rectangle' ? '10px' : '999px'));
+    el.innerHTML = '';
+    el.style.width = width + 'px';
+    el.style.height = size + 'px';
+    el.style.borderRadius = radius;
+    el.style.flexBasis = width + 'px';
+    el.style.display = 'flex';
+    el.style.alignItems = 'center';
+    el.style.justifyContent = 'center';
+    el.style.overflow = 'hidden';
+    el.style.background = 'rgba(255,255,255,0.08)';
+    el.style.border = '1px solid rgba(255,255,255,0.12)';
+    el.style.color = '#ffffff';
+    el.style.fontSize = Math.max(10, Math.round(size * 0.45)) + 'px';
+    el.style.fontWeight = '700';
+    if (imageUrl) {
+      var img = d.createElement('img');
+      img.src = imageUrl;
+      img.alt = assistantName + ' logo';
+      img.referrerPolicy = 'no-referrer';
+      img.style.width = '100%';
+      img.style.height = '100%';
+      img.style.objectFit = 'cover';
+      img.style.display = 'block';
+      img.onerror = function () {
+        el.innerHTML = assistantName.slice(0, 2).toUpperCase();
+      };
+      el.appendChild(img);
+    } else {
+      el.textContent = assistantName.slice(0, 2).toUpperCase();
+    }
+    return true;
+  }
   function getLauncherIconSvg(name) {
     var icon = String(name || 'message-circle').toLowerCase();
     switch (icon) {
@@ -75,6 +130,8 @@
   var edge = 20;
   var gap = 12;
   var widgetOpen = false;
+  var frameWidthCss = 'min(490px, calc(100vw - 24px))';
+  var frameHeightCss = 'min(700px, calc(100vh - 110px))';
   var frame = d.createElement('iframe');
   frame.title = assistantName;
   frame.loading = 'lazy';
@@ -89,9 +146,9 @@
   frame.style.position = 'fixed';
   frame.style.right = edge + 'px';
   frame.style.bottom = (edge + launcherSize + gap) + 'px';
-  frame.style.width = 'min(490px, calc(100vw - 24px))';
+  frame.style.width = frameWidthCss;
   frame.style.maxWidth = 'calc(100vw - 24px)';
-  frame.style.height = 'min(700px, calc(100vh - 110px))';
+  frame.style.height = frameHeightCss;
   frame.style.maxHeight = 'calc(100vh - 110px)';
   frame.style.border = '0';
   frame.style.borderRadius = '20px';
@@ -102,6 +159,23 @@
   frame.style.visibility = 'hidden';
   frame.style.transition = 'opacity 220ms ease, visibility 220ms ease';
   root.appendChild(frame);
+  var floatingHeaderLogo = d.createElement('div');
+  floatingHeaderLogo.setAttribute('aria-hidden', 'true');
+  floatingHeaderLogo.style.position = 'fixed';
+  floatingHeaderLogo.style.right = 'calc(' + edge + 'px + ' + frameWidthCss + ' - 42px)';
+  floatingHeaderLogo.style.top = 'calc(100vh - ' + (edge + launcherSize + gap) + 'px - ' + frameHeightCss + ' + 16px)';
+  floatingHeaderLogo.style.pointerEvents = 'none';
+  floatingHeaderLogo.style.zIndex = '2147483002';
+  floatingHeaderLogo.style.opacity = '0';
+  floatingHeaderLogo.style.visibility = 'hidden';
+  floatingHeaderLogo.style.transition = 'opacity 220ms ease, visibility 220ms ease';
+  root.appendChild(floatingHeaderLogo);
+  renderFloatingHeaderLogo(floatingHeaderLogo);
+  function syncFloatingHeaderLogoVisibility() {
+    floatingHeaderLogo.style.opacity = widgetOpen ? '1' : '0';
+    floatingHeaderLogo.style.visibility = widgetOpen ? 'visible' : 'hidden';
+  }
+  syncFloatingHeaderLogoVisibility();
   var launcher = d.createElement('button');
   launcher.type = 'button';
   launcher.setAttribute('aria-label', assistantName);
@@ -159,10 +233,12 @@
       frame.style.pointerEvents = 'auto';
       frame.style.opacity = '1';
       frame.style.visibility = 'visible';
+      syncFloatingHeaderLogoVisibility();
     } else {
       frame.style.pointerEvents = 'none';
       frame.style.opacity = '0';
       frame.style.visibility = 'hidden';
+      syncFloatingHeaderLogoVisibility();
     }
   };
   root.appendChild(launcher);
