@@ -1996,6 +1996,84 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 </script>
+<script>
+(function () {
+  function normalizeImageSource(value) {
+    var raw = String(value || '').trim();
+    if (!raw) return '';
+    if (raw.startsWith('data:') || raw.startsWith('blob:') || /^https?:\/\//i.test(raw)) return raw;
+    if (raw.startsWith('//')) return 'https:' + raw;
+    if (/^[\w.-]+\.[A-Za-z]{2,}(?:[/:?#]|$)/.test(raw)) return 'https://' + raw;
+    return raw;
+  }
+  function isImageSourceValue(value) {
+    var normalized = String(value || '').trim();
+    if (!normalized) return false;
+    return normalized.startsWith('data:') || normalized.startsWith('blob:') || /^https?:\/\//i.test(normalized) || /\.(png|jpe?g|gif|webp|svg)(\?.*)?$/i.test(normalized);
+  }
+  function applyCherryHeaderLogoPatch() {
+    var cfg = window.__ASTIG_CHERRY_RUNTIME_CONFIG || {};
+    var header = cfg.header && typeof cfg.header === 'object' ? cfg.header : {};
+    var branding = cfg.branding && typeof cfg.branding === 'object' ? cfg.branding : {};
+    var assistant = cfg.assistant && typeof cfg.assistant === 'object' ? cfg.assistant : {};
+    var brandLogo = document.getElementById('brand-logo');
+    if (!brandLogo) return;
+    var brandStatusDot = document.querySelector('.brand .status-dot');
+    var logoType = String(branding.logoType || header.logoType || '').trim().toLowerCase();
+    var logoUrl = normalizeImageSource(branding.logoUrl || header.logoUrl || '');
+    var imageUrl = logoType === 'image' && isImageSourceValue(logoUrl) ? logoUrl : '';
+    var rawSize = Number(branding.logoSize != null ? branding.logoSize : header.logoSize);
+    var logoSize = Number.isFinite(rawSize) && rawSize > 0 ? rawSize : 22;
+    var shape = String(branding.logoShape || header.logoShape || 'circle').trim().toLowerCase();
+    var isRectangle = shape === 'rectangle';
+    var width = isRectangle ? Math.round(logoSize * 1.55) : logoSize;
+    var borderRadius = shape === 'square' ? '4px' : (shape === 'rounded' ? '8px' : (shape === 'rectangle' ? '10px' : '999px'));
+    brandLogo.innerHTML = '';
+    brandLogo.style.width = width + 'px';
+    brandLogo.style.height = logoSize + 'px';
+    brandLogo.style.flexBasis = width + 'px';
+    brandLogo.style.borderRadius = borderRadius;
+    brandLogo.style.transform = 'translate(' + (Number(header.logoOffsetX) || 0) + 'px, 0px)';
+    if (branding.hideHeaderLogo === true) {
+      brandLogo.hidden = true;
+      brandLogo.setAttribute('aria-hidden', 'true');
+      if (brandStatusDot) brandStatusDot.style.display = 'none';
+      return;
+    }
+    if (brandStatusDot) brandStatusDot.style.display = '';
+    if (imageUrl) {
+      var img = document.createElement('img');
+      img.src = imageUrl;
+      img.alt = ((assistant.name || header.title || header.name || 'Assistant') + ' logo').trim();
+      img.referrerPolicy = 'no-referrer';
+      brandLogo.appendChild(img);
+      brandLogo.hidden = false;
+      brandLogo.setAttribute('aria-hidden', 'false');
+      return;
+    }
+    var fallbackText = String(header.title || header.name || assistant.name || 'A').trim().substring(0, 2).toUpperCase();
+    if (fallbackText) {
+      brandLogo.textContent = fallbackText;
+      brandLogo.hidden = false;
+      brandLogo.setAttribute('aria-hidden', 'false');
+    } else {
+      brandLogo.hidden = true;
+      brandLogo.setAttribute('aria-hidden', 'true');
+    }
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', applyCherryHeaderLogoPatch, { once: true });
+  } else {
+    applyCherryHeaderLogoPatch();
+  }
+  window.addEventListener('message', function (event) {
+    var data = event && event.data;
+    if (!data || data.type !== 'ASTIG_CHERRY_RUNTIME_CONFIG' || !data.payload) return;
+    window.__ASTIG_CHERRY_RUNTIME_CONFIG = data.payload;
+    applyCherryHeaderLogoPatch();
+  });
+})();
+</script>
 </body>
 
 </html>
