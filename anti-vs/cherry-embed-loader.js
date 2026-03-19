@@ -241,26 +241,7 @@
   frame.style.visibility = 'hidden';
   frame.style.transition = 'opacity 220ms ease, visibility 220ms ease';
   root.appendChild(frame);
-  var floatingHeaderLogo = d.createElement('div');
-  floatingHeaderLogo.setAttribute('aria-hidden', 'true');
-  floatingHeaderLogo.style.position = 'fixed';
-  floatingHeaderLogo.style.right = 'calc(' + edge + 'px + ' + frameWidthCss + ' + 12px)';
-  floatingHeaderLogo.style.top = 'calc(100vh - ' + (edge + launcherSize + gap) + 'px - ' + frameHeightCss + ' + 16px)';
-  floatingHeaderLogo.style.pointerEvents = 'none';
-  floatingHeaderLogo.style.zIndex = '2147483002';
-  floatingHeaderLogo.style.opacity = '0';
-  floatingHeaderLogo.style.visibility = 'hidden';
-  floatingHeaderLogo.style.transition = 'opacity 220ms ease, visibility 220ms ease';
-  root.appendChild(floatingHeaderLogo);
-  loadFloatingLogoDragOffset();
-  renderFloatingHeaderLogo(floatingHeaderLogo);
-  enableFloatingHeaderLogoDragging(floatingHeaderLogo);
-  function syncFloatingHeaderLogoVisibility() {
-    floatingHeaderLogo.style.opacity = widgetOpen ? '1' : '0';
-    floatingHeaderLogo.style.visibility = widgetOpen ? 'visible' : 'hidden';
-    floatingHeaderLogo.style.pointerEvents = widgetOpen ? 'auto' : 'none';
-  }
-  syncFloatingHeaderLogoVisibility();
+  function syncFloatingHeaderLogoVisibility() {}
   var launcher = d.createElement('button');
   launcher.type = 'button';
   launcher.setAttribute('aria-label', assistantName);
