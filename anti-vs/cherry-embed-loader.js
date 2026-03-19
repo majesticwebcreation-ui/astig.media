@@ -19,7 +19,7 @@
   var runtimePayload = entry.runtimePayload || null;
   var runtimeUrl = String(entry.runtimeUrl || '').trim();
   var frameSrcdoc = String(entry.frameSrcdoc || '').trim();
-  var shouldPushRuntimePayload = !runtimeUrl;
+  var shouldPushRuntimePayload = true;
   function isImageLike(value) {
     var raw = String(value || '').trim();
     return !!raw && (/^(https?:)?\/\//i.test(raw) || /^data:/i.test(raw) || /^blob:/i.test(raw) || /^\//.test(raw) || /\.(png|jpe?g|gif|webp|svg)(\?.*)?$/i.test(raw));
@@ -59,16 +59,20 @@
     el.style.color = '#ffffff';
     el.style.fontSize = Math.max(10, Math.round(size * 0.45)) + 'px';
     el.style.fontWeight = '700';
-    el.style.transform = 'translate(' + logo.offsetX + 'px, ' + logo.offsetY + 'px)';
+    applyFloatingHeaderLogoOffset(el);
     if (imageUrl) {
       var img = d.createElement('img');
       img.src = imageUrl;
       img.alt = assistantName + ' logo';
+      img.draggable = false;
       img.referrerPolicy = 'no-referrer';
       img.style.width = '100%';
       img.style.height = '100%';
       img.style.objectFit = 'cover';
       img.style.display = 'block';
+      img.style.pointerEvents = 'none';
+      img.style.userSelect = 'none';
+      img.style.webkitUserDrag = 'none';
       img.onerror = function () {
         el.innerHTML = assistantName.slice(0, 2).toUpperCase();
       };
@@ -77,6 +81,81 @@
       el.textContent = assistantName.slice(0, 2).toUpperCase();
     }
     return true;
+  }
+  var floatingLogoDragOffset = { x: 0, y: 0 };
+  function getFloatingLogoStorageKey() {
+    return 'astigCherryFloatingLogoOffset:' + key;
+  }
+  function clampFloatingLogoOffset(value, limit) {
+    var next = Number(value);
+    return Number.isFinite(next) ? Math.max(-limit, Math.min(limit, Math.round(next))) : 0;
+  }
+  function loadFloatingLogoDragOffset() {
+    try {
+      if (!w.localStorage) return;
+      var raw = String(w.localStorage.getItem(getFloatingLogoStorageKey()) || '').trim();
+      if (!raw) return;
+      var parsed = JSON.parse(raw);
+      floatingLogoDragOffset.x = clampFloatingLogoOffset(parsed && parsed.x, 260);
+      floatingLogoDragOffset.y = clampFloatingLogoOffset(parsed && parsed.y, 180);
+    } catch (err) {}
+  }
+  function saveFloatingLogoDragOffset() {
+    try {
+      if (!w.localStorage) return;
+      w.localStorage.setItem(getFloatingLogoStorageKey(), JSON.stringify(floatingLogoDragOffset));
+    } catch (err) {}
+  }
+  function applyFloatingHeaderLogoOffset(el) {
+    if (!el) return;
+    var logo = getHeaderLogoConfig();
+    el.style.transform = 'translate(' + (logo.offsetX + floatingLogoDragOffset.x) + 'px, ' + (logo.offsetY + floatingLogoDragOffset.y) + 'px)';
+  }
+  function enableFloatingHeaderLogoDragging(el) {
+    if (!el || el.dataset.dragBound === '1') return;
+    el.dataset.dragBound = '1';
+    el.style.pointerEvents = 'auto';
+    el.style.cursor = 'grab';
+    el.style.touchAction = 'none';
+    el.style.userSelect = 'none';
+    el.style.webkitUserSelect = 'none';
+    el.setAttribute('draggable', 'false');
+    el.addEventListener('dragstart', function (e) {
+      e.preventDefault();
+    });
+    var dragStartX = 0;
+    var dragStartY = 0;
+    var originX = 0;
+    var originY = 0;
+    var pointerId = null;
+    el.addEventListener('pointerdown', function (e) {
+      if (e.button !== 0) return;
+      pointerId = e.pointerId;
+      el.setPointerCapture(pointerId);
+      el.classList.add('is-dragging');
+      dragStartX = e.clientX;
+      dragStartY = e.clientY;
+      originX = floatingLogoDragOffset.x;
+      originY = floatingLogoDragOffset.y;
+      el.style.cursor = 'grabbing';
+      e.preventDefault();
+    });
+    el.addEventListener('pointermove', function (e) {
+      if (pointerId === null || e.pointerId !== pointerId) return;
+      floatingLogoDragOffset.x = clampFloatingLogoOffset(originX + (e.clientX - dragStartX), 260);
+      floatingLogoDragOffset.y = clampFloatingLogoOffset(originY + (e.clientY - dragStartY), 180);
+      applyFloatingHeaderLogoOffset(el);
+    });
+    var finishDrag = function (e) {
+      if (pointerId === null || e.pointerId !== pointerId) return;
+      if (el.hasPointerCapture(pointerId)) el.releasePointerCapture(pointerId);
+      pointerId = null;
+      el.classList.remove('is-dragging');
+      el.style.cursor = 'grab';
+      saveFloatingLogoDragOffset();
+    };
+    el.addEventListener('pointerup', finishDrag);
+    el.addEventListener('pointercancel', finishDrag);
   }
   function getLauncherIconSvg(name) {
     var icon = String(name || 'message-circle').toLowerCase();
@@ -173,10 +252,13 @@
   floatingHeaderLogo.style.visibility = 'hidden';
   floatingHeaderLogo.style.transition = 'opacity 220ms ease, visibility 220ms ease';
   root.appendChild(floatingHeaderLogo);
+  loadFloatingLogoDragOffset();
   renderFloatingHeaderLogo(floatingHeaderLogo);
+  enableFloatingHeaderLogoDragging(floatingHeaderLogo);
   function syncFloatingHeaderLogoVisibility() {
     floatingHeaderLogo.style.opacity = widgetOpen ? '1' : '0';
     floatingHeaderLogo.style.visibility = widgetOpen ? 'visible' : 'hidden';
+    floatingHeaderLogo.style.pointerEvents = widgetOpen ? 'auto' : 'none';
   }
   syncFloatingHeaderLogoVisibility();
   var launcher = d.createElement('button');
