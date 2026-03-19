@@ -2024,19 +2024,97 @@ document.addEventListener('DOMContentLoaded', () => {
   function applyCherryHeaderThemePatch() {
     var cfg = window.__ASTIG_CHERRY_RUNTIME_CONFIG || {};
     var theme = cfg.theme && typeof cfg.theme === 'object' ? cfg.theme : {};
+    var header = cfg.header && typeof cfg.header === 'object' ? cfg.header : {};
     var formHeader = document.querySelector('.form-header');
+    var brand = document.querySelector('.brand');
     var brandHeading = document.querySelector('.brand h1');
+    var brandCopy = document.querySelector('.brand-copy');
+    var brandSubtitle = document.getElementById('brand-subtitle');
+    var brandStatusText = document.getElementById('brand-status-text');
     var brandStatusDot = document.querySelector('.brand .status-dot');
     var headerActions = document.querySelector('.header-actions');
+    if (brand && !brandCopy) {
+      brandCopy = document.createElement('div');
+      brandCopy.className = 'brand-copy';
+      if (brandHeading && brandHeading.parentNode === brand) {
+        brand.insertBefore(brandCopy, brandHeading);
+        brandCopy.appendChild(brandHeading);
+      } else if (brandHeading && brandHeading.parentNode !== brandCopy) {
+        brandCopy.appendChild(brandHeading);
+        brand.appendChild(brandCopy);
+      } else {
+        brand.appendChild(brandCopy);
+      }
+    }
+    if (brandCopy && !brandSubtitle) {
+      brandSubtitle = document.createElement('div');
+      brandSubtitle.className = 'brand-subtitle';
+      brandSubtitle.id = 'brand-subtitle';
+      brandSubtitle.hidden = true;
+      brandSubtitle.setAttribute('aria-hidden', 'true');
+      brandCopy.appendChild(brandSubtitle);
+    }
+    if (brandCopy && !brandStatusText) {
+      brandStatusText = document.createElement('div');
+      brandStatusText.className = 'brand-status-text';
+      brandStatusText.id = 'brand-status-text';
+      brandStatusText.hidden = true;
+      brandStatusText.setAttribute('aria-hidden', 'true');
+      brandCopy.appendChild(brandStatusText);
+    }
     if (formHeader) {
       var headerAlpha = Math.max(0, Math.min(1, Number(theme.headerTransparency != null ? theme.headerTransparency : 100) / 100));
       formHeader.style.background = theme.headerBgColor
         ? convertHexToRgba(String(theme.headerBgColor).trim(), headerAlpha)
         : '';
       formHeader.style.color = theme.headerTextColor ? String(theme.headerTextColor).trim() : '';
+      formHeader.classList.remove('anim-header-pulse', 'anim-header-fade', 'anim-header-slide-up');
+      var headerAnimation = String(header.animation || 'none').trim().toLowerCase();
+      if (headerAnimation && headerAnimation !== 'none') {
+        formHeader.classList.add('anim-header-' + headerAnimation);
+      }
     }
     if (brandHeading) {
+      brandHeading.textContent = String(header.title || header.name || (cfg.assistant && cfg.assistant.name) || 'Cherry').trim() || 'Cherry';
       brandHeading.style.color = theme.headerTextColor ? String(theme.headerTextColor).trim() : '';
+      brandHeading.style.fontFamily = header.fontFamily ? String(header.fontFamily).trim() : '';
+      brandHeading.style.fontSize = Number(header.nameFontSize) > 0 ? (String(Number(header.nameFontSize)) + 'px') : '';
+    }
+    if (brandCopy) {
+      brandCopy.style.display = 'flex';
+      brandCopy.style.flexDirection = 'column';
+      brandCopy.style.alignItems = 'flex-start';
+      brandCopy.style.justifyContent = 'center';
+      brandCopy.style.gap = '2px';
+      brandCopy.style.minWidth = '0';
+    }
+    if (brandSubtitle) {
+      var subtitleText = String(header.subtitle || '').trim();
+      brandSubtitle.textContent = subtitleText;
+      brandSubtitle.hidden = !subtitleText;
+      brandSubtitle.setAttribute('aria-hidden', subtitleText ? 'false' : 'true');
+      brandSubtitle.style.color = theme.headerTextColor ? convertHexToRgba(String(theme.headerTextColor).trim(), 0.72) : '';
+      brandSubtitle.style.fontFamily = header.fontFamily ? String(header.fontFamily).trim() : '';
+      brandSubtitle.style.fontSize = '0.72rem';
+      brandSubtitle.style.lineHeight = '1.15';
+      brandSubtitle.style.maxWidth = '190px';
+      brandSubtitle.style.whiteSpace = 'nowrap';
+      brandSubtitle.style.overflow = 'hidden';
+      brandSubtitle.style.textOverflow = 'ellipsis';
+    }
+    if (brandStatusText) {
+      var statusText = String(header.status || '').trim();
+      brandStatusText.textContent = statusText;
+      brandStatusText.hidden = !statusText;
+      brandStatusText.setAttribute('aria-hidden', statusText ? 'false' : 'true');
+      brandStatusText.style.color = theme.headerTextColor ? convertHexToRgba(String(theme.headerTextColor).trim(), 0.72) : '';
+      brandStatusText.style.fontFamily = header.fontFamily ? String(header.fontFamily).trim() : '';
+      brandStatusText.style.fontSize = Number(header.statusFontSize) > 0 ? (String(Number(header.statusFontSize)) + 'px') : '12px';
+      brandStatusText.style.lineHeight = '1.15';
+      brandStatusText.style.maxWidth = '190px';
+      brandStatusText.style.whiteSpace = 'nowrap';
+      brandStatusText.style.overflow = 'hidden';
+      brandStatusText.style.textOverflow = 'ellipsis';
     }
     if (brandStatusDot && theme.primaryColor) {
       brandStatusDot.style.background = String(theme.primaryColor).trim();
