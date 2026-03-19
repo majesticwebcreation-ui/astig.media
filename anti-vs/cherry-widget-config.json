@@ -105,9 +105,9 @@
     "questions": [
       {
         "id": 1,
-        "text": "Hi there, welcome to customer support. How can I help you?",
+        "text": "I'm River. How Can I Help?",
         "type": "text",
-        "displayMode": "instant",
+        "displayMode": "typewriter",
         "choices": ""
       }
     ],
@@ -144,10 +144,10 @@
       "indicatorColor": "#7070a0",
       "bubbleBgColor": "#2a2a3d",
       "bubbleGradientEnd": "#4b4f64",
-      "userBubbleFontFamily": "",
-      "userBubbleFontSizePx": 15,
+      "userBubbleFontFamily": "'DM Sans', sans-serif",
+      "userBubbleFontSizePx": 12,
       "userBubbleBgColor": "#6c63ff",
-      "userBubbleTransparencyPct": 100,
+      "userBubbleTransparencyPct": 0,
       "userBubbleAnimation": "none",
       "composer": {
         "fill": "theme",
@@ -181,6 +181,6 @@
       "blankReset": false
     }
   },
-  "runtimeUrl": "https://majesticwebcreation-ui.github.io/astig.media/anti-vs/cherry-app.html?astigDeployTs=2026-03-19T23%3A04%3A00.908Z",
+  "runtimeUrl": "https://majesticwebcreation-ui.github.io/astig.media/anti-vs/cherry-app.html?astigDeployTs=2026-03-19T23%3A07%3A21.295Z",
   "frameSrcdoc": ""
 }
