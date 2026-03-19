@@ -1998,6 +1998,16 @@ document.addEventListener('DOMContentLoaded', () => {
 </script>
 <script>
 (function () {
+  function convertHexToRgba(color, alpha) {
+    var raw = String(color || '').trim();
+    if (!/^#([0-9a-f]{3}|[0-9a-f]{6})$/i.test(raw)) return 'rgba(27, 34, 72, ' + alpha + ')';
+    var normalized = raw.length === 4 ? ('#' + raw[1] + raw[1] + raw[2] + raw[2] + raw[3] + raw[3]) : raw;
+    var value = normalized.slice(1);
+    var r = parseInt(value.slice(0, 2), 16);
+    var g = parseInt(value.slice(2, 4), 16);
+    var b = parseInt(value.slice(4, 6), 16);
+    return 'rgba(' + r + ', ' + g + ', ' + b + ', ' + alpha + ')';
+  }
   function normalizeImageSource(value) {
     var raw = String(value || '').trim();
     if (!raw) return '';
@@ -2010,6 +2020,30 @@ document.addEventListener('DOMContentLoaded', () => {
     var normalized = String(value || '').trim();
     if (!normalized) return false;
     return normalized.startsWith('data:') || normalized.startsWith('blob:') || /^https?:\/\//i.test(normalized) || /\.(png|jpe?g|gif|webp|svg)(\?.*)?$/i.test(normalized);
+  }
+  function applyCherryHeaderThemePatch() {
+    var cfg = window.__ASTIG_CHERRY_RUNTIME_CONFIG || {};
+    var theme = cfg.theme && typeof cfg.theme === 'object' ? cfg.theme : {};
+    var formHeader = document.querySelector('.form-header');
+    var brandHeading = document.querySelector('.brand h1');
+    var brandStatusDot = document.querySelector('.brand .status-dot');
+    if (formHeader) {
+      var headerAlpha = Math.max(0, Math.min(1, Number(theme.headerTransparency != null ? theme.headerTransparency : 100) / 100));
+      formHeader.style.background = theme.headerBgColor
+        ? convertHexToRgba(String(theme.headerBgColor).trim(), headerAlpha)
+        : '';
+      formHeader.style.color = theme.headerTextColor ? String(theme.headerTextColor).trim() : '';
+    }
+    if (brandHeading) {
+      brandHeading.style.color = theme.headerTextColor ? String(theme.headerTextColor).trim() : '';
+    }
+    if (brandStatusDot && theme.primaryColor) {
+      brandStatusDot.style.background = String(theme.primaryColor).trim();
+      brandStatusDot.style.boxShadow = '0 0 10px ' + String(theme.primaryColor).trim();
+    }
+    document.querySelectorAll('.settings-btn').forEach(function (button) {
+      button.style.color = theme.headerTextColor ? String(theme.headerTextColor).trim() : '';
+    });
   }
   function applyCherryHeaderLogoPatch() {
     var cfg = window.__ASTIG_CHERRY_RUNTIME_CONFIG || {};
@@ -2062,14 +2096,19 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', applyCherryHeaderLogoPatch, { once: true });
+    document.addEventListener('DOMContentLoaded', function () {
+      applyCherryHeaderThemePatch();
+      applyCherryHeaderLogoPatch();
+    }, { once: true });
   } else {
+    applyCherryHeaderThemePatch();
     applyCherryHeaderLogoPatch();
   }
   window.addEventListener('message', function (event) {
     var data = event && event.data;
     if (!data || data.type !== 'ASTIG_CHERRY_RUNTIME_CONFIG' || !data.payload) return;
     window.__ASTIG_CHERRY_RUNTIME_CONFIG = data.payload;
+    applyCherryHeaderThemePatch();
     applyCherryHeaderLogoPatch();
   });
 })();
