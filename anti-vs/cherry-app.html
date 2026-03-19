@@ -2027,6 +2027,7 @@ document.addEventListener('DOMContentLoaded', () => {
     var formHeader = document.querySelector('.form-header');
     var brandHeading = document.querySelector('.brand h1');
     var brandStatusDot = document.querySelector('.brand .status-dot');
+    var headerActions = document.querySelector('.header-actions');
     if (formHeader) {
       var headerAlpha = Math.max(0, Math.min(1, Number(theme.headerTransparency != null ? theme.headerTransparency : 100) / 100));
       formHeader.style.background = theme.headerBgColor
@@ -2044,6 +2045,22 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.settings-btn').forEach(function (button) {
       button.style.color = theme.headerTextColor ? String(theme.headerTextColor).trim() : '';
     });
+    if (headerActions) {
+      var actionChildren = Array.prototype.slice.call(headerActions.children || []);
+      actionChildren.forEach(function (node) {
+        var label = String(node && node.getAttribute ? (node.getAttribute('aria-label') || '') : '').trim().toLowerCase();
+        if (label === 'toggle' || label === 'switch' || label === 'theme toggle') {
+          node.style.display = 'none';
+        }
+      });
+      var checkboxLike = headerActions.querySelectorAll('input[type="checkbox"], .switch, .toggle, [role="switch"]');
+      checkboxLike.forEach(function (node) {
+        if (node instanceof HTMLElement) {
+          var root = node.closest('button, label, .settings-btn, .toggle, .switch') || node;
+          if (root instanceof HTMLElement) root.style.display = 'none';
+        }
+      });
+    }
   }
   function applyCherryHeaderLogoPatch() {
     var cfg = window.__ASTIG_CHERRY_RUNTIME_CONFIG || {};
