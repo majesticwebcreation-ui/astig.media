@@ -24,7 +24,7 @@
   "launcherImageUrl": "https://widjets.astigmedia.com/img/main-logo.png",
   "launcherIconName": "message-circle",
   "launcherIconSvg": "",
-  "assistantName": "Assistant",
+  "assistantName": "RIVERS",
   "runtimeMessageType": "ASTIG_CHERRY_RUNTIME_CONFIG",
   "runtimePayload": {
     "theme": {
@@ -91,7 +91,7 @@
       "hideHeaderLogo": false
     },
     "assistant": {
-      "name": "Assistant",
+      "name": "RIVERS",
       "avatar": "https://widjets.astigmedia.com/img/User-logo.png",
       "avatarSize": 40
     },
@@ -181,6 +181,6 @@
       "blankReset": false
     }
   },
-  "runtimeUrl": "https://majesticwebcreation-ui.github.io/astig.media/anti-vs/cherry-app.html?astigDeployTs=2026-03-20T23%3A22%3A36.953Z",
+  "runtimeUrl": "https://majesticwebcreation-ui.github.io/astig.media/anti-vs/cherry-app.html?astigDeployTs=2026-03-20T23%3A24%3A50.510Z",
   "frameSrcdoc": ""
 }
