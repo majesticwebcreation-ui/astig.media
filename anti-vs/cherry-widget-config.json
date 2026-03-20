@@ -47,8 +47,8 @@
       "topHeroMediaUrl": ""
     },
     "header": {
-      "title": "Assistant",
-      "name": "Assistant",
+      "title": "Rivers",
+      "name": "Rivers",
       "status": "",
       "subtitle": "",
       "subtitleEmojiUrl": "",
@@ -105,7 +105,7 @@
     "questions": [
       {
         "id": 1,
-        "text": "I'm River. How can I help?",
+        "text": "I'm River.",
         "type": "text",
         "displayMode": "typewriter",
         "choices": ""
@@ -181,6 +181,6 @@
       "blankReset": false
     }
   },
-  "runtimeUrl": "https://majesticwebcreation-ui.github.io/astig.media/anti-vs/cherry-app.html?astigDeployTs=2026-03-20T23%3A15%3A18.101Z",
+  "runtimeUrl": "https://majesticwebcreation-ui.github.io/astig.media/anti-vs/cherry-app.html?astigDeployTs=2026-03-20T23%3A17%3A47.466Z",
   "frameSrcdoc": ""
 }
