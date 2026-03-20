@@ -3,9 +3,9 @@
   "launcherCfg": {
     "position": "bottom-right",
     "shape": "circle",
-    "iconType": "icon",
+    "iconType": "image",
     "icon": "message-circle",
-    "imageUrl": "",
+    "imageUrl": "https://widjets.astigmedia.com/img/main-logo.png",
     "size": "48",
     "widgetToggleAnimation": "none",
     "badgeEnabled": false,
@@ -21,10 +21,10 @@
     "gradientEnd": "#ff6584",
     "animation": "none"
   },
-  "launcherImageUrl": "",
+  "launcherImageUrl": "https://widjets.astigmedia.com/img/main-logo.png",
   "launcherIconName": "message-circle",
   "launcherIconSvg": "",
-  "assistantName": "River",
+  "assistantName": "Assistant",
   "runtimeMessageType": "ASTIG_CHERRY_RUNTIME_CONFIG",
   "runtimePayload": {
     "theme": {
@@ -47,10 +47,10 @@
       "topHeroMediaUrl": ""
     },
     "header": {
-      "title": "River 👋",
-      "name": "River 👋",
+      "title": "Assistant",
+      "name": "Assistant",
       "status": "",
-      "subtitle": "Demo Web",
+      "subtitle": "",
       "subtitleEmojiUrl": "",
       "subtitleEmojiStripEnabled": true,
       "subtitleEmojiWave": true,
@@ -58,11 +58,11 @@
       "subtitleEmojiSmile": true,
       "subtitleEmojiThumb": true,
       "subtitleEmojiParty": true,
-      "fontFamily": "'Inter', sans-serif",
+      "fontFamily": "'Syne', sans-serif",
       "nameFontSize": 15,
       "nameFontWeight": 600,
       "statusFontSize": 12,
-      "animation": "pulse",
+      "animation": "none",
       "logoOffsetX": 0,
       "logoOffsetY": 0,
       "nameOffsetX": 0,
@@ -91,7 +91,7 @@
       "hideHeaderLogo": false
     },
     "assistant": {
-      "name": "River",
+      "name": "Assistant",
       "avatar": "https://widjets.astigmedia.com/img/User-logo.png",
       "avatarSize": 40
     },
@@ -105,9 +105,9 @@
     "questions": [
       {
         "id": 1,
-        "text": "I'm River. How Can I Help?",
+        "text": "Hi there, welcome to customer support. How can I help you?",
         "type": "text",
-        "displayMode": "typewriter",
+        "displayMode": "instant",
         "choices": ""
       }
     ],
@@ -144,10 +144,10 @@
       "indicatorColor": "#7070a0",
       "bubbleBgColor": "#2a2a3d",
       "bubbleGradientEnd": "#4b4f64",
-      "userBubbleFontFamily": "'DM Sans', sans-serif",
-      "userBubbleFontSizePx": 12,
+      "userBubbleFontFamily": "",
+      "userBubbleFontSizePx": 15,
       "userBubbleBgColor": "#6c63ff",
-      "userBubbleTransparencyPct": 0,
+      "userBubbleTransparencyPct": 100,
       "userBubbleAnimation": "none",
       "composer": {
         "fill": "theme",
@@ -163,7 +163,7 @@
         "bgColor": "#4cc9ff",
         "gradientEnd": "#1f6be6",
         "iconUrl": "",
-        "sizePx": 50,
+        "sizePx": 32,
         "shape": "circle"
       },
       "uploadButton": {
@@ -181,6 +181,6 @@
       "blankReset": false
     }
   },
-  "runtimeUrl": "https://majesticwebcreation-ui.github.io/astig.media/anti-vs/cherry-app.html?astigDeployTs=2026-03-19T23%3A07%3A41.591Z",
+  "runtimeUrl": "https://majesticwebcreation-ui.github.io/astig.media/anti-vs/cherry-app.html?astigDeployTs=2026-03-20T23%3A10%3A41.634Z",
   "frameSrcdoc": ""
 }
