@@ -34,7 +34,7 @@
       "secondaryColor": "#ec4899",
       "accentColor": "#06b6d4",
       "borderRadius": 20,
-      "headerTransparency": 100,
+      "headerTransparency": 0,
       "fontFamily": "'DM Sans', sans-serif",
       "mode": "solid",
       "gradient": {
@@ -77,15 +77,15 @@
       "avatarSize": 40,
       "avatarOffsetX": 0,
       "avatarOffsetY": 0,
-      "logoSize": 24,
+      "logoSize": 50,
       "logoShape": "circle",
-      "logoType": "text",
-      "logoUrl": ""
+      "logoType": "image",
+      "logoUrl": "https://widjets.astigmedia.com/img/main-logo.png"
     },
     "branding": {
-      "logoType": "text",
-      "logoUrl": "",
-      "logoSize": 24,
+      "logoType": "image",
+      "logoUrl": "https://widjets.astigmedia.com/img/main-logo.png",
+      "logoSize": 50,
       "logoShape": "circle",
       "hideHeaderLogo": false
     },
@@ -146,7 +146,7 @@
       "userBubbleFontFamily": "",
       "userBubbleFontSizePx": 15,
       "userBubbleBgColor": "#6c63ff",
-      "userBubbleTransparencyPct": 100,
+      "userBubbleTransparencyPct": 0,
       "userBubbleAnimation": "none",
       "composer": {
         "fill": "theme",
@@ -162,7 +162,7 @@
         "bgColor": "#4cc9ff",
         "gradientEnd": "#1f6be6",
         "iconUrl": "",
-        "sizePx": 50,
+        "sizePx": 32,
         "shape": "circle"
       },
       "uploadButton": {
@@ -180,6 +180,6 @@
       "blankReset": false
     }
   },
-  "runtimeUrl": "https://majesticwebcreation-ui.github.io/astig.media/anti-vs/cherry-app.html?astigDeployTs=2026-03-21T22%3A34%3A56.246Z",
+  "runtimeUrl": "https://majesticwebcreation-ui.github.io/astig.media/anti-vs/cherry-app.html?astigDeployTs=2026-03-21T22%3A38%3A23.246Z",
   "frameSrcdoc": ""
 }
