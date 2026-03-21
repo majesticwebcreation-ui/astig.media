@@ -1,6 +1,6 @@
 /*__ASTIG_DEPLOY_CONFIG_START__*/
 (function() {
-  var __astigDeployStamp = "2026-03-21T22:44:57.158Z";
+  var __astigDeployStamp = "2026-03-21T23:07:16.292Z";
   var __astigPrevStamp = String(window.__ASTIG_CHAT_DEPLOY_STAMP || '');
   if (__astigPrevStamp && __astigDeployStamp && __astigPrevStamp > __astigDeployStamp) { return; }
   if (__astigDeployStamp) window.__ASTIG_CHAT_DEPLOY_STAMP = __astigDeployStamp;
@@ -8,7 +8,7 @@
   var __astigCurrentConfigStamp = String(window.RSVPChatConfig.__deployedAt || '');
   var __astigShouldOverrideConfig = !__astigCurrentConfigStamp || (__astigDeployStamp && __astigCurrentConfigStamp <= __astigDeployStamp);
   if (__astigShouldOverrideConfig || !String(window.RSVPChatConfig.webhookUrl || '').trim()) window.RSVPChatConfig.webhookUrl = "https://n8n.srv1291312.hstgr.cloud/webhook/a4d3520b-1922-4e9b-b162-3b15a5060985/chat";
-  if (__astigShouldOverrideConfig || !window.RSVPChatConfig.fullConfig || typeof window.RSVPChatConfig.fullConfig !== 'object') window.RSVPChatConfig.fullConfig = {"theme":{"primaryColor":"#6c63ff","bgColor":"#17171f","surfaceColor":"#1f1f2e","fontFamily":"'DM Sans', sans-serif","borderRadius":20,"mode":"solid","gradient":{"start":"#6c63ff","end":"#ff6584"},"headerBgColor":"#1f1f2e","headerTransparency":0,"headerTextColor":"#ffffff","topHeroMediaType":"none","topHeroMediaUrl":""},"header":{"title":"RIVERS","name":"RIVERS","status":"Online","subtitle":"OFFLINE","subtitleEmojiUrl":"","subtitleEmojiStripEnabled":true,"subtitleEmojiWave":true,"subtitleEmojiPray":true,"subtitleEmojiSmile":true,"subtitleEmojiThumb":true,"subtitleEmojiParty":true,"fontFamily":"'Syne', sans-serif","nameFontSize":15,"nameFontWeight":600,"statusFontSize":12,"animation":"none","logoOffsetX":0,"logoOffsetY":0,"nameOffsetX":0,"nameOffsetY":0,"subtitleOffsetX":0,"subtitleOffsetY":0,"actionsOffsetX":0,"actionsOffsetY":0,"statusOffsetX":0,"statusOffsetY":0,"avatar":"Q","avatarSize":40,"avatarOffsetX":0,"avatarOffsetY":0,"logoSize":50,"logoShape":"circle","logoType":"image","logoUrl":"https://widjets.astigmedia.com/img/main-logo.png"},"assistant":{"name":"RIVERS","avatar":"https://widjets.astigmedia.com/img/Assistant-logo.png","avatarSize":40},"user":{"avatar":"U","avatarSize":32},"launcher":{"position":"bottom-right","shape":"circle","iconType":"image","icon":"message-circle","imageUrl":"https://widjets.astigmedia.com/img/Launcher-Logo.png","size":"48","widgetToggleAnimation":"none","badgeEnabled":false,"text":"","bubbleEnabled":false,"bubbleText":"Ta-da! You've found your creative superpower spot.","bubbleMode":"instant","bubbleTimed":false,"bubbleDelaySec":5,"bubbleDurationSec":10,"bgStyle":"solid","bgColor":"#6c63ff","gradientEnd":"#ff6584","animation":"pulse"},"video":{"layout":"inline","hideBehavior":"first-question","loop":true,"url":"https://widjets.astigmedia.com/vid/DJ.mp4","imageUrl":""},"questions":[{"id":1,"text":"Hi there, welcome to customer support. How can I help you?","type":"text","displayMode":"instant","choices":""}],"questionsStyle":"solid","webhook":{"url":"https://n8n.srv1291312.hstgr.cloud/webhook/a4d3520b-1922-4e9b-b162-3b15a5060985/chat","testUrl":"","chatUrl":"https://n8n.srv1291312.hstgr.cloud/webhook/a4d3520b-1922-4e9b-b162-3b15a5060985/chat","proxyUrl":"","activeMode":"production","production":true,"externalJsUrl":"https://cdn.jsdelivr.net/gh/majesticwebcreation-ui/astig.media@main/anti-vs/fwidgets-chat-embed-runtime.js"},"auth":{"enabled":false,"headerName":"Authorization","headerPrefix":"Bearer","headerValue":"","useForWebhook":false,"withCredentials":false},"converse":{"typingEnabled":true,"typingText":"","statusDelaySec":5,"minVisibleSec":0.8,"animation":"bounce","conversationFill":"theme","conversationBgColor":"#17171f","conversationGradientEnd":"#1f1f2e","bubbleFill":"solid","bubbleShape":"soft","indicatorColor":"#7070a0","bubbleBgColor":"#2a2a3d","bubbleGradientEnd":"#4b4f64","userBubbleFontFamily":"","userBubbleFontSizePx":15,"userBubbleBgColor":"#6c63ff","userBubbleTransparencyPct":0,"userBubbleAnimation":"none","composer":{"fill":"theme","bgColor":"#1f1f2e","transparencyPct":100,"gradientEnd":"#17171f","fontFamily":"","fontSizePx":14,"paddingHeightPx":6},"sendButton":{"fill":"gradient","bgColor":"#4cc9ff","gradientEnd":"#1f6be6","iconUrl":"","sizePx":32,"shape":"circle"},"uploadButton":{"iconUrl":""},"assistantBubbleFontFamily":"","assistantBubbleFontSizePx":15,"assistantBubbleAnimation":"none"},"footer":{"text":"","url":"","fontFamily":"'Inter', sans-serif","animation":"none","textColor":"#7070a0","fontSize":"11","position":"center"},"ui":{"showPipelineMonitor":false,"showRealtimeTelemetry":false,"showRealtimeFeed":false,"templateStyle":"","blankReset":false}};
+  if (__astigShouldOverrideConfig || !window.RSVPChatConfig.fullConfig || typeof window.RSVPChatConfig.fullConfig !== 'object') window.RSVPChatConfig.fullConfig = {"theme":{"primaryColor":"#6c63ff","bgColor":"#17171f","surfaceColor":"#1f1f2e","fontFamily":"'DM Sans', sans-serif","borderRadius":20,"mode":"solid","gradient":{"start":"#6c63ff","end":"#ff6584"},"headerBgColor":"#1f1f2e","headerTransparency":0,"headerTextColor":"#ffffff","topHeroMediaType":"none","topHeroMediaUrl":""},"header":{"title":"RIVERS","name":"RIVERS","status":"Online","subtitle":"Lets Go","subtitleEmojiUrl":"","subtitleEmojiStripEnabled":true,"subtitleEmojiWave":true,"subtitleEmojiPray":true,"subtitleEmojiSmile":true,"subtitleEmojiThumb":true,"subtitleEmojiParty":true,"fontFamily":"'Syne', sans-serif","nameFontSize":15,"nameFontWeight":600,"statusFontSize":12,"animation":"none","logoOffsetX":0,"logoOffsetY":0,"nameOffsetX":0,"nameOffsetY":0,"subtitleOffsetX":0,"subtitleOffsetY":0,"actionsOffsetX":0,"actionsOffsetY":0,"statusOffsetX":0,"statusOffsetY":0,"avatar":"Q","avatarSize":40,"avatarOffsetX":0,"avatarOffsetY":0,"logoSize":50,"logoShape":"circle","logoType":"image","logoUrl":"https://widjets.astigmedia.com/img/main-logo.png"},"assistant":{"name":"RIVERS","avatar":"https://widjets.astigmedia.com/img/Assistant-logo.png","avatarSize":40},"user":{"avatar":"U","avatarSize":32},"launcher":{"position":"bottom-right","shape":"circle","iconType":"image","icon":"message-circle","imageUrl":"https://widjets.astigmedia.com/img/Launcher-Logo.png","size":"48","widgetToggleAnimation":"none","badgeEnabled":false,"text":"","bubbleEnabled":false,"bubbleText":"Ta-da! You've found your creative superpower spot.","bubbleMode":"instant","bubbleTimed":false,"bubbleDelaySec":5,"bubbleDurationSec":10,"bgStyle":"solid","bgColor":"#6c63ff","gradientEnd":"#ff6584","animation":"pulse"},"video":{"layout":"inline","hideBehavior":"first-question","loop":true,"url":"https://widjets.astigmedia.com/vid/DJ.mp4","imageUrl":""},"questions":[{"id":1,"text":"Hi there, welcome to customer support. How can I help you?","type":"text","displayMode":"instant","choices":""}],"questionsStyle":"solid","webhook":{"url":"https://n8n.srv1291312.hstgr.cloud/webhook/a4d3520b-1922-4e9b-b162-3b15a5060985/chat","testUrl":"","chatUrl":"https://n8n.srv1291312.hstgr.cloud/webhook/a4d3520b-1922-4e9b-b162-3b15a5060985/chat","proxyUrl":"","activeMode":"production","production":true,"externalJsUrl":"https://cdn.jsdelivr.net/gh/majesticwebcreation-ui/astig.media@main/anti-vs/fwidgets-chat-embed-runtime.js"},"auth":{"enabled":false,"headerName":"Authorization","headerPrefix":"Bearer","headerValue":"","useForWebhook":false,"withCredentials":false},"converse":{"typingEnabled":true,"typingText":"","statusDelaySec":5,"minVisibleSec":0.8,"animation":"bounce","conversationFill":"theme","conversationBgColor":"#17171f","conversationGradientEnd":"#1f1f2e","bubbleFill":"solid","bubbleShape":"soft","indicatorColor":"#7070a0","bubbleBgColor":"#2a2a3d","bubbleGradientEnd":"#4b4f64","userBubbleFontFamily":"","userBubbleFontSizePx":15,"userBubbleBgColor":"#6c63ff","userBubbleTransparencyPct":0,"userBubbleAnimation":"none","composer":{"fill":"theme","bgColor":"#1f1f2e","transparencyPct":100,"gradientEnd":"#17171f","fontFamily":"","fontSizePx":14,"paddingHeightPx":6},"sendButton":{"fill":"gradient","bgColor":"#4cc9ff","gradientEnd":"#1f6be6","iconUrl":"","sizePx":32,"shape":"circle"},"uploadButton":{"iconUrl":""},"assistantBubbleFontFamily":"","assistantBubbleFontSizePx":15,"assistantBubbleAnimation":"none"},"footer":{"text":"","url":"","fontFamily":"'Inter', sans-serif","animation":"none","textColor":"#7070a0","fontSize":"11","position":"center"},"ui":{"showPipelineMonitor":false,"showRealtimeTelemetry":false,"showRealtimeFeed":false,"templateStyle":"","blankReset":false}};
   if (__astigDeployStamp && __astigShouldOverrideConfig) window.RSVPChatConfig.__deployedAt = __astigDeployStamp;
   try {
     var __astigTemplateStyleName = (((window.RSVPChatConfig.fullConfig || {}).ui || {}).templateStyle || '');
@@ -63,7 +63,7 @@
  */
 (function() {
     // Current Configuration
-    const defaultBundleConfig = {"theme":{"primaryColor":"#6c63ff","bgColor":"#17171f","surfaceColor":"#1f1f2e","fontFamily":"'DM Sans', sans-serif","borderRadius":20,"mode":"solid","gradient":{"start":"#6c63ff","end":"#ff6584"},"headerBgColor":"#1f1f2e","headerTransparency":0,"headerTextColor":"#ffffff","topHeroMediaType":"none","topHeroMediaUrl":""},"header":{"title":"RIVERS","name":"RIVERS","status":"Online","subtitle":"OFFLINE","subtitleEmojiUrl":"","subtitleEmojiStripEnabled":true,"subtitleEmojiWave":true,"subtitleEmojiPray":true,"subtitleEmojiSmile":true,"subtitleEmojiThumb":true,"subtitleEmojiParty":true,"fontFamily":"'Syne', sans-serif","nameFontSize":15,"nameFontWeight":600,"statusFontSize":12,"animation":"none","logoOffsetX":0,"logoOffsetY":0,"nameOffsetX":0,"nameOffsetY":0,"subtitleOffsetX":0,"subtitleOffsetY":0,"actionsOffsetX":0,"actionsOffsetY":0,"statusOffsetX":0,"statusOffsetY":0,"avatar":"Q","avatarSize":40,"avatarOffsetX":0,"avatarOffsetY":0,"logoSize":50,"logoShape":"circle","logoType":"image","logoUrl":"https://widjets.astigmedia.com/img/main-logo.png"},"assistant":{"name":"RIVERS","avatar":"https://widjets.astigmedia.com/img/Assistant-logo.png","avatarSize":40},"user":{"avatar":"U","avatarSize":32},"launcher":{"position":"bottom-right","shape":"circle","iconType":"image","icon":"message-circle","imageUrl":"https://widjets.astigmedia.com/img/Launcher-Logo.png","size":"48","widgetToggleAnimation":"none","badgeEnabled":false,"text":"","bubbleEnabled":false,"bubbleText":"Ta-da! You've found your creative superpower spot.","bubbleMode":"instant","bubbleTimed":false,"bubbleDelaySec":5,"bubbleDurationSec":10,"bgStyle":"solid","bgColor":"#6c63ff","gradientEnd":"#ff6584","animation":"pulse"},"video":{"layout":"inline","hideBehavior":"first-question","loop":true,"url":"https://widjets.astigmedia.com/vid/DJ.mp4","imageUrl":""},"questions":[{"id":1,"text":"Hi there, welcome to customer support. How can I help you?","type":"text","displayMode":"instant","choices":""}],"questionsStyle":"solid","webhook":{"url":"https://n8n.srv1291312.hstgr.cloud/webhook/a4d3520b-1922-4e9b-b162-3b15a5060985/chat","testUrl":"","chatUrl":"https://n8n.srv1291312.hstgr.cloud/webhook/a4d3520b-1922-4e9b-b162-3b15a5060985/chat","proxyUrl":"","activeMode":"production","production":true,"externalJsUrl":"https://cdn.jsdelivr.net/gh/majesticwebcreation-ui/astig.media@main/anti-vs/fwidgets-chat-embed-runtime.js"},"auth":{"enabled":false,"headerName":"Authorization","headerPrefix":"Bearer","headerValue":"","useForWebhook":false,"withCredentials":false},"converse":{"typingEnabled":true,"typingText":"","statusDelaySec":5,"minVisibleSec":0.8,"animation":"bounce","conversationFill":"theme","conversationBgColor":"#17171f","conversationGradientEnd":"#1f1f2e","bubbleFill":"solid","bubbleShape":"soft","indicatorColor":"#7070a0","bubbleBgColor":"#2a2a3d","bubbleGradientEnd":"#4b4f64","userBubbleFontFamily":"","userBubbleFontSizePx":15,"userBubbleBgColor":"#6c63ff","userBubbleTransparencyPct":0,"userBubbleAnimation":"none","composer":{"fill":"theme","bgColor":"#1f1f2e","transparencyPct":100,"gradientEnd":"#17171f","fontFamily":"","fontSizePx":14,"paddingHeightPx":6},"sendButton":{"fill":"gradient","bgColor":"#4cc9ff","gradientEnd":"#1f6be6","iconUrl":"","sizePx":32,"shape":"circle"},"uploadButton":{"iconUrl":""},"assistantBubbleFontFamily":"","assistantBubbleFontSizePx":15,"assistantBubbleAnimation":"none"},"footer":{"text":"","url":"","fontFamily":"'Inter', sans-serif","animation":"none","textColor":"#7070a0","fontSize":"11","position":"center"},"ui":{"showPipelineMonitor":false,"showRealtimeTelemetry":false,"showRealtimeFeed":false,"templateStyle":"","blankReset":false}};
+    const defaultBundleConfig = {"theme":{"primaryColor":"#6c63ff","bgColor":"#17171f","surfaceColor":"#1f1f2e","fontFamily":"'DM Sans', sans-serif","borderRadius":20,"mode":"solid","gradient":{"start":"#6c63ff","end":"#ff6584"},"headerBgColor":"#1f1f2e","headerTransparency":0,"headerTextColor":"#ffffff","topHeroMediaType":"none","topHeroMediaUrl":""},"header":{"title":"RIVERS","name":"RIVERS","status":"Online","subtitle":"Lets Go","subtitleEmojiUrl":"","subtitleEmojiStripEnabled":true,"subtitleEmojiWave":true,"subtitleEmojiPray":true,"subtitleEmojiSmile":true,"subtitleEmojiThumb":true,"subtitleEmojiParty":true,"fontFamily":"'Syne', sans-serif","nameFontSize":15,"nameFontWeight":600,"statusFontSize":12,"animation":"none","logoOffsetX":0,"logoOffsetY":0,"nameOffsetX":0,"nameOffsetY":0,"subtitleOffsetX":0,"subtitleOffsetY":0,"actionsOffsetX":0,"actionsOffsetY":0,"statusOffsetX":0,"statusOffsetY":0,"avatar":"Q","avatarSize":40,"avatarOffsetX":0,"avatarOffsetY":0,"logoSize":50,"logoShape":"circle","logoType":"image","logoUrl":"https://widjets.astigmedia.com/img/main-logo.png"},"assistant":{"name":"RIVERS","avatar":"https://widjets.astigmedia.com/img/Assistant-logo.png","avatarSize":40},"user":{"avatar":"U","avatarSize":32},"launcher":{"position":"bottom-right","shape":"circle","iconType":"image","icon":"message-circle","imageUrl":"https://widjets.astigmedia.com/img/Launcher-Logo.png","size":"48","widgetToggleAnimation":"none","badgeEnabled":false,"text":"","bubbleEnabled":false,"bubbleText":"Ta-da! You've found your creative superpower spot.","bubbleMode":"instant","bubbleTimed":false,"bubbleDelaySec":5,"bubbleDurationSec":10,"bgStyle":"solid","bgColor":"#6c63ff","gradientEnd":"#ff6584","animation":"pulse"},"video":{"layout":"inline","hideBehavior":"first-question","loop":true,"url":"https://widjets.astigmedia.com/vid/DJ.mp4","imageUrl":""},"questions":[{"id":1,"text":"Hi there, welcome to customer support. How can I help you?","type":"text","displayMode":"instant","choices":""}],"questionsStyle":"solid","webhook":{"url":"https://n8n.srv1291312.hstgr.cloud/webhook/a4d3520b-1922-4e9b-b162-3b15a5060985/chat","testUrl":"","chatUrl":"https://n8n.srv1291312.hstgr.cloud/webhook/a4d3520b-1922-4e9b-b162-3b15a5060985/chat","proxyUrl":"","activeMode":"production","production":true,"externalJsUrl":"https://cdn.jsdelivr.net/gh/majesticwebcreation-ui/astig.media@main/anti-vs/fwidgets-chat-embed-runtime.js"},"auth":{"enabled":false,"headerName":"Authorization","headerPrefix":"Bearer","headerValue":"","useForWebhook":false,"withCredentials":false},"converse":{"typingEnabled":true,"typingText":"","statusDelaySec":5,"minVisibleSec":0.8,"animation":"bounce","conversationFill":"theme","conversationBgColor":"#17171f","conversationGradientEnd":"#1f1f2e","bubbleFill":"solid","bubbleShape":"soft","indicatorColor":"#7070a0","bubbleBgColor":"#2a2a3d","bubbleGradientEnd":"#4b4f64","userBubbleFontFamily":"","userBubbleFontSizePx":15,"userBubbleBgColor":"#6c63ff","userBubbleTransparencyPct":0,"userBubbleAnimation":"none","composer":{"fill":"theme","bgColor":"#1f1f2e","transparencyPct":100,"gradientEnd":"#17171f","fontFamily":"","fontSizePx":14,"paddingHeightPx":6},"sendButton":{"fill":"gradient","bgColor":"#4cc9ff","gradientEnd":"#1f6be6","iconUrl":"","sizePx":32,"shape":"circle"},"uploadButton":{"iconUrl":""},"assistantBubbleFontFamily":"","assistantBubbleFontSizePx":15,"assistantBubbleAnimation":"none"},"footer":{"text":"","url":"","fontFamily":"'Inter', sans-serif","animation":"none","textColor":"#7070a0","fontSize":"11","position":"center"},"ui":{"showPipelineMonitor":false,"showRealtimeTelemetry":false,"showRealtimeFeed":false,"templateStyle":"","blankReset":false}};
     const rsvp = window.RSVPChatConfig || {};
     const hasFullConfig = !!(rsvp && typeof rsvp.fullConfig === 'object' && rsvp.fullConfig);
     const config = hasFullConfig
@@ -1358,6 +1358,89 @@
         let currentSessionId = 0;
         let webhookSessionId = '';
         let hasScheduledVideoHide = false;
+        let questionDynamicStorage = createEmptyQuestionDynamicStorage();
+
+        function createEmptyQuestionDynamicStorage() {
+            return {
+                name: '',
+                email: '',
+                yes: '',
+                no: '',
+                lastAnswer: '',
+                answers: []
+            };
+        }
+
+        function resolveAnsweredQuestionIndex() {
+            if (!Array.isArray(config.questions) || config.questions.length === 0) return -1;
+            if (currentQuestionIndex >= 0 && currentQuestionIndex < config.questions.length) return currentQuestionIndex;
+            if (currentQuestionIndex < 0) return 0;
+            return Math.min(currentQuestionIndex, config.questions.length - 1);
+        }
+
+        function resolveQuestionDynamicStorageValues() {
+            const answers = Array.isArray(questionDynamicStorage.answers) ? questionDynamicStorage.answers : [];
+            const values = {
+                Name: String(questionDynamicStorage.name || '').trim(),
+                Email: String(questionDynamicStorage.email || '').trim(),
+                Yes: String(questionDynamicStorage.yes || '').trim(),
+                No: String(questionDynamicStorage.no || '').trim(),
+                Input: String(questionDynamicStorage.lastAnswer || '').trim(),
+                Answer: String(questionDynamicStorage.lastAnswer || '').trim(),
+                LastAnswer: String(questionDynamicStorage.lastAnswer || '').trim()
+            };
+            answers.forEach(function(answer, index) {
+                values['Answer' + String(index + 1)] = String(answer || '').trim();
+            });
+            return values;
+        }
+
+        function applyQuestionDynamicStorage(text) {
+            const source = String(text || '');
+            if (!source) return source;
+            const values = resolveQuestionDynamicStorageValues();
+            return source.replace(/\{([A-Za-z][A-Za-z0-9]*)\}/g, function(match, key) {
+                const normalizedKey = String(key || '').trim().toLowerCase();
+                const resolvedKey = Object.keys(values).find(function(candidate) {
+                    return candidate.toLowerCase() === normalizedKey;
+                });
+                return resolvedKey ? (values[resolvedKey] || '') : match;
+            });
+        }
+
+        function updateQuestionDynamicStorage(answerText) {
+            const text = String(answerText || '').trim();
+            if (!text) return;
+
+            const answeredQuestionIndex = resolveAnsweredQuestionIndex();
+            const currentQuestion = Array.isArray(config.questions) && answeredQuestionIndex >= 0
+                ? config.questions[answeredQuestionIndex]
+                : null;
+            const promptText = String(currentQuestion && currentQuestion.text ? currentQuestion.text : '').toLowerCase();
+            const normalizedAnswer = text.toLowerCase();
+
+            if (!Array.isArray(questionDynamicStorage.answers)) questionDynamicStorage.answers = [];
+            if (answeredQuestionIndex >= 0) {
+                questionDynamicStorage.answers[answeredQuestionIndex] = text;
+            }
+            questionDynamicStorage.lastAnswer = text;
+
+            if (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(text)) {
+                questionDynamicStorage.email = text;
+            }
+
+            if (!questionDynamicStorage.name && (answeredQuestionIndex === 0 || /\bname\b/.test(promptText))) {
+                questionDynamicStorage.name = text;
+            }
+
+            if (normalizedAnswer === 'yes') {
+                questionDynamicStorage.yes = text;
+                questionDynamicStorage.no = '';
+            } else if (normalizedAnswer === 'no') {
+                questionDynamicStorage.no = text;
+                questionDynamicStorage.yes = '';
+            }
+        }
 
         function createStableSessionId(prefix) {
             return prefix + '-' + Date.now() + '-' + Math.random().toString(36).slice(2, 10);
@@ -1595,6 +1678,7 @@
                 const sessionId = currentSessionId;
                 msgHistory = [];
                 currentQuestionIndex = -1;
+                questionDynamicStorage = createEmptyQuestionDynamicStorage();
                 maximumSupportInputUnlocked = false;
                 initialConversationBooted = true;
                 hasScheduledVideoHide = false;
@@ -1693,6 +1777,7 @@
             if(typeof textOverride !== 'string' && liveInput) liveInput.value = '';
 
             addMessage('me', 'You', text, config.user.avatar);
+            updateQuestionDynamicStorage(text);
             
             // Remove choices
             const choices = msgList.querySelectorAll('.chat-options');
@@ -1877,7 +1962,7 @@
 
                 if (config.questions && currentQuestionIndex < config.questions.length) {
                     const q = config.questions[currentQuestionIndex];
-                    replyText = q.text;
+                    replyText = applyQuestionDynamicStorage(q.text);
                     if (q.type === 'choice' && q.choices) {
                         choices = q.choices.split(',').map(c => c.trim()).filter(c => c);
                         if (isMaximumSupportTemplate) {
