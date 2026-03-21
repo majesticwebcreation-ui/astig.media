@@ -19,7 +19,7 @@
     "bgStyle": "solid",
     "bgColor": "#6c63ff",
     "gradientEnd": "#ff6584",
-    "animation": "none"
+    "animation": "pulse"
   },
   "launcherImageUrl": "https://widjets.astigmedia.com/img/main-logo.png",
   "launcherIconName": "message-circle",
@@ -47,8 +47,8 @@
       "topHeroMediaUrl": ""
     },
     "header": {
-      "title": "River",
-      "name": "River",
+      "title": "Rivers",
+      "name": "Rivers",
       "status": "",
       "subtitle": "",
       "subtitleEmojiUrl": "",
@@ -181,6 +181,6 @@
       "blankReset": false
     }
   },
-  "runtimeUrl": "https://majesticwebcreation-ui.github.io/astig.media/anti-vs/cherry-app.html?astigDeployTs=2026-03-21T20%3A15%3A15.674Z",
+  "runtimeUrl": "https://majesticwebcreation-ui.github.io/astig.media/anti-vs/cherry-app.html?astigDeployTs=2026-03-21T20%3A17%3A04.636Z",
   "frameSrcdoc": ""
 }
