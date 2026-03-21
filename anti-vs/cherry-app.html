@@ -219,6 +219,10 @@ body::-webkit-scrollbar {
     margin-top: 8px;
 }
 
+.message-wrapper--user {
+    justify-content: flex-end;
+}
+
 .avatar {
     width: 40px;
     height: 40px;
@@ -234,6 +238,11 @@ body::-webkit-scrollbar {
     width: 100%;
     height: 100%;
     object-fit: cover;
+}
+
+.avatar--spacer {
+    visibility: hidden;
+    pointer-events: none;
 }
 
 /* 3D Bubble Style for Current Step */
@@ -581,6 +590,15 @@ body::-webkit-scrollbar {
     max-width: 320px;
 }
 
+.history-item--user {
+    border-left: 0;
+    border-right: 2px solid rgba(111, 92, 255, 0.92);
+    padding-left: 0;
+    padding-right: 15px;
+    margin-left: auto;
+    text-align: right;
+}
+
 .history-q {
     display: block;
     font-size: 0.88rem;
@@ -611,6 +629,10 @@ body::-webkit-scrollbar {
     overflow-wrap: anywhere;
     text-align: left;
     opacity: 1;
+}
+
+.history-item--user .history-a {
+    text-align: right;
 }
 
 /* Current Question */
@@ -1146,8 +1168,8 @@ body::-webkit-scrollbar {
 
 
     <!-- CHERRY build marker: brand-logo-enabled -->
-<!-- CHERRY logo debug: type=image url=https://widjets.astigmedia.com/img/main-logo.png -->
-<script>window.__ASTIG_CHERRY_RUNTIME_CONFIG = {"theme":{"bgColor":"#17171f","surfaceColor":"#1f1f2e","primaryColor":"#6c63ff","secondaryColor":"#ec4899","accentColor":"#06b6d4","borderRadius":20,"headerTransparency":0,"fontFamily":"'DM Sans', sans-serif","mode":"solid","gradient":{"start":"#6c63ff","end":"#ff6584"},"headerBgColor":"#1f1f2e","headerTextColor":"#ffffff","topHeroMediaType":"none","topHeroMediaUrl":""},"header":{"title":"RIVERS","name":"RIVERS","status":"Online","subtitle":"Lets Go","subtitleEmojiUrl":"","subtitleEmojiStripEnabled":true,"subtitleEmojiWave":true,"subtitleEmojiPray":true,"subtitleEmojiSmile":true,"subtitleEmojiThumb":true,"subtitleEmojiParty":true,"fontFamily":"'Syne', sans-serif","nameFontSize":15,"nameFontWeight":600,"statusFontSize":12,"animation":"none","logoOffsetX":0,"logoOffsetY":0,"nameOffsetX":0,"nameOffsetY":0,"subtitleOffsetX":0,"subtitleOffsetY":0,"actionsOffsetX":0,"actionsOffsetY":0,"statusOffsetX":0,"statusOffsetY":0,"avatar":"https://widjets.astigmedia.com/img/Assistant-logo.png","avatarSize":40,"avatarOffsetX":0,"avatarOffsetY":0,"logoSize":50,"logoShape":"circle","logoType":"image","logoUrl":"https://widjets.astigmedia.com/img/main-logo.png"},"branding":{"logoType":"image","logoUrl":"https://widjets.astigmedia.com/img/main-logo.png","logoSize":50,"logoShape":"circle","hideHeaderLogo":false},"assistant":{"name":"RIVERS","avatar":"https://widjets.astigmedia.com/img/Assistant-logo.png","avatarSize":40},"video":{"layout":"inline","hideBehavior":"first-question","loop":true,"url":"https://widjets.astigmedia.com/vid/DJ.mp4","imageUrl":""},"questions":[{"id":1,"text":"Hi there, welcome to customer support. How can I help you?","type":"text","displayMode":"instant","choices":""}],"questionsStyle":"solid","footer":{"text":"","url":"","fontFamily":"'Inter', sans-serif","animation":"none","textColor":"#7070a0","fontSize":"11","position":"center"},"webhook":{"url":"","testUrl":"","chatUrl":"","proxyUrl":"","activeMode":"production","production":true,"externalJsUrl":"https://cdn.jsdelivr.net/gh/majesticwebcreation-ui/astig.media@main/anti-vs/fwidgets-chat-embed-runtime.js"},"converse":{"typingEnabled":true,"typingText":"","statusDelaySec":5,"minVisibleSec":0.8,"animation":"bounce","conversationFill":"theme","conversationBgColor":"#17171f","conversationGradientEnd":"#1f1f2e","bubbleFill":"solid","bubbleShape":"soft","indicatorColor":"#7070a0","bubbleBgColor":"#2a2a3d","bubbleGradientEnd":"#4b4f64","userBubbleFontFamily":"","userBubbleFontSizePx":15,"userBubbleBgColor":"#6c63ff","userBubbleTransparencyPct":0,"userBubbleAnimation":"none","composer":{"fill":"theme","bgColor":"#1f1f2e","transparencyPct":100,"gradientEnd":"#17171f","fontFamily":"","fontSizePx":14,"paddingHeightPx":6},"sendButton":{"fill":"gradient","bgColor":"#4cc9ff","gradientEnd":"#1f6be6","iconUrl":"","sizePx":32,"shape":"circle"},"uploadButton":{"iconUrl":""},"assistantBubbleFontFamily":"","assistantBubbleFontSizePx":15,"assistantBubbleAnimation":"none"},"ui":{"showPipelineMonitor":false,"showRealtimeTelemetry":false,"showRealtimeFeed":false,"templateStyle":"","blankReset":false}};</script>
+<!-- CHERRY logo debug: type=text url=https://widjets.astigmedia.com/img/main-logo.png -->
+<script>window.__ASTIG_CHERRY_RUNTIME_CONFIG = {"theme":{"bgColor":"#17171f","surfaceColor":"#1f1f2e","primaryColor":"#6c63ff","secondaryColor":"#ec4899","accentColor":"#06b6d4","borderRadius":20,"headerTransparency":100,"fontFamily":"'DM Sans', sans-serif","mode":"solid","gradient":{"start":"#6c63ff","end":"#ff6584"},"headerBgColor":"#1f1f2e","headerTextColor":"#ffffff","topHeroMediaType":"none","topHeroMediaUrl":""},"header":{"title":"Aria","name":"Aria","status":"Online","subtitle":"Lets Go","subtitleEmojiUrl":"","subtitleEmojiStripEnabled":true,"subtitleEmojiWave":true,"subtitleEmojiPray":true,"subtitleEmojiSmile":true,"subtitleEmojiThumb":true,"subtitleEmojiParty":true,"fontFamily":"'Syne', sans-serif","nameFontSize":15,"nameFontWeight":600,"statusFontSize":12,"animation":"none","logoOffsetX":0,"logoOffsetY":0,"nameOffsetX":0,"nameOffsetY":0,"subtitleOffsetX":0,"subtitleOffsetY":0,"actionsOffsetX":0,"actionsOffsetY":0,"statusOffsetX":0,"statusOffsetY":0,"avatar":"A","avatarSize":40,"avatarOffsetX":0,"avatarOffsetY":0,"logoSize":24,"logoShape":"circle","logoType":"text","logoUrl":"https://widjets.astigmedia.com/img/main-logo.png"},"branding":{"logoType":"text","logoUrl":"","logoSize":24,"logoShape":"circle","hideHeaderLogo":false},"assistant":{"name":"RIVERS","avatar":"A","avatarSize":40},"video":{"layout":"inline","hideBehavior":"first-question","loop":true,"url":"https://widjets.astigmedia.com/vid/DJ.mp4","imageUrl":""},"questions":[{"id":1,"text":"Hi there, welcome to customer support. How can I help you?","type":"text","displayMode":"instant","choices":""}],"questionsStyle":"solid","footer":{"text":"","url":"","fontFamily":"'Inter', sans-serif","animation":"none","textColor":"#7070a0","fontSize":"11","position":"center"},"webhook":{"url":"","testUrl":"","chatUrl":"","proxyUrl":"","activeMode":"production","production":true,"externalJsUrl":"https://cdn.jsdelivr.net/gh/majesticwebcreation-ui/astig.media@main/anti-vs/fwidgets-chat-embed-runtime.js"},"converse":{"typingEnabled":true,"typingText":"","statusDelaySec":5,"minVisibleSec":0.8,"animation":"bounce","conversationFill":"theme","conversationBgColor":"#17171f","conversationGradientEnd":"#1f1f2e","bubbleFill":"solid","bubbleShape":"soft","indicatorColor":"#7070a0","bubbleBgColor":"#2a2a3d","bubbleGradientEnd":"#4b4f64","userBubbleFontFamily":"","userBubbleFontSizePx":15,"userBubbleBgColor":"#6c63ff","userBubbleTransparencyPct":0,"userBubbleAnimation":"none","composer":{"fill":"theme","bgColor":"#1f1f2e","transparencyPct":100,"gradientEnd":"#17171f","fontFamily":"","fontSizePx":14,"paddingHeightPx":6},"sendButton":{"fill":"gradient","bgColor":"#4cc9ff","gradientEnd":"#1f6be6","iconUrl":"","sizePx":32,"shape":"circle"},"uploadButton":{"iconUrl":""},"assistantBubbleFontFamily":"","assistantBubbleFontSizePx":15,"assistantBubbleAnimation":"none"},"ui":{"showPipelineMonitor":false,"showRealtimeTelemetry":false,"showRealtimeFeed":false,"templateStyle":"","blankReset":false}};</script>
 <script>
 document.addEventListener('DOMContentLoaded', () => {
     const flowContainer = document.getElementById('conversation-flow');
@@ -1930,16 +1952,29 @@ document.addEventListener('DOMContentLoaded', () => {
     function addToHistory(answer) {
         const normalizedAnswer = String(answer || '').trim();
         if (!normalizedAnswer) return;
-        const lastWrapper = flowContainer.lastElementChild;
-        if (!lastWrapper) return;
-        const activeStep = lastWrapper.querySelector('.current-step') || lastWrapper.querySelector('.history-item');
-        if (!activeStep) return;
-        if (activeStep.classList.contains('current-step--reply')) return;
+        const historyStep = createStandaloneUserHistoryItem();
         const answerSpan = document.createElement('span');
         answerSpan.className = 'history-a';
         answerSpan.textContent = normalizedAnswer;
         applyUserTextAppearance(answerSpan);
-        activeStep.appendChild(answerSpan);
+        historyStep.appendChild(answerSpan);
+    }
+
+    function createStandaloneUserHistoryItem() {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'message-wrapper message-wrapper--user';
+
+        const avatarSpacer = document.createElement('div');
+        avatarSpacer.className = 'avatar avatar--spacer';
+        avatarSpacer.setAttribute('aria-hidden', 'true');
+        wrapper.appendChild(avatarSpacer);
+
+        const stepDiv = document.createElement('div');
+        stepDiv.className = 'history-item history-item--user';
+        wrapper.appendChild(stepDiv);
+
+        flowContainer.appendChild(wrapper);
+        return stepDiv;
     }
 
     function requestEmail() {
@@ -2026,14 +2061,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function pruneHistory() {
         const wrappers = Array.from(flowContainer.querySelectorAll('.message-wrapper'));
+        const activeWrapper = wrappers.find((wrapper) => wrapper.querySelector('.current-step')) || null;
+        const historyWrappers = wrappers.filter((wrapper) => wrapper !== activeWrapper);
+        const visibleHistory = new Set(historyWrappers.slice(-2));
+
         wrappers.forEach((wrapper) => {
-            wrapper.style.display = '';
+            wrapper.style.display = (wrapper === activeWrapper || visibleHistory.has(wrapper)) ? '' : 'none';
         });
-        if (wrappers.length > 3) {
-            for (let index = 0; index < wrappers.length - 3; index += 1) {
-                wrappers[index].style.display = 'none';
-            }
-        }
     }
 
     function buildWebhookPayload() {
