@@ -105,9 +105,9 @@
     "questions": [
       {
         "id": 1,
-        "text": "Hi there, welcome to customer support. How can I help you?",
+        "text": "I'm River. How can I help?",
         "type": "text",
-        "displayMode": "instant",
+        "displayMode": "typewriter",
         "choices": ""
       }
     ],
@@ -181,6 +181,6 @@
       "blankReset": false
     }
   },
-  "runtimeUrl": "https://majesticwebcreation-ui.github.io/astig.media/anti-vs/cherry-app.html?astigDeployTs=2026-03-21T00%3A04%3A35.093Z",
+  "runtimeUrl": "https://majesticwebcreation-ui.github.io/astig.media/anti-vs/cherry-app.html?astigDeployTs=2026-03-21T00%3A13%3A11.686Z",
   "frameSrcdoc": ""
 }
