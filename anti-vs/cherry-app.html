@@ -209,9 +209,14 @@ body::-webkit-scrollbar {
 .message-wrapper {
     display: flex;
     align-items: flex-start;
-    gap: 16px;
+    gap: 15px;
     width: 100%;
     min-height: 0;
+    position: relative;
+}
+
+.message-wrapper + .message-wrapper {
+    margin-top: 8px;
 }
 
 .avatar {
@@ -220,8 +225,8 @@ body::-webkit-scrollbar {
     flex-shrink: 0;
     border-radius: 50%;
     overflow: hidden;
-    background: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.18);
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     box-shadow: none;
 }
 
@@ -233,22 +238,24 @@ body::-webkit-scrollbar {
 
 /* 3D Bubble Style for Current Step */
 .current-step {
-    background: var(--bubble-assistant);
+    background: none;
     border: none;
-    padding: 0 8px 0 0;
+    padding: 0;
     margin-top: 0;
     flex: 1;
+    width: auto;
     min-height: 0;
-    max-height: min(44vh, 380px);
-    overflow-y: auto;
-    overflow-x: hidden;
-    padding-right: 8px;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-    overscroll-behavior: auto;
-    -webkit-overflow-scrolling: touch;
-    border-radius: 0;
-    box-shadow: none;
+    max-height: none;
+    overflow: visible;
+}
+
+.current-step--prompt {
+    max-width: 320px;
+}
+
+.current-step--reply {
+    max-width: 420px;
+    padding-top: 4px;
 }
 
 .current-step::-webkit-scrollbar {
@@ -259,14 +266,79 @@ body::-webkit-scrollbar {
 
 /* Typing Effect in Bubble */
 .current-step h2 {
-    font-size: 1.18rem;
-    font-weight: 300;
-    line-height: 1.48;
+    font-size: 1.2rem;
+    font-weight: 400;
+    line-height: 1.5;
+    margin: 0;
     background: none;
     -webkit-text-fill-color: var(--text-main);
     color: var(--text-main);
     animation: none;
     letter-spacing: 0;
+    white-space: normal;
+    overflow-wrap: anywhere;
+}
+
+.assistant-reply {
+    color: var(--text-main);
+    font-size: 1.08rem;
+    line-height: 1.68;
+    max-width: 100%;
+}
+
+.assistant-reply p,
+.assistant-reply ul,
+.assistant-reply ol,
+.assistant-reply h1,
+.assistant-reply h2,
+.assistant-reply h3 {
+    margin: 0;
+}
+
+.assistant-reply p + p,
+.assistant-reply p + ul,
+.assistant-reply p + ol,
+.assistant-reply ul + p,
+.assistant-reply ol + p {
+    margin-top: 12px;
+}
+
+.assistant-reply strong {
+    font-weight: 600;
+    color: #f5f7ff;
+}
+
+.assistant-reply ul,
+.assistant-reply ol {
+    padding-left: 20px;
+}
+
+.assistant-reply h1,
+.assistant-reply h2,
+.assistant-reply h3 {
+    font-size: 1.08em;
+    font-weight: 600;
+    line-height: 1.35;
+    color: #f2f5ff;
+}
+
+.assistant-reply h1 + p,
+.assistant-reply h2 + p,
+.assistant-reply h3 + p,
+.assistant-reply p + h1,
+.assistant-reply p + h2,
+.assistant-reply p + h3,
+.assistant-reply ul + h1,
+.assistant-reply ul + h2,
+.assistant-reply ul + h3,
+.assistant-reply ol + h1,
+.assistant-reply ol + h2,
+.assistant-reply ol + h3 {
+    margin-top: 14px;
+}
+
+.assistant-reply li + li {
+    margin-top: 6px;
 }
 
 @keyframes lookAround {
@@ -340,6 +412,37 @@ body::-webkit-scrollbar {
     gap: 10px;
 }
 
+.brand-copy {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 2px;
+    min-width: 0;
+}
+
+.brand-logo {
+    width: 22px;
+    height: 22px;
+    border-radius: 7px;
+    overflow: hidden;
+    flex: 0 0 22px;
+    display: block;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.brand-logo[hidden] {
+    display: none;
+}
+
+.brand-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
 .status-dot {
     width: 9px;
     height: 9px;
@@ -354,6 +457,71 @@ body::-webkit-scrollbar {
     letter-spacing: 0.08em;
     text-transform: uppercase;
     color: #d6dcef;
+}
+
+.brand-subtitle {
+    font-size: 0.72rem;
+    line-height: 1.15;
+    color: rgba(214, 220, 239, 0.72);
+    max-width: 190px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.brand-subtitle[hidden] {
+    display: none !important;
+}
+
+.brand-status-text {
+    font-size: 0.72rem;
+    line-height: 1.15;
+    color: rgba(214, 220, 239, 0.72);
+    max-width: 190px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.brand-status-text[hidden] {
+    display: none !important;
+}
+
+.anim-header-fade {
+    animation: cherryHeaderFadeIn 220ms ease both;
+}
+
+.anim-header-slide-up {
+    animation: cherryHeaderSlideUp 240ms cubic-bezier(0.2, 0.9, 0.2, 1) both;
+}
+
+.anim-header-pulse {
+    animation: cherryHeaderPulse 1.8s ease-in-out infinite;
+}
+
+@keyframes cherryHeaderFadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes cherryHeaderSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes cherryHeaderPulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.01);
+    }
 }
 
 .header-actions {
@@ -388,13 +556,12 @@ body::-webkit-scrollbar {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    /* Center content vertically */
-    gap: 18px;
+    gap: 20px;
     overflow-y: auto;
+    margin-bottom: 20px;
     padding-top: 8px;
-    padding-right: 4px;
-    padding-bottom: 6px;
-    scroll-padding-top: 88px;
+    padding-right: 10px;
+    padding-bottom: 150px;
     scroll-behavior: smooth;
     min-height: 0;
     height: 100%;
@@ -405,54 +572,59 @@ body::-webkit-scrollbar {
 /* History Items */
 .history-item {
     opacity: 1;
-    transition: opacity 0.3s ease;
-    border-left: 2px solid rgba(111, 92, 255, 0.9);
-    padding-left: 16px;
-    margin-bottom: 6px;
+    transition: opacity 0.5s ease;
+    border-left: 2px solid rgba(111, 92, 255, 0.92);
+    padding-left: 15px;
+    margin-bottom: 10px;
+    display: block;
+    width: auto;
+    max-width: 320px;
 }
 
 .history-q {
     display: block;
     font-size: 0.88rem;
-    color: var(--text-muted);
-    margin-bottom: 8px;
-    max-height: 200px;
-    overflow-y: auto;
-    padding-right: 5px;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
+    color: rgba(142, 152, 184, 0.7);
+    margin-bottom: 4px;
     line-height: 1.42;
+    white-space: normal;
+    overflow-wrap: anywhere;
+    max-height: none;
+    overflow: visible;
+    padding-right: 0;
 }
 
-.history-q::-webkit-scrollbar {
-    display: none;
-    width: 0;
-    height: 0;
+.history-q--reply {
+    font-size: 0.84rem;
+    line-height: 1.48;
+    color: rgba(237, 241, 255, 0.48);
 }
 
 .history-a {
     display: block;
     font-size: 0.98rem;
     font-weight: 600;
-    color: #e8ebff;
-    background: transparent;
-    border-radius: 0;
-    padding: 0;
-    width: auto;
-    max-width: none;
-    box-shadow: none;
+    color: #f2f4ff;
+    margin-top: 6px;
+    line-height: 1.45;
+    white-space: normal;
+    overflow-wrap: anywhere;
+    text-align: left;
+    opacity: 1;
 }
 
 /* Current Question */
 .current-step h2 {
-    font-size: 1.5rem;
-    font-weight: 300;
-    line-height: 1.3;
-    background: linear-gradient(to right, #fff, #a5b4fc);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    font-size: 1.2rem;
+    font-weight: 400;
+    line-height: 1.5;
+    margin: 0;
+    background: none;
+    color: var(--text-main);
+    -webkit-text-fill-color: var(--text-main);
+    animation: none;
+    white-space: normal;
+    overflow-wrap: anywhere;
 }
 
 /* Typewriter Effect */
@@ -771,88 +943,6 @@ body::-webkit-scrollbar {
     /* Subtle expansion hover effect */
 }
 
-/* Webhook Toggle */
-.webhook-toggle-container {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    /* Slightly tighter gap for header */
-    margin-bottom: 0;
-    /* Remove bottom margin */
-    margin-left: 0;
-    margin-right: 0;
-}
-
-.toggle-label {
-    display: none;
-    /* Hide label on mobile if needed, but keeping for now */
-    font-size: 0.7rem;
-    /* Smaller for header */
-    color: var(--text-muted);
-    font-weight: 500;
-    text-transform: uppercase;
-}
-
-/* Show label on larger screens or always? Keeping it. */
-@media (max-width: 400px) {
-    .toggle-label {
-        display: none;
-    }
-}
-
-.switch {
-    position: relative;
-    display: inline-block;
-    width: 36px;
-    height: 20px;
-}
-
-.switch input {
-    opacity: 0;
-    width: 0;
-    height: 0;
-}
-
-.slider {
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(255, 255, 255, 0.1);
-    transition: .4s;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-.slider:before {
-    position: absolute;
-    content: "";
-    height: 14px;
-    width: 14px;
-    left: 2px;
-    bottom: 2px;
-    background-color: var(--text-muted);
-    transition: .4s;
-    border-radius: 50%;
-}
-
-input:checked+.slider {
-    background-color: rgba(139, 92, 246, 0.3);
-    /* Primary color low opacity */
-    border-color: var(--primary);
-}
-
-input:checked+.slider:before {
-    transform: translateX(16px);
-    background-color: var(--text-main);
-}
-
-/* Rounded sliders */
-.slider.round {
-    border-radius: 34px;
-}
-
 @keyframes hugPulse {
     0% {
         transform: scale(0.94);
@@ -974,35 +1064,6 @@ input:checked+.slider:before {
     }
 }
 
-
-.brand-logo {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    flex: 0 0 auto;
-    width: 28px;
-    height: 28px;
-    margin-right: 10px;
-    overflow: hidden;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.08);
-    color: var(--text-main);
-    font-size: 12px;
-    font-weight: 700;
-    line-height: 1;
-}
-
-.brand-logo img {
-    width: 100%;
-    height: 100%;
-    display: block;
-    object-fit: cover;
-}
-
-.brand-logo[hidden] {
-    display: none !important;
-}
-
 </style>
 </head>
 
@@ -1022,16 +1083,13 @@ input:checked+.slider:before {
                 <div class="brand">
                     <div class="brand-logo" id="brand-logo" hidden aria-hidden="true"></div>
                     <div class="status-dot"></div>
-                    <h1>Cherry</h1>
+                    <div class="brand-copy">
+                        <h1>Cherry</h1>
+                        <div class="brand-subtitle" id="brand-subtitle" hidden aria-hidden="true"></div>
+                        <div class="brand-status-text" id="brand-status-text" hidden aria-hidden="true"></div>
+                    </div>
                 </div>
                 <div class="header-actions">
-                    <div class="webhook-toggle-container">
-                        <label class="switch">
-                            <input type="checkbox" id="webhook-toggle">
-                            <span class="slider round"></span>
-                        </label>
-                        <span class="toggle-label">Test Mode</span>
-                    </div>
                     <a href="https://deejayedson.com/" class="settings-btn" aria-label="Home">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                             stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -1088,19 +1146,9 @@ input:checked+.slider:before {
 
 
     <!-- CHERRY build marker: brand-logo-enabled -->
-<!-- CHERRY logo debug: type=image url=https://widjets.astigmedia.com/img/main-logo.png -->
-<script>window.__ASTIG_CHERRY_RUNTIME_CONFIG = {"theme":{"bgColor":"#17171f","surfaceColor":"#1f1f2e","primaryColor":"#6c63ff","secondaryColor":"#ec4899","accentColor":"#06b6d4","borderRadius":20,"headerTransparency":0,"fontFamily":"'DM Sans', sans-serif","mode":"solid","gradient":{"start":"#6c63ff","end":"#ff6584"},"headerBgColor":"#1f1f2e","headerTextColor":"#ffffff","topHeroMediaType":"none","topHeroMediaUrl":""},"header":{"title":"Rivers","name":"Rivers","status":"","subtitle":"","subtitleEmojiUrl":"","subtitleEmojiStripEnabled":true,"subtitleEmojiWave":true,"subtitleEmojiPray":true,"subtitleEmojiSmile":true,"subtitleEmojiThumb":true,"subtitleEmojiParty":true,"fontFamily":"'Syne', sans-serif","nameFontSize":15,"nameFontWeight":600,"statusFontSize":12,"animation":"none","logoOffsetX":0,"logoOffsetY":0,"nameOffsetX":0,"nameOffsetY":0,"subtitleOffsetX":0,"subtitleOffsetY":0,"actionsOffsetX":0,"actionsOffsetY":0,"statusOffsetX":0,"statusOffsetY":0,"avatar":"https://widjets.astigmedia.com/img/User-logo.png","avatarSize":40,"avatarOffsetX":0,"avatarOffsetY":0,"logoSize":50,"logoShape":"circle","logoType":"image","logoUrl":"https://widjets.astigmedia.com/img/main-logo.png","subtitleHtml":""},"branding":{"logoType":"image","logoUrl":"https://widjets.astigmedia.com/img/main-logo.png","logoSize":50,"logoShape":"circle","hideHeaderLogo":false},"assistant":{"name":"Assistant","avatar":"https://widjets.astigmedia.com/img/User-logo.png","avatarSize":40},"video":{"layout":"inline","hideBehavior":"first-question","loop":true,"url":"","imageUrl":""},"questions":[{"id":1,"text":"I'm River. How can I help?","type":"text","displayMode":"typewriter","choices":""}],"questionsStyle":"solid","footer":{"text":"","url":"","fontFamily":"'Inter', sans-serif","animation":"none","textColor":"#7070a0","fontSize":"11","position":"center"},"webhook":{"url":"","testUrl":"","chatUrl":"","proxyUrl":"","activeMode":"production","production":true,"externalJsUrl":"https://cdn.jsdelivr.net/gh/majesticwebcreation-ui/astig.media@main/anti-vs/fwidgets-chat-embed-runtime.js"},"converse":{"typingEnabled":true,"typingText":"","statusDelaySec":5,"minVisibleSec":0.8,"animation":"bounce","conversationFill":"theme","conversationBgColor":"#17171f","conversationGradientEnd":"#1f1f2e","bubbleFill":"solid","bubbleShape":"soft","indicatorColor":"#7070a0","bubbleBgColor":"#2a2a3d","bubbleGradientEnd":"#4b4f64","userBubbleFontFamily":"","userBubbleFontSizePx":15,"userBubbleBgColor":"#6c63ff","userBubbleTransparencyPct":0,"userBubbleAnimation":"none","composer":{"fill":"theme","bgColor":"#1f1f2e","transparencyPct":100,"gradientEnd":"#17171f","fontFamily":"","fontSizePx":14,"paddingHeightPx":6},"sendButton":{"fill":"gradient","bgColor":"#4cc9ff","gradientEnd":"#1f6be6","iconUrl":"","sizePx":32,"shape":"circle"},"uploadButton":{"iconUrl":""},"assistantBubbleFontFamily":"","assistantBubbleFontSizePx":15,"assistantBubbleAnimation":"none"},"ui":{"showPipelineMonitor":false,"showRealtimeTelemetry":false,"showRealtimeFeed":false,"templateStyle":"","blankReset":false}};</script>
+<!-- CHERRY logo debug: type=text url= -->
+<script>window.__ASTIG_CHERRY_RUNTIME_CONFIG = {"theme":{"bgColor":"#17171f","surfaceColor":"#1f1f2e","primaryColor":"#6c63ff","secondaryColor":"#ec4899","accentColor":"#06b6d4","borderRadius":20,"headerTransparency":100,"fontFamily":"'DM Sans', sans-serif","mode":"solid","gradient":{"start":"#6c63ff","end":"#ff6584"},"headerBgColor":"#1f1f2e","headerTextColor":"#ffffff","topHeroMediaType":"none","topHeroMediaUrl":""},"header":{"title":"Aria","name":"Aria","status":"Online","subtitle":"","subtitleEmojiUrl":"","subtitleEmojiStripEnabled":true,"subtitleEmojiWave":true,"subtitleEmojiPray":true,"subtitleEmojiSmile":true,"subtitleEmojiThumb":true,"subtitleEmojiParty":true,"fontFamily":"'Syne', sans-serif","nameFontSize":15,"nameFontWeight":600,"statusFontSize":12,"animation":"none","logoOffsetX":0,"logoOffsetY":0,"nameOffsetX":0,"nameOffsetY":0,"subtitleOffsetX":0,"subtitleOffsetY":0,"actionsOffsetX":0,"actionsOffsetY":0,"statusOffsetX":0,"statusOffsetY":0,"avatar":"A","avatarSize":40,"avatarOffsetX":0,"avatarOffsetY":0,"logoSize":24,"logoShape":"circle","logoType":"text","logoUrl":""},"branding":{"logoType":"text","logoUrl":"","logoSize":24,"logoShape":"circle","hideHeaderLogo":false},"assistant":{"name":"Aria","avatar":"A","avatarSize":40},"video":{"layout":"inline","hideBehavior":"first-question","loop":true,"url":"https://widjets.astigmedia.com/vid/DJ.mp4","imageUrl":""},"questions":[{"id":1,"text":"Hi there, welcome to customer support. How can I help you?","type":"text","displayMode":"instant","choices":""}],"questionsStyle":"solid","footer":{"text":"","url":"","fontFamily":"'Inter', sans-serif","animation":"none","textColor":"#7070a0","fontSize":"11","position":"center"},"webhook":{"url":"","testUrl":"","chatUrl":"","proxyUrl":"","activeMode":"production","production":true,"externalJsUrl":"https://cdn.jsdelivr.net/gh/majesticwebcreation-ui/astig.media@main/anti-vs/fwidgets-chat-embed-runtime.js"},"converse":{"typingEnabled":true,"typingText":"","statusDelaySec":5,"minVisibleSec":0.8,"animation":"bounce","conversationFill":"theme","conversationBgColor":"#17171f","conversationGradientEnd":"#1f1f2e","bubbleFill":"solid","bubbleShape":"soft","indicatorColor":"#7070a0","bubbleBgColor":"#2a2a3d","bubbleGradientEnd":"#4b4f64","userBubbleFontFamily":"","userBubbleFontSizePx":15,"userBubbleBgColor":"#6c63ff","userBubbleTransparencyPct":100,"userBubbleAnimation":"none","composer":{"fill":"theme","bgColor":"#1f1f2e","transparencyPct":100,"gradientEnd":"#17171f","fontFamily":"","fontSizePx":14,"paddingHeightPx":6},"sendButton":{"fill":"gradient","bgColor":"#4cc9ff","gradientEnd":"#1f6be6","iconUrl":"","sizePx":50,"shape":"circle"},"uploadButton":{"iconUrl":""},"assistantBubbleFontFamily":"","assistantBubbleFontSizePx":15,"assistantBubbleAnimation":"none"},"ui":{"showPipelineMonitor":false,"showRealtimeTelemetry":false,"showRealtimeFeed":false,"templateStyle":"","blankReset":false}};</script>
 <script>
-
-function escapeHtml(value) {
-    return String(value || '')
-        .replace(/&/g, '&amp;')
-        .replace(/</g, '&lt;')
-        .replace(/>/g, '&gt;')
-        .replace(/"/g, '&quot;')
-        .replace(/'/g, '&#39;');
-}
-
 document.addEventListener('DOMContentLoaded', () => {
     const flowContainer = document.getElementById('conversation-flow');
     const scrollRegion = document.getElementById('chat-scroll-region');
@@ -1110,20 +1158,28 @@ document.addEventListener('DOMContentLoaded', () => {
     const restartBtn = document.getElementById('restart-btn');
     const downloadBtn = document.getElementById('download-btn');
     const emailBtn = document.getElementById('email-btn');
-    const webhookToggle = document.getElementById('webhook-toggle');
+    const formHeader = document.querySelector('.form-header');
     const brandHeading = document.querySelector('.brand h1');
+    const brandSubtitle = document.getElementById('brand-subtitle');
+    const brandStatusText = document.getElementById('brand-status-text');
+    const brandLogo = document.getElementById('brand-logo');
+    const brandStatusDot = document.querySelector('.brand .status-dot');
     const inputArea = document.querySelector('.input-area');
     const brandFooter = document.querySelector('.brand-footer');
 
     if (!flowContainer || !userInput || !sendBtn) return;
 
     const CHERRY_RUNTIME_MESSAGE_TYPE = 'ASTIG_CHERRY_RUNTIME_CONFIG';
+    const CHERRY_TELEMETRY_MESSAGE_TYPE = 'ASTIG_CHERRY_TELEMETRY';
     const DEFAULT_THEME = {
         bgColor: '#0f172a',
         surfaceColor: '#1b2248',
         primaryColor: '#8b5cf6',
         secondaryColor: '#ec4899',
-        accentColor: '#06b6d4'
+        accentColor: '#06b6d4',
+        headerBgColor: '#1b2248',
+        headerTransparency: 100,
+        headerTextColor: '#edf1ff'
     };
     const DEFAULT_WEBHOOKS = {
         production: 'https://n8n.srv1291312.hstgr.cloud/webhook/33042864-3282-4dd6-95ab-6ffa983a8196',
@@ -1153,18 +1209,24 @@ document.addEventListener('DOMContentLoaded', () => {
     let activeChoiceContainer = null;
     const formData = createInitialFormData();
 
+    function postTelemetry(event, payload = {}) {
+        try {
+            window.parent?.postMessage({
+                type: CHERRY_TELEMETRY_MESSAGE_TYPE,
+                event: String(event || '').trim(),
+                payload: payload && typeof payload === 'object' ? payload : {}
+            }, '*');
+        } catch (error) {
+            void error;
+        }
+    }
+
     applyRuntimeConfig(runtimeConfig);
     renderStep();
 
     if (downloadBtn) downloadBtn.addEventListener('click', downloadChat);
     if (emailBtn) emailBtn.addEventListener('click', requestEmail);
     if (restartBtn) restartBtn.addEventListener('click', restart);
-    if (webhookToggle) {
-        webhookToggle.addEventListener('change', (event) => {
-            currentWebhookMode = event.target.checked ? 'test' : 'production';
-            currentWebhookUrl = resolveWebhookUrl(runtimeConfig, currentWebhookMode);
-        });
-    }
     sendBtn.addEventListener('click', handleNext);
     userInput.addEventListener('keydown', (event) => {
         if (event.key === 'Enter') {
@@ -1195,6 +1257,81 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    function escapeHtml(value) {
+        return String(value || '')
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&#39;');
+    }
+
+    function formatAssistantReply(text) {
+        const normalized = String(text || '')
+            .replace(/\r/g, '')
+            .replace(/\\n/g, '\n')
+            .trim();
+        if (!normalized) return '<p>Thank you for reaching out.</p>';
+
+        const escaped = escapeHtml(normalized);
+        const blocks = escaped
+            .split(/\n{2,}/)
+            .map((block) => block.trim())
+            .filter(Boolean);
+
+        const htmlBlocks = [];
+        for (const block of blocks) {
+            const lines = block.split('\n').map((line) => line.trim()).filter(Boolean);
+            if (!lines.length) continue;
+
+            const isBulletList = lines.every((line) => /^[-*]\s+/.test(line));
+            const isNumberList = lines.every((line) => /^\d+\.\s+/.test(line));
+
+            if (isBulletList) {
+                const items = lines
+                    .map((line) => line.replace(/^[-*]\s+/, ''))
+                    .map((line) => `<li>${line.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')}</li>`)
+                    .join('');
+                htmlBlocks.push(`<ul>${items}</ul>`);
+                continue;
+            }
+
+            if (isNumberList) {
+                const items = lines
+                    .map((line) => line.replace(/^\d+\.\s+/, ''))
+                    .map((line) => `<li>${line.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')}</li>`)
+                    .join('');
+                htmlBlocks.push(`<ol>${items}</ol>`);
+                continue;
+            }
+
+            if (lines.length === 1 && /^\*\*(.+?)\*\*$/.test(lines[0])) {
+                const strongText = lines[0].replace(/^\*\*(.+?)\*\*$/, '<strong>$1</strong>');
+                htmlBlocks.push(`<p>${strongText}</p>`);
+                continue;
+            }
+
+            const paragraph = lines
+                .join('<br>')
+                .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+            htmlBlocks.push(`<p>${paragraph}</p>`);
+        }
+
+        return htmlBlocks.join('');
+    }
+
+    function normalizeImageSource(value) {
+        const raw = String(value || '').trim();
+        if (!raw) return '';
+        if (raw.startsWith('data:') || raw.startsWith('blob:') || /^https?:\/\//i.test(raw)) return raw;
+        if (/^(?:[A-Za-z]:[\\/]|\\\\)/.test(raw)) return raw;
+        if (raw.startsWith('//')) return `https:${raw}`;
+        if (/^[\w.-]+\.[A-Za-z]{2,}(?:[/:?#]|$)/.test(raw)) return `https://${raw}`;
+        if (raw.startsWith('./') || raw.startsWith('../') || raw.startsWith('/')) return raw;
+        if (/\.(png|jpe?g|gif|webp|svg)(\?.*)?$/i.test(raw)) return `./${raw.replace(/^\.?\/*/, '')}`;
+        return raw;
+    }
+
     function decodeBase64Utf8(value) {
         const binary = atob(String(value || ''));
         const bytes = Uint8Array.from(binary, (char) => char.charCodeAt(0));
@@ -1205,6 +1342,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const cfg = nextConfig && typeof nextConfig === 'object' ? nextConfig : {};
         const theme = cfg.theme && typeof cfg.theme === 'object' ? cfg.theme : {};
         const header = cfg.header && typeof cfg.header === 'object' ? cfg.header : {};
+        const branding = cfg.branding && typeof cfg.branding === 'object' ? cfg.branding : {};
         const assistant = cfg.assistant && typeof cfg.assistant === 'object' ? cfg.assistant : {};
         const webhook = cfg.webhook && typeof cfg.webhook === 'object' ? cfg.webhook : {};
         const converse = normalizeConverseConfig(cfg.converse);
@@ -1214,6 +1352,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 ...theme
             },
             header,
+            branding,
             assistant,
             webhook,
             converse,
@@ -1230,9 +1369,6 @@ document.addEventListener('DOMContentLoaded', () => {
         applyTheme(runtimeConfig.theme);
         applyHeader(runtimeConfig);
         applyConverseAppearance(runtimeConfig);
-        if (webhookToggle) {
-            webhookToggle.checked = currentWebhookMode === 'test';
-        }
         if (options.restartConversation) {
             restart();
         }
@@ -1247,12 +1383,136 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function applyHeader(cfg) {
-        const assistantName = String(cfg.assistant?.name || cfg.header?.title || cfg.header?.name || 'Cherry').trim();
+        const theme = cfg && cfg.theme && typeof cfg.theme === 'object' ? cfg.theme : {};
+        const header = cfg && cfg.header && typeof cfg.header === 'object' ? cfg.header : {};
+        const assistantName = String(cfg.header?.title || cfg.header?.name || cfg.assistant?.name || 'Cherry').trim();
+        const assistantSubtitle = String(cfg.header?.subtitle || '').trim();
+        const assistantStatus = String(header.status || '').trim();
+        const headerFontFamily = String(header.fontFamily || '').trim();
+        const nameFontSize = Number(header.nameFontSize);
+        const statusFontSize = Number(header.statusFontSize);
+        const headerAnimation = String(header.animation || 'none').trim().toLowerCase();
+        if (formHeader instanceof HTMLElement) {
+            const headerAlpha = Math.max(0, Math.min(1, Number(theme.headerTransparency ?? 100) / 100));
+            formHeader.style.background = theme.headerBgColor
+                ? convertHexToRgba(String(theme.headerBgColor).trim(), headerAlpha)
+                : '';
+            formHeader.style.color = theme.headerTextColor ? String(theme.headerTextColor).trim() : '';
+            formHeader.classList.remove('anim-header-pulse', 'anim-header-fade', 'anim-header-slide-up');
+            if (headerAnimation && headerAnimation !== 'none') {
+                formHeader.classList.add(`anim-header-${headerAnimation}`);
+            }
+        }
         if (brandHeading) {
             brandHeading.textContent = assistantName || 'Cherry';
+            brandHeading.style.color = theme.headerTextColor ? String(theme.headerTextColor).trim() : '';
+            brandHeading.style.fontFamily = headerFontFamily || '';
+            brandHeading.style.fontSize = Number.isFinite(nameFontSize) && nameFontSize > 0 ? `${nameFontSize}px` : '';
         }
+        if (brandSubtitle instanceof HTMLElement) {
+            brandSubtitle.textContent = assistantSubtitle;
+            brandSubtitle.hidden = !assistantSubtitle;
+            brandSubtitle.setAttribute('aria-hidden', assistantSubtitle ? 'false' : 'true');
+            brandSubtitle.style.color = theme.headerTextColor
+                ? convertHexToRgba(String(theme.headerTextColor).trim(), 0.72)
+                : '';
+            brandSubtitle.style.fontFamily = headerFontFamily || '';
+        }
+        if (brandStatusText instanceof HTMLElement) {
+            brandStatusText.textContent = assistantStatus;
+            brandStatusText.hidden = !assistantStatus;
+            brandStatusText.setAttribute('aria-hidden', assistantStatus ? 'false' : 'true');
+            brandStatusText.style.color = theme.headerTextColor
+                ? convertHexToRgba(String(theme.headerTextColor).trim(), 0.72)
+                : '';
+            brandStatusText.style.fontFamily = headerFontFamily || '';
+            brandStatusText.style.fontSize = Number.isFinite(statusFontSize) && statusFontSize > 0 ? `${statusFontSize}px` : '';
+        }
+        if (brandStatusDot instanceof HTMLElement && theme.primaryColor) {
+            brandStatusDot.style.background = String(theme.primaryColor).trim();
+            brandStatusDot.style.boxShadow = `0 0 10px ${String(theme.primaryColor).trim()}`;
+        }
+        document.querySelectorAll('.settings-btn').forEach((button) => {
+            button.style.color = theme.headerTextColor ? String(theme.headerTextColor).trim() : '';
+        });
+        applyHeaderLogo(cfg);
         document.title = `${assistantName || 'Cherry'} - Messages`;
         refreshAssistantAvatars();
+    }
+
+    function applyHeaderLogo(cfg) {
+        if (!(brandLogo instanceof HTMLElement)) return;
+        const header = cfg && cfg.header && typeof cfg.header === 'object' ? cfg.header : {};
+        const branding = cfg && cfg.branding && typeof cfg.branding === 'object' ? cfg.branding : {};
+        const assistant = cfg && cfg.assistant && typeof cfg.assistant === 'object' ? cfg.assistant : {};
+        const rawSize = Number(branding.logoSize != null ? branding.logoSize : header.logoSize);
+        const logoSize = Number.isFinite(rawSize) && rawSize > 0 ? rawSize : 22;
+        const shape = String(branding.logoShape || header.logoShape || 'circle').trim().toLowerCase();
+        const isRectangle = shape === 'rectangle';
+        const width = isRectangle ? Math.round(logoSize * 1.55) : logoSize;
+        const hideHeaderLogo = branding.hideHeaderLogo === true;
+        if (brandHeading instanceof HTMLElement) {
+            const outsideLogoOffset = `${Math.max(26, width + 12)}px`;
+            brandHeading.style.marginLeft = hideHeaderLogo ? outsideLogoOffset : '';
+        }
+        if (brandStatusDot instanceof HTMLElement) {
+            brandStatusDot.style.display = hideHeaderLogo ? 'none' : '';
+        }
+        if (hideHeaderLogo) {
+            brandLogo.innerHTML = '';
+            brandLogo.hidden = true;
+            brandLogo.setAttribute('aria-hidden', 'true');
+            return;
+        }
+        const logoType = String(branding.logoType || header.logoType || '').trim().toLowerCase();
+        const logoUrl = normalizeImageSource(branding.logoUrl || header.logoUrl);
+        const imageUrl = isImageSourceValue(logoUrl) && logoType === 'image'
+            ? logoUrl
+            : '';
+        const height = logoSize;
+        const borderRadius = shape === 'square'
+            ? '4px'
+            : shape === 'rounded'
+                ? '8px'
+                : shape === 'rectangle'
+                    ? '10px'
+                    : '999px';
+
+        brandLogo.innerHTML = '';
+        brandLogo.hidden = !imageUrl;
+        brandLogo.setAttribute('aria-hidden', imageUrl ? 'false' : 'true');
+        brandLogo.style.width = `${width}px`;
+        brandLogo.style.height = `${height}px`;
+        brandLogo.style.flexBasis = `${width}px`;
+        brandLogo.style.borderRadius = borderRadius;
+        brandLogo.style.transform = `translate(${Number(header.logoOffsetX) || 0}px, 0px)`;
+        if (!imageUrl) {
+            const fallbackText = String(header.title || header.name || assistant.name || 'A').trim().substring(0, 2).toUpperCase();
+            if (fallbackText) {
+                brandLogo.textContent = fallbackText;
+                brandLogo.hidden = false;
+                brandLogo.setAttribute('aria-hidden', 'false');
+            }
+            return;
+        }
+
+        const img = document.createElement('img');
+        img.src = imageUrl;
+        img.alt = `${String(cfg?.assistant?.name || cfg?.header?.title || cfg?.header?.name || 'Assistant').trim() || 'Assistant'} logo`;
+        img.referrerPolicy = 'no-referrer';
+        img.addEventListener('error', () => {
+            brandLogo.innerHTML = '';
+            const fallbackText = String(header.title || header.name || assistant.name || 'A').trim().substring(0, 2).toUpperCase();
+            if (fallbackText) {
+                brandLogo.textContent = fallbackText;
+                brandLogo.hidden = false;
+                brandLogo.setAttribute('aria-hidden', 'false');
+            } else {
+                brandLogo.hidden = true;
+                brandLogo.setAttribute('aria-hidden', 'true');
+            }
+        });
+        brandLogo.appendChild(img);
     }
 
     function normalizeConverseConfig(converse) {
@@ -1276,6 +1536,7 @@ document.addEventListener('DOMContentLoaded', () => {
         next.userBubbleFontFamily = String(next.userBubbleFontFamily || '').trim();
         next.userBubbleFontSizePx = Number.isFinite(Number(next.userBubbleFontSizePx)) ? Math.max(10, Math.min(22, Math.round(Number(next.userBubbleFontSizePx)))) : 15;
         next.userBubbleBgColor = String(next.userBubbleBgColor || '').trim();
+        next.userBubbleTransparencyPct = Number.isFinite(Number(next.userBubbleTransparencyPct)) ? Math.max(0, Math.min(100, Math.round(Number(next.userBubbleTransparencyPct)))) : 100;
         if (!next.composer || typeof next.composer !== 'object') next.composer = {};
         next.composer.fill = ['solid', 'gradient', 'glass', '3d', 'theme'].includes(String(next.composer.fill || '').trim()) ? String(next.composer.fill || '').trim() : 'theme';
         next.composer.bgColor = String(next.composer.bgColor || '').trim();
@@ -1408,16 +1669,27 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!(element instanceof HTMLElement)) return;
         const converse = getConverseConfig();
         const bubbleColor = converse.bubbleBgColor;
-        element.style.background = resolveFillBackground(converse.bubbleFill, bubbleColor, converse.bubbleGradientEnd || bubbleColor);
-        element.style.backgroundColor = bubbleColor;
-        element.style.border = converse.bubbleFill === 'outline' ? `1px solid ${bubbleColor}` : 'none';
-        element.style.backdropFilter = converse.bubbleFill === 'glass' ? 'blur(10px)' : '';
-        element.style.webkitBackdropFilter = converse.bubbleFill === 'glass' ? 'blur(10px)' : '';
-        element.style.boxShadow = converse.bubbleFill === '3d'
-            ? `inset 0 1px 0 ${convertHexToRgba('#ffffff', 0.12)}, inset 0 -12px 20px ${convertHexToRgba('#000000', 0.28)}`
-            : '';
-        element.style.padding = '14px 16px';
-        element.style.borderRadius = converse.bubbleShape === 'pill' ? '28px' : converse.bubbleShape === 'sharp' ? '12px' : '18px';
+        if (element.classList.contains('current-step')) {
+            element.style.background = 'transparent';
+            element.style.backgroundColor = 'transparent';
+            element.style.border = 'none';
+            element.style.borderLeft = 'none';
+            element.style.backdropFilter = '';
+            element.style.webkitBackdropFilter = '';
+            element.style.boxShadow = 'none';
+            element.style.padding = '0';
+            element.style.borderRadius = '0';
+        } else {
+            element.style.background = 'transparent';
+            element.style.backgroundColor = 'transparent';
+            element.style.border = `none`;
+            element.style.backdropFilter = '';
+            element.style.webkitBackdropFilter = '';
+            element.style.boxShadow = 'none';
+            element.style.padding = '0 0 0 15px';
+            element.style.borderRadius = '0';
+            element.style.borderLeft = `2px solid ${bubbleColor || 'rgba(111, 92, 255, 0.9)'}`;
+        }
         element.style.fontFamily = converse.assistantBubbleFontFamily || '';
         const textTargets = element.querySelectorAll('h2, .history-q');
         textTargets.forEach((target) => {
@@ -1458,14 +1730,13 @@ document.addEventListener('DOMContentLoaded', () => {
         const converse = getConverseConfig();
         element.style.fontFamily = converse.userBubbleFontFamily || '';
         element.style.fontSize = `${Number(converse.userBubbleFontSizePx || 15)}px`;
-        if (converse.userBubbleBgColor) {
-            element.style.display = 'inline-block';
-            element.style.marginTop = '8px';
-            element.style.padding = '8px 12px';
-            element.style.borderRadius = '14px';
-            element.style.background = converse.userBubbleBgColor;
-            element.style.color = '#ffffff';
-        }
+        element.style.display = 'block';
+        element.style.marginTop = '4px';
+        element.style.padding = '0';
+        element.style.borderRadius = '0';
+        element.style.background = 'transparent';
+        element.style.boxShadow = 'none';
+        element.style.color = '#f2f4ff';
     }
 
     function buildSteps(cfg) {
@@ -1507,7 +1778,7 @@ document.addEventListener('DOMContentLoaded', () => {
         };
     }
 
-    function createBotMessage() {
+    function createBotMessage(kind = 'prompt') {
         const wrapper = document.createElement('div');
         wrapper.className = 'message-wrapper';
 
@@ -1517,7 +1788,7 @@ document.addEventListener('DOMContentLoaded', () => {
         wrapper.appendChild(avatarDiv);
 
         const stepDiv = document.createElement('div');
-        stepDiv.className = 'current-step';
+        stepDiv.className = `current-step current-step--${kind === 'reply' ? 'reply' : 'prompt'}`;
         wrapper.appendChild(stepDiv);
 
         flowContainer.appendChild(wrapper);
@@ -1529,22 +1800,23 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function isImageSourceValue(value) {
-        const normalized = String(value || '').trim();
+        const normalized = normalizeImageSource(value);
         if (!normalized) return false;
         return normalized.startsWith('data:')
             || normalized.startsWith('blob:')
             || /^https?:\/\//i.test(normalized)
+            || /^(?:[A-Za-z]:[\\/]|\\\\)/.test(normalized)
+            || normalized.startsWith('./')
+            || normalized.startsWith('../')
+            || normalized.startsWith('/')
             || /\.(png|jpe?g|gif|webp|svg)(\?.*)?$/i.test(normalized);
     }
 
     function resolveAvatarUrl() {
         const header = runtimeConfig?.header && typeof runtimeConfig.header === 'object' ? runtimeConfig.header : {};
         const assistant = runtimeConfig?.assistant && typeof runtimeConfig.assistant === 'object' ? runtimeConfig.assistant : {};
-        if (isImageSourceValue(header.avatar)) return String(header.avatar).trim();
-        if (String(header.logoType || '').trim().toLowerCase() === 'image' && isImageSourceValue(header.logoUrl)) {
-            return String(header.logoUrl).trim();
-        }
-        if (isImageSourceValue(assistant.avatar)) return String(assistant.avatar).trim();
+        if (isImageSourceValue(header.avatar)) return normalizeImageSource(header.avatar);
+        if (isImageSourceValue(assistant.avatar)) return normalizeImageSource(assistant.avatar);
         return 'assets/character_standin.png';
     }
 
@@ -1604,7 +1876,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (formData.name) {
                 questionText = questionText.replace(/\{name\}/g, formData.name);
             }
-            const stepDiv = createBotMessage();
+            const stepDiv = createBotMessage('prompt');
             stepDiv.innerHTML = '<h2></h2>';
             const heading = stepDiv.querySelector('h2');
             if (heading) {
@@ -1656,21 +1928,24 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function addToHistory(answer) {
+        const normalizedAnswer = String(answer || '').trim();
+        if (!normalizedAnswer) return;
         const lastWrapper = flowContainer.lastElementChild;
         if (!lastWrapper) return;
         const activeStep = lastWrapper.querySelector('.current-step') || lastWrapper.querySelector('.history-item');
         if (!activeStep) return;
+        if (activeStep.classList.contains('current-step--reply')) return;
         const answerSpan = document.createElement('span');
         answerSpan.className = 'history-a';
-        answerSpan.textContent = answer;
-        activeStep.appendChild(answerSpan);
+        answerSpan.textContent = normalizedAnswer;
         applyUserTextAppearance(answerSpan);
+        activeStep.appendChild(answerSpan);
     }
 
     function requestEmail() {
         if (isAskingForEmail) return;
         isAskingForEmail = true;
-        const stepDiv = createBotMessage();
+        const stepDiv = createBotMessage('prompt');
         stepDiv.innerHTML = '<h2></h2>';
         const heading = stepDiv.querySelector('h2');
         if (heading) typeText(heading, 'To stay in touch, could you please share your email address?');
@@ -1691,6 +1966,10 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!normalizedText) return;
         clearChoiceButtons();
         addToHistory(normalizedText);
+        postTelemetry('user_input', {
+            text: normalizedText,
+            sessionId: formData.sessionId
+        });
 
         if (isAskingForEmail) {
             formData.email = normalizedText;
@@ -1724,13 +2003,21 @@ document.addEventListener('DOMContentLoaded', () => {
             const previousCurrent = currentWrapper.querySelector('.current-step');
             if (previousCurrent) {
                 previousCurrent.classList.remove('current-step');
+                previousCurrent.classList.remove('current-step--prompt', 'current-step--reply');
                 previousCurrent.classList.add('history-item');
                 const heading = previousCurrent.querySelector('h2');
+                const reply = previousCurrent.querySelector('.assistant-reply');
                 if (heading) {
                     const question = document.createElement('span');
                     question.className = 'history-q';
                     question.innerHTML = heading.innerHTML;
                     previousCurrent.replaceChild(question, heading);
+                } else if (reply) {
+                    const replyText = String(reply.textContent || '').replace(/\s+/g, ' ').trim();
+                    const compactReply = document.createElement('span');
+                    compactReply.className = 'history-q history-q--reply';
+                    compactReply.textContent = replyText;
+                    previousCurrent.replaceChildren(compactReply);
                 }
             }
         }
@@ -1738,25 +2025,75 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function pruneHistory() {
-        flowContainer.querySelectorAll('.message-wrapper').forEach((wrapper) => {
+        const wrappers = Array.from(flowContainer.querySelectorAll('.message-wrapper'));
+        wrappers.forEach((wrapper) => {
             wrapper.style.display = '';
         });
+        if (wrappers.length > 3) {
+            for (let index = 0; index < wrappers.length - 3; index += 1) {
+                wrappers[index].style.display = 'none';
+            }
+        }
     }
 
     function buildWebhookPayload() {
         const inquiryText = String(formData.inquiry || '').trim();
         const nameText = String(formData.name || '').trim();
         const primaryText = inquiryText || nameText;
+        const answeredQuestionFlow = steps
+            .map((step, index) => {
+                const fieldName = String(step?.field || '').trim();
+                const answerText = fieldName ? String(formData[fieldName] || '').trim() : '';
+                if (!fieldName || !answerText) return null;
+                let questionText = String(step?.question || '').trim();
+                if (questionText) {
+                    questionText = questionText.replace(/\{name\}/g, String(formData.name || '').trim());
+                }
+                return {
+                    index,
+                    field: fieldName,
+                    type: String(step?.type || 'text').trim().toLowerCase() === 'choice' ? 'choice' : 'text',
+                    question: questionText,
+                    answer: answerText,
+                    choices: parseChoiceList(step?.choices)
+                };
+            })
+            .filter(Boolean);
+        const assistantQuestions = steps.map((step, index) => {
+            let questionText = String(step?.question || '').trim();
+            if (questionText) {
+                questionText = questionText.replace(/\{name\}/g, String(formData.name || '').trim());
+            }
+            return {
+                index,
+                field: String(step?.field || '').trim(),
+                type: String(step?.type || 'text').trim().toLowerCase() === 'choice' ? 'choice' : 'text',
+                question: questionText,
+                choices: parseChoiceList(step?.choices)
+            };
+        });
+        const conversation = [];
+        answeredQuestionFlow.forEach((item) => {
+            if (item.question) {
+                conversation.push({ role: 'assistant', text: item.question });
+            }
+            if (item.answer) {
+                conversation.push({ role: 'user', text: item.answer });
+            }
+        });
         return {
             ...formData,
             message: primaryText,
             chatInput: primaryText,
-            sessionId: formData.sessionId
+            sessionId: formData.sessionId,
+            assistantQuestions,
+            questionFlow: answeredQuestionFlow,
+            conversation
         };
     }
 
     async function submitForm() {
-        const stepDiv = createBotMessage();
+        const stepDiv = createBotMessage('reply');
         const converse = getConverseConfig();
         const delayMs = Math.max(0, Math.round(Number(converse.statusDelaySec || 0) * 1000));
         const minVisibleMs = Math.max(0, Math.round(Number(converse.minVisibleSec || 0) * 1000));
@@ -1833,21 +2170,53 @@ document.addEventListener('DOMContentLoaded', () => {
         scrollToBottom();
         userInput.disabled = true;
         userInput.placeholder = 'Please wait...';
+        const requestPayload = buildWebhookPayload();
+        postTelemetry('transfer_start', {
+            sessionId: formData.sessionId,
+            webhookUrl: currentWebhookUrl,
+            message: String(requestPayload.message || requestPayload.chatInput || '').trim()
+        });
 
         try {
             const headers = { 'Content-Type': 'application/json' };
             if (runtimeConfig.previewAuth?.enabled && runtimeConfig.previewAuth?.headerName && runtimeConfig.previewAuth?.headerValue) {
                 headers[String(runtimeConfig.previewAuth.headerName)] = String(runtimeConfig.previewAuth.headerValue);
             }
+            postTelemetry('stage_progress', {
+                stage: 'outbound',
+                percent: 24,
+                description: 'Sending payload from client'
+            });
+            postTelemetry('log', {
+                level: 'info',
+                message: `POST ${currentWebhookUrl}`
+            });
+            postTelemetry('raw', {
+                label: 'USER',
+                payload: String(requestPayload.message || requestPayload.chatInput || '').trim()
+            });
             const response = await fetch(currentWebhookUrl, {
                 method: 'POST',
                 headers,
-                body: JSON.stringify(buildWebhookPayload())
+                body: JSON.stringify(requestPayload)
+            });
+            postTelemetry('stage_progress', {
+                stage: 'processing',
+                percent: 70,
+                description: `n8n accepted request (${response.status || 200})`
+            });
+            postTelemetry('log', {
+                level: 'info',
+                message: `n8n responded with status ${response.status || 200}`
             });
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
             const responseText = await response.text();
+            postTelemetry('raw', {
+                label: 'WEBHOOK_RAW_RESPONSE',
+                payload: responseText
+            });
             const botReply = parseReply(responseText, response.headers.get('content-type') || '');
             responseSettled = true;
             setComposerStatus('');
@@ -1861,10 +2230,23 @@ document.addEventListener('DOMContentLoaded', () => {
                     await new Promise((resolve) => window.setTimeout(resolve, minVisibleMs - elapsed));
                 }
             }
-            stepDiv.innerHTML = `<h2>${botReply}</h2>`;
+            postTelemetry('stage_progress', {
+                stage: 'inbound',
+                percent: 86,
+                description: 'Transferring processed payload back to chat'
+            });
+            postTelemetry('log', {
+                level: 'success',
+                message: 'Inbound payload received from n8n'
+            });
+            stepDiv.innerHTML = `<div class="assistant-reply">${formatAssistantReply(botReply)}</div>`;
             applyAssistantBubbleAppearance(stepDiv);
             animateAssistantBubble(stepDiv);
             revealAssistantReply(stepDiv);
+            postTelemetry('transfer_complete', {
+                sessionId: formData.sessionId,
+                reply: botReply
+            });
         } catch (error) {
             responseSettled = true;
             setComposerStatus('');
@@ -1878,10 +2260,18 @@ document.addEventListener('DOMContentLoaded', () => {
                     await new Promise((resolve) => window.setTimeout(resolve, minVisibleMs - elapsed));
                 }
             }
-            stepDiv.innerHTML = `<h2>Error: ${error.message}</h2>`;
+            stepDiv.innerHTML = `<div class="assistant-reply"><p>Error: ${escapeHtml(error.message)}</p></div>`;
             applyAssistantBubbleAppearance(stepDiv);
             animateAssistantBubble(stepDiv);
             revealAssistantReply(stepDiv);
+            postTelemetry('raw', {
+                label: 'WEBHOOK_ERROR',
+                payload: error.message
+            });
+            postTelemetry('transfer_error', {
+                sessionId: formData.sessionId,
+                message: error.message
+            });
         } finally {
             setComposerStatus('');
             userInput.disabled = false;
@@ -1890,46 +2280,154 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    function parseReply(rawText, contentType) {
-        const fallback = 'Thank you for reaching out.';
-        const text = String(rawText || '').trim();
-        if (!text) return fallback;
-        const looksJson = String(contentType || '').toLowerCase().includes('application/json') || text.startsWith('{') || text.startsWith('[');
-        if (!looksJson) return text;
-        try {
-            return extractReply(JSON.parse(text)) || fallback;
-        } catch (error) {
-            return text;
+    function isMeaningfulReplyText(value, options = {}) {
+        const text = String(value || '');
+        if (!options.preserveWhitespace && !text.trim()) return false;
+        const normalized = text.trim();
+        if (!normalized) return !!options.preserveWhitespace;
+        if (/^[\[{].*[\]}]$/.test(normalized) && /"type"\s*:/.test(normalized)) return false;
+        return true;
+    }
+
+    function collectReplyParts(payload, parts, options = {}, visited = new WeakSet()) {
+        if (payload == null) return;
+
+        if (typeof payload === 'string') {
+            if (isMeaningfulReplyText(payload, options)) {
+                parts.push(options.preserveWhitespace ? payload : payload.trim());
+            }
+            return;
+        }
+
+        if (typeof payload === 'number' || typeof payload === 'boolean') {
+            parts.push(String(payload));
+            return;
+        }
+
+        if (Array.isArray(payload)) {
+            for (const item of payload) {
+                collectReplyParts(item, parts, options, visited);
+            }
+            return;
+        }
+
+        if (typeof payload !== 'object') return;
+        if (visited.has(payload)) return;
+        visited.add(payload);
+
+        const eventType = typeof payload.type === 'string' ? payload.type.trim().toLowerCase() : '';
+        const ignoredEventTypes = new Set([
+            'begin', 'start', 'started', 'metadata', 'heartbeat', 'ping', 'status',
+            'end', 'done', 'complete', 'completed'
+        ]);
+        const directKeys = [
+            'reply', 'message', 'text', 'output', 'response', 'answer', 'content',
+            'final', 'finalText', 'finalOutput', 'chatOutput', 'completion'
+        ];
+        const nestedKeys = [
+            'data', 'result', 'body', 'payload', 'output', 'outputs', 'item', 'items',
+            'message', 'messages', 'response', 'responses', 'delta', 'chunk', 'content'
+        ];
+
+        const initialCount = parts.length;
+        if (!(eventType && ignoredEventTypes.has(eventType))) {
+            for (const key of directKeys) {
+                if (payload[key] === undefined) continue;
+                collectReplyParts(payload[key], parts, options, visited);
+            }
+        }
+
+        for (const key of nestedKeys) {
+            if (payload[key] === undefined || directKeys.includes(key)) continue;
+            collectReplyParts(payload[key], parts, options, visited);
+        }
+
+        if (parts.length === initialCount) {
+            for (const [key, value] of Object.entries(payload)) {
+                if (
+                    key === 'type' ||
+                    key === 'metadata' ||
+                    key === 'meta' ||
+                    key === 'nodeId' ||
+                    key === 'nodeName' ||
+                    key === 'runIndex' ||
+                    key === 'itemIndex'
+                ) {
+                    continue;
+                }
+                if (directKeys.includes(key) || nestedKeys.includes(key)) continue;
+                collectReplyParts(value, parts, options, visited);
+            }
         }
     }
 
-    function extractReply(payload) {
-        if (payload == null) return '';
-        if (typeof payload === 'string') return payload.trim();
-        if (typeof payload === 'number' || typeof payload === 'boolean') return String(payload);
-        if (Array.isArray(payload)) {
-            for (const item of payload) {
-                const reply = extractReply(item);
-                if (reply) return reply;
-            }
-            return '';
+    function extractReply(payload, options = {}) {
+        const parts = [];
+        collectReplyParts(payload, parts, options);
+        if (parts.length === 0) return '';
+        const normalizedParts = parts
+            .map((part) => String(part || ''))
+            .map((part) => options.preserveWhitespace ? part : part.trim())
+            .filter((part) => isMeaningfulReplyText(part, options));
+        if (normalizedParts.length === 0) return '';
+        const merged = normalizedParts.join('');
+        return options.preserveWhitespace ? merged : merged.trim();
+    }
+
+    function parseReply(rawText, contentType) {
+        const fallback = 'Thank you for reaching out.';
+        const raw = String(rawText || '');
+        const text = raw.trim();
+        if (!text) return fallback;
+
+        const contentTypeLower = String(contentType || '').toLowerCase();
+        const looksJson =
+            contentTypeLower.includes('application/json') ||
+            contentTypeLower.includes('application/x-ndjson') ||
+            contentTypeLower.includes('text/event-stream') ||
+            text.startsWith('{') ||
+            text.startsWith('[') ||
+            /^data:\s*/i.test(text);
+
+        if (!looksJson) return text;
+
+        try {
+            return extractReply(JSON.parse(text)) || fallback;
+        } catch (error) {
+            void error;
         }
-        if (typeof payload === 'object') {
-            const directKeys = ['output', 'text', 'message', 'reply', 'response', 'content', 'answer'];
-            for (const key of directKeys) {
-                if (typeof payload[key] === 'string' && payload[key].trim()) {
-                    return payload[key].trim();
-                }
+
+        const normalized = raw
+            .replace(/}\s*{/g, '}\n{')
+            .replace(/\]\s*\[/g, ']\n[');
+
+        const lines = normalized.split(/\r?\n/).map((line) => line.trim()).filter(Boolean);
+        const extractedParts = [];
+        for (const line of lines) {
+            let candidateLine = line;
+            if (/^data:/i.test(candidateLine)) {
+                candidateLine = candidateLine.replace(/^data:\s*/i, '');
             }
-            const nestedKeys = ['data', 'result', 'body', 'payload', 'item', 'items'];
-            for (const key of nestedKeys) {
-                if (payload[key] !== undefined) {
-                    const reply = extractReply(payload[key]);
-                    if (reply) return reply;
-                }
+            if (!candidateLine || candidateLine === '[DONE]') continue;
+            try {
+                const parsedLine = JSON.parse(candidateLine);
+                const fromLine = extractReply(parsedLine, { preserveWhitespace: true });
+                if (fromLine !== '') extractedParts.push(fromLine);
+            } catch (error) {
+                void error;
             }
         }
-        return '';
+
+        if (extractedParts.length > 0) {
+            if (extractedParts.length > 1 && extractedParts.every((part) => part.length <= 120)) {
+                const merged = extractedParts.join('');
+                return merged.trim() || fallback;
+            }
+            const last = extractedParts[extractedParts.length - 1];
+            return String(last || '').trim() || fallback;
+        }
+
+        return text;
     }
 
     function scrollToBottom() {
@@ -1963,6 +2461,9 @@ document.addEventListener('DOMContentLoaded', () => {
         formData.email = '';
         formData.inquiry = '';
         flowContainer.innerHTML = '';
+        postTelemetry('restart', {
+            sessionId: formData.sessionId
+        });
         renderStep();
     }
 
