@@ -145,8 +145,8 @@
       "bubbleBgColor": "#2a2a3d",
       "bubbleGradientEnd": "#4b4f64",
       "userBubbleFontFamily": "",
-      "userBubbleFontSizePx": 15,
-      "userBubbleBgColor": "#6c63ff",
+      "userBubbleFontSizePx": 12,
+      "userBubbleBgColor": "#605add",
       "userBubbleTransparencyPct": 0,
       "userBubbleAnimation": "none",
       "composer": {
@@ -181,6 +181,6 @@
       "blankReset": false
     }
   },
-  "runtimeUrl": "https://majesticwebcreation-ui.github.io/astig.media/anti-vs/cherry-app.html?astigDeployTs=2026-03-21T19%3A43%3A04.914Z",
+  "runtimeUrl": "https://majesticwebcreation-ui.github.io/astig.media/anti-vs/cherry-app.html?astigDeployTs=2026-03-21T19%3A51%3A37.154Z",
   "frameSrcdoc": ""
 }
