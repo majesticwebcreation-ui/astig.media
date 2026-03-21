@@ -24,7 +24,7 @@
   "launcherImageUrl": "https://widjets.astigmedia.com/img/Launcher-Logo.png",
   "launcherIconName": "message-circle",
   "launcherIconSvg": "",
-  "assistantName": "Aria",
+  "assistantName": "RIVERS",
   "runtimeMessageType": "ASTIG_CHERRY_RUNTIME_CONFIG",
   "runtimePayload": {
     "theme": {
@@ -47,10 +47,10 @@
       "topHeroMediaUrl": ""
     },
     "header": {
-      "title": "Aria",
-      "name": "Aria",
+      "title": "RIVERS",
+      "name": "RIVERS",
       "status": "Online",
-      "subtitle": "",
+      "subtitle": "OFFLINE",
       "subtitleEmojiUrl": "",
       "subtitleEmojiStripEnabled": true,
       "subtitleEmojiWave": true,
@@ -73,7 +73,7 @@
       "actionsOffsetY": 0,
       "statusOffsetX": 0,
       "statusOffsetY": 0,
-      "avatar": "A",
+      "avatar": "https://widjets.astigmedia.com/img/Assistant-logo.png",
       "avatarSize": 40,
       "avatarOffsetX": 0,
       "avatarOffsetY": 0,
@@ -90,8 +90,8 @@
       "hideHeaderLogo": false
     },
     "assistant": {
-      "name": "Aria",
-      "avatar": "A",
+      "name": "RIVERS",
+      "avatar": "https://widjets.astigmedia.com/img/Assistant-logo.png",
       "avatarSize": 40
     },
     "video": {
@@ -180,6 +180,6 @@
       "blankReset": false
     }
   },
-  "runtimeUrl": "https://majesticwebcreation-ui.github.io/astig.media/anti-vs/cherry-app.html?astigDeployTs=2026-03-21T22%3A43%3A05.548Z",
+  "runtimeUrl": "https://majesticwebcreation-ui.github.io/astig.media/anti-vs/cherry-app.html?astigDeployTs=2026-03-21T22%3A44%3A57.567Z",
   "frameSrcdoc": ""
 }
