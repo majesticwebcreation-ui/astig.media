@@ -10,6 +10,7 @@
   if (!key) {
     key = String(entry.key || 'astig-widget-chatbot-project').trim() || 'astig-widget-chatbot-project';
   }
+
   var launcherCfg = entry.launcherCfg || {};
   var launcherImageUrl = String(entry.launcherImageUrl || '').trim();
   var launcherIconName = String(entry.launcherIconName || 'message-circle').trim();
@@ -19,11 +20,12 @@
   var runtimePayload = entry.runtimePayload || null;
   var runtimeUrl = String(entry.runtimeUrl || '').trim();
   var frameSrcdoc = String(entry.frameSrcdoc || '').trim();
-  var shouldPushRuntimePayload = true;
+
   function isImageLike(value) {
     var raw = String(value || '').trim();
     return !!raw && (/^(https?:)?\/\//i.test(raw) || /^data:/i.test(raw) || /^blob:/i.test(raw) || /^\//.test(raw) || /\.(png|jpe?g|gif|webp|svg)(\?.*)?$/i.test(raw));
   }
+
   function getHeaderLogoConfig() {
     var payload = runtimePayload && typeof runtimePayload === 'object' ? runtimePayload : {};
     var branding = payload.branding && typeof payload.branding === 'object' ? payload.branding : {};
@@ -38,6 +40,7 @@
       offsetY: Number(header.logoOffsetY) || 0
     };
   }
+
   function renderFloatingHeaderLogo(el) {
     if (!el) return false;
     var logo = getHeaderLogoConfig();
@@ -82,6 +85,7 @@
     }
     return true;
   }
+
   var floatingLogoDragOffset = { x: 0, y: 0 };
   function getFloatingLogoStorageKey() {
     return 'astigCherryFloatingLogoOffset:' + key;
@@ -157,6 +161,7 @@
     el.addEventListener('pointerup', finishDrag);
     el.addEventListener('pointercancel', finishDrag);
   }
+
   function getLauncherIconSvg(name) {
     var icon = String(name || 'message-circle').toLowerCase();
     switch (icon) {
@@ -172,29 +177,40 @@
         return '<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path><path d="M8 10h.01"></path><path d="M12 10h.01"></path><path d="M16 10h.01"></path></svg>';
       case 'image':
         return '<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"></rect><circle cx="9" cy="9" r="2"></circle><path d="m21 15-3.09-3.09a2 2 0 0 0-2.82 0L6 21"></path></svg>';
+      case 'message-circle':
       default:
         return '<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>';
     }
   }
+
   function pushRuntimeConfig(frame, shouldRestart) {
     try {
-      if (!shouldPushRuntimePayload || !frame || !frame.contentWindow || !runtimePayload) return;
-      frame.contentWindow.postMessage({ type: runtimeMessageType, payload: runtimePayload, restartConversation: !!shouldRestart }, '*');
+      if (!frame || !frame.contentWindow || !runtimePayload) return;
+      frame.contentWindow.postMessage({
+        type: runtimeMessageType,
+        payload: runtimePayload,
+        restartConversation: !!shouldRestart
+      }, '*');
     } catch (err) {}
   }
+
   function scheduleRuntimeConfigRetries(frame) {
     var delays = [0, 150, 500, 1200];
     for (var i = 0; i < delays.length; i += 1) {
       (function (delay, restartFlag) {
-        w.setTimeout(function () { pushRuntimeConfig(frame, restartFlag); }, delay);
+        w.setTimeout(function () {
+          pushRuntimeConfig(frame, restartFlag);
+        }, delay);
       })(delays[i], i === 0);
     }
   }
+
   w.__ASTIG_CHERRY_RUNTIME_NODES = w.__ASTIG_CHERRY_RUNTIME_NODES || {};
   var previousRoot = w.__ASTIG_CHERRY_RUNTIME_NODES[key];
   if (previousRoot && previousRoot.parentNode) previousRoot.parentNode.removeChild(previousRoot);
   var previousMotionStyle = d.getElementById('astig-cherry-motion-' + key);
   if (previousMotionStyle && previousMotionStyle.parentNode) previousMotionStyle.parentNode.removeChild(previousMotionStyle);
+
   var root = d.createElement('div');
   root.setAttribute('data-astig-cherry-runtime', key);
   root.style.position = 'fixed';
@@ -204,33 +220,40 @@
   root.style.fontFamily = 'Arial, sans-serif';
   (d.body || d.documentElement).appendChild(root);
   w.__ASTIG_CHERRY_RUNTIME_NODES[key] = root;
+
   var motionStyle = d.createElement('style');
   motionStyle.id = 'astig-cherry-motion-' + key;
-  motionStyle.textContent = '@keyframes astigLauncherPulse{0%{box-shadow:0 0 0 0 rgba(108,99,255,0.7);}70%{box-shadow:0 0 0 12px rgba(108,99,255,0);}100%{box-shadow:0 0 0 0 rgba(108,99,255,0);}}@keyframes astigLauncherBounce{0%,20%,50%,80%,100%{transform:translateY(0);}40%{transform:translateY(-10px);}60%{transform:translateY(-5px);}}@keyframes astigLauncherSpin{100%{transform:rotate(360deg);}}';
+  motionStyle.textContent = ''
+    + '@keyframes astigLauncherPulse{0%{box-shadow:0 0 0 0 rgba(108,99,255,0.7);}70%{box-shadow:0 0 0 12px rgba(108,99,255,0);}100%{box-shadow:0 0 0 0 rgba(108,99,255,0);}}'
+    + '@keyframes astigLauncherBounce{0%,20%,50%,80%,100%{transform:translateY(0);}40%{transform:translateY(-10px);}60%{transform:translateY(-5px);}}'
+    + '@keyframes astigLauncherSpin{100%{transform:rotate(360deg);}}';
   (d.head || d.documentElement).appendChild(motionStyle);
+
   var launcherSize = Math.max(40, Number(launcherCfg.size || 48));
   var edge = 20;
   var gap = 12;
   var widgetOpen = false;
-  var frameWidthCss = 'min(490px, calc(100vw - 24px))';
-  var frameHeightCss = 'min(700px, calc(100vh - 110px))';
+
   var frame = d.createElement('iframe');
   frame.title = assistantName;
   frame.loading = 'lazy';
   frame.referrerPolicy = 'strict-origin-when-cross-origin';
   frame.allow = 'autoplay; clipboard-write';
-  frame.onload = function () { scheduleRuntimeConfigRetries(frame); };
-  if (frameSrcdoc) {
-    frame.srcdoc = frameSrcdoc;
-  } else if (runtimeUrl) {
+  frame.onload = function () {
+    scheduleRuntimeConfigRetries(frame);
+  };
+  if (runtimeUrl) {
     frame.src = runtimeUrl;
+  } else {
+    frame.srcdoc = frameSrcdoc;
+    frame.src = 'data:text/html;charset=utf-8,' + encodeURIComponent(frameSrcdoc);
   }
   frame.style.position = 'fixed';
   frame.style.right = edge + 'px';
   frame.style.bottom = (edge + launcherSize + gap) + 'px';
-  frame.style.width = frameWidthCss;
+  frame.style.width = 'min(490px, calc(100vw - 24px))';
   frame.style.maxWidth = 'calc(100vw - 24px)';
-  frame.style.height = frameHeightCss;
+  frame.style.height = 'min(700px, calc(100vh - 110px))';
   frame.style.maxHeight = 'calc(100vh - 110px)';
   frame.style.border = '0';
   frame.style.borderRadius = '20px';
@@ -241,7 +264,9 @@
   frame.style.visibility = 'hidden';
   frame.style.transition = 'opacity 220ms ease, visibility 220ms ease';
   root.appendChild(frame);
+
   function syncFloatingHeaderLogoVisibility() {}
+
   var launcher = d.createElement('button');
   launcher.type = 'button';
   launcher.setAttribute('aria-label', assistantName);
@@ -264,10 +289,12 @@
   launcher.style.boxShadow = '0 16px 32px rgba(0,0,0,0.28)';
   launcher.style.zIndex = '2147483001';
   launcher.style.background = String(launcherCfg.bgColor || '#6c63ff');
+
   var bgStyle = String(launcherCfg.bgStyle || 'solid').toLowerCase();
   var gradientEnd = String(launcherCfg.gradientEnd || '#ff6584');
-  if (bgStyle === 'gradient') launcher.style.background = 'linear-gradient(135deg, ' + String(launcherCfg.bgColor || '#6c63ff') + ', ' + gradientEnd + ')';
-  else if (bgStyle === 'glass') {
+  if (bgStyle === 'gradient') {
+    launcher.style.background = 'linear-gradient(135deg, ' + String(launcherCfg.bgColor || '#6c63ff') + ', ' + gradientEnd + ')';
+  } else if (bgStyle === 'glass') {
     launcher.style.background = 'rgba(255,255,255,0.14)';
     launcher.style.border = '1px solid rgba(255,255,255,0.22)';
     launcher.style.backdropFilter = 'blur(12px)';
@@ -276,12 +303,14 @@
     launcher.style.background = 'transparent';
     launcher.style.border = '1px solid rgba(255,255,255,0.22)';
   }
+
   var shape = String(launcherCfg.shape || 'circle').toLowerCase();
   launcher.style.borderRadius = shape === 'square' ? '16px' : (shape === 'rounded' ? '24px' : '999px');
   var launcherAnim = String(launcherCfg.animation || 'none').toLowerCase();
   if (launcherAnim === 'pulse') launcher.style.animation = 'astigLauncherPulse 2s infinite';
   else if (launcherAnim === 'bounce') launcher.style.animation = 'astigLauncherBounce 2s infinite';
   else if (launcherAnim === 'spin') launcher.style.animation = 'astigLauncherSpin 4s linear infinite';
+
   if (launcherCfg.iconType === 'image' && launcherImageUrl) {
     var img = d.createElement('img');
     img.src = launcherImageUrl;
@@ -291,7 +320,10 @@
     img.style.objectFit = 'cover';
     img.style.display = 'block';
     launcher.appendChild(img);
-  } else launcher.innerHTML = launcherIconSvg || getLauncherIconSvg(launcherIconName);
+  } else {
+    launcher.innerHTML = launcherIconSvg || getLauncherIconSvg(launcherIconName);
+  }
+
   launcher.onclick = function () {
     widgetOpen = !widgetOpen;
     if (widgetOpen) {
@@ -307,5 +339,6 @@
       syncFloatingHeaderLogoVisibility();
     }
   };
+
   root.appendChild(launcher);
 })(window, document);
