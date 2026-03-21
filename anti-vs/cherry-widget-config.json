@@ -3,9 +3,9 @@
   "launcherCfg": {
     "position": "bottom-right",
     "shape": "circle",
-    "iconType": "icon",
+    "iconType": "image",
     "icon": "message-circle",
-    "imageUrl": "",
+    "imageUrl": "https://widjets.astigmedia.com/img/Launcher-Logo.png",
     "size": "48",
     "widgetToggleAnimation": "none",
     "badgeEnabled": false,
@@ -21,7 +21,7 @@
     "gradientEnd": "#ff6584",
     "animation": "none"
   },
-  "launcherImageUrl": "",
+  "launcherImageUrl": "https://widjets.astigmedia.com/img/Launcher-Logo.png",
   "launcherIconName": "message-circle",
   "launcherIconSvg": "",
   "assistantName": "Aria",
@@ -180,6 +180,6 @@
       "blankReset": false
     }
   },
-  "runtimeUrl": "https://majesticwebcreation-ui.github.io/astig.media/anti-vs/cherry-app.html?astigDeployTs=2026-03-21T22%3A38%3A23.246Z",
+  "runtimeUrl": "https://majesticwebcreation-ui.github.io/astig.media/anti-vs/cherry-app.html?astigDeployTs=2026-03-21T22%3A38%3A50.557Z",
   "frameSrcdoc": ""
 }
